@@ -21,3 +21,8 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
+
+# WordPress backup of old 2112 site (contains wp-config.php with DB credentials)
+Old-site-backup/
+*.wpress
+*.sql

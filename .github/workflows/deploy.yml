@@ -34,7 +34,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./astro/dist/
-          server-dir: /domains/2112capitalsolutions.com/public_html/
+          server-dir: /public_html/
           timeout: 60000
 
       - name: Retry deploy on failure
@@ -45,5 +45,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./astro/dist/
-          server-dir: /domains/2112capitalsolutions.com/public_html/
+          server-dir: /public_html/
           timeout: 120000
