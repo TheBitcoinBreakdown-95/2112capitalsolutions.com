@@ -1,0 +1,18 @@
+# 2112 Capital Solutions -- static Astro site
+# Overwrites the legacy WordPress .htaccess on first deploy.
+
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Mark legacy WordPress paths as 410 Gone so leftover files don't serve.
+    RewriteRule ^(wp-admin|wp-includes|wp-content)(/|$) - [G,L]
+    RewriteRule ^wp-[a-z0-9\-]+\.php$ - [G,L]
+    RewriteRule ^xmlrpc\.php$ - [G,L]
+    RewriteRule ^readme\.html$ - [G,L]
+    RewriteRule ^license\.txt$ - [G,L]
+</IfModule>
+
+ErrorDocument 404 /404.html
