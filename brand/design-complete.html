@@ -3,1392 +3,1208 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2112 — Complete Design System</title>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@400;700&family=Cormorant+Infant:wght@400;500&family=Crimson+Pro:wght@400&family=Source+Serif+4:wght@400&family=Lora:wght@400&family=Spectral:wght@400&family=Cardo:ital@0;1&family=Cinzel:wght@400;700&family=Forum&family=Marcellus+SC&family=Sorts+Mill+Goudy&family=Roboto+Slab:wght@400&family=Bree+Serif&family=Bitter:wght@400&family=Domine:wght@400&family=Yeseva+One&family=Cantata+One&family=Frank+Ruhl+Libre:wght@400&family=Rozha+One&family=Tenor+Sans&family=Vidaloka&family=UnifrakturMaguntia&family=Special+Elite&family=Inter:wght@100;200;300;400;500;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<title>2112 — Brand Kit · Apex Constructivist v2.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════
-   DESIGN TOKENS (locked 2026-04-29)
+   APEX CONSTRUCTIVIST v2.0 — BRAND KIT
+   Living style guide. Every component, every token, every state.
+   Source spec: master-design-guide.md
    ═══════════════════════════════════════════════ */
+
+/* TOKENS */
 :root {
-  --obsidian: #070707;
-  --obsidian-soft: #0c0c0c;
-  --obsidian-card: #0e1014;
-  --obsidian-elevated: #14161d;
-  --obsidian-code: #0a0c10;
-  --emerald: #0a5a36;
-  --emerald-saturated: #084d2e;
-  --emerald-rendered: #08472b;
-  --emerald-vibrant: #0c6a3f;
-  --emerald-glow: rgba(10, 90, 54, 0.45);
-  --emerald-dim: rgba(10, 90, 54, 0.18);
-  --emerald-subtle: rgba(10, 90, 54, 0.07);
-  --emerald-overlay: rgba(10, 90, 54, 0.04);
-  --text-primary: #d8d6d0;
-  --text-secondary: #807d75;
-  --text-muted: #4f4d47;
-  --border-default: rgba(10, 90, 54, 0.10);
-  --border-hover: rgba(10, 90, 54, 0.25);
-  --border-focus: rgba(10, 90, 54, 0.55);
-  --border-line: rgba(255, 255, 255, 0.06);
-  --success: #4ADE80; --success-dim: rgba(74,222,128,0.1); --success-border: rgba(74,222,128,0.25);
-  --warning: #FACC15; --warning-dim: rgba(250,204,21,0.1); --warning-border: rgba(250,204,21,0.25);
-  --error: #F87171; --error-dim: rgba(248,113,113,0.1); --error-border: rgba(248,113,113,0.25);
-  --info: #60A5FA; --info-dim: rgba(96,165,250,0.1); --info-border: rgba(96,165,250,0.25);
-  --font-display: 'Libre Bodoni', 'Bodoni Moda', Georgia, serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+  --bg: #000000;
+  --bg-elev: #0a0a0a;
+  --bg-card: #111111;
+  --text: #f4f4f0;
+  --text-2: #908d85;
+  --text-3: #5a5752;
+  --line: rgba(255,255,255,0.10);
+  --line-strong: rgba(255,255,255,0.22);
+  --signal: #e63030;
+  --signal-dim: rgba(230, 48, 48, 0.15);
+  --signal-line: rgba(230, 48, 48, 0.35);
+
+  --success: #4ADE80;
+  --success-dim: rgba(74, 222, 128, 0.10);
+  --warning: #FACC15;
+  --warning-dim: rgba(250, 204, 21, 0.10);
+  --error: #F87171;
+  --error-dim: rgba(248, 113, 113, 0.10);
+  --info: #60A5FA;
+  --info-dim: rgba(96, 165, 250, 0.10);
+
+  --font-body: 'Space Grotesk', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --space-1:4px;--space-2:8px;--space-3:16px;--space-4:24px;--space-5:32px;
-  --space-6:48px;--space-7:64px;--space-8:96px;--space-9:128px;--space-10:192px;
-  --content-width: 720px;
-  --wide-width: 1180px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 80px;
+  --space-9: 128px;
+  --space-10: 192px;
+
+  --container-outer: 1280px;
+  --container-narrow: 760px;
+  --container-reading: 720px;
   --page-margin: 32px;
-  --ease-luxury: cubic-bezier(0.23,1,0.32,1);
-  --ease-out: cubic-bezier(0.16,1,0.3,1);
-  --ease-soft: cubic-bezier(0.4,0,0.2,1);
+
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-*,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scrollbar-width: thin; scrollbar-color: var(--emerald-vibrant) var(--obsidian); scroll-behavior: smooth; }
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--obsidian); }
-::-webkit-scrollbar-thumb { background: var(--emerald-vibrant); border-radius: 3px; }
-::selection { background: rgba(10, 90, 54, 0.30); color: var(--text-primary); }
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background:
-    radial-gradient(rgba(255,255,255,0.012) 1px, transparent 1px) 0 0 / 3px 3px,
-    radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px) 1px 1px / 5px 5px,
-    var(--obsidian);
-  color: var(--text-primary);
+  background: var(--bg);
+  color: var(--text);
   font-family: var(--font-body);
-  font-weight: 300;
-  font-size: 16.5px;
-  line-height: 1.7;
-  overflow-x: hidden;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
 
-*:focus-visible { outline: 2px solid var(--emerald); outline-offset: 3px; border-radius: 2px; }
-*:focus:not(:focus-visible) { outline: none; }
+/* SCANLINE TEXTURE */
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0, transparent 3px, rgba(255,255,255,0.018) 3px, rgba(255,255,255,0.018) 4px);
+  z-index: 0;
+}
+main, header, footer, .status { position: relative; z-index: 1; }
 
-/* LAYOUT */
-.container { max-width: var(--content-width); margin: 0 auto; padding: 0 var(--page-margin); }
-.container--wide { max-width: var(--wide-width); margin: 0 auto; padding: 0 var(--page-margin); }
-.section { padding: var(--space-9) 0; }
-.section-tight { padding: var(--space-7) 0; }
-.section-label {
+.container { max-width: var(--container-outer); margin: 0 auto; padding: 0 var(--page-margin); }
+.container--narrow { max-width: var(--container-narrow); margin: 0 auto; padding: 0 var(--page-margin); }
+
+/* STATUS BAR */
+.status {
+  border-bottom: 1px solid var(--signal-line);
+  background: var(--bg);
   font-family: var(--font-mono);
-  font-size: 11px; letter-spacing: 0.20em;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: var(--space-6);
-  padding-bottom: var(--space-3);
-  border-bottom: 1px solid var(--border-line);
-  font-weight: 400;
+  color: var(--text-2);
+  padding: 8px var(--page-margin);
+  display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  flex-wrap: wrap;
 }
-.section-desc {
-  font-size: 16px;
-  color: var(--text-secondary);
-  line-height: 1.65;
-  margin-bottom: var(--space-7);
-  max-width: 620px;
-}
-.subsection-title {
-  font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 400;
-  color: var(--text-primary);
-  margin: var(--space-7) 0 var(--space-4);
-  letter-spacing: -0.005em;
-}
-.subsection-note {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-muted);
-  margin-bottom: var(--space-3);
-  letter-spacing: 0.04em;
-}
-.grid { display: grid; gap: var(--space-3); }
-.grid--2 { grid-template-columns: repeat(2,1fr); }
-.grid--3 { grid-template-columns: repeat(3,1fr); }
-@media (max-width: 768px) {
-  .grid--2, .grid--3 { grid-template-columns: 1fr; }
-}
+.status .left { display: flex; gap: 22px; align-items: center; }
+.status .signal { color: var(--signal); font-weight: 700; }
+.status .signal::before { content: '■'; font-size: 8px; vertical-align: 2px; margin-right: 6px; }
+.status .meta { color: var(--text-3); font-weight: 500; }
+.status .meta b { color: var(--text); font-weight: 700; }
+.status .star { color: var(--signal); font-size: 9px; opacity: 0.85; }
 
-/* HAIRLINE RULE */
-.divider {
-  height: 1px;
-  max-width: var(--wide-width);
-  margin: 0 auto;
-  background: linear-gradient(90deg, transparent, var(--border-default) 20%, var(--border-default) 80%, transparent);
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 1.6s var(--ease-luxury);
-}
-.divider.visible { transform: scaleX(1); }
-
-/* HEADER */
+/* SITE HEADER + V14 BRANDMARK (compact) */
 .site-header {
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+  background: var(--bg);
   position: sticky; top: 0; z-index: 100;
-  padding: var(--space-3) 0;
-  background: rgba(7, 7, 7, 0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-line);
 }
-.header-inner {
-  max-width: var(--wide-width); margin: 0 auto; padding: 0 var(--page-margin);
-  display: flex; justify-content: space-between; align-items: center; gap: var(--space-5);
-}
-.logo-compact {
-  display: inline-flex; align-items: baseline; gap: 8px;
-  font-family: var(--font-display);
-  font-weight: 600; font-size: 22px;
-  color: var(--emerald); text-decoration: none;
-  letter-spacing: 0.02em; line-height: 1;
-}
-.logo-compact .sub {
-  font-family: var(--font-body);
-  font-weight: 200; font-size: 10px;
-  letter-spacing: 0.20em; text-transform: uppercase;
-  color: var(--text-secondary); align-self: end; padding-bottom: 3px;
-}
-.nav-links { display: flex; gap: var(--space-5); list-style: none; align-items: center; }
-.nav-links a {
-  font-family: var(--font-body);
-  font-size: 13px; font-weight: 400; letter-spacing: 0.01em;
-  color: var(--text-secondary); text-decoration: none;
-  transition: color 0.3s var(--ease-soft);
-  position: relative; padding: 6px 0;
-}
-.nav-links a::after {
-  content: ''; position: absolute; bottom: 0; left: 50%;
-  height: 1px; width: 0;
-  background: var(--emerald);
-  transition: width 0.4s var(--ease-luxury), left 0.4s var(--ease-luxury);
-}
-.nav-links a:hover { color: var(--text-primary); }
-.nav-links a:hover::after { width: 100%; left: 0; }
-.nav-links a.active { color: var(--emerald); }
-@media (max-width: 768px) { .nav-links { display: none; } }
-
-.scroll-progress {
-  position: fixed; top: 0; left: 0; height: 1px;
-  background: var(--emerald); z-index: 101; width: 0%;
-  box-shadow: 0 0 6px rgba(10, 90, 54, 0.3);
-}
-
-/* ═══════════════════════════════════════════════
-   HERO — typography only, vast whitespace
-   editorial register, NOT card-grid SaaS
-   ═══════════════════════════════════════════════ */
-.hero {
-  padding: var(--space-10) 0 var(--space-9);
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-}
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(900px 600px at 50% 40%, var(--emerald-overlay), transparent 70%);
-  animation: heroGlow 9s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes heroGlow {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(1.04); }
-}
-.hero-eyebrow {
+.header-inner { max-width: var(--container-outer); margin: 0 auto; padding: 0 var(--page-margin); display: flex; justify-content: space-between; align-items: center; }
+.brandmark {
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--emerald);
-  margin-bottom: var(--space-7);
-  position: relative;
-}
-.hero-eyebrow::before { content: '— '; color: var(--text-muted); }
-
-/* Logo lockup rendered in HTML — NO image background mismatch */
-.logo-hero {
-  display: inline-block;
-  text-align: center;
-  margin-bottom: var(--space-7);
-  position: relative;
-}
-.logo-hero .num {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(96px, 16vw, 180px);
-  line-height: 0.95;
-  letter-spacing: 0.12em;
-  color: var(--emerald);
-  margin-bottom: var(--space-3);
-}
-.logo-hero .rule {
-  height: 1px;
-  background: var(--emerald);
-  width: 70%;
-  margin: 0 auto var(--space-3);
-  opacity: 0.85;
-}
-.logo-hero .sub {
-  font-family: var(--font-body);
-  font-weight: 200;
-  font-size: clamp(13px, 1.4vw, 18px);
-  letter-spacing: 0.27em;
-  text-transform: uppercase;
-  color: var(--emerald);
-}
-.hero-statement {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-style: italic;
-  font-size: clamp(20px, 2.6vw, 28px);
-  line-height: 1.4;
-  color: var(--text-secondary);
-  max-width: 680px;
-  margin: 0 auto;
-  position: relative;
-}
-
-/* ═══════════════════════════════════════════════
-   FONT EXPLORATION — 10 candidates
-   ═══════════════════════════════════════════════ */
-.font-explore {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--border-line);
-  border: 1px solid var(--border-line);
-  border-radius: 6px;
-  overflow: hidden;
-}
-@media (max-width: 768px) { .font-explore { grid-template-columns: 1fr; } }
-.font-card {
-  background: var(--obsidian);
-  padding: var(--space-5) var(--space-4);
-  text-align: center;
-  position: relative;
-  transition: background 0.3s var(--ease-soft);
-}
-.font-card:hover { background: var(--obsidian-soft); }
-.font-card .label {
-  position: absolute;
-  top: var(--space-3); left: var(--space-3);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-.font-card .label b { color: var(--text-secondary); font-weight: 500; }
-.font-card .glyph {
-  font-size: clamp(56px, 8vw, 84px);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 7px;
   line-height: 1;
-  letter-spacing: 0.10em;
-  color: var(--emerald);
-  font-weight: 400;
-  margin-bottom: var(--space-2);
 }
-.font-card .glyph-rule {
-  height: 1px;
-  width: 60%;
-  background: var(--emerald);
-  margin: 0 auto 10px;
-  opacity: 0.7;
-}
-.font-card .glyph-sub {
-  font-family: var(--font-body);
-  font-weight: 200;
-  font-size: 11px;
-  letter-spacing: 0.27em;
+.brandmark .bar { display: inline-block; width: 3px; height: 18px; background: var(--signal); }
+nav ul { display: flex; gap: 28px; list-style: none; }
+nav a {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--emerald);
+  color: var(--text-2);
+  text-decoration: none;
+  transition: color 0.15s var(--ease-default);
 }
-.f-playfair { font-family: 'Playfair Display', serif; }
-.f-cormorantinfant { font-family: 'Cormorant Infant', serif; font-weight: 500; }
-.f-crimsonpro { font-family: 'Crimson Pro', serif; }
-.f-sourceserif { font-family: 'Source Serif 4', serif; }
-.f-lora { font-family: 'Lora', serif; }
-.f-spectral { font-family: 'Spectral', serif; }
-.f-cardo { font-family: 'Cardo', serif; }
-.f-cinzel { font-family: 'Cinzel', serif; }
-.f-forum { font-family: 'Forum', serif; }
-.f-marcellussc { font-family: 'Marcellus SC', serif; }
-.f-sortsmillgoudy { font-family: 'Sorts Mill Goudy', serif; }
-.f-robotoslab { font-family: 'Roboto Slab', serif; }
-.f-breeserif { font-family: 'Bree Serif', serif; }
-.f-bitter { font-family: 'Bitter', serif; }
-.f-domine { font-family: 'Domine', serif; }
-.f-yeseva { font-family: 'Yeseva One', serif; }
-.f-cantata { font-family: 'Cantata One', serif; }
-.f-frankruhl { font-family: 'Frank Ruhl Libre', serif; }
-.f-rozha { font-family: 'Rozha One', serif; }
-.f-tenorsans { font-family: 'Tenor Sans', sans-serif; }
-.f-vidaloka { font-family: 'Vidaloka', serif; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--signal); }
+nav a.active::before { content: '> '; color: var(--signal); }
 
-/* ═══════════════════════════════════════════════
-   SERVICE ROWS — editorial bands, NOT card grid
-   This is the structural divergence from TBB
-   ═══════════════════════════════════════════════ */
-.service-row {
-  padding: var(--space-7) 0;
-  border-bottom: 1px solid var(--border-line);
-}
-.service-row:last-child { border-bottom: none; }
-.service-row .row-eyebrow {
+/* KIT HERO */
+.kit-hero { padding: 80px 0 64px; border-bottom: 1px solid var(--line); }
+.classify {
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.18em;
+  font-weight: 600;
+  letter-spacing: 0.20em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: var(--space-4);
+  color: var(--signal);
+  margin-bottom: 24px;
+  display: flex; gap: 16px; align-items: center;
 }
-.service-row .row-eyebrow b { color: var(--emerald); font-weight: 400; }
-.service-row .body {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: var(--space-7);
-  align-items: start;
-}
-.service-row h3 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(28px, 3.6vw, 40px);
-  letter-spacing: -0.01em;
-  line-height: 1.1;
-  color: var(--text-primary);
-  margin-bottom: var(--space-4);
-}
-.service-row .lede {
+.classify::before { content: ''; width: 32px; height: 1px; background: var(--signal); }
+.kit-hero h1 {
   font-family: var(--font-body);
-  font-size: 17px;
-  font-weight: 300;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin-bottom: var(--space-4);
+  font-weight: 700;
+  font-size: clamp(40px, 5.5vw, 64px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 24px;
+  max-width: 960px;
 }
-.service-row .meta {
-  border-left: 1px solid var(--border-default);
-  padding-left: var(--space-4);
-}
-.service-row .deliverables {
-  list-style: none;
-  margin-bottom: var(--space-4);
-}
-.service-row .deliverables li {
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: var(--text-secondary);
-  padding: 6px 0;
-  border-bottom: 1px solid var(--border-line);
-  display: flex; justify-content: space-between; gap: 12px;
-}
-.service-row .deliverables li:last-child { border-bottom: none; }
-.service-row .deliverables li::before { content: '·'; color: var(--text-muted); margin-right: 8px; }
-.service-row .price-block {
+.kit-hero h1 em { font-style: normal; color: var(--signal); }
+.kit-hero p {
   font-family: var(--font-mono);
   font-size: 13px;
+  font-weight: 500;
   letter-spacing: 0.04em;
-  color: var(--emerald);
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--border-default);
-}
-.service-row .price-block b {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 28px;
-  color: var(--emerald);
-  display: block;
-  margin-bottom: 4px;
-}
-@media (max-width: 768px) {
-  .service-row .body { grid-template-columns: 1fr; gap: var(--space-4); }
-  .service-row .meta { border-left: none; padding-left: 0; border-top: 1px solid var(--border-default); padding-top: var(--space-4); }
-}
-
-/* ═══════════════════════════════════════════════
-   EDITORIAL SECTION — what a real page section looks like
-   "one thought per scroll" pacing
-   ═══════════════════════════════════════════════ */
-.editorial {
-  padding: var(--space-9) 0;
-  text-align: center;
-}
-.editorial-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  color: var(--text-2);
   text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: var(--space-5);
-}
-.editorial h2 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(36px, 6vw, 72px);
-  line-height: 1.05;
-  letter-spacing: -0.015em;
-  color: var(--text-primary);
-  max-width: 880px;
-  margin: 0 auto var(--space-6);
-}
-.editorial h2 em { font-style: italic; color: var(--emerald); }
-.editorial p {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(17px, 2vw, 22px);
-  line-height: 1.55;
-  color: var(--text-secondary);
-  max-width: 640px;
-  margin: 0 auto;
+  max-width: 720px;
+  line-height: 1.7;
+  border-left: 2px solid var(--signal);
+  padding-left: 20px;
 }
 
-/* ═══════════════════════════════════════════════
-   GUIDE LIST — numbered editorial, not tile grid
-   ═══════════════════════════════════════════════ */
-.guide-list { list-style: none; }
-.guide-list-item {
-  display: grid;
-  grid-template-columns: 60px 1fr 100px;
-  gap: var(--space-5);
-  padding: var(--space-5) 0;
-  border-bottom: 1px solid var(--border-line);
-  align-items: baseline;
-  text-decoration: none;
-  color: inherit;
-  transition: background 0.3s var(--ease-soft), padding-left 0.3s var(--ease-soft);
-}
-.guide-list-item:hover {
-  background: var(--emerald-subtle);
-  padding-left: var(--space-3);
-  padding-right: var(--space-3);
-}
-.guide-list-item .num {
+/* KIT SECTION wrapper */
+.kit-section { padding: 80px 0; border-top: 1px solid var(--line); }
+.kit-classify {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--text-muted);
-  letter-spacing: 0.14em;
-  align-self: start;
-  padding-top: 6px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--signal-line);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
 }
-.guide-list-item .content h4 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(20px, 2.4vw, 26px);
-  letter-spacing: -0.005em;
-  line-height: 1.25;
-  color: var(--text-primary);
-  margin-bottom: var(--space-2);
-  transition: color 0.3s var(--ease-soft);
-}
-.guide-list-item:hover .content h4 { color: var(--emerald); }
-.guide-list-item .content .summary {
-  font-size: 14.5px;
-  color: var(--text-secondary);
-  line-height: 1.55;
-  margin-bottom: var(--space-2);
-}
-.guide-list-item .content .meta-line {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-muted);
-  letter-spacing: 0.04em;
-}
-.guide-list-item .meta-line .topic { color: var(--emerald); }
-.guide-list-item .arrow {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  color: var(--text-muted);
-  text-align: right;
-  align-self: center;
-  transition: transform 0.3s var(--ease-soft), color 0.3s var(--ease-soft);
-}
-.guide-list-item:hover .arrow { color: var(--emerald); transform: translateX(4px); }
-@media (max-width: 768px) {
-  .guide-list-item { grid-template-columns: 50px 1fr; }
-  .guide-list-item .arrow { display: none; }
-}
-
-/* ═══════════════════════════════════════════════
-   TESTIMONIAL — full-width editorial moment
-   ═══════════════════════════════════════════════ */
-.testimonial {
-  text-align: center;
-  padding: var(--space-9) 0;
-  position: relative;
-}
-.testimonial::before, .testimonial::after {
-  content: '';
-  display: block;
-  width: 80px;
-  height: 1px;
-  background: var(--emerald);
-  margin: 0 auto;
-}
-.testimonial::before { margin-bottom: var(--space-6); }
-.testimonial::after { margin-top: var(--space-6); }
-.testimonial-text {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(22px, 3vw, 30px);
-  line-height: 1.4;
-  color: var(--text-primary);
-  max-width: 760px;
-  margin: 0 auto var(--space-5);
-}
-.testimonial-attribution {
-  display: inline-flex; flex-direction: column; align-items: center; gap: 6px;
-}
-.testimonial-name {
+.kit-classify .ref { color: var(--text-3); font-weight: 500; }
+.kit-title {
   font-family: var(--font-body);
-  font-size: 14.5px;
-  font-weight: 400;
-  color: var(--text-primary);
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 44px);
+  letter-spacing: -0.025em;
+  line-height: 1.0;
+  color: var(--text);
+  margin-bottom: 20px;
+  max-width: 1000px;
 }
-.testimonial-role {
+.kit-title em { font-style: normal; color: var(--signal); }
+.kit-lede {
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-/* TYPE SCALE DEMO ROWS */
-.type-row {
-  padding: var(--space-4) 0;
-  border-bottom: 1px solid var(--border-line);
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: var(--space-5);
-  align-items: baseline;
-}
-.type-row:last-child { border-bottom: none; }
-.type-row .meta {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-2);
   letter-spacing: 0.04em;
+  line-height: 1.7;
+  max-width: 700px;
+  margin-bottom: 48px;
+  text-transform: uppercase;
 }
-.type-row .meta b { color: var(--text-secondary); font-weight: 400; }
-.t-display { font-family: var(--font-display); font-weight: 400; font-size: clamp(48px, 8vw, 96px); line-height: 0.95; letter-spacing: 0.04em; color: var(--text-primary); }
-.t-h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(36px, 5.5vw, 64px); line-height: 1.05; letter-spacing: 0.02em; color: var(--text-primary); }
-.t-h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(28px, 4vw, 44px); line-height: 1.15; letter-spacing: 0.01em; color: var(--text-primary); }
-.t-h3 { font-family: var(--font-body); font-weight: 500; font-size: clamp(20px, 2.6vw, 28px); line-height: 1.25; color: var(--text-primary); }
-.t-body { font-family: var(--font-body); font-weight: 300; font-size: 16.5px; line-height: 1.7; color: var(--text-primary); }
-.t-overline { font-family: var(--font-mono); font-weight: 400; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--emerald); }
-.t-tag { font-family: var(--font-mono); font-weight: 500; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-secondary); }
+.subhead {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin: 48px 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
 
 /* COLOR SWATCHES */
-.swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: var(--space-2); }
-.swatch { background: var(--obsidian-soft); border: 1px solid var(--border-line); border-radius: 6px; overflow: hidden; }
-.swatch-color { height: 64px; }
-.swatch-meta { padding: 12px 14px; }
-.swatch-name { font-size: 12.5px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
-.swatch-hex { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); letter-spacing: 0.02em; }
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.swatch { background: var(--bg-elev); padding: 0; display: flex; flex-direction: column; }
+.swatch-chip { height: 100px; border-bottom: 1px solid var(--line); }
+.swatch-meta {
+  padding: 14px 16px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+.swatch-meta .name { color: var(--text); font-weight: 700; text-transform: uppercase; letter-spacing: 0.10em; display: block; margin-bottom: 4px; }
+.swatch-meta .hex { color: var(--text-3); }
+
+/* spacing scale */
+.spacing-row { display: flex; align-items: center; gap: 24px; padding: 10px 0; border-bottom: 1px dashed var(--line); }
+.spacing-row:last-child { border-bottom: none; }
+.spacing-row .label { font-family: var(--font-mono); font-size: 11px; color: var(--text-2); letter-spacing: 0.06em; text-transform: uppercase; min-width: 100px; }
+.spacing-row .value { font-family: var(--font-mono); font-size: 11px; color: var(--signal); font-weight: 700; min-width: 60px; }
+.spacing-row .bar { background: var(--signal); height: 8px; }
+
+/* TYPOGRAPHY */
+.type-row { padding: 24px 0; border-top: 1px dashed var(--line); display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: baseline; }
+.type-row:last-of-type { border-bottom: 1px dashed var(--line); }
+.type-row .meta {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--text-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.7;
+}
+.type-row .meta b { color: var(--signal); font-weight: 700; display: block; margin-bottom: 4px; }
+.type-row .render { color: var(--text); }
+
+.t-hero { font-family: var(--font-body); font-weight: 700; font-size: 84px; letter-spacing: -0.035em; line-height: 0.95; }
+.t-h2 { font-family: var(--font-body); font-weight: 700; font-size: 52px; letter-spacing: -0.03em; line-height: 1.0; }
+.t-h3 { font-family: var(--font-body); font-weight: 600; font-size: 24px; letter-spacing: -0.015em; }
+.t-h4 { font-family: var(--font-body); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; }
+.t-body { font-family: var(--font-body); font-weight: 400; font-size: 15px; }
+.t-mono-label { font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.20em; text-transform: uppercase; }
+.t-mono-caption { font-family: var(--font-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--text-2); }
+.t-brandmark-hero { font-family: var(--font-mono); font-weight: 700; font-size: 96px; letter-spacing: 0.02em; }
+
+/* V14 LOGO */
+.lockup-v14 { display: inline-grid; grid-template-columns: auto auto; gap: var(--gap, 12px); align-items: center; }
+.lockup-v14 .lbar { width: var(--bar-w, 4px); height: var(--bar-h, 80px); background: var(--signal); }
+.lockup-v14 .stack { display: flex; flex-direction: column; align-items: flex-start; }
+.lockup-v14 .num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--num-size, 64px);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+.lockup-v14 .sub {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--sub-size, 11px);
+  letter-spacing: var(--sub-track, 0.20em);
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-top: var(--sub-gap, 8px);
+}
+
+/* per-scale tokens — sub-track values pre-computed for flush right alignment */
+.s-hero      { --bar-w: 6px; --bar-h: 110px; --num-size: 96px; --sub-size: 14px; --sub-track: 0.42em; --gap: 18px; --sub-gap: 12px; }
+.s-section   { --bar-w: 5px; --bar-h: 76px;  --num-size: 64px; --sub-size: 11px; --sub-track: 0.26em; --gap: 14px; --sub-gap: 10px; }
+.s-medium    { --bar-w: 4px; --bar-h: 50px;  --num-size: 42px; --sub-size: 8px;  --sub-track: 0.17em; --gap: 10px; --sub-gap: 7px; }
+.s-navbar    { --bar-w: 3px; --bar-h: 22px;  --num-size: 18px; --gap: 7px; }
+.s-navbar .sub { display: none; }
+.s-footer    { --bar-w: 2px; --bar-h: 16px;  --num-size: 14px; --gap: 6px; }
+.s-footer .sub { display: none; }
+.s-card      { --bar-w: 3px; --bar-h: 30px;  --num-size: 24px; --gap: 8px; }
+.s-card .sub { display: none; }
+
+.icon-frame { border: 1px dashed var(--text-3); display: grid; place-items: center; background: var(--bg); }
+.f-128 { width: 128px; height: 128px; }
+.f-64  { width: 64px;  height: 64px; }
+.f-32  { width: 32px;  height: 32px; }
+.f-16  { width: 16px;  height: 16px; }
+.icon-row { display: flex; gap: 24px; align-items: end; flex-wrap: wrap; }
+.icon-col { display: flex; flex-direction: column; align-items: center; }
+.icon-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.10em; color: var(--text-3); text-transform: uppercase; margin-top: 8px; }
+
+.iconic { display: inline-grid; grid-template-columns: auto auto; gap: 1px; align-items: center; }
+.iconic .lbar { background: var(--signal); }
+.iconic .num { font-family: var(--font-mono); font-weight: 700; color: var(--text); line-height: 0.95; letter-spacing: 0; }
+
+.scale-row {
+  border: 1px solid var(--line);
+  background: var(--bg-elev);
+  display: grid;
+  grid-template-columns: 200px 1fr 180px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.scale-row .label { padding: 18px 22px; font-family: var(--font-mono); font-size: 10.5px; font-weight: 600; color: var(--signal); letter-spacing: 0.10em; text-transform: uppercase; border-right: 1px solid var(--line); }
+.scale-row .label .meta { display: block; margin-top: 6px; color: var(--text-3); font-weight: 500; font-size: 9.5px; letter-spacing: 0.06em; }
+.scale-row .stage { padding: 28px; background: var(--bg); display: flex; align-items: center; justify-content: center; min-height: 100px; }
+.scale-row .note { padding: 16px 22px; font-family: var(--font-mono); font-size: 10px; color: var(--text-3); border-left: 1px solid var(--line); letter-spacing: 0.04em; line-height: 1.7; text-transform: uppercase; }
 
 /* BUTTONS */
 .btn {
-  display: inline-flex; align-items: center; gap: var(--space-2);
-  font-family: var(--font-body); font-size: 13px; font-weight: 500;
-  padding: 14px 22px;
-  border: 1px solid transparent;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  padding: 16px 28px;
+  text-decoration: none;
+  border: 1px solid;
   border-radius: 0;
-  text-decoration: none; cursor: pointer;
-  transition: background 0.3s var(--ease-soft), border-color 0.3s var(--ease-soft), color 0.3s var(--ease-soft), transform 0.3s var(--ease-soft);
+  text-transform: uppercase;
+  transition: all 0.15s var(--ease-default);
+  cursor: pointer;
 }
-.btn--primary { background: var(--emerald); color: var(--obsidian); border-color: var(--emerald); }
-.btn--primary:hover { background: var(--emerald-vibrant); border-color: var(--emerald-vibrant); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(10, 90, 54, 0.18); }
-.btn--ghost { background: transparent; color: var(--text-primary); border-color: var(--border-line); }
-.btn--ghost:hover { border-color: var(--emerald); color: var(--emerald); }
-.btn--subtle { background: transparent; color: var(--emerald); border-color: transparent; padding: 0 0 4px; border-bottom: 1px solid transparent; }
-.btn--subtle:hover { border-bottom-color: var(--emerald); }
-.btn--small { font-size: 11px; padding: 10px 16px; }
+.btn--primary { background: var(--signal); color: #fff; border-color: var(--signal); }
+.btn--primary:hover { background: transparent; color: var(--signal); }
+.btn--ghost { background: transparent; color: var(--text); border-color: var(--text); }
+.btn--ghost:hover { background: var(--text); color: var(--bg); }
+.btn--small { font-size: 10.5px; padding: 10px 16px; letter-spacing: 0.10em; }
+.btn::after { content: '→'; }
+.btn--no-arrow::after { content: ''; }
+.button-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+
+/* PROTOCOL ROWS */
+.protocol {
+  display: grid;
+  grid-template-columns: 200px 1fr 240px;
+  gap: 60px;
+  padding: 36px 0;
+  border-top: 1px solid var(--line);
+  align-items: start;
+}
+.protocol:last-of-type { border-bottom: 1px solid var(--line); }
+.protocol-id {
+  font-family: var(--font-mono);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--signal);
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+.protocol-id .label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-top: 14px;
+}
+.protocol-body h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: var(--text);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+.protocol-body p { font-size: 15px; color: var(--text-2); line-height: 1.6; margin-bottom: 20px; }
+.protocol-body ul {
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-2);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.protocol-body li { padding: 5px 0; display: flex; gap: 14px; align-items: baseline; }
+.protocol-body li::before { content: '▸'; color: var(--signal); font-size: 8px; }
+.protocol-spec {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-left: 1px solid var(--signal);
+  padding-left: 24px;
+}
+.protocol-spec b { color: var(--text); display: block; margin-bottom: 12px; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; text-transform: none; }
+.protocol-spec .ln { display: block; margin-bottom: 8px; }
+.protocol-spec .ln span { color: var(--text-2); font-weight: 500; }
+
+/* METHOD STEPS */
+.method-step {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 60px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+.method-step:last-of-type { border-bottom: 1px solid var(--line); }
+.method-step-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.method-step-num b { color: var(--signal); font-weight: 700; display: block; font-size: 24px; letter-spacing: 0; margin-bottom: 6px; }
+.method-step h5 { font-family: var(--font-body); font-weight: 600; font-size: 18px; color: var(--text); margin-bottom: 8px; letter-spacing: -0.01em; }
+.method-step p { font-size: 14.5px; color: var(--text-2); line-height: 1.6; }
+
+/* CARDS */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  padding: 28px;
+  transition: border-color 0.15s var(--ease-default), transform 0.15s var(--ease-default), box-shadow 0.15s var(--ease-default);
+}
+.card:hover { border-color: var(--signal-line); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(230,48,48,0.06); }
+.card-eyebrow { font-family: var(--font-mono); font-size: 10.5px; font-weight: 600; color: var(--text-2); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 14px; }
+.card-title { font-family: var(--font-body); font-weight: 600; font-size: 22px; color: var(--text); margin-bottom: 12px; letter-spacing: -0.015em; line-height: 1.2; }
+.card-excerpt { font-size: 14.5px; color: var(--text-2); line-height: 1.6; margin-bottom: 18px; }
+.card-meta { display: flex; gap: 16px; padding-top: 14px; border-top: 1px dashed var(--line); font-family: var(--font-mono); font-size: 10.5px; color: var(--text-3); letter-spacing: 0.06em; text-transform: uppercase; }
+.card-meta .signal { color: var(--signal); font-weight: 700; }
 
 /* FORMS */
-.form-row { margin-bottom: var(--space-4); }
-.form-label { display: block; font-family: var(--font-body); font-size: 11px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-2); }
-.form-input, .form-textarea, .form-select { width: 100%; background: var(--obsidian-card); border: 1px solid var(--border-line); padding: 14px 18px; font-family: var(--font-body); font-weight: 300; font-size: 16px; color: var(--text-primary); border-radius: 0; transition: border-color 0.3s var(--ease-soft), box-shadow 0.3s var(--ease-soft); }
-.form-input::placeholder, .form-textarea::placeholder { font-style: italic; color: var(--text-muted); }
-.form-input:focus, .form-textarea:focus, .form-select:focus { outline: none; border-color: var(--emerald); box-shadow: 0 0 0 3px var(--emerald-dim); }
-.form-textarea { min-height: 120px; resize: vertical; }
-.form-input.error { border-color: var(--error); }
-.form-input.success { border-color: var(--success); }
-.form-message { font-family: var(--font-mono); font-size: 11px; margin-top: var(--space-2); letter-spacing: 0.04em; }
-.form-message.error { color: var(--error); }
-.form-message.success { color: var(--success); }
-
-/* STATUS TOASTS */
-.toast { display: flex; align-items: flex-start; gap: var(--space-3); padding: var(--space-3) var(--space-4); border: 1px solid; border-left-width: 3px; border-radius: 4px; margin-bottom: var(--space-3); }
-.toast-icon { flex-shrink: 0; margin-top: 2px; }
-.toast-content h5 { font-size: 13.5px; font-weight: 500; margin-bottom: 4px; color: var(--text-primary); }
-.toast-content p { font-size: 13px; color: var(--text-secondary); margin: 0; line-height: 1.5; }
-.toast--success { background: var(--success-dim); border-color: var(--success-border); border-left-color: var(--success); }
-.toast--success .toast-icon { color: var(--success); }
-.toast--error { background: var(--error-dim); border-color: var(--error-border); border-left-color: var(--error); }
-.toast--error .toast-icon { color: var(--error); }
-.toast--warning { background: var(--warning-dim); border-color: var(--warning-border); border-left-color: var(--warning); }
-.toast--warning .toast-icon { color: var(--warning); }
-.toast--info { background: var(--info-dim); border-color: var(--info-border); border-left-color: var(--info); }
-.toast--info .toast-icon { color: var(--info); }
-
-/* CODE */
-code.inline { font-family: var(--font-mono); font-size: 0.85em; background: var(--obsidian-elevated); border: 1px solid var(--border-line); color: var(--emerald); padding: 2px 8px; border-radius: 3px; }
-.code-block { background: var(--obsidian-code); border: 1px solid var(--border-line); border-radius: 6px; padding: var(--space-4); position: relative; overflow-x: auto; }
-.code-block .lang-label { position: absolute; top: var(--space-3); right: var(--space-3); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
-.code-block pre { font-family: var(--font-mono); font-size: 13.5px; line-height: 1.7; color: var(--text-primary); margin: 0; white-space: pre; }
-.code-block .kw { color: var(--emerald); }
-.code-block .com { color: var(--text-muted); font-style: italic; }
-
-/* TERMINAL */
-.terminal { background: var(--obsidian-soft); border: 1px solid var(--border-line); border-radius: 6px; overflow: hidden; }
-.terminal-header { display: flex; justify-content: space-between; align-items: center; padding: var(--space-2) var(--space-3); background: var(--obsidian-elevated); border-bottom: 1px solid var(--border-line); }
-.terminal-dots { display: flex; gap: 6px; }
-.terminal-dots span { width: 10px; height: 10px; border-radius: 50%; border: 1px solid; opacity: 0.4; }
-.terminal-dots span:nth-child(1) { border-color: var(--error); }
-.terminal-dots span:nth-child(2) { border-color: var(--warning); }
-.terminal-dots span:nth-child(3) { border-color: var(--success); }
-.terminal-title { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); }
-.terminal-body { padding: var(--space-3); font-family: var(--font-mono); font-size: 13px; line-height: 1.7; color: var(--text-secondary); }
-.terminal-body .prompt { color: var(--emerald); margin-right: 8px; }
-.terminal-body .output { color: var(--text-muted); }
-.terminal-body .cursor { display: inline-block; width: 8px; height: 14px; background: var(--emerald); vertical-align: middle; margin-left: 4px; animation: cursorBlink 1s step-end infinite; }
-@keyframes cursorBlink { 50% { opacity: 0; } }
+.form-grid { display: grid; gap: 20px; max-width: 560px; }
+.field label {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 8px;
+}
+.field input, .field textarea, .field select {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  padding: 14px 18px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text);
+  transition: border-color 0.15s var(--ease-default), box-shadow 0.15s var(--ease-default);
+}
+.field input::placeholder, .field textarea::placeholder { color: var(--text-3); font-style: italic; }
+.field input:hover, .field textarea:hover, .field select:hover { border-color: var(--line-strong); }
+.field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--signal); box-shadow: 0 0 0 3px var(--signal-dim); }
+.field textarea { resize: vertical; min-height: 100px; }
+.field-error input { border-color: var(--error); }
+.field-error .msg { color: var(--error); font-family: var(--font-mono); font-size: 11px; margin-top: 6px; letter-spacing: 0.04em; }
+.field-success input { border-color: var(--success); }
 
 /* TABLES */
-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-table th { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-secondary); text-align: left; padding: var(--space-3); border-bottom: 1px solid var(--border-hover); }
-table td { padding: var(--space-3); border-bottom: 1px solid var(--border-line); color: var(--text-secondary); }
-table tr:hover td { background: var(--emerald-subtle); }
-table td:first-child { color: var(--text-primary); font-weight: 400; }
+table.kit { width: 100%; border-collapse: collapse; font-size: 14px; }
+table.kit thead th {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  text-align: left;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--signal-line);
+}
+table.kit tbody td { padding: 14px 16px; border-bottom: 1px solid var(--line); color: var(--text-2); }
+table.kit tbody tr:hover td { background: var(--signal-dim); }
+table.kit tbody td:first-child { color: var(--text); font-weight: 600; }
 
 /* TAGS */
 .tag {
-  display: inline-block;
+  display: inline-flex; align-items: center;
   font-family: var(--font-mono);
-  font-size: 10px; font-weight: 500;
-  letter-spacing: 0.14em; text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-2);
   padding: 6px 14px;
-  border: 1px solid var(--border-line); border-radius: 100px;
-  color: var(--text-secondary); background: transparent;
-  margin-right: var(--space-2);
-  transition: border-color 0.3s var(--ease-soft), color 0.3s var(--ease-soft), background 0.3s var(--ease-soft);
+  border: 1px solid var(--line);
+  margin-right: 8px;
+  margin-bottom: 8px;
+  transition: all 0.15s var(--ease-default);
 }
-.tag:hover { border-color: var(--border-hover); color: var(--emerald); background: var(--emerald-subtle); }
-.tag.active { border-color: var(--emerald); color: var(--emerald); background: var(--emerald-subtle); }
+.tag:hover { border-color: var(--line-strong); color: var(--signal); }
+.tag.active { border-color: var(--signal); color: var(--signal); background: var(--signal-dim); }
 
-/* PROSE LINKS */
-.prose a, a.inline { color: var(--emerald); text-decoration: none; border-bottom: 1px solid var(--border-hover); transition: border-color 0.3s var(--ease-soft); }
-.prose a:hover, a.inline:hover { border-bottom-color: var(--emerald); }
+/* TOC */
+.toc { background: var(--bg-card); border: 1px solid var(--line); padding: 24px 28px; max-width: 360px; }
+.toc h6 { font-family: var(--font-mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.20em; text-transform: uppercase; color: var(--text-2); margin-bottom: 16px; }
+.toc ul { list-style: none; }
+.toc li { padding: 6px 0; }
+.toc a {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-2);
+  text-decoration: none;
+  transition: color 0.15s var(--ease-default);
+}
+.toc a::before { content: ''; width: 12px; height: 1px; background: var(--signal); transition: width 0.15s var(--ease-default); }
+.toc a:hover { color: var(--text); }
+.toc a:hover::before { width: 20px; }
+.toc a.active { color: var(--signal); }
+.toc a.active::before { width: 28px; }
 
-/* COOKIE BANNER */
-.cookie-banner { background: var(--obsidian-soft); border: 1px solid var(--border-line); border-radius: 6px; padding: var(--space-4); display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
-.cookie-banner p { font-size: 14px; color: var(--text-secondary); margin: 0; flex: 1; min-width: 280px; }
-.cookie-banner-actions { display: flex; gap: var(--space-2); }
+/* STATUS TOASTS */
+.toast-stack { display: grid; gap: 12px; max-width: 560px; }
+.toast { display: grid; grid-template-columns: 32px 1fr; gap: 14px; padding: 16px 20px; border-left: 3px solid; background: var(--bg-card); align-items: start; }
+.toast .glyph { font-family: var(--font-mono); font-weight: 700; font-size: 14px; line-height: 1.4; }
+.toast .body h6 { font-family: var(--font-body); font-weight: 600; font-size: 14px; margin-bottom: 4px; color: var(--text); }
+.toast .body p { font-family: var(--font-mono); font-size: 11.5px; color: var(--text-2); letter-spacing: 0.04em; line-height: 1.6; }
+.toast--success { border-left-color: var(--success); background: var(--success-dim); }
+.toast--success .glyph { color: var(--success); }
+.toast--warning { border-left-color: var(--warning); background: var(--warning-dim); }
+.toast--warning .glyph { color: var(--warning); }
+.toast--error { border-left-color: var(--error); background: var(--error-dim); }
+.toast--error .glyph { color: var(--error); }
+.toast--info { border-left-color: var(--info); background: var(--info-dim); }
+.toast--info .glyph { color: var(--info); }
+
+/* CODE / TERMINAL */
+code.inline {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--signal);
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  padding: 2px 8px;
+}
+pre.block {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  padding: 24px;
+  overflow-x: auto;
+  position: relative;
+}
+pre.block .lang {
+  position: absolute; top: 12px; right: 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+pre.block code .k { color: var(--signal); }
+pre.block code .s { color: #cfd0c8; }
+pre.block code .c { color: var(--text-3); font-style: italic; }
+
+.terminal { background: var(--bg-elev); border: 1px solid var(--line); font-family: var(--font-mono); font-size: 13px; line-height: 1.7; overflow: hidden; }
+.terminal-bar { padding: 12px 16px; display: flex; gap: 8px; align-items: center; border-bottom: 1px solid var(--line); }
+.terminal-bar .dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid; opacity: 0.4; }
+.terminal-bar .dot--r { border-color: #ff5f56; }
+.terminal-bar .dot--y { border-color: #ffbd2e; }
+.terminal-bar .dot--g { border-color: #27c93f; }
+.terminal-bar .title { margin-left: auto; font-size: 10.5px; color: var(--text-3); letter-spacing: 0.18em; text-transform: uppercase; }
+.terminal-body { padding: 18px 22px; color: var(--text); }
+.terminal-body .line { display: block; }
+.terminal-body .prompt { color: var(--signal); margin-right: 8px; }
+.terminal-body .out { color: var(--text-2); }
+.terminal-body .cursor { display: inline-block; width: 8px; height: 14px; background: var(--signal); vertical-align: -2px; animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* REFERENCES BLOCK */
+.references {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  padding: 32px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.8;
+  color: var(--text-2);
+  letter-spacing: 0.02em;
+}
+.references h6 {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--signal-line);
+}
+.references ol { padding-left: 32px; }
+.references li { padding: 6px 0; }
+.references a { color: var(--signal); text-decoration: none; border-bottom: 1px dotted var(--signal); }
+
+/* EMPTY STATE */
+.empty-state { text-align: center; padding: 64px 32px; border: 1px dashed var(--line); background: var(--bg-elev); }
+.empty-state .glyph { font-size: 48px; color: var(--text-3); margin-bottom: 16px; }
+.empty-state h4 { font-family: var(--font-body); font-weight: 600; font-size: 22px; color: var(--text); margin-bottom: 8px; }
+.empty-state p { font-size: 14.5px; color: var(--text-2); margin-bottom: 24px; max-width: 400px; margin-left: auto; margin-right: auto; }
+
+/* 404 SPEC */
+.spec-404 { position: relative; padding: 100px 0; text-align: left; }
+.spec-404 .ghost {
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(120px, 18vw, 200px);
+  color: var(--signal);
+  opacity: 0.10;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.spec-404 .body { position: relative; z-index: 1; max-width: 560px; }
+.spec-404 h3 { font-family: var(--font-body); font-weight: 700; font-size: 32px; letter-spacing: -0.02em; margin-bottom: 12px; }
+.spec-404 p { font-size: 15px; color: var(--text-2); margin-bottom: 24px; }
 
 /* FOOTER */
-.site-footer { border-top: 1px solid var(--border-line); padding: var(--space-7) 0 var(--space-5); margin-top: var(--space-9); font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); letter-spacing: 0.02em; }
-.footer-grid { max-width: var(--wide-width); margin: 0 auto; padding: 0 var(--page-margin); display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4); }
+.site-footer {
+  border-top: 2px solid var(--signal);
+  padding: 56px 0 28px;
+  margin-top: 80px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+.footer-grid {
+  max-width: var(--container-outer);
+  margin: 0 auto;
+  padding: 0 var(--page-margin);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 32px;
+}
+.footer-grid h6 { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: var(--text); margin-bottom: 14px; }
+.footer-grid ul { list-style: none; }
+.footer-grid li { padding: 4px 0; }
+.footer-grid a { color: var(--text-3); text-decoration: none; transition: color 0.15s var(--ease-default); }
+.footer-grid a:hover { color: var(--signal); }
+.footer-bottom {
+  max-width: var(--container-outer);
+  margin: 36px auto 0;
+  padding: 24px var(--page-margin) 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-star { color: var(--signal); margin: 0 6px; }
 
-/* SCROLL REVEALS */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ease-luxury), transform 1s var(--ease-luxury); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.stagger > *:nth-child(1) { transition-delay: 0s; }
-.stagger > *:nth-child(2) { transition-delay: 0.08s; }
-.stagger > *:nth-child(3) { transition-delay: 0.16s; }
-
-/* ═══════════════════════════════════════════════
-   VISUAL STYLE SPREAD — 35 styles across 7 emotions
-   ═══════════════════════════════════════════════ */
-.style-spread { padding: var(--space-9) 0; }
-.style-emotion { margin-bottom: var(--space-8); }
-.style-emotion-head { margin-bottom: var(--space-5); padding-bottom: var(--space-3); border-bottom: 1px solid var(--border-line); }
-.style-emotion-title { font-family: var(--font-display); font-size: 36px; font-weight: 400; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 8px; }
-.style-emotion-meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); }
-.style-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-3); }
-.style-card { background: var(--obsidian-soft); border: 1px solid var(--border-line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
-.style-card-label { padding: 10px 14px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--text-secondary); border-bottom: 1px solid var(--border-line); background: var(--obsidian-card); }
-.style-card-label b { color: var(--emerald); font-weight: 500; margin-right: 6px; }
-.style-card-visual { aspect-ratio: 1.4; display: grid; place-items: center; position: relative; overflow: hidden; }
-.style-lockup { text-align: center; width: 100%; padding: 12px; }
-.style-lockup .num { font-size: clamp(32px, 4.5vw, 48px); line-height: 1; letter-spacing: 0.08em; font-weight: 400; margin-bottom: 8px; }
-.style-lockup .rule { height: 1px; background: currentColor; width: 60%; margin: 0 auto 8px; opacity: 0.7; }
-.style-lockup .sub { font-family: var(--font-body); font-weight: 200; font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase; }
-.style-card-meta { padding: 12px 14px; font-family: var(--font-body); font-size: 12px; line-height: 1.5; flex: 1; }
-.style-card-meta .examples { color: var(--text-secondary); margin-bottom: 6px; font-style: italic; }
-.style-card-meta .sigs { color: var(--text-muted); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.04em; line-height: 1.5; }
-
-/* extra font classes for spread */
-.f-uniform { font-family: 'UnifrakturMaguntia', cursive; letter-spacing: 0.04em; }
-.f-typewriter { font-family: 'Special Elite', cursive; letter-spacing: 0.06em; }
-.f-mono { font-family: 'JetBrains Mono', monospace; font-weight: 400; }
-.f-inter { font-family: 'Inter', sans-serif; font-weight: 200; }
-.f-cardo-italic { font-family: 'Cardo', serif; font-style: italic; }
-.f-playfair-bold { font-family: 'Playfair Display', serif; font-weight: 700; }
-.f-cinzel-bold { font-family: 'Cinzel', serif; font-weight: 700; }
-
-/* CAREGIVER */
-.s-care-1 .style-card-visual { background: #f4ede1; } .s-care-1 .style-lockup { color: #2a2620; }
-.s-care-2 .style-card-visual { background: #131826; } .s-care-2 .style-lockup { color: #d8d4c8; }
-.s-care-3 .style-card-visual { background: #2a2419; } .s-care-3 .style-lockup { color: #e8e0d0; }
-.s-care-4 .style-card-visual { background: #f0ebe0; } .s-care-4 .style-lockup { color: #5c2424; }
-.s-care-5 .style-card-visual { background: #2c333d; } .s-care-5 .style-lockup { color: #d4d4d2; }
-.s-care-5 .num::after { content: ''; display: inline-block; width: 8px; height: 8px; background: #ed8c1c; vertical-align: middle; margin-left: 8px; }
-
-/* RULER */
-.s-rule-1 .style-card-visual { background: #e8e3d8; } .s-rule-1 .style-lockup { color: #2a2620; }
-.s-rule-2 .style-card-visual { background: #0a0807; } .s-rule-2 .style-lockup { color: #c9a04c; }
-.s-rule-3 .style-card-visual { background: #1a1414; } .s-rule-3 .style-lockup { color: #e8dcc7; } .s-rule-3 .rule { background: #6e0c0c !important; opacity: 1 !important; height: 2px !important; }
-.s-rule-4 .style-card-visual { background: #f0eadd; } .s-rule-4 .style-lockup { color: #122446; } .s-rule-4 .rule { background: #6e0c1c !important; opacity: 1 !important; }
-.s-rule-5 .style-card-visual { background: #050505; } .s-rule-5 .style-lockup { color: #e6e6e6; } .s-rule-5 .rule { background: #ff3030 !important; opacity: 1 !important; }
-
-/* EMPOWERING */
-.s-emp-1 .style-card-visual { background: #2c3a30; } .s-emp-1 .style-lockup { color: #e8d8c4; }
-.s-emp-2 .style-card-visual { background: #5e8d3f; } .s-emp-2 .style-lockup { color: #fff; }
-.s-emp-3 .style-card-visual { background: linear-gradient(135deg, #f4c89e 0%, #d4a8c6 50%, #c89eb8 100%); } .s-emp-3 .style-lockup { color: #2a2620; }
-.s-emp-4 .style-card-visual { background: #f4f1e8; } .s-emp-4 .style-lockup { color: #1a1a1a; } .s-emp-4 .rule { background: #c91818 !important; opacity: 1 !important; height: 2px !important; }
-.s-emp-5 .style-card-visual { background: #050608; } .s-emp-5 .style-lockup { color: #00ff62; }
-
-/* REVERENT */
-.s-rev-1 .style-card-visual { background: #0a0806; } .s-rev-1 .style-lockup { color: #f0e6d0; }
-.s-rev-2 .style-card-visual { background: #e8dec4; } .s-rev-2 .style-lockup { color: #1a1814; }
-.s-rev-3 .style-card-visual { background: #4a4a48; } .s-rev-3 .style-lockup { color: #e8e6e0; }
-.s-rev-4 .style-card-visual { background: linear-gradient(180deg, #6c7e85 0%, #4a5a60 100%); } .s-rev-4 .style-lockup { color: #f0e6d4; }
-.s-rev-5 .style-card-visual { background: #050505; } .s-rev-5 .style-lockup { color: #e8e6dc; } .s-rev-5 .rule { background: #6e0e0e !important; opacity: 1 !important; }
-
-/* PRINCIPLED */
-.s-prin-1 .style-card-visual { background: #f0e8d8; } .s-prin-1 .style-lockup { color: #1a2a4e; }
-.s-prin-2 .style-card-visual { background: #f0e8d8; } .s-prin-2 .style-lockup { color: #c91818; } .s-prin-2 .num { font-weight: 700 !important; }
-.s-prin-3 .style-card-visual { background: #0e1424; } .s-prin-3 .style-lockup { color: #e8e0c8; } .s-prin-3 .rule { background: #f7931a !important; opacity: 1 !important; height: 2px !important; }
-.s-prin-4 .style-card-visual { background: #f4f0e4; } .s-prin-4 .style-lockup { color: #1a2a4e; }
-.s-prin-5 .style-card-visual { background: #fafaf6; } .s-prin-5 .style-lockup { color: #1a1a1a; }
-
-/* PREMIUM */
-.s-prem-1 .style-card-visual { background: #f4ebd8; } .s-prem-1 .style-lockup { color: #d75817; }
-.s-prem-2 .style-card-visual { background: #e2dac8; } .s-prem-2 .style-lockup { color: #2a2620; }
-.s-prem-3 .style-card-visual { background: #f5f5f5; } .s-prem-3 .style-lockup { color: #1a1a1a; }
-.s-prem-4 .style-card-visual { background: #2a1f14; } .s-prem-4 .style-lockup { color: #e8d8b4; }
-.s-prem-5 .style-card-visual { background: #f5edda; } .s-prem-5 .style-lockup { color: #2a2620; }
-
-/* KNOWLEDGEABLE */
-.s-know-1 .style-card-visual { background: #f0e8d6; } .s-know-1 .style-lockup { color: #1a1a2a; } .s-know-1 .rule { background: #6e1c1c !important; opacity: 1 !important; }
-.s-know-2 .style-card-visual { background: #fafaf8; } .s-know-2 .style-lockup { color: #1a1a1a; } .s-know-2 .rule { background: #c91818 !important; opacity: 1 !important; height: 2px !important; }
-.s-know-3 .style-card-visual { background-image: linear-gradient(rgba(24, 85, 168, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(24, 85, 168, 0.08) 1px, transparent 1px); background-size: 16px 16px; background-color: #fafaf6; } .s-know-3 .style-lockup { color: #1a1a1a; }
-.s-know-4 .style-card-visual { background: #d8d4b8; } .s-know-4 .style-lockup { color: #2a2818; }
-.s-know-5 .style-card-visual { background: #fafaf6; } .s-know-5 .style-lockup { color: #1a1a1a; } .s-know-5 .rule { background: #ed8c1c !important; opacity: 1 !important; height: 2px !important; }
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .protocol { grid-template-columns: 1fr; gap: 24px; }
+  .protocol-spec { border-left: none; border-top: 1px solid var(--signal); padding: 16px 0 0; }
+  .method-step { grid-template-columns: 1fr; gap: 16px; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .scale-row { grid-template-columns: 1fr; }
+  .scale-row .label { border-right: none; border-bottom: 1px solid var(--line); }
+  .scale-row .note { border-left: none; border-top: 1px solid var(--line); }
+  .type-row { grid-template-columns: 1fr; gap: 12px; }
+  nav ul { display: none; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-  .reveal { opacity: 1; transform: none; }
-  .divider { transform: scaleX(1); }
 }
 </style>
 </head>
 <body>
 
-<div class="scroll-progress" id="scrollProgress"></div>
+<!-- STATUS BAR -->
+<div class="status">
+  <div class="left">
+    <span class="signal">OPERATING</span>
+    <span class="meta">DOC <b>BRAND KIT</b></span>
+    <span class="star">★</span>
+    <span class="meta">SPEC <b>APEX_CONSTRUCTIVIST · v2.0</b></span>
+    <span class="meta">UPD <b>2026.05.01</b></span>
+  </div>
+  <div class="meta">REV. 2.0 · LIVING STYLE GUIDE</div>
+</div>
 
+<!-- HEADER -->
 <header class="site-header">
   <div class="header-inner">
-    <a href="#" class="logo-compact">
-      2112<span class="sub">Capital Solutions</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#guides">Guides</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact" class="active">Contact</a></li>
-    </ul>
+    <a href="#" class="brandmark"><span class="bar"></span>2112</a>
+    <nav>
+      <ul>
+        <li><a href="#tokens">TOKENS</a></li>
+        <li><a href="#typography">TYPE</a></li>
+        <li><a href="#logo">LOGO</a></li>
+        <li><a href="#components">COMPONENTS</a></li>
+        <li><a href="#patterns" class="active">PATTERNS</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
 <main>
 
-<!-- ═══════ HERO ═══════ -->
-<section class="hero container--wide">
-  <div class="hero-eyebrow">Master Design System · v1.0</div>
-  <div class="logo-hero">
-    <div class="num">2112</div>
-    <div class="rule"></div>
-    <div class="sub">Capital Solutions</div>
-  </div>
-  <p class="hero-statement">A living style guide. Tokens locked, components rendered. Stewardship over showmanship.</p>
-</section>
-
-<div class="divider reveal"></div>
-
-<!-- ═══════ FONT EXPLORATION ═══════ -->
-<section class="section container--wide" id="fonts">
-  <div class="section-label">— 01 / Font Exploration</div>
-  <p class="section-desc">Ten Didone-family and classical serif candidates for the wordmark — all free, all on Google Fonts. Rendered with the locked composition: numerals at <code class="inline">0.12em</code> tracking, hairline rule, sub-line at <code class="inline">0.27em</code> tracking. Currently locked to <strong>Libre Bodoni</strong>; this section stays as a comparison reference if we ever want to revisit.</p>
-
-  <div class="font-explore">
-    <div class="font-card">
-      <div class="label"><b>01.</b> PLAYFAIR DISPLAY · liked</div>
-      <div class="glyph f-playfair">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>02.</b> CORMORANT INFANT</div>
-      <div class="glyph f-cormorantinfant">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>03.</b> CRIMSON PRO</div>
-      <div class="glyph f-crimsonpro">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>04.</b> SOURCE SERIF 4</div>
-      <div class="glyph f-sourceserif">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>05.</b> LORA</div>
-      <div class="glyph f-lora">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>06.</b> SPECTRAL</div>
-      <div class="glyph f-spectral">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>07.</b> CARDO</div>
-      <div class="glyph f-cardo">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>08.</b> CINZEL · roman caps</div>
-      <div class="glyph f-cinzel">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>09.</b> FORUM · roman</div>
-      <div class="glyph f-forum">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>10.</b> MARCELLUS SC</div>
-      <div class="glyph f-marcellussc">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>11.</b> SORTS MILL GOUDY</div>
-      <div class="glyph f-sortsmillgoudy">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>12.</b> ROBOTO SLAB · slab</div>
-      <div class="glyph f-robotoslab">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>13.</b> BREE SERIF · slab</div>
-      <div class="glyph f-breeserif">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>14.</b> BITTER · slab</div>
-      <div class="glyph f-bitter">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>15.</b> DOMINE · slab</div>
-      <div class="glyph f-domine">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>16.</b> YESEVA ONE · display</div>
-      <div class="glyph f-yeseva">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>17.</b> CANTATA ONE · display</div>
-      <div class="glyph f-cantata">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>18.</b> FRANK RUHL LIBRE</div>
-      <div class="glyph f-frankruhl">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>19.</b> ROZHA ONE · display</div>
-      <div class="glyph f-rozha">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>20.</b> TENOR SANS · hybrid</div>
-      <div class="glyph f-tenorsans">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
-    <div class="font-card">
-      <div class="label"><b>21.</b> VIDALOKA · didone</div>
-      <div class="glyph f-vidaloka">2112</div>
-      <div class="glyph-rule"></div>
-      <div class="glyph-sub">Capital Solutions</div>
-    </div>
+<!-- KIT HERO -->
+<section class="kit-hero">
+  <div class="container">
+    <div class="classify">BRAND KIT · APEX CONSTRUCTIVIST · v2.0</div>
+    <h1>The full visual system, <em>rendered live.</em></h1>
+    <p>Every token, every component, every state. If a thing is in <code style="color:var(--signal); font-family: var(--font-mono);">master-design-guide.md</code>, it renders here. The kit is the spec made visible — what ships to production must match what's on this page.</p>
   </div>
 </section>
 
-<div class="divider reveal"></div>
+<!-- TOKENS -->
+<section class="kit-section" id="tokens">
+  <div class="container">
+    <div class="kit-classify"><span>MODULE 01 — TOKENS</span><span class="ref">COLOR / SPACING / LAYOUT</span></div>
+    <h2 class="kit-title">Color tokens. <em>Pure surface.</em></h2>
+    <p class="kit-lede">Black is the surface. Signal red is the only chromatic accent. Three text tiers handle hierarchy. Status colors appear only when UX state demands them, paired with icon + text.</p>
 
-<!-- ═══════ EDITORIAL SECTION DEMO ═══════ -->
-<section class="editorial container--wide">
-  <div class="editorial-eyebrow">— 02 / Editorial Section</div>
-  <h2>Considered stewardship of your money,<br>your tools, and <em>your data.</em></h2>
-  <p>This is what a real page section feels like — large Bodoni statement, generous whitespace, no tile grid. One thought per scroll. Caregiver + Ruler in compositional language, not just color.</p>
-</section>
-
-<div class="divider reveal"></div>
-
-<!-- ═══════ COLOR PALETTE ═══════ -->
-<section class="section container--wide" id="colors">
-  <div class="section-label">— 03 / Color System</div>
-  <p class="section-desc">All color tokens, locked. Emerald is the only chromatic accent.</p>
-
-  <h3 class="subsection-title">Surfaces</h3>
-  <div class="swatch-grid">
-    <div class="swatch"><div class="swatch-color" style="background:#070707"></div><div class="swatch-meta"><div class="swatch-name">Obsidian</div><div class="swatch-hex">#070707</div></div></div>
-    <div class="swatch"><div class="swatch-color" style="background:#0c0c0c"></div><div class="swatch-meta"><div class="swatch-name">Obsidian-soft</div><div class="swatch-hex">#0c0c0c</div></div></div>
-    <div class="swatch"><div class="swatch-color" style="background:#0e1014"></div><div class="swatch-meta"><div class="swatch-name">Obsidian-card</div><div class="swatch-hex">#0e1014</div></div></div>
-    <div class="swatch"><div class="swatch-color" style="background:#14161d"></div><div class="swatch-meta"><div class="swatch-name">Obsidian-elevated</div><div class="swatch-hex">#14161d</div></div></div>
-  </div>
-
-  <h3 class="subsection-title">Emerald</h3>
-  <div class="swatch-grid">
-    <div class="swatch"><div class="swatch-color" style="background:#0a5a36"></div><div class="swatch-meta"><div class="swatch-name">Emerald (primary)</div><div class="swatch-hex">#0a5a36</div></div></div>
-    <div class="swatch"><div class="swatch-color" style="background:#084d2e"></div><div class="swatch-meta"><div class="swatch-name">Emerald-saturated</div><div class="swatch-hex">#084d2e</div></div></div>
-    <div class="swatch"><div class="swatch-color" style="background:#08472b"></div><div class="swatch-meta"><div class="swatch-name">Emerald-rendered</div><div class="swatch-hex">#08472b</div></div></div>
-    <div class="swatch"><div class="swatch-color" style="background:#0c6a3f"></div><div class="swatch-meta"><div class="swatch-name">Emerald-vibrant</div><div class="swatch-hex">#0c6a3f</div></div></div>
-  </div>
-
-  <h3 class="subsection-title">Text & Status</h3>
-  <div class="swatch-grid">
-    <div class="swatch"><div class="swatch-color" style="background:#d8d6d0"></div><div class="swatch-meta"><div class="swatch-name">Text-primary (cousin)</div><div class="swatch-hex">#d8d6d0</div></div></div>
-    <div class="swatch"><div class="swatch-color" style="background:#807d75"></div><div class="swatch-meta"><div class="swatch-name">Text-secondary</div><div class="swatch-hex">#807d75</div></div></div>
-    <div class="swatch"><div class="swatch-color" style="background:#4f4d47"></div><div class="swatch-meta"><div class="swatch-name">Text-muted</div><div class="swatch-hex">#4f4d47</div></div></div>
-    <div class="swatch"><div class="swatch-color" style="background:#4ADE80"></div><div class="swatch-meta"><div class="swatch-name">Success</div><div class="swatch-hex">#4ADE80</div></div></div>
-    <div class="swatch"><div class="swatch-color" style="background:#FACC15"></div><div class="swatch-meta"><div class="swatch-name">Warning</div><div class="swatch-hex">#FACC15</div></div></div>
-    <div class="swatch"><div class="swatch-color" style="background:#F87171"></div><div class="swatch-meta"><div class="swatch-name">Error</div><div class="swatch-hex">#F87171</div></div></div>
-    <div class="swatch"><div class="swatch-color" style="background:#60A5FA"></div><div class="swatch-meta"><div class="swatch-name">Info</div><div class="swatch-hex">#60A5FA</div></div></div>
-  </div>
-</section>
-
-<div class="divider reveal"></div>
-
-<!-- ═══════ TYPOGRAPHY ═══════ -->
-<section class="section container--wide" id="typography">
-  <div class="section-label">— 04 / Typography</div>
-  <p class="section-desc">Three families. Libre Bodoni for display moments. Inter for UI and body. JetBrains Mono for system, prices, and data.</p>
-
-  <div class="type-row"><div class="meta"><b>Display</b><br>Libre Bodoni 400</div><div class="t-display">2112</div></div>
-  <div class="type-row"><div class="meta"><b>H1</b><br>Libre Bodoni 400</div><div class="t-h1">Considered stewardship.</div></div>
-  <div class="type-row"><div class="meta"><b>H2</b><br>Libre Bodoni 400</div><div class="t-h2">Three ways we help you take ownership.</div></div>
-  <div class="type-row"><div class="meta"><b>H3</b><br>Inter 500</div><div class="t-h3">Self-custody setup</div></div>
-  <div class="type-row"><div class="meta"><b>Body</b><br>Inter 300 / 16.5px</div><div class="t-body">We onboard people and businesses to Bitcoin — for the inevitable transition out of the legacy financial system, and for everyone else who needs a way out. Hands-on consulting, considered execution, ongoing stewardship.</div></div>
-  <div class="type-row"><div class="meta"><b>Overline</b><br>Mono 11px / 0.18em / UP</div><div class="t-overline">— Sovereignty consulting</div></div>
-  <div class="type-row"><div class="meta"><b>Tag</b><br>Mono 10px / 500 / 0.14em / UP</div><div class="t-tag">Bitcoin</div></div>
-</section>
-
-<div class="divider reveal"></div>
-
-<!-- ═══════ SERVICE ROWS — editorial bands, NOT card grid ═══════ -->
-<section class="section container--wide" id="services">
-  <div class="section-label">— 05 / Services (editorial rows)</div>
-  <p class="section-desc">This is the structural divergence from TBB. Services are <strong>editorial bands</strong> — full-width rows with a numeral, a generous title, prose lede, and a deliverables/price meta block. <strong>NOT a 3-card grid.</strong> One service per scroll-screen.</p>
-
-  <div class="service-row">
-    <div class="row-eyebrow"><b>01</b> — Custody</div>
-    <div class="body">
-      <div>
-        <h3>Self-custody setup</h3>
-        <p class="lede">Get your bitcoin off exchanges and into a hardware wallet you control. We handle device selection, seed generation, multisig setup, and a recovery plan you can actually trust. One-on-one, in person or remote.</p>
-      </div>
-      <div class="meta">
-        <ul class="deliverables">
-          <li>Hardware wallet selection</li>
-          <li>Seed backup &amp; recovery plan</li>
-          <li>Optional multisig configuration</li>
-          <li>One-on-one walkthrough</li>
-        </ul>
-        <div class="price-block">
-          <b>From $100</b>
-          Single-session engagement
-        </div>
-      </div>
+    <h3 class="subhead">Surfaces</h3>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-chip" style="background:#000000"></div><div class="swatch-meta"><span class="name">--bg</span>#000000<br><span class="hex">page background</span></div></div>
+      <div class="swatch"><div class="swatch-chip" style="background:#0a0a0a"></div><div class="swatch-meta"><span class="name">--bg-elev</span>#0a0a0a<br><span class="hex">first elevation</span></div></div>
+      <div class="swatch"><div class="swatch-chip" style="background:#111111"></div><div class="swatch-meta"><span class="name">--bg-card</span>#111111<br><span class="hex">cards, status, readout</span></div></div>
     </div>
-  </div>
 
-  <div class="service-row">
-    <div class="row-eyebrow"><b>02</b> — Infrastructure</div>
-    <div class="body">
-      <div>
-        <h3>Node &amp; Lightning</h3>
-        <p class="lede">Run your own Bitcoin node and Lightning channels. We handle hardware procurement, full-node configuration, hardening, and ongoing maintenance — so your sovereignty stack stays current without becoming your second job.</p>
-      </div>
-      <div class="meta">
-        <ul class="deliverables">
-          <li>Hardware procurement</li>
-          <li>Full-node + LN configuration</li>
-          <li>Security hardening</li>
-          <li>Optional monthly maintenance</li>
-        </ul>
-        <div class="price-block">
-          <b>From $500</b>
-          Setup + optional retainer
-        </div>
-      </div>
+    <h3 class="subhead">Text</h3>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-chip" style="background:#f4f4f0"></div><div class="swatch-meta"><span class="name">--text</span>#f4f4f0<br><span class="hex">primary · paper white · 19.8:1 AAA</span></div></div>
+      <div class="swatch"><div class="swatch-chip" style="background:#908d85"></div><div class="swatch-meta"><span class="name">--text-2</span>#908d85<br><span class="hex">secondary · 6.6:1 AAA / AA Large</span></div></div>
+      <div class="swatch"><div class="swatch-chip" style="background:#5a5752"></div><div class="swatch-meta"><span class="name">--text-3</span>#5a5752<br><span class="hex">tertiary · 3.4:1 AA Large only</span></div></div>
     </div>
-  </div>
 
-  <div class="service-row">
-    <div class="row-eyebrow"><b>03</b> — Advisory</div>
-    <div class="body">
-      <div>
-        <h3>Strategy consulting</h3>
-        <p class="lede">One-on-one or business engagements. Treasury planning, integration strategy, education for teams. Hourly engagements; ongoing retainers for clients who need consistent counsel rather than a single project.</p>
-      </div>
-      <div class="meta">
-        <ul class="deliverables">
-          <li>Bitcoin treasury planning</li>
-          <li>Workshop &amp; team training</li>
-          <li>Custom integrations</li>
-          <li>Ongoing advisory retainer</li>
-        </ul>
-        <div class="price-block">
-          <b>$100 / hour</b>
-          Or retainer-based
-        </div>
-      </div>
+    <h3 class="subhead">Signal</h3>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-chip" style="background:#e63030"></div><div class="swatch-meta"><span class="name">--signal</span>#e63030<br><span class="hex">primary chromatic accent · 4.7:1 AA</span></div></div>
+      <div class="swatch"><div class="swatch-chip" style="background:rgba(230,48,48,0.35)"></div><div class="swatch-meta"><span class="name">--signal-line</span>35% opacity<br><span class="hex">accent borders</span></div></div>
+      <div class="swatch"><div class="swatch-chip" style="background:rgba(230,48,48,0.15)"></div><div class="swatch-meta"><span class="name">--signal-dim</span>15% opacity<br><span class="hex">accent backgrounds</span></div></div>
     </div>
-  </div>
-</section>
 
-<div class="divider reveal"></div>
+    <h3 class="subhead">Status (UX states only)</h3>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-chip" style="background:#4ADE80"></div><div class="swatch-meta"><span class="name">--success</span>#4ADE80</div></div>
+      <div class="swatch"><div class="swatch-chip" style="background:#FACC15"></div><div class="swatch-meta"><span class="name">--warning</span>#FACC15</div></div>
+      <div class="swatch"><div class="swatch-chip" style="background:#F87171"></div><div class="swatch-meta"><span class="name">--error</span>#F87171</div></div>
+      <div class="swatch"><div class="swatch-chip" style="background:#60A5FA"></div><div class="swatch-meta"><span class="name">--info</span>#60A5FA</div></div>
+    </div>
 
-<!-- ═══════ TESTIMONIAL ═══════ -->
-<section class="testimonial container">
-  <div class="testimonial-text">"They didn't just set up our cold storage — they stayed with us through the first transactions, the first key rotation, the first board-level question. Considered stewardship is the right way to describe what we got."</div>
-  <div class="testimonial-attribution">
-    <div class="testimonial-name">A. Lambert</div>
-    <div class="testimonial-role">CFO · Family Office Engagement · 2025</div>
-  </div>
-</section>
-
-<div class="divider reveal"></div>
-
-<!-- ═══════ GUIDE LIST — numbered editorial, NOT tile grid ═══════ -->
-<section class="section container--wide" id="guides">
-  <div class="section-label">— 06 / Guides (editorial list)</div>
-  <p class="section-desc">Guides as a numbered editorial list — closer to a journal's index than a tile grid. Each row reads as one entry in a continuing record. Hover slides slightly right.</p>
-
-  <div class="guide-list">
-    <a href="#" class="guide-list-item">
-      <div class="num">001</div>
-      <div class="content">
-        <h4>Hardware wallet setup, end-to-end</h4>
-        <p class="summary">Picking a device, generating a seed safely, setting up a multisig, and a recovery you can actually trust.</p>
-        <div class="meta-line"><span class="topic">— Bitcoin</span> · 14 min · April 2026</div>
-      </div>
-      <div class="arrow">→</div>
-    </a>
-    <a href="#" class="guide-list-item">
-      <div class="num">002</div>
-      <div class="content">
-        <h4>Local AI on your own machine</h4>
-        <p class="summary">Run LLMs locally with Ollama. Why it matters for privacy, what it can and can't do, and a working setup.</p>
-        <div class="meta-line"><span class="topic">— AI</span> · 11 min · April 2026</div>
-      </div>
-      <div class="arrow">→</div>
-    </a>
-    <a href="#" class="guide-list-item">
-      <div class="num">003</div>
-      <div class="content">
-        <h4>Encrypted comms for the everyday user</h4>
-        <p class="summary">Signal, SimpleX, Matrix — what to use, when, and how to set them up without a CS degree.</p>
-        <div class="meta-line"><span class="topic">— Privacy</span> · 9 min · March 2026</div>
-      </div>
-      <div class="arrow">→</div>
-    </a>
-    <a href="#" class="guide-list-item">
-      <div class="num">004</div>
-      <div class="content">
-        <h4>Self-host your email, the right way</h4>
-        <p class="summary">Mailcow on a VPS, deliverability, backup strategy, when self-hosting actually saves you something.</p>
-        <div class="meta-line"><span class="topic">— Self-hosting</span> · 22 min · March 2026</div>
-      </div>
-      <div class="arrow">→</div>
-    </a>
-  </div>
-</section>
-
-<div class="divider reveal"></div>
-
-<!-- ═══════ BUTTONS ═══════ -->
-<section class="section container--wide" id="buttons">
-  <div class="section-label">— 07 / Buttons</div>
-  <p class="section-desc">Three variants. Sharp corners, restrained sizing, no uppercase by default.</p>
-
-  <div class="grid grid--3">
+    <h3 class="subhead">Spacing scale (16px base)</h3>
     <div>
-      <div class="subsection-note">// Primary</div>
-      <a href="#" class="btn btn--primary">Book a free call</a>
-    </div>
-    <div>
-      <div class="subsection-note">// Ghost</div>
-      <a href="#" class="btn btn--ghost">Read the guides →</a>
-    </div>
-    <div>
-      <div class="subsection-note">// Subtle</div>
-      <a href="#" class="btn btn--subtle">View pricing</a>
+      <div class="spacing-row"><span class="label">--space-1</span><span class="value">4px</span><span class="bar" style="width:4px"></span></div>
+      <div class="spacing-row"><span class="label">--space-2</span><span class="value">8px</span><span class="bar" style="width:8px"></span></div>
+      <div class="spacing-row"><span class="label">--space-3</span><span class="value">16px</span><span class="bar" style="width:16px"></span></div>
+      <div class="spacing-row"><span class="label">--space-4</span><span class="value">24px</span><span class="bar" style="width:24px"></span></div>
+      <div class="spacing-row"><span class="label">--space-5</span><span class="value">32px</span><span class="bar" style="width:32px"></span></div>
+      <div class="spacing-row"><span class="label">--space-6</span><span class="value">48px</span><span class="bar" style="width:48px"></span></div>
+      <div class="spacing-row"><span class="label">--space-7</span><span class="value">64px</span><span class="bar" style="width:64px"></span></div>
+      <div class="spacing-row"><span class="label">--space-8</span><span class="value">80px</span><span class="bar" style="width:80px"></span></div>
+      <div class="spacing-row"><span class="label">--space-9</span><span class="value">128px</span><span class="bar" style="width:128px"></span></div>
+      <div class="spacing-row"><span class="label">--space-10</span><span class="value">192px</span><span class="bar" style="width:192px"></span></div>
     </div>
   </div>
 </section>
 
-<div class="divider reveal"></div>
+<!-- TYPOGRAPHY -->
+<section class="kit-section" id="typography">
+  <div class="container">
+    <div class="kit-classify"><span>MODULE 02 — TYPOGRAPHY</span><span class="ref">SPACE GROTESK + JETBRAINS MONO</span></div>
+    <h2 class="kit-title">Two families. <em>One register.</em></h2>
+    <p class="kit-lede">Space Grotesk (Akzidenz-Grotesk lineage) handles display + body. JetBrains Mono handles labels, system text, brandmark, classifications. No serif. No editorial display face.</p>
 
-<!-- ═══════ FORMS ═══════ -->
-<section class="section container" id="forms">
-  <div class="section-label">— 08 / Forms</div>
-  <div class="form-row">
-    <label class="form-label" for="demoEmail">Email address</label>
-    <input id="demoEmail" type="email" class="form-input" placeholder="jane@firm.com">
+    <div class="type-row"><div class="meta"><b>HERO H1</b>SPACE GROTESK · 700 · 84PX · -0.035EM · 0.95 LH</div><div class="render t-hero">Sovereign tools. Documented work.</div></div>
+    <div class="type-row"><div class="meta"><b>MODULE H2</b>SPACE GROTESK · 700 · 52PX · -0.03EM</div><div class="render t-h2">Three protocols. Documented deliverables.</div></div>
+    <div class="type-row"><div class="meta"><b>H3 / PROTOCOL</b>SPACE GROTESK · 600 · 24PX · -0.015EM</div><div class="render t-h3">Self-custody setup &amp; key ceremony</div></div>
+    <div class="type-row"><div class="meta"><b>H4</b>SPACE GROTESK · 600 · 18PX · -0.01EM</div><div class="render t-h4">Hardware wallet selection + procurement</div></div>
+    <div class="type-row"><div class="meta"><b>BODY</b>SPACE GROTESK · 400 · 15PX · 0EM · 1.55 LH</div><div class="render t-body">End-to-end migration from exchange custody to self-held cold storage. Hardware procurement, seed generation under verified entropy, multisignature configuration where appropriate, recovery procedure with tested redundancy.</div></div>
+    <div class="type-row"><div class="meta"><b>MONO LABEL</b>JETBRAINS MONO · 600 · 11PX · 0.20EM · UPPERCASE</div><div class="render t-mono-label" style="color:var(--signal)">MODULE 01 — SERVICE PROTOCOLS</div></div>
+    <div class="type-row"><div class="meta"><b>MONO CAPTION</b>JETBRAINS MONO · 500 · 11PX · 0.10EM · UPPERCASE</div><div class="render t-mono-caption">REV. 2.0 · 2026.05.01 · APEX_CONSTRUCTIVIST</div></div>
+    <div class="type-row"><div class="meta"><b>BRANDMARK</b>JETBRAINS MONO · 700 · 96PX · 0.02EM</div><div class="render t-brandmark-hero">2112</div></div>
   </div>
-  <div class="form-row">
-    <label class="form-label" for="demoMessage">Message</label>
-    <textarea id="demoMessage" class="form-textarea" placeholder="Tell us about where you are..."></textarea>
-  </div>
-  <div class="form-row">
-    <input type="text" class="form-input error" value="invalid-email">
-    <div class="form-message error">// Please enter a valid email address</div>
-  </div>
-  <a href="#" class="btn btn--primary">Submit inquiry</a>
 </section>
 
-<div class="divider reveal"></div>
+<!-- LOGO SYSTEM -->
+<section class="kit-section" id="logo">
+  <div class="container">
+    <div class="kit-classify"><span>MODULE 03 — LOGO SYSTEM (V14)</span><span class="ref">VERTICAL BAR + STACKED WORDMARK</span></div>
+    <h2 class="kit-title">V14. <em>Bar, numerals, sub.</em></h2>
+    <p class="kit-lede">Vertical signal-red bar paired with left-aligned stacked "2112" numerals. The "Capital Solutions" sub-line right edge always aligns flush with the right edge of "2112" — distributed via per-scale letter-spacing tokens. Sub dropped at sizes where it cannot fit.</p>
 
-<!-- ═══════ STATUS, TAGS, CODE ═══════ -->
-<section class="section container--wide" id="patterns">
-  <div class="section-label">— 09 / Status, Tags, Code</div>
+    <div class="scale-row">
+      <div class="label">HERO<span class="meta">96px num · 6px bar</span></div>
+      <div class="stage"><div class="lockup-v14 s-hero"><div class="lbar"></div><div class="stack"><div class="num">2112</div><div class="sub">Capital Solutions</div></div></div></div>
+      <div class="note">Hero sections · marketing landing · large-format print</div>
+    </div>
+    <div class="scale-row">
+      <div class="label">SECTION<span class="meta">64px num · 5px bar</span></div>
+      <div class="stage"><div class="lockup-v14 s-section"><div class="lbar"></div><div class="stack"><div class="num">2112</div><div class="sub">Capital Solutions</div></div></div></div>
+      <div class="note">Section heads · letterhead · email header</div>
+    </div>
+    <div class="scale-row">
+      <div class="label">MEDIUM<span class="meta">42px num · 4px bar</span></div>
+      <div class="stage"><div class="lockup-v14 s-medium"><div class="lbar"></div><div class="stack"><div class="num">2112</div><div class="sub">Capital Solutions</div></div></div></div>
+      <div class="note">Card heroes · embed previews · social header crops</div>
+    </div>
+    <div class="scale-row">
+      <div class="label">BUSINESS CARD<span class="meta">24px num · 3px bar · sub omitted</span></div>
+      <div class="stage"><div class="lockup-v14 s-card"><div class="lbar"></div><div class="stack"><div class="num">2112</div><div class="sub">Capital Solutions</div></div></div></div>
+      <div class="note">Card corner · email signature · letterhead foot</div>
+    </div>
+    <div class="scale-row">
+      <div class="label">NAVBAR<span class="meta">18px num · 3px bar · sub omitted</span></div>
+      <div class="stage"><div class="lockup-v14 s-navbar"><div class="lbar"></div><div class="stack"><div class="num">2112</div><div class="sub">Capital Solutions</div></div></div></div>
+      <div class="note">Site navigation · sticky header</div>
+    </div>
+    <div class="scale-row">
+      <div class="label">FOOTER<span class="meta">14px num · 2px bar · sub omitted</span></div>
+      <div class="stage"><div class="lockup-v14 s-footer"><div class="lbar"></div><div class="stack"><div class="num">2112</div><div class="sub">Capital Solutions</div></div></div></div>
+      <div class="note">Footer signature · meta line · breadcrumb</div>
+    </div>
 
-  <h3 class="subsection-title">Status toasts</h3>
-  <div class="grid grid--2">
-    <div class="toast toast--success"><span class="toast-icon">✓</span><div class="toast-content"><h5>Inquiry sent</h5><p>We'll reply within one business day.</p></div></div>
-    <div class="toast toast--info"><span class="toast-icon">i</span><div class="toast-content"><h5>New guide published</h5><p>Local AI setup with Ollama.</p></div></div>
-    <div class="toast toast--warning"><span class="toast-icon">⚠</span><div class="toast-content"><h5>Maintenance window</h5><p>Calendar offline Sunday 2-3am UTC.</p></div></div>
-    <div class="toast toast--error"><span class="toast-icon">✕</span><div class="toast-content"><h5>Submission failed</h5><p>Check your email and try again.</p></div></div>
+    <h3 class="subhead">App icon · favicon ladder</h3>
+    <div class="icon-row">
+      <div class="icon-col">
+        <div class="icon-frame f-128"><div class="lockup-v14 s-card" style="--bar-h: 48px; --num-size: 40px; --gap: 8px;"><div class="lbar"></div><div class="stack"><div class="num">2112</div></div></div></div>
+        <div class="icon-label">128 × 128</div>
+      </div>
+      <div class="icon-col">
+        <div class="icon-frame f-64"><div class="lockup-v14 s-card" style="--bar-w: 4px; --bar-h: 26px; --num-size: 22px; --gap: 5px;"><div class="lbar"></div><div class="stack"><div class="num">2112</div></div></div></div>
+        <div class="icon-label">64 × 64</div>
+      </div>
+      <div class="icon-col">
+        <div class="icon-frame f-32"><div class="lockup-v14 s-card" style="--bar-w: 2px; --bar-h: 14px; --num-size: 12px; --gap: 3px;"><div class="lbar"></div><div class="stack"><div class="num">2112</div></div></div></div>
+        <div class="icon-label">32 × 32 · v14</div>
+      </div>
+      <div class="icon-col">
+        <div class="icon-frame f-16"><div class="iconic" style="gap: 1px;"><div class="lbar" style="width: 2px; height: 9px;"></div><div class="num" style="font-size: 9px;">21</div></div></div>
+        <div class="icon-label">16 × 16 · iconic alt</div>
+      </div>
+    </div>
+    <p style="font-family:var(--font-mono); font-size:11px; color:var(--text-3); letter-spacing:0.04em; line-height:1.7; margin-top:24px; max-width:720px; text-transform:uppercase;">V14 holds down to 32px. At 16px favicon size the iconic alternate (bar + "21") replaces the full mark — single token, hardest to mis-render at sub-pixel scale.</p>
+
+    <h3 class="subhead">Star ornament</h3>
+    <div style="font-size: 32px; display: flex; align-items: center; gap: 16px;">
+      <span style="color: var(--signal);">★</span>
+      <span style="color: var(--signal); opacity: 0.85; font-size: 11px;">★</span>
+      <span style="color: var(--text-3); font-size: 13px; font-family: var(--font-mono); letter-spacing: 0.10em; text-transform: uppercase;">Decorative separator only · status bar + footer</span>
+    </div>
   </div>
+</section>
 
-  <h3 class="subsection-title">Tags</h3>
-  <div>
-    <span class="tag">Default</span>
-    <span class="tag active">Active</span>
-    <span class="tag">Bitcoin</span>
-    <span class="tag">AI</span>
-    <span class="tag">Privacy</span>
+<!-- COMPONENTS -->
+<section class="kit-section" id="components">
+  <div class="container">
+    <div class="kit-classify"><span>MODULE 04 — COMPONENTS</span><span class="ref">BUTTONS / FORMS / TABLES / TAGS / TOC / TOASTS</span></div>
+    <h2 class="kit-title">Components. <em>Sharp corners.</em></h2>
+    <p class="kit-lede">Every component zero-radius, mono-labeled, signal-red-accented. Hover transitions 0.15s. No animation flourish.</p>
+
+    <h3 class="subhead">Buttons</h3>
+    <div class="button-row">
+      <a href="#" class="btn btn--primary">Schedule consult</a>
+      <a href="#" class="btn btn--ghost">Read methodology</a>
+      <a href="#" class="btn btn--primary btn--small">Subscribe</a>
+      <a href="#" class="btn btn--ghost btn--small">Learn more</a>
+      <a href="#" class="btn btn--ghost btn--no-arrow">PGP key</a>
+    </div>
+
+    <h3 class="subhead">Forms</h3>
+    <div class="form-grid">
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="hello@yourdomain.com">
+      </div>
+      <div class="field">
+        <label for="org">Organization</label>
+        <input id="org" type="text" placeholder="Optional · for engagement memos">
+      </div>
+      <div class="field">
+        <label for="msg">Message</label>
+        <textarea id="msg" placeholder="What you have, what you want, what done looks like."></textarea>
+      </div>
+      <div class="field field-error">
+        <label for="bad">Email · error state</label>
+        <input id="bad" type="email" value="not-an-email" aria-invalid="true">
+        <div class="msg">▸ Invalid format. Expected user@domain.tld.</div>
+      </div>
+      <div class="field field-success">
+        <label for="good">Email · success state</label>
+        <input id="good" type="email" value="hello@2112capitalsolutions.com">
+      </div>
+      <div>
+        <a href="#" class="btn btn--primary">Submit</a>
+      </div>
+    </div>
+
+    <h3 class="subhead">Tables</h3>
+    <table class="kit">
+      <thead><tr><th>Service</th><th>Format</th><th>Floor</th><th>SLA</th></tr></thead>
+      <tbody>
+        <tr><td>Self-custody setup</td><td>remote / on-site</td><td>$100</td><td>1 wk lead</td></tr>
+        <tr><td>Node + Lightning</td><td>on-site preferred</td><td>$500</td><td>2 wk lead</td></tr>
+        <tr><td>Treasury advisory</td><td>remote / on-site</td><td>$100/hr</td><td>on demand</td></tr>
+        <tr><td>Privacy stack audit</td><td>remote</td><td>$300</td><td>1 wk lead</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="subhead">Tags</h3>
+    <div>
+      <span class="tag">Bitcoin</span>
+      <span class="tag">Custody</span>
+      <span class="tag">Lightning</span>
+      <span class="tag">Privacy</span>
+      <span class="tag">Self-hosting</span>
+      <span class="tag active">AI workflow</span>
+      <span class="tag active">Active filter</span>
+    </div>
+
+    <h3 class="subhead">Table of Contents</h3>
+    <nav class="toc">
+      <h6>— In this article</h6>
+      <ul>
+        <li><a href="#" class="active">Threat model first</a></li>
+        <li><a href="#">Hardware procurement</a></li>
+        <li><a href="#">Seed ceremony</a></li>
+        <li><a href="#">Multisig configuration</a></li>
+        <li><a href="#">Recovery rehearsal</a></li>
+      </ul>
+    </nav>
+
+    <h3 class="subhead">Status toasts (UX states only · paired with icon + text + color)</h3>
+    <div class="toast-stack">
+      <div class="toast toast--success"><div class="glyph">■</div><div class="body"><h6>Engagement memo signed</h6><p>Counterparty signature received 2026.05.01 14:22 UTC. Engagement clock starts at intake.</p></div></div>
+      <div class="toast toast--warning"><div class="glyph">▲</div><div class="body"><h6>Hardware lead time pending</h6><p>Coldcard Mk4 · 5–8 business days from supplier. Schedule ceremony with buffer.</p></div></div>
+      <div class="toast toast--error"><div class="glyph">✕</div><div class="body"><h6>Recovery rehearsal failed</h6><p>Seed at position 12 read-mismatch. Re-record under entropy-verified conditions before signing-off.</p></div></div>
+      <div class="toast toast--info"><div class="glyph">●</div><div class="body"><h6>Quarterly health check due</h6><p>Retainer-included node review scheduled for the next 30 days. We'll reach out.</p></div></div>
+    </div>
+
+    <h3 class="subhead">Empty state</h3>
+    <div class="empty-state">
+      <div class="glyph">▢</div>
+      <h4>No engagements on file</h4>
+      <p>You haven't started a project with us yet. Begin with a 30-minute consult — no pitch, no commitment.</p>
+      <a href="#" class="btn btn--primary">Schedule consult</a>
+    </div>
+
+    <h3 class="subhead">404 spec</h3>
+    <div class="spec-404">
+      <div class="ghost">404</div>
+      <div class="body">
+        <h3>This route is unmapped.</h3>
+        <p>The page you're looking for doesn't exist — or has been moved as the site evolved.</p>
+        <a href="#" class="btn btn--primary">Return home</a>
+      </div>
+    </div>
   </div>
+</section>
 
-  <h3 class="subsection-title">Code &amp; terminal</h3>
-  <p class="prose"><code class="inline">bitcoin-cli getblockchaininfo</code> returns the current chain status.</p>
-  <div style="margin-top: var(--space-3);">
+<!-- PATTERNS -->
+<section class="kit-section" id="patterns">
+  <div class="container">
+    <div class="kit-classify"><span>MODULE 05 — PATTERNS</span><span class="ref">PROTOCOL ROWS / METHOD STEPS / CARDS</span></div>
+    <h2 class="kit-title">Page patterns. <em>Indexed, scoped, measured.</em></h2>
+    <p class="kit-lede">Repeating page-level grammars. Protocol rows for services. Method steps for sequence. Cards for guides and resources. Module classification as the consistent header signature.</p>
+
+    <h3 class="subhead">Protocol rows</h3>
+    <div class="protocol">
+      <div class="protocol-id">01.01<span class="label">CUSTODY</span></div>
+      <div class="protocol-body">
+        <h4>Self-custody setup &amp; key ceremony</h4>
+        <p>End-to-end migration from exchange custody to self-held cold storage. Hardware procurement, seed generation under verified entropy, multisignature configuration where appropriate, recovery procedure with tested redundancy.</p>
+        <ul>
+          <li>Hardware wallet selection + procurement</li>
+          <li>Seed ceremony with redundancy</li>
+          <li>2-of-3 or 3-of-5 multisig configuration</li>
+          <li>Recovery rehearsal · signed · dated</li>
+        </ul>
+      </div>
+      <div class="protocol-spec">
+        <b>$100+</b>
+        <span class="ln"><span>Format:</span> remote / on-site</span>
+        <span class="ln"><span>Duration:</span> 2-6 hrs</span>
+        <span class="ln"><span>Scope:</span> single-session</span>
+        <span class="ln"><span>SLA:</span> 1 wk lead</span>
+      </div>
+    </div>
+    <div class="protocol">
+      <div class="protocol-id">01.02<span class="label">INFRASTRUCTURE</span></div>
+      <div class="protocol-body">
+        <h4>Node + Lightning channel deployment</h4>
+        <p>Full-node provisioning, security hardening, Lightning channel topology, ongoing maintenance. Optional retainer for monthly health checks and channel rebalancing.</p>
+        <ul>
+          <li>Hardware procurement (Start9 / Umbrel / custom)</li>
+          <li>Full-node config + Tor</li>
+          <li>Lightning channel design + opening</li>
+          <li>Monitoring · alerting · backup strategy</li>
+        </ul>
+      </div>
+      <div class="protocol-spec">
+        <b>$500+</b>
+        <span class="ln"><span>Format:</span> on-site preferred</span>
+        <span class="ln"><span>Duration:</span> 1-2 days</span>
+        <span class="ln"><span>Scope:</span> setup + retainer</span>
+        <span class="ln"><span>SLA:</span> 2 wk lead</span>
+      </div>
+    </div>
+
+    <h3 class="subhead">Method steps</h3>
+    <div class="method-step">
+      <div class="method-step-num"><b>SEQ.001</b>INTAKE</div>
+      <div><h5>Free 30-minute consult</h5><p>Direct conversation about where you are, what you have, and what success looks like. No pitch.</p></div>
+    </div>
+    <div class="method-step">
+      <div class="method-step-num"><b>SEQ.002</b>SCOPING</div>
+      <div><h5>Written engagement memo</h5><p>Deliverables, timeline, price, and risks documented. You sign or don't.</p></div>
+    </div>
+    <div class="method-step">
+      <div class="method-step-num"><b>SEQ.003</b>EXECUTION</div>
+      <div><h5>One operator on file</h5><p>Same operator from start to finish. We don't subcontract custody work.</p></div>
+    </div>
+
+    <h3 class="subhead">Cards — service variant</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-eyebrow">PROT.001 · CUSTODY</div>
+        <div class="card-title">Self-custody setup &amp; key ceremony</div>
+        <p class="card-excerpt">End-to-end migration from exchange custody to self-held cold storage. Hardware, seed, multisig, and recovery rehearsal in one session.</p>
+        <div class="card-meta"><span class="signal">$100+</span><span>2–6 HRS</span><span>1 WK LEAD</span></div>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">PROT.002 · INFRASTRUCTURE</div>
+        <div class="card-title">Node + Lightning deployment</div>
+        <p class="card-excerpt">Full-node provisioning, security hardening, Lightning channel topology, ongoing maintenance via retainer.</p>
+        <div class="card-meta"><span class="signal">$500+</span><span>1–2 DAYS</span><span>2 WK LEAD</span></div>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">PROT.003 · ADVISORY</div>
+        <div class="card-title">Treasury · integration · education</div>
+        <p class="card-excerpt">Bitcoin treasury planning, custom integration design, team education sessions for engineering and operations groups.</p>
+        <div class="card-meta"><span class="signal">$100/HR</span><span>HOURLY</span><span>ON DEMAND</span></div>
+      </div>
+    </div>
+
+    <h3 class="subhead">Cards — guide variant</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-eyebrow">BITCOIN · 18 MIN READ</div>
+        <div class="card-title">Hardware wallet setup, end-to-end</div>
+        <p class="card-excerpt">From threat model to first signed transaction. The procedure we use in client engagements, written down for everyone.</p>
+        <div class="card-meta"><span>2026.04.21</span><span>BITCOIN</span><span>BEGINNER</span></div>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">AI · 24 MIN READ</div>
+        <div class="card-title">Local AI on your own machine</div>
+        <p class="card-excerpt">Ollama + a local model + a workflow. What runs offline, what doesn't, and the trade-off worth knowing about.</p>
+        <div class="card-meta"><span>2026.03.18</span><span>AI</span><span>INTERMEDIATE</span></div>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">PRIVACY · 12 MIN READ</div>
+        <div class="card-title">Encrypted comms for the everyday user</div>
+        <p class="card-excerpt">Signal, PGP, age. What each does, where each fails, and how to combine them without breaking your routine.</p>
+        <div class="card-meta"><span>2026.02.04</span><span>PRIVACY</span><span>BEGINNER</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CODE / TERMINAL -->
+<section class="kit-section" id="code">
+  <div class="container">
+    <div class="kit-classify"><span>MODULE 06 — CODE</span><span class="ref">INLINE / BLOCK / TERMINAL</span></div>
+    <h2 class="kit-title">Code surfaces. <em>Skippable, self-contained.</em></h2>
+    <p class="kit-lede">Code blocks are progressive disclosure — the prose carries the meaning, the block carries the proof. Used sparingly on Bitcoin / AI / self-hosting service pages.</p>
+
+    <h3 class="subhead">Inline code</h3>
+    <p style="max-width: 720px;">After hardware arrival, generate the seed via the device's onboard RNG. Verify entropy by running <code class="inline">bitcoin-cli getrandom</code> and cross-referencing the device output. Never type the seed into a connected machine.</p>
+
+    <h3 class="subhead">Block code</h3>
+    <pre class="block"><span class="lang">BASH</span><code><span class="c"># Verify the SHA-256 of the downloaded image before flashing</span>
+<span class="k">sha256sum</span> umbrel-os-1.5.2.img.xz
+<span class="c"># Expected: c3a7e5d2... (compare against published value)</span>
+
+<span class="c"># Flash to SD card (replace /dev/sdX with your device)</span>
+<span class="k">xz</span> -d umbrel-os-1.5.2.img.xz
+<span class="k">sudo dd</span> if=umbrel-os-1.5.2.img of=/dev/sdX bs=4M status=progress conv=fsync</code></pre>
+
+    <h3 class="subhead">Terminal console</h3>
     <div class="terminal">
-      <div class="terminal-header">
-        <div class="terminal-dots"><span></span><span></span><span></span></div>
-        <div class="terminal-title">node-status</div>
+      <div class="terminal-bar">
+        <span class="dot dot--r"></span>
+        <span class="dot dot--y"></span>
+        <span class="dot dot--g"></span>
+        <span class="title">2112@operator · ~/work</span>
       </div>
       <div class="terminal-body">
-        <div><span class="prompt">$</span>bitcoin-cli getblockchaininfo</div>
-        <div class="output">{ "chain": "main", "blocks": 891247, "verificationprogress": 0.99999 }</div>
-        <div><span class="prompt">$</span><span class="cursor"></span></div>
+        <span class="line"><span class="prompt">$</span>bitcoin-cli getblockcount</span>
+        <span class="line out">896,402</span>
+        <span class="line"><span class="prompt">$</span>bitcoin-cli getbalance</span>
+        <span class="line out">0.00000000</span>
+        <span class="line"><span class="prompt">$</span>lncli channelbalance</span>
+        <span class="line out">{"balance": "2,500,000", "pending_open_balance": "0"}</span>
+        <span class="line"><span class="prompt">$</span><span class="cursor"></span></span>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider reveal"></div>
+<!-- REFERENCES -->
+<section class="kit-section" id="references">
+  <div class="container container--narrow" style="padding: 0 var(--page-margin);">
+    <div class="kit-classify"><span>MODULE 07 — REFERENCES</span><span class="ref">SOURCE-LINKED · NUMBERED</span></div>
+    <h2 class="kit-title">References block. <em>Every claim traceable.</em></h2>
+    <p class="kit-lede">Long-form articles cite their sources at the foot of the page. Numbered, mono, signal-red links with dotted underline. No ambiguity, no fluff.</p>
 
-<!-- ═══════ COOKIE ═══════ -->
-<section class="section-tight container--wide">
-  <div class="section-label">— 10 / Cookie banner</div>
-  <div class="cookie-banner">
-    <p>This site uses essential cookies only. No tracking, no analytics, no third parties.</p>
-    <div class="cookie-banner-actions">
-      <a href="#" class="btn btn--ghost btn--small">Decline</a>
-      <a href="#" class="btn btn--primary btn--small">Accept</a>
+    <div class="references">
+      <h6>— References &amp; prior art</h6>
+      <ol>
+        <li>Nakamoto, S. (2008). <a href="#">Bitcoin: A Peer-to-Peer Electronic Cash System.</a></li>
+        <li>Antonopoulos, A. (2017). <em>Mastering Bitcoin: Programming the Open Blockchain.</em> O'Reilly Media.</li>
+        <li>Coldcard Mk4 documentation. <a href="#">https://coldcard.com/docs</a></li>
+        <li>Bitcoin Core v27.0 release notes. <a href="#">github.com/bitcoin/bitcoin</a></li>
+        <li>2112 internal engagement log: 50+ self-custody migrations, 12+ node deployments, 3 corporate treasury implementations · 2024–2026.</li>
+      </ol>
     </div>
   </div>
-</section>
-
-<div class="divider reveal"></div>
-
-<!-- ═══════ VISUAL STYLE SPREAD — 35 styles across 7 emotions ═══════ -->
-<section class="style-spread container--wide" id="spread">
-  <div class="section-label">— 11 / Visual Style Spread (Reference)</div>
-  <p class="section-desc"><strong>Reference only — not the locked direction.</strong> 35 distinct visual styles across the 7 emotional building blocks. Each card renders the same "2112 / Capital Solutions" lockup using the style's signature palette and typography. Cross-style picking exercise: see <a class="inline" href="visual-styles-research.md">visual-styles-research.md</a>.</p>
-
-  <!-- CAREGIVER -->
-  <div class="style-emotion">
-    <div class="style-emotion-head">
-      <div class="style-emotion-title">Caregiver</div>
-      <div class="style-emotion-meta">— 5 styles · primary archetype</div>
-    </div>
-    <div class="style-grid">
-      <div class="style-card s-care-1"><div class="style-card-label"><b>1.1</b> Concierge Medical Warmth</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-sourceserif">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">One Medical · Parsley Health · Sollis</div><div class="sigs">Source Serif · Warm off-white + terracotta</div></div></div>
-      <div class="style-card s-care-2"><div class="style-card-label"><b>1.2</b> Private Bank Stewardship</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Pictet · Lombard Odier · BBH</div><div class="sigs">Cardo · Deep navy + ivory + oxblood</div></div></div>
-      <div class="style-card s-care-3"><div class="style-card-label"><b>1.3</b> Hands-On Trade Craft</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-breeserif">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Niwaki · Best Made · Labour and Wait</div><div class="sigs">Bree Serif · Walnut + linen + indigo</div></div></div>
-      <div class="style-card s-care-4"><div class="style-card-label"><b>1.4</b> Devotional / Religious Care</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo-italic">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Maggie's Centres · Order of Malta · Hospice UK</div><div class="sigs">Cardo Italic · Cream + dove gray + gold</div></div></div>
-      <div class="style-card s-care-5"><div class="style-card-label"><b>1.5</b> Field Engineer / Boots-on-Ground</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-tenorsans">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Caterpillar dealer · Honeywell field · Filson commercial</div><div class="sigs">Tenor Sans · Slate + hi-viz orange</div></div></div>
-    </div>
-  </div>
-
-  <!-- RULER -->
-  <div class="style-emotion">
-    <div class="style-emotion-head">
-      <div class="style-emotion-title">Ruler</div>
-      <div class="style-emotion-meta">— 5 styles · secondary archetype</div>
-    </div>
-    <div class="style-grid">
-      <div class="style-card s-rule-1"><div class="style-card-label"><b>2.1</b> Quiet Luxury Maison</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-spectral">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">The Row · Loro Piana · Khaite</div><div class="sigs">Spectral · Oat + ink, no shouting</div></div></div>
-      <div class="style-card s-rule-2"><div class="style-card-label"><b>2.2</b> Belle Époque / Grand Hotel</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-playfair-bold">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">The Ritz · Krug · Veuve Clicquot</div><div class="sigs">Playfair Bold · Black + ivory + gold</div></div></div>
-      <div class="style-card s-rule-3"><div class="style-card-label"><b>2.3</b> Italian Industrial Patrician</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cinzel-bold">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Bvlgari · Olivetti · Pirelli · Ferrari heritage</div><div class="sigs">Cinzel Bold · Charcoal + bone + oxblood</div></div></div>
-      <div class="style-card s-rule-4"><div class="style-card-label"><b>2.4</b> American Establishment / Ivy Power</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Brooks Brothers · J.P. Morgan · Yale UP</div><div class="sigs">Cardo · Cream + navy + crimson</div></div></div>
-      <div class="style-card s-rule-5"><div class="style-card-label"><b>2.5</b> Operator / Apex Modernist</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-mono">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Palantir · Anduril · Founders Fund</div><div class="sigs">JetBrains Mono · Pure black + signal red</div></div></div>
-    </div>
-  </div>
-
-  <!-- EMPOWERING -->
-  <div class="style-emotion">
-    <div class="style-emotion-head">
-      <div class="style-emotion-title">Empowering</div>
-      <div class="style-emotion-meta">— 5 styles · primary temperature</div>
-    </div>
-    <div class="style-grid">
-      <div class="style-card s-emp-1"><div class="style-card-label"><b>3.1</b> Outdoor Capability</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-tenorsans">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Patagonia · REI · Black Diamond · NOLS</div><div class="sigs">Tenor Sans · Forest + rust + cream</div></div></div>
-      <div class="style-card s-emp-2"><div class="style-card-label"><b>3.2</b> Coursework / Edtech Coach</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-breeserif">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Khan Academy · Duolingo · MasterClass</div><div class="sigs">Bree Serif · Owl green + white</div></div></div>
-      <div class="style-card s-emp-3"><div class="style-card-label"><b>3.3</b> Wellness Self-Mastery</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-tenorsans">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Headspace · Calm · Hims &amp; Hers · Goop</div><div class="sigs">Tenor Sans · Sunset gradient peach→lavender</div></div></div>
-      <div class="style-card s-emp-4"><div class="style-card-label"><b>3.4</b> Bauhaus Civic Empowerment</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-tenorsans">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Aicher Munich '72 · BBC heritage · Mailchimp</div><div class="sigs">Tenor Sans · Off-white + saturated red</div></div></div>
-      <div class="style-card s-emp-5"><div class="style-card-label"><b>3.5</b> Cyberpunk / Hacker-Tools</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-mono">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Arch Linux · EFF · Mullvad · Umbrel</div><div class="sigs">JetBrains Mono · Black + phosphor green</div></div></div>
-    </div>
-  </div>
-
-  <!-- REVERENT -->
-  <div class="style-emotion">
-    <div class="style-emotion-head">
-      <div class="style-emotion-title">Reverent</div>
-      <div class="style-emotion-meta">— 5 styles · secondary temperature</div>
-    </div>
-    <div class="style-grid">
-      <div class="style-card s-rev-1"><div class="style-card-label"><b>4.1</b> Sacred Architecture / Romanesque</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Deutsche Grammophon · ECM · Penguin Classics</div><div class="sigs">Cardo · Deep black + ivory + deep red</div></div></div>
-      <div class="style-card s-rev-2"><div class="style-card-label"><b>4.2</b> Wabi-Sabi / Tea-Room Quiet</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-sortsmillgoudy">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Aesop (JP moments) · Postalco · Snow Peak</div><div class="sigs">Sorts Mill Goudy · Raw paper + sumi ink</div></div></div>
-      <div class="style-card s-rev-3"><div class="style-card-label"><b>4.3</b> Memorial / Civic Solemnity</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cinzel">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Vietnam Memorial · USHMM · NMAAHC</div><div class="sigs">Cinzel · Granite + paper white + bronze</div></div></div>
-      <div class="style-card s-rev-4"><div class="style-card-label"><b>4.4</b> Naturalist Sublime</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-crimsonpro">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Sierra Club · Macallan · Highland Park</div><div class="sigs">Crimson Pro · Misty granite + warm cream</div></div></div>
-      <div class="style-card s-rev-5"><div class="style-card-label"><b>4.5</b> Black Metal / Esoteric Gravity</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-uniform">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Strange Attractor · Rick Owens · Visvim</div><div class="sigs">UnifrakturMaguntia · Black + bone + blood red</div></div></div>
-    </div>
-  </div>
-
-  <!-- PRINCIPLED -->
-  <div class="style-emotion">
-    <div class="style-emotion-head">
-      <div class="style-emotion-title">Principled</div>
-      <div class="style-emotion-meta">— 5 styles · keyword 1</div>
-    </div>
-    <div class="style-grid">
-      <div class="style-card s-prin-1"><div class="style-card-label"><b>5.1</b> Constitutional / Civic Document</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">The Atlantic masthead · Lapham's · Foreign Affairs</div><div class="sigs">Cardo · Cream paper + navy + oxblood</div></div></div>
-      <div class="style-card s-prin-2"><div class="style-card-label"><b>5.2</b> Manifesto Modernism</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-tenorsans">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Adbusters · Verso Books · Fitzcarraldo</div><div class="sigs">Tenor Sans 700 · Off-white + saturated red</div></div></div>
-      <div class="style-card s-prin-3"><div class="style-card-label"><b>5.3</b> Bitcoin / Sound-Money Severity</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Saifedean Standard · Casa · Foundation Devices</div><div class="sigs">Cardo · Deep navy + paper + Bitcoin orange</div></div></div>
-      <div class="style-card s-prin-4"><div class="style-card-label"><b>5.4</b> Quaker / Plainspoken Ethic</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-sortsmillgoudy">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Shaker tradition · Vanguard heritage · Heath Ceramics</div><div class="sigs">Sorts Mill Goudy · Off-white + plain navy</div></div></div>
-      <div class="style-card s-prin-5"><div class="style-card-label"><b>5.5</b> Standards Body / Engineering Code</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-mono">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">IETF RFC · Bell Labs · Linear docs · Long Now</div><div class="sigs">JetBrains Mono · Paper white + slate</div></div></div>
-    </div>
-  </div>
-
-  <!-- PREMIUM -->
-  <div class="style-emotion">
-    <div class="style-emotion-head">
-      <div class="style-emotion-title">Premium</div>
-      <div class="style-emotion-meta">— 5 styles · keyword 2</div>
-    </div>
-    <div class="style-grid">
-      <div class="style-card s-prem-1"><div class="style-card-label"><b>6.1</b> Hermès / French Maison</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-playfair">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Hermès · Goyard · Berluti · Chanel heritage</div><div class="sigs">Playfair · Cream + Hermès orange</div></div></div>
-      <div class="style-card s-prem-2"><div class="style-card-label"><b>6.2</b> Quiet Luxury / Stealth Wealth</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cormorantinfant">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">The Row · Loro Piana · Auralee · Lemaire</div><div class="sigs">Cormorant Infant · Chalk + ink, no logo</div></div></div>
-      <div class="style-card s-prem-3"><div class="style-card-label"><b>6.3</b> Tech-Object Premium (Apple)</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-inter">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Apple · Leica · Teenage Engineering · Linear</div><div class="sigs">Inter · Pure white + spec-sheet hairlines</div></div></div>
-      <div class="style-card s-prem-4"><div class="style-card-label"><b>6.4</b> Vintage Patrician / Old Money</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-crimsonpro">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Drake's London · Holland &amp; Holland · Purdey</div><div class="sigs">Crimson Pro · Tobacco brown + cream</div></div></div>
-      <div class="style-card s-prem-5"><div class="style-card-label"><b>6.5</b> Niche Fragrance / Editorial Opacity</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-typewriter">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Aesop · Le Labo · Byredo · Diptyque</div><div class="sigs">Special Elite · Amber + apothecary</div></div></div>
-    </div>
-  </div>
-
-  <!-- KNOWLEDGEABLE -->
-  <div class="style-emotion">
-    <div class="style-emotion-head">
-      <div class="style-emotion-title">Knowledgeable</div>
-      <div class="style-emotion-meta">— 5 styles · keyword 3</div>
-    </div>
-    <div class="style-grid">
-      <div class="style-card s-know-1"><div class="style-card-label"><b>7.1</b> Academic Press / Scholarly</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Princeton UP · MIT Press · NYRB Classics</div><div class="sigs">Cardo · Cream paper + navy + maroon</div></div></div>
-      <div class="style-card s-know-2"><div class="style-card-label"><b>7.2</b> Swiss / International Style</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-tenorsans">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Vignelli NYC subway · IBM (Rand) · Documenta</div><div class="sigs">Tenor Sans · White + black + signal red</div></div></div>
-      <div class="style-card s-know-3"><div class="style-card-label"><b>7.3</b> Lab Notebook / Working Scientist</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-mono">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Anthropic research · DeepMind papers · Stripe Press</div><div class="sigs">JetBrains Mono · Graph paper + ink blue</div></div></div>
-      <div class="style-card s-know-4"><div class="style-card-label"><b>7.4</b> Field Guide / Naturalist Encyclopedia</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Peterson Field Guides · Audubon · DK Eyewitness</div><div class="sigs">Cardo · Olive cream + deep brown + rust</div></div></div>
-      <div class="style-card s-know-5"><div class="style-card-label"><b>7.5</b> Operator's Manual / Tech Doc</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-mono">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Stripe API docs · Linear docs · Haynes manuals</div><div class="sigs">JetBrains Mono · Paper white + amber accent</div></div></div>
-    </div>
-  </div>
-
 </section>
 
 </main>
 
+<!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-grid">
-    <div>2112 capital solutions llc · NJ</div>
-    <div>hello@2112capitalsolutions.com</div>
-    <div>v1.0 — locked 2026-04-29</div>
+    <div>
+      <h6>Services</h6>
+      <ul>
+        <li><a href="#">Custody operations</a></li>
+        <li><a href="#">Node infrastructure</a></li>
+        <li><a href="#">Strategic advisory</a></li>
+        <li><a href="#">AI workflow</a></li>
+        <li><a href="#">Privacy stack</a></li>
+      </ul>
+    </div>
+    <div>
+      <h6>Resources</h6>
+      <ul>
+        <li><a href="#">Guides</a></li>
+        <li><a href="#">Methodology</a></li>
+        <li><a href="#">Pricing schedule</a></li>
+        <li><a href="#">Engagement memo template</a></li>
+      </ul>
+    </div>
+    <div>
+      <h6>Entity</h6>
+      <ul>
+        <li>2112 Capital Solutions LLC</li>
+        <li>NJ · NAICS 541611</li>
+        <li>Founded 2023.07.18</li>
+        <li>RA: Bizee</li>
+      </ul>
+    </div>
+    <div>
+      <h6>Contact</h6>
+      <ul>
+        <li><a href="mailto:hello@2112capitalsolutions.com">hello@2112capitalsolutions.com</a></li>
+        <li><a href="#">Schedule consult</a></li>
+        <li><a href="#">PGP public key</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2023–2026 <span class="footer-star">★</span> 2112 Capital Solutions LLC</span>
+    <span>v2.0 · APEX_CONSTRUCTIVIST · KIT</span>
   </div>
 </footer>
-
-<script>
-const sp = document.getElementById('scrollProgress');
-window.addEventListener('scroll', () => {
-  const h = document.documentElement;
-  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-  sp.style.width = pct + '%';
-}, { passive: true });
-
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('.reveal, .divider').forEach(el => revealObserver.observe(el));
-</script>
 
 </body>
 </html>

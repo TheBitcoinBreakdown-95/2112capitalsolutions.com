@@ -1,0 +1,24 @@
+---
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (path: string) => {
+  if (path === '/' && pathname === '/') return 'page';
+  if (path !== '/' && pathname.startsWith(path)) return 'page';
+  return undefined;
+};
+---
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="brandmark" aria-label="2112 Capital Solutions home">
+      <span class="bar"></span>2112
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/services" aria-current={isActive('/services')}>Services</a></li>
+        <li><a href="/methodology" aria-current={isActive('/methodology')}>Methodology</a></li>
+        <li><a href="/guides" aria-current={isActive('/guides')}>Guides</a></li>
+        <li><a href="/about" aria-current={isActive('/about')}>About</a></li>
+        <li><a href="/contact" aria-current={isActive('/contact')}>Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

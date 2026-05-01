@@ -1,0 +1,16 @@
+---
+const now = new Date();
+const fy = now.getFullYear();
+const month = now.getMonth() + 1;
+const quarter = Math.ceil(month / 3);
+---
+<div class="status">
+  <div class="left">
+    <span class="signal">OPERATING</span>
+    <span class="meta">ENTITY <b>2112 CAPITAL SOLUTIONS LLC</b></span>
+    <span class="star">★</span>
+    <span class="meta">JURIS <b>NJ · USA</b></span>
+    <span class="meta">FY <b>{fy}</b> · Q{quarter}</span>
+  </div>
+  <div class="meta">v2.0 · APEX_CONSTRUCTIVIST</div>
+</div>

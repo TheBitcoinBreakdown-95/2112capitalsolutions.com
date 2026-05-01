@@ -1,0 +1,48 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  category: string;
+  level: string;
+  readingTime?: string;
+}
+
+const { title, description, pubDate, updatedDate, category, level, readingTime } = Astro.props;
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }).toUpperCase();
+---
+<BaseLayout title={`${title} — 2112 Capital Solutions`} description={description}>
+  <!-- ARTICLE HEADER -->
+  <section class="hero">
+    <div class="container container--reading" style="padding: 0 var(--page-margin);">
+      <div class="classify">{category.toUpperCase()} · {level.toUpperCase()}{readingTime ? ` · ${readingTime.toUpperCase()}` : ''}</div>
+      <h1>{title}</h1>
+      <div class="hero-sub" style="text-transform: none; letter-spacing: 0;">{description}</div>
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-3); letter-spacing: 0.10em; text-transform: uppercase; margin-top: 24px;">
+        Published {fmt(pubDate)}
+        {updatedDate && <span> · Updated {fmt(updatedDate)}</span>}
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE BODY -->
+  <article class="module">
+    <div class="container container--reading" style="padding: 0 var(--page-margin);">
+      <div class="article-prose">
+        <slot />
+      </div>
+    </div>
+  </article>
+
+  <!-- BACK TO HUB -->
+  <section class="module">
+    <div class="container container--reading" style="padding: 0 var(--page-margin);">
+      <a href="/guides" class="btn btn--ghost">← All guides</a>
+    </div>
+  </section>
+</BaseLayout>

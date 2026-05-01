@@ -116,7 +116,7 @@ header p { font-family: var(--font-mono); font-size: 12px; color: var(--text-2);
   font-family: var(--font-mono);
   font-weight: 500;
   font-size: var(--sub-size, 11px);
-  letter-spacing: 0.20em;
+  letter-spacing: var(--sub-track, 0.20em);
   text-transform: uppercase;
   color: var(--text-2);
   margin-top: var(--sub-gap, 8px);
@@ -125,14 +125,19 @@ header p { font-family: var(--font-mono); font-size: 12px; color: var(--text-2);
 /* ═══════════════════════════════════════════════
    PER-SCALE SIZING
    ═══════════════════════════════════════════════ */
-.s-hero      { --bar-w: 6px; --bar-h: 110px; --num-size: 96px; --sub-size: 14px; --gap: 18px; --sub-gap: 12px; }
-.s-section   { --bar-w: 5px; --bar-h: 76px;  --num-size: 64px; --sub-size: 11px; --gap: 14px; --sub-gap: 10px; }
-.s-medium    { --bar-w: 4px; --bar-h: 50px;  --num-size: 42px; --sub-size: 9px;  --gap: 10px; --sub-gap: 7px; }
-.s-navbar    { --bar-w: 3px; --bar-h: 22px;  --num-size: 18px; --sub-size: 0;    --gap: 7px;  --sub-gap: 0; }
+/* sub-track values pre-computed so the sub right edge aligns flush with "2112" right edge.
+   Formula: sub-track ≈ (2.46 × num-size − 10.2 × sub-size) / 16 / sub-size  (em)
+   Where 2.46 ≈ 4 chars × 0.6ch + 3 × 0.02em letter-spacing; 10.2 ≈ 17 chars × 0.6ch.
+   Sub dropped at scales where the natural width cannot fit within the numeral width. */
+.s-hero      { --bar-w: 6px; --bar-h: 110px; --num-size: 96px; --sub-size: 14px; --sub-track: 0.42em; --gap: 18px; --sub-gap: 12px; }
+.s-section   { --bar-w: 5px; --bar-h: 76px;  --num-size: 64px; --sub-size: 11px; --sub-track: 0.26em; --gap: 14px; --sub-gap: 10px; }
+.s-medium    { --bar-w: 4px; --bar-h: 50px;  --num-size: 42px; --sub-size: 8px;  --sub-track: 0.17em; --gap: 10px; --sub-gap: 7px; }
+.s-navbar    { --bar-w: 3px; --bar-h: 22px;  --num-size: 18px; --gap: 7px; }
 .s-navbar .sub { display: none; }
-.s-footer    { --bar-w: 2px; --bar-h: 16px;  --num-size: 14px; --sub-size: 0;    --gap: 6px;  --sub-gap: 0; }
+.s-footer    { --bar-w: 2px; --bar-h: 16px;  --num-size: 14px; --gap: 6px; }
 .s-footer .sub { display: none; }
-.s-card      { --bar-w: 3px; --bar-h: 30px;  --num-size: 24px; --sub-size: 6.5px; --gap: 8px; --sub-gap: 4px; }
+.s-card      { --bar-w: 3px; --bar-h: 30px;  --num-size: 24px; --gap: 8px; }
+.s-card .sub { display: none; }
 .s-icon-128  { --bar-w: 6px; --bar-h: 48px;  --num-size: 40px; --sub-size: 0;    --gap: 8px;  --sub-gap: 0; }
 .s-icon-128 .sub { display: none; }
 .s-icon-64   { --bar-w: 4px; --bar-h: 26px;  --num-size: 22px; --sub-size: 0;    --gap: 5px;  --sub-gap: 0; }
@@ -205,7 +210,7 @@ footer-end { font-family: var(--font-mono); font-size: 11px; color: var(--text-3
 
 <!-- MEDIUM -->
 <div class="test">
-  <div class="test-label">MEDIUM<span class="meta">42px num · 4px bar</span></div>
+  <div class="test-label">MEDIUM<span class="meta">42px num · 4px bar · sub 8px / 0.17em tracked to flush right</span></div>
   <div class="test-stage">
     <div class="lockup-v14 s-medium">
       <div class="bar"></div>
@@ -220,7 +225,7 @@ footer-end { font-family: var(--font-mono); font-size: 11px; color: var(--text-3
 
 <!-- BUSINESS CARD CORNER -->
 <div class="test">
-  <div class="test-label">BUSINESS CARD<span class="meta">24px num · 3px bar</span></div>
+  <div class="test-label">BUSINESS CARD<span class="meta">24px num · 3px bar · sub omitted</span></div>
   <div class="test-stage">
     <div class="lockup-v14 s-card">
       <div class="bar"></div>
@@ -230,7 +235,7 @@ footer-end { font-family: var(--font-mono); font-size: 11px; color: var(--text-3
       </div>
     </div>
   </div>
-  <div class="test-note"><b>USED FOR</b>Business card corner · email signature · letterhead foot · stamp/watermark</div>
+  <div class="test-note"><b>USED FOR</b>Business card corner · email signature · letterhead foot · stamp/watermark<br><br><b>SUB OMITTED</b>At 24px numerals (~58px wide) the sub cannot fit within the numeral width at any readable font-size. Mark reads stronger as bar + numerals alone.</div>
 </div>
 
 <!-- NAVBAR -->

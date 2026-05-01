@@ -1,10 +1,112 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="2112 Capital Solutions" description="Bitcoin integration consulting.">
-  <main>
-    <h1>2112 Capital Solutions</h1>
-    <h2>Bitcoin integration consulting</h2>
-    <p>Site under reconstruction.</p>
-  </main>
+<BaseLayout
+  title="2112 Capital Solutions — Sovereignty consulting"
+  description="Boutique consulting for Bitcoin custody, node infrastructure, AI workflow, privacy, and self-hosted systems. Direct retainer engagements. One operator on file."
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="classify">CLASS_A · SOVEREIGNTY OPERATIONS · BOUTIQUE CONSULTANCY</div>
+      <h1>Sovereignty consulting for individuals and firms <em>who actually own their tools.</em></h1>
+      <div class="hero-sub">
+        <b>BTC CUSTODY</b> · <b>NODE OPERATIONS</b> · <b>PRIVACY STACK</b> · <b>SELF-HOSTED INFRA</b><br>
+        Direct retainer engagements · No marketplace, no platform · One operator on file
+      </div>
+      <div class="hero-cta">
+        <a href="/contact" class="btn btn--primary">Schedule consult</a>
+        <a href="/methodology" class="btn btn--ghost">Read methodology</a>
+      </div>
+
+      <div class="readout">
+        <div class="readout-cell">
+          <div class="readout-label">Entity</div>
+          <div class="readout-value">2112 Capital Solutions LLC</div>
+        </div>
+        <div class="readout-cell">
+          <div class="readout-label">Jurisdiction</div>
+          <div class="readout-value">NJ · 541611</div>
+        </div>
+        <div class="readout-cell">
+          <div class="readout-label">Founded</div>
+          <div class="readout-value">2023.07.18</div>
+        </div>
+        <div class="readout-cell">
+          <div class="readout-label">Status</div>
+          <div class="readout-value signal"><span class="indicator">■</span>OPERATING</div>
+        </div>
+        <div class="readout-cell">
+          <div class="readout-label">Floor</div>
+          <div class="readout-value">$100 · session</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="module">
+    <div class="container">
+      <div class="module-classify">
+        <span>MODULE 01 — SERVICE PROTOCOLS</span>
+        <span class="ref">PROT.001 / PROT.002 / PROT.003</span>
+      </div>
+      <h2 class="module-title">Three protocols. <em>Documented deliverables.</em></h2>
+      <p class="module-lede">Each engagement is scoped against an explicit deliverable list. No discovery-call funnels. Pricing visible at intake. Retainer relationships available for ongoing infrastructure.</p>
+
+      <div class="card-grid">
+        <a href="/services#custody" class="card">
+          <div class="card-eyebrow">PROT.001 · CUSTODY</div>
+          <div class="card-title">Self-custody setup &amp; key ceremony</div>
+          <p class="card-excerpt">End-to-end migration from exchange custody to self-held cold storage. Hardware, seed, multisig, and recovery rehearsal in one session.</p>
+          <div class="card-meta"><span class="signal">$100+</span><span>2–6 HRS</span><span>1 WK LEAD</span></div>
+        </a>
+        <a href="/services#infrastructure" class="card">
+          <div class="card-eyebrow">PROT.002 · INFRASTRUCTURE</div>
+          <div class="card-title">Node + Lightning deployment</div>
+          <p class="card-excerpt">Full-node provisioning, security hardening, Lightning channel topology, ongoing maintenance via retainer.</p>
+          <div class="card-meta"><span class="signal">$500+</span><span>1–2 DAYS</span><span>2 WK LEAD</span></div>
+        </a>
+        <a href="/services#advisory" class="card">
+          <div class="card-eyebrow">PROT.003 · ADVISORY</div>
+          <div class="card-title">Treasury · integration · education</div>
+          <p class="card-excerpt">Bitcoin treasury planning, custom integration design, team education sessions for engineering and operations groups.</p>
+          <div class="card-meta"><span class="signal">$100/HR</span><span>HOURLY</span><span>ON DEMAND</span></div>
+        </a>
+      </div>
+
+      <div style="margin-top: 48px;">
+        <a href="/services" class="btn btn--ghost">All services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT PREVIEW -->
+  <section class="module">
+    <div class="container">
+      <div class="module-classify">
+        <span>MODULE 02 — ENTITY</span>
+        <span class="ref">PRIOR ART · REFERENCES</span>
+      </div>
+      <h2 class="module-title">About <em>2112.</em></h2>
+      <p class="module-lede">Boutique consulting firm. Founded 2023 to deliver hands-on sovereignty services to individuals and operating businesses. Bitcoin services lead today; AI, privacy, and self-hosted infrastructure layer in as client demand materializes.</p>
+      <a href="/about" class="btn btn--ghost">Read more</a>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section class="module">
+    <div class="container">
+      <div class="module-classify">
+        <span>MODULE 03 — DIRECT ENGAGEMENT</span>
+        <span class="ref">NO PITCH · NO FUNNEL</span>
+      </div>
+      <h2 class="module-title">Schedule a <em>consult.</em></h2>
+      <p class="module-lede">30-minute call. No pitch. We'll tell you what we'd do, what it'd cost, and whether we're the right firm for your situation. If we're not, we'll point you to who is.</p>
+      <div class="hero-cta">
+        <a href="mailto:hello@2112capitalsolutions.com" class="btn btn--primary">Email direct</a>
+        <a href="/contact" class="btn btn--ghost">Book on calendar</a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

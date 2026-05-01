@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Services — 2112 Capital Solutions"
+  description="Three service protocols: self-custody setup, node + Lightning deployment, treasury and advisory. Documented deliverables, real prices, no discovery-call funnels."
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="classify">MODULE 01 — SERVICE PROTOCOLS</div>
+      <h1>Three protocols. <em>Documented deliverables.</em></h1>
+      <div class="hero-sub">
+        Each engagement scoped against explicit deliverables · Pricing visible at intake · Retainer relationships for ongoing infrastructure · One operator from start to finish
+      </div>
+    </div>
+  </section>
+
+  <!-- PROTOCOL 01 — CUSTODY -->
+  <section class="module" id="custody">
+    <div class="container">
+      <div class="module-classify">
+        <span>PROT.001 — CUSTODY</span>
+        <span class="ref">SECURITY · KEY CEREMONY · RECOVERY</span>
+      </div>
+
+      <div class="protocol">
+        <div class="protocol-id">
+          01.01
+          <span class="label">CUSTODY</span>
+        </div>
+        <div class="protocol-body">
+          <h4>Self-custody setup &amp; key ceremony</h4>
+          <p>End-to-end migration from exchange custody to self-held cold storage. Hardware procurement, seed generation under verified entropy, multisignature configuration where appropriate, recovery procedure with tested redundancy. We rehearse recovery in your presence; you sign and date the runbook before we leave.</p>
+          <ul>
+            <li>Threat model + hardware selection</li>
+            <li>Seed ceremony with redundancy</li>
+            <li>2-of-3 or 3-of-5 multisig configuration</li>
+            <li>Recovery rehearsal · signed · dated · documented</li>
+            <li>Steel-plate seed backup (optional)</li>
+          </ul>
+        </div>
+        <div class="protocol-spec">
+          <b>$100+</b>
+          <span class="ln"><span>Format:</span> remote / on-site</span>
+          <span class="ln"><span>Duration:</span> 2–6 hrs</span>
+          <span class="ln"><span>Scope:</span> single-session</span>
+          <span class="ln"><span>SLA:</span> 1 wk lead</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROTOCOL 02 — INFRASTRUCTURE -->
+  <section class="module" id="infrastructure">
+    <div class="container">
+      <div class="module-classify">
+        <span>PROT.002 — INFRASTRUCTURE</span>
+        <span class="ref">NODE · LIGHTNING · MONITORING</span>
+      </div>
+
+      <div class="protocol">
+        <div class="protocol-id">
+          01.02
+          <span class="label">INFRASTRUCTURE</span>
+        </div>
+        <div class="protocol-body">
+          <h4>Node + Lightning channel deployment</h4>
+          <p>Full-node provisioning, hardware procurement, security hardening, Lightning channel topology design, ongoing maintenance. Optional retainer for monthly health checks, channel rebalancing, patch management, and on-call response for liveness incidents.</p>
+          <ul>
+            <li>Hardware procurement (Start9 / Umbrel / custom)</li>
+            <li>Full-node config + Tor</li>
+            <li>Lightning channel design + opening</li>
+            <li>Monitoring · alerting · backup strategy</li>
+            <li>Quarterly health check (retainer)</li>
+          </ul>
+        </div>
+        <div class="protocol-spec">
+          <b>$500+</b>
+          <span class="ln"><span>Format:</span> on-site preferred</span>
+          <span class="ln"><span>Duration:</span> 1–2 days</span>
+          <span class="ln"><span>Scope:</span> setup + retainer</span>
+          <span class="ln"><span>SLA:</span> 2 wk lead</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROTOCOL 03 — ADVISORY -->
+  <section class="module" id="advisory">
+    <div class="container">
+      <div class="module-classify">
+        <span>PROT.003 — ADVISORY</span>
+        <span class="ref">TREASURY · INTEGRATION · EDUCATION</span>
+      </div>
+
+      <div class="protocol">
+        <div class="protocol-id">
+          01.03
+          <span class="label">ADVISORY</span>
+        </div>
+        <div class="protocol-body">
+          <h4>Treasury · integration · team education</h4>
+          <p>Bitcoin treasury planning for individuals and operating businesses. Custom integration design (BTCPay, Lightning POS, payroll). Team education sessions for engineering and operations groups. Ongoing advisory retainer available for strategic decisions.</p>
+          <ul>
+            <li>Treasury policy + custody architecture</li>
+            <li>Integration scoping + execution oversight</li>
+            <li>Internal training (workshops, lunch-and-learns)</li>
+            <li>Ongoing advisory retainer</li>
+          </ul>
+        </div>
+        <div class="protocol-spec">
+          <b>$100/hr</b>
+          <span class="ln"><span>Format:</span> remote / on-site</span>
+          <span class="ln"><span>Duration:</span> hourly + retainer</span>
+          <span class="ln"><span>Scope:</span> ongoing preferred</span>
+          <span class="ln"><span>SLA:</span> on demand</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="module">
+    <div class="container">
+      <div class="module-classify">
+        <span>MODULE 02 — INTAKE</span>
+        <span class="ref">FREE · 30 MIN · NO PITCH</span>
+      </div>
+      <h2 class="module-title">Ready to <em>scope an engagement?</em></h2>
+      <p class="module-lede">Free 30-minute consult. We'll tell you what we'd do, what it'd cost, and whether we're the right firm. If we're not, we'll point you to who is.</p>
+      <div class="hero-cta">
+        <a href="/contact" class="btn btn--primary">Schedule consult</a>
+        <a href="/methodology" class="btn btn--ghost">Read methodology</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
