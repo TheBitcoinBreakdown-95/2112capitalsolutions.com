@@ -338,20 +338,20 @@ body.menu-open { overflow: hidden; }
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+/* hero entrance — V14 logo only (tagline removed per user) */
 body.is-home .hero-mark .lockup-v14 .lbar { animation: bar-drop 0.4s var(--ease-out) both; }
 body.is-home .hero-mark .lockup-v14 .num  { animation: fade-up 0.3s var(--ease-out) 0.30s both; }
 body.is-home .hero-mark .lockup-v14 .sub  { animation: fade-up 0.3s var(--ease-out) 0.50s both; }
-body.is-home .hero .classify              { animation: fade-up 0.3s var(--ease-out) 0.70s both; }
-body.is-home .hero h1                     { animation: fade-up 0.3s var(--ease-out) 0.85s both; }
-body.is-home .hero-cta                    { animation: fade-up 0.3s var(--ease-out) 1.0s both; }
+
+/* below-hero content stays invisible until hero animation finishes (~800ms),
+   then fades in as a single block */
+body.is-home main > section.module { animation: fade-up 0.5s var(--ease-out) 0.85s both; }
 
 @media (prefers-reduced-motion: reduce) {
   body.is-home .hero-mark .lockup-v14 .lbar,
   body.is-home .hero-mark .lockup-v14 .num,
   body.is-home .hero-mark .lockup-v14 .sub,
-  body.is-home .hero .classify,
-  body.is-home .hero h1,
-  body.is-home .hero-cta { animation: none; }
+  body.is-home main > section.module { animation: none; }
 }
 
 /* ───────── HERO + CLASSIFY ───────── */
