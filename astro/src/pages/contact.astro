@@ -3,19 +3,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout
   title="Contact — 2112 Capital Solutions"
-  description="Schedule a free 30-minute call. No pitch. No funnel. Direct email or calendar booking. The operator on the call is the operator on the engagement."
+  description="Direct email or message. We respond within one business day. The operator on the message is the operator on the engagement."
 >
   <!-- HERO -->
   <section class="hero">
     <div class="container">
-      <div class="classify">MODULE 04 — DIRECT ENGAGEMENT · NO PITCH</div>
-      <h1>Schedule a <em>call.</em></h1>
+      <div class="classify">CONTACT</div>
+      <h1>Email <em>direct.</em></h1>
       <div class="hero-sub">
-        30-minute call · No pitch · We'll tell you what we'd do, what it'd cost, and whether we're the right firm · If we're not, we'll point you to who is
+        No intermediaries · The person you talk to is the person doing the work
       </div>
-      <div class="hero-cta">
-        <a href="mailto:hello@2112capitalsolutions.com" class="btn btn--primary">Email direct</a>
-        <a href="#calendar" class="btn btn--ghost">Book on calendar</a>
+    </div>
+  </section>
+
+  <!-- DIRECT EMAIL -->
+  <section class="module">
+    <div class="container">
+      <div class="module-classify">
+        <span>DIRECT</span>
+        <span class="ref">RESPONSE WITHIN ONE BUSINESS DAY</span>
+      </div>
+
+      <div class="protocol">
+        <div class="protocol-id">A<span class="label">EMAIL</span></div>
+        <div class="protocol-body">
+          <h4>Direct email</h4>
+          <p>For most inquiries, email is the fastest path. We respond within one business day. Be specific about where you are, what you have, and what success looks like — the more concrete, the faster we can scope.</p>
+        </div>
+        <div class="protocol-spec">
+          <b><a href="mailto:thebitcoinbreakdown@gmail.com" style="color: var(--text); border: none;">thebitcoinbreakdown<br>@gmail.com</a></b>
+          <span class="ln"><span>Response:</span> 1 business day</span>
+        </div>
       </div>
     </div>
   </section>
@@ -24,13 +42,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="module">
     <div class="container">
       <div class="module-classify">
-        <span>INTAKE</span>
-        <span class="ref">SEQ.001 — FREE 30 MIN</span>
+        <span>OR WRITE TO US</span>
+        <span class="ref">VIA FORM</span>
       </div>
-      <h2 class="module-title">Or write to us <em>directly.</em></h2>
-      <p class="module-lede">Tell us where you are, what you have, and what success looks like. We'll respond within one business day with a proposed time for the call.</p>
+      <h2 class="module-title">Send a <em>message.</em></h2>
+      <p class="module-lede">Tell us where you are, what you have, and what success looks like. We'll reply with a proposed time for a call.</p>
 
-      <form class="form-grid" action="mailto:hello@2112capitalsolutions.com" method="post" enctype="text/plain">
+      <form class="form-grid" action="mailto:thebitcoinbreakdown@gmail.com" method="post" enctype="text/plain">
         <div class="field">
           <label for="name">Name</label>
           <input id="name" name="name" type="text" required placeholder="Your name" />
@@ -62,66 +80,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <button type="submit" class="btn btn--primary">Send</button>
         </div>
       </form>
-    </div>
-  </section>
-
-  <!-- DIRECT CHANNELS -->
-  <section class="module" id="calendar">
-    <div class="container">
-      <div class="module-classify">
-        <span>CHANNELS</span>
-        <span class="ref">DIRECT · SECURE · NO INTERMEDIARIES</span>
-      </div>
-
-      <div class="protocol">
-        <div class="protocol-id">
-          A
-          <span class="label">EMAIL</span>
-        </div>
-        <div class="protocol-body">
-          <h4>Direct email</h4>
-          <p>For most inquiries, email is the fastest path. We respond within one business day. PGP available on request for sensitive communications.</p>
-        </div>
-        <div class="protocol-spec">
-          <b><a href="mailto:hello@2112capitalsolutions.com" style="color: var(--text); border: none;">hello@2112capitalsolutions.com</a></b>
-          <span class="ln"><span>Response:</span> 1 business day</span>
-          <span class="ln"><span>PGP:</span> on request</span>
-        </div>
-      </div>
-
-      <div class="protocol">
-        <div class="protocol-id">
-          B
-          <span class="label">CALENDAR</span>
-        </div>
-        <div class="protocol-body">
-          <h4>Book on calendar</h4>
-          <p>Direct booking for the free 30-minute call. No form-gating, no qualification questions. Pick a slot.</p>
-        </div>
-        <div class="protocol-spec">
-          <b><a href="https://cal.com/2112" style="color: var(--text); border: none;">Pick a slot →</a></b>
-          <span class="ln"><span>Duration:</span> 30 min</span>
-          <span class="ln"><span>Format:</span> video / phone</span>
-          <span class="ln"><span>Cost:</span> free</span>
-        </div>
-      </div>
-
-      <div class="protocol">
-        <div class="protocol-id">
-          C
-          <span class="label">PGP</span>
-        </div>
-        <div class="protocol-body">
-          <h4>Encrypted communication</h4>
-          <p>For custody-adjacent or treasury-sensitive matters, we recommend PGP from the first message. Public key fingerprint published on request.</p>
-        </div>
-        <div class="protocol-spec">
-          <b>—</b>
-          <span class="ln"><span>Available:</span> on request</span>
-          <span class="ln"><span>Key length:</span> 4096-bit</span>
-          <span class="ln"><span>Expiry:</span> rotated annually</span>
-        </div>
-      </div>
     </div>
   </section>
 </BaseLayout>

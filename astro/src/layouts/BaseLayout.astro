@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import StatusBar from '../components/StatusBar.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -12,7 +11,7 @@ interface Props {
 
 const {
   title,
-  description = 'Boutique consulting for Bitcoin custody, AI workflow, privacy, and self-hosted infrastructure. 2112 Capital Solutions — direct retainer engagements, one operator on file.',
+  description = 'Bitcoin integration consulting. Streamline sovereignty. Build and protect wealth outside the traditional financial system.',
   ogImage = '/og-default.png',
 } = Astro.props;
 
@@ -29,19 +28,16 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -52,23 +48,43 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
     <title>{title}</title>
   </head>
   <body class={isHome ? 'is-home' : ''}>
-    <StatusBar />
     <Header />
     <main>
       <slot />
     </main>
     <Footer />
 
-    {isHome && (
-      <script is:inline>
-        (() => {
+    <script is:inline>
+      (() => {
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (hamburger && mobileNav) {
+          hamburger.addEventListener('click', () => {
+            const isOpen = mobileNav.classList.toggle('is-open');
+            hamburger.classList.toggle('is-open', isOpen);
+            hamburger.setAttribute('aria-expanded', String(isOpen));
+            document.body.classList.toggle('menu-open', isOpen);
+          });
+          mobileNav.querySelectorAll('a').forEach((a) => {
+            a.addEventListener('click', () => {
+              mobileNav.classList.remove('is-open');
+              hamburger.classList.remove('is-open');
+              hamburger.setAttribute('aria-expanded', 'false');
+              document.body.classList.remove('menu-open');
+            });
+          });
+        }
+
+        // Homepage: track scroll for brandmark fade-in past hero
+        if (document.body.classList.contains('is-home')) {
           const update = () => {
             document.body.dataset.scrolled = window.scrollY > 320 ? 'true' : 'false';
           };
           update();
           window.addEventListener('scroll', update, { passive: true });
-        })();
-      </script>
-    )}
+        }
+      })();
+    </script>
   </body>
 </html>

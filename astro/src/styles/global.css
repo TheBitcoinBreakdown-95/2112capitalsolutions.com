@@ -204,6 +204,89 @@ body.is-home[data-scrolled="true"] .brandmark {
 .site-nav a[aria-current="page"] { color: var(--signal); }
 .site-nav a[aria-current="page"]::before { content: '> '; color: var(--signal); }
 
+/* ───────── HAMBURGER + MOBILE NAV DRAWER ───────── */
+.hamburger {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--line);
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+.hamburger span {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--text);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.25s var(--ease-default);
+}
+.hamburger span:nth-child(1) { top: 13px; }
+.hamburger span:nth-child(2) { top: 19px; }
+.hamburger span:nth-child(3) { top: 25px; }
+.hamburger.is-open span:nth-child(1) { top: 19px; transform: translateX(-50%) rotate(45deg); background: var(--signal); }
+.hamburger.is-open span:nth-child(2) { opacity: 0; }
+.hamburger.is-open span:nth-child(3) { top: 19px; transform: translateX(-50%) rotate(-45deg); background: var(--signal); }
+.hamburger:hover { border-color: var(--signal-line); }
+
+.mobile-nav {
+  display: none;
+  position: fixed;
+  inset: 60px 0 0 0;
+  background: var(--bg);
+  z-index: 99;
+  border-top: 1px solid var(--line);
+  padding: var(--space-6) 0;
+}
+.mobile-nav.is-open {
+  display: block;
+  animation: drawer-down 0.25s var(--ease-out) both;
+}
+.mobile-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: var(--container-outer);
+  margin: 0 auto;
+  padding: 0 var(--page-margin);
+}
+.mobile-nav li { border-bottom: 1px solid var(--line); }
+.mobile-nav a {
+  display: block;
+  padding: 22px 0;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  border: none;
+  transition: color 0.15s var(--ease-default);
+}
+.mobile-nav a:hover, .mobile-nav a:focus { color: var(--signal); opacity: 1; }
+.mobile-nav a[aria-current="page"] { color: var(--signal); }
+.mobile-nav a[aria-current="page"]::before { content: '> '; color: var(--signal); }
+
+@keyframes drawer-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+body.menu-open { overflow: hidden; }
+
+@media (max-width: 720px) {
+  .site-nav { display: none; }
+  .hamburger { display: inline-flex; }
+}
+
 /* ───────── V14 LOGO LOCKUP ───────── */
 .lockup-v14 {
   display: inline-grid;
@@ -240,7 +323,35 @@ body.is-home[data-scrolled="true"] .brandmark {
 .lockup-v14.s-medium  { --bar-w: 4px; --bar-h: 50px;  --num-size: 42px; --sub-size: 8px;  --sub-track: 0.17em; --gap: 10px; --sub-gap: 7px; }
 .hero-mark { margin-bottom: 56px; }
 @media (max-width: 640px) {
-  .lockup-v14.s-hero { --num-size: 64px; --bar-h: 76px; --sub-size: 11px; --sub-track: 0.26em; --gap: 14px; --sub-gap: 10px; }
+  .lockup-v14.s-hero { --num-size: 56px; --bar-h: 64px; --sub-size: 9px; --sub-track: 0.18em; --gap: 12px; --sub-gap: 8px; }
+  .hero-mark { margin-bottom: 36px; }
+}
+
+/* ───────── HOMEPAGE ENTRANCE ANIMATION (≈1s) ─────────
+   Sequence: bar drops → numerals fade up → sub fades up → tagline fades up
+   Picked variant: combined #1 (bar drop) + #2 boot-style staggered cascade  */
+@keyframes bar-drop {
+  from { transform: scaleY(0); transform-origin: top; }
+  to   { transform: scaleY(1); transform-origin: top; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+body.is-home .hero-mark .lockup-v14 .lbar { animation: bar-drop 0.4s var(--ease-out) both; }
+body.is-home .hero-mark .lockup-v14 .num  { animation: fade-up 0.3s var(--ease-out) 0.30s both; }
+body.is-home .hero-mark .lockup-v14 .sub  { animation: fade-up 0.3s var(--ease-out) 0.50s both; }
+body.is-home .hero .classify              { animation: fade-up 0.3s var(--ease-out) 0.70s both; }
+body.is-home .hero h1                     { animation: fade-up 0.3s var(--ease-out) 0.85s both; }
+body.is-home .hero-cta                    { animation: fade-up 0.3s var(--ease-out) 1.0s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  body.is-home .hero-mark .lockup-v14 .lbar,
+  body.is-home .hero-mark .lockup-v14 .num,
+  body.is-home .hero-mark .lockup-v14 .sub,
+  body.is-home .hero .classify,
+  body.is-home .hero h1,
+  body.is-home .hero-cta { animation: none; }
 }
 
 /* ───────── HERO + CLASSIFY ───────── */
@@ -660,6 +771,28 @@ section.module { padding: 80px 0; border-top: 1px solid var(--line); }
   gap: 16px;
 }
 .footer-star { color: var(--signal); margin: 0 6px; }
+.signal-dot { color: var(--signal); font-size: 8px; margin-right: 4px; vertical-align: 2px; }
+
+/* ───────── ABOUT BULLET LIST (sovereignty consulting client profiles) ───────── */
+.bullet-list {
+  list-style: none;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-2);
+  max-width: 720px;
+}
+.bullet-list li { padding: 10px 0; padding-left: 28px; position: relative; border-bottom: 1px dashed var(--line); }
+.bullet-list li:last-child { border-bottom: none; }
+.bullet-list li::before {
+  content: '▸';
+  color: var(--signal);
+  position: absolute;
+  left: 0;
+  top: 12px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
 
 /* ───────── RESPONSIVE ───────── */
 @media (max-width: 900px) {

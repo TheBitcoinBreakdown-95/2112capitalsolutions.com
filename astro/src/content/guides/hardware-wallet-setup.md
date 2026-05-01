@@ -10,7 +10,7 @@ draft: false
 
 Self-custody is not a product you buy — it's a procedure you run. This guide walks the procedure end-to-end, the way we run it in client engagements. The same steps, the same checks, the same termination conditions. By the end of this, you should be able to receive Bitcoin to a hardware wallet you control, send it back out, and recover from a seed phrase if the device dies.
 
-If you're not ready to do this on your own, we run the procedure for clients in a single 2–6 hour session. See [Services](/services#custody) for details. If you are ready to run it yourself, this guide is the runbook we'd hand you.
+If you're not ready to do this on your own, we run the procedure for clients in a single 2–6 hour session. See [Services](/services#custody) for details, or [get in touch](/contact). If you are ready to run it yourself, this guide is the runbook we'd hand you.
 
 ## Threat model first
 
@@ -53,7 +53,7 @@ Do not type the seed into anything connected to the internet. Not your password 
 
 For amounts where a single seed feels like too much eggs in one basket, configure 2-of-3 multisig. Three devices, three seeds, three locations. Two signatures required to spend. Loss of any one device is recoverable.
 
-We won't walk through multisig setup in this guide — it's a separate procedure. If you're ready for multisig, you're ready for an engagement; book a [call](/contact).
+We won't walk through multisig setup in this guide — it's a separate procedure. If you're ready for multisig, you're ready for an engagement; [get in touch](/contact).
 
 ## Recovery rehearsal
 
@@ -75,4 +75,4 @@ Once the transaction confirms, send it back out. Verify the send works. Now you 
 - **[Node deployment](/services#infrastructure)** — your own Bitcoin node, no third-party trust required
 - **[Inheritance planning](/contact)** — what happens to the wallet when you don't
 
-If you have questions or want us to run this procedure with you in a single session, [schedule a call](/contact).
+If you have questions or want us to run this procedure with you in a single session, [get in touch](/contact).
