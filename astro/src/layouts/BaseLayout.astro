@@ -17,6 +17,7 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -50,12 +51,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 
     <title>{title}</title>
   </head>
-  <body>
+  <body class={isHome ? 'is-home' : ''}>
     <StatusBar />
     <Header />
     <main>
       <slot />
     </main>
     <Footer />
+
+    {isHome && (
+      <script is:inline>
+        (() => {
+          const update = () => {
+            document.body.dataset.scrolled = window.scrollY > 320 ? 'true' : 'false';
+          };
+          update();
+          window.addEventListener('scroll', update, { passive: true });
+        })();
+      </script>
+    )}
   </body>
 </html>

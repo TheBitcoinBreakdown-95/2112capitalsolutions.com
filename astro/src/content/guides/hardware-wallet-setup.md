@@ -53,7 +53,7 @@ Do not type the seed into anything connected to the internet. Not your password 
 
 For amounts where a single seed feels like too much eggs in one basket, configure 2-of-3 multisig. Three devices, three seeds, three locations. Two signatures required to spend. Loss of any one device is recoverable.
 
-We won't walk through multisig setup in this guide — it's a separate procedure. If you're ready for multisig, you're ready for an engagement; book a [consult](/contact).
+We won't walk through multisig setup in this guide — it's a separate procedure. If you're ready for multisig, you're ready for an engagement; book a [call](/contact).
 
 ## Recovery rehearsal
 
@@ -75,4 +75,4 @@ Once the transaction confirms, send it back out. Verify the send works. Now you 
 - **[Node deployment](/services#infrastructure)** — your own Bitcoin node, no third-party trust required
 - **[Inheritance planning](/contact)** — what happens to the wallet when you don't
 
-If you have questions or want us to run this procedure with you in a single session, [schedule a consult](/contact).
+If you have questions or want us to run this procedure with you in a single session, [schedule a call](/contact).

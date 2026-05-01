@@ -173,6 +173,17 @@ img { max-width: 100%; height: auto; display: block; }
 .brandmark .bar { display: inline-block; width: 3px; height: 18px; background: var(--signal); }
 .brandmark:hover { opacity: 1; color: var(--signal); }
 
+/* Homepage: hide header brandmark while hero V14 is in view, fade in on scroll */
+body.is-home .brandmark {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease-default);
+}
+body.is-home[data-scrolled="true"] .brandmark {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .site-nav ul {
   display: flex;
   gap: 28px;

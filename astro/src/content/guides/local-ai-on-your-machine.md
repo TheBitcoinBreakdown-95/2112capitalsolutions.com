@@ -96,6 +96,6 @@ For most users, the right answer is hybrid: local for sensitive or routine work,
 
 - **[Privacy stack audit](/services)** — full review of what data leaves your machine
 - **[Self-hosted infrastructure](/services)** — extend the local-first principle past AI
-- **[Schedule a consult](/contact)** — we'll set up the local stack with you
+- **[Schedule a call](/contact)** — we'll set up the local stack with you
 
 This guide will be updated as the local-model landscape changes — the cutoff above is current as of publication, and the frontier moves fast.
