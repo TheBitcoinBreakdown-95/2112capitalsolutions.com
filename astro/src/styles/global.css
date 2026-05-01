@@ -357,18 +357,20 @@ body.menu-open { overflow: hidden; }
 body.is-home .hero-mark .lockup-v14 .lbar { animation: bar-drop 0.65s var(--ease-out) both; }
 body.is-home .hero-mark .lockup-v14 .num  { animation: fade-up 0.45s var(--ease-out) 0.50s both; }
 body.is-home .hero-mark .lockup-v14 .sub  { animation: fade-up 0.45s var(--ease-out) 0.85s both; }
-body.is-home .hero h1                     { animation: fade-up 0.50s var(--ease-out) 1.20s both; }
-body.is-home .hero .hero-tagline          { animation: fade-up 0.50s var(--ease-out) 1.40s both; }
-body.is-home .hero .hero-sub              { animation: fade-up 0.50s var(--ease-out) 1.60s both; }
+body.is-home .hero .classify              { animation: fade-up 0.40s var(--ease-out) 1.10s both; }
+body.is-home .hero h1                     { animation: fade-up 0.50s var(--ease-out) 1.30s both; }
+body.is-home .hero .hero-tagline          { animation: fade-up 0.50s var(--ease-out) 1.50s both; }
+body.is-home .hero .hero-sub              { animation: fade-up 0.50s var(--ease-out) 1.70s both; }
 
 /* below-hero content stays invisible until hero text finishes,
    then fades in as a single block */
-body.is-home main > section.module { animation: fade-up 0.7s var(--ease-out) 1.95s both; }
+body.is-home main > section.module { animation: fade-up 0.7s var(--ease-out) 2.05s both; }
 
 @media (prefers-reduced-motion: reduce) {
   body.is-home .hero-mark .lockup-v14 .lbar,
   body.is-home .hero-mark .lockup-v14 .num,
   body.is-home .hero-mark .lockup-v14 .sub,
+  body.is-home .hero .classify,
   body.is-home .hero h1,
   body.is-home .hero .hero-tagline,
   body.is-home .hero .hero-sub,
