@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2112 — Sample · Apex Modernist · Black/White/Red</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   APEX MODERNIST — BLACK / WHITE / SIGNAL RED
+   Brands: Palantir, Anduril, Founders Fund, Bridgewater
+   Font stack: Space Grotesk (Söhne/GT America substitute) + JetBrains Mono
+   No serif, no warmth, no editorial register.
+   ═══════════════════════════════════════════════ */
+:root {
+  --bg: #000;
+  --bg-elev: #0a0a0a;
+  --bg-card: #111;
+  --line: rgba(255,255,255,0.10);
+  --line-strong: rgba(255,255,255,0.22);
+  --text: #f4f4f0;
+  --text-2: #908d85;
+  --text-3: #5a5752;
+  --signal: #e63030;
+  --signal-dim: rgba(230, 48, 48, 0.15);
+  --signal-line: rgba(230, 48, 48, 0.35);
+  --font-body: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* SCANLINE TEXTURE */
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0, transparent 3px, rgba(255,255,255,0.018) 3px, rgba(255,255,255,0.018) 4px);
+  z-index: 0;
+}
+main, header, footer { position: relative; z-index: 1; }
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+/* ═══════════════════════════════════════════════
+   STATUS BAR — top of page, classified-document feel
+   ═══════════════════════════════════════════════ */
+.status {
+  border-bottom: 1px solid var(--signal-line);
+  background: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  padding: 8px 32px;
+  display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  flex-wrap: wrap;
+}
+.status .left { display: flex; gap: 22px; align-items: center; }
+.status .signal { color: var(--signal); font-weight: 700; }
+.status .signal::before { content: '■'; font-size: 8px; vertical-align: 2px; margin-right: 6px; }
+.status .meta { color: var(--text-3); font-weight: 500; }
+.status .meta b { color: var(--text); font-weight: 700; }
+.status .star { color: var(--signal); font-size: 9px; opacity: 0.85; }
+
+/* ═══════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════ */
+.site-header {
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+  background: var(--bg);
+  position: sticky; top: 0; z-index: 100;
+}
+.header-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; }
+.brandmark {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 7px;
+  line-height: 1;
+}
+.brandmark .bar { display: inline-block; width: 3px; height: 18px; background: var(--signal); }
+nav ul { display: flex; gap: 28px; list-style: none; }
+nav a {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--signal); }
+nav a.active::before { content: '> '; color: var(--signal); }
+
+/* ═══════════════════════════════════════════════
+   HERO — direct, hard, tactical
+   ═══════════════════════════════════════════════ */
+.hero { padding: 100px 0 80px; border-bottom: 1px solid var(--line); }
+.hero-classify {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 32px;
+  display: flex; gap: 16px; align-items: center;
+}
+.hero-classify::before { content: ''; width: 32px; height: 1px; background: var(--signal); }
+.hero h1 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(48px, 7vw, 84px);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  color: var(--text);
+  margin-bottom: 32px;
+  max-width: 1100px;
+}
+.hero h1 em { font-style: normal; color: var(--signal); }
+.hero-sub {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+  margin-bottom: 48px;
+  line-height: 1.7;
+  max-width: 720px;
+  text-transform: uppercase;
+  border-left: 2px solid var(--signal);
+  padding-left: 20px;
+}
+.hero-sub b { color: var(--text); font-weight: 700; }
+.hero-cta { display: flex; gap: 0; align-items: stretch; flex-wrap: wrap; }
+
+/* ═══════════════════════════════════════════════
+   BUTTONS — sharp, tactical
+   ═══════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  padding: 16px 28px;
+  text-decoration: none;
+  border: 1px solid;
+  border-radius: 0;
+  text-transform: uppercase;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+.btn--primary { background: var(--signal); color: #fff; border-color: var(--signal); }
+.btn--primary:hover { background: transparent; color: var(--signal); }
+.btn--ghost { background: transparent; color: var(--text); border-color: var(--text); margin-left: -1px; }
+.btn--ghost:hover { background: var(--text); color: var(--bg); }
+.btn::after { content: '→'; }
+
+/* ═══════════════════════════════════════════════
+   READOUT BLOCK — tactical data table
+   ═══════════════════════════════════════════════ */
+.readout {
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+  margin: 60px 0 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.readout-cell {
+  padding: 24px 28px;
+  border-right: 1px solid var(--line);
+}
+.readout-cell:last-child { border-right: none; }
+.readout-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 10px;
+}
+.readout-value {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.readout-value.signal { color: var(--signal); font-weight: 700; }
+.readout-value .indicator { color: var(--signal); margin-right: 4px; }
+
+@media (max-width: 900px) { .readout { grid-template-columns: repeat(2, 1fr); } .readout-cell { border-right: none; border-bottom: 1px solid var(--line); } }
+
+/* ═══════════════════════════════════════════════
+   SECTION — module-style with classification
+   ═══════════════════════════════════════════════ */
+section.module { padding: 80px 0; border-top: 1px solid var(--line); }
+.module-classify {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--signal-line);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.module-classify .ref { color: var(--text-3); font-weight: 500; }
+.module-title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(40px, 5vw, 64px);
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  color: var(--text);
+  margin-bottom: 24px;
+  max-width: 1000px;
+}
+.module-title em { font-style: normal; color: var(--signal); }
+.module-lede {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+  max-width: 700px;
+  margin-bottom: 56px;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════
+   PROTOCOL ROWS — 3-column tactical spec
+   ═══════════════════════════════════════════════ */
+.protocol {
+  display: grid;
+  grid-template-columns: 200px 1fr 240px;
+  gap: 60px;
+  padding: 36px 0;
+  border-top: 1px solid var(--line);
+  align-items: start;
+}
+.protocol:last-child { border-bottom: 1px solid var(--line); }
+.protocol-id {
+  font-family: var(--font-mono);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--signal);
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+.protocol-id .label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-top: 14px;
+  letter-spacing: 0.18em;
+}
+.protocol-body h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: var(--text);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+.protocol-body p {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.protocol-body ul {
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-2);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.protocol-body li { padding: 5px 0; display: flex; gap: 14px; align-items: baseline; }
+.protocol-body li::before { content: '▸'; color: var(--signal); font-size: 8px; }
+.protocol-spec {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-left: 1px solid var(--signal);
+  padding-left: 24px;
+}
+.protocol-spec b { color: var(--text); display: block; margin-bottom: 12px; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; text-transform: none; }
+.protocol-spec .ln { display: block; margin-bottom: 8px; }
+.protocol-spec .ln span { color: var(--text-2); font-weight: 500; }
+
+/* ═══════════════════════════════════════════════
+   METHODOLOGY STEPS
+   ═══════════════════════════════════════════════ */
+.method-step {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 60px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+.method-step:last-child { border-bottom: 1px solid var(--line); }
+.method-step-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.method-step-num b { color: var(--signal); font-weight: 700; display: block; font-size: 24px; letter-spacing: 0; margin-bottom: 6px; }
+.method-step h5 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--text);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.method-step p { font-size: 14.5px; color: var(--text-2); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════
+   REFERENCES
+   ═══════════════════════════════════════════════ */
+.references {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  padding: 32px;
+  margin-top: 48px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.8;
+  color: var(--text-2);
+  letter-spacing: 0.02em;
+}
+.references h6 {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--signal-line);
+}
+.references ol { padding-left: 32px; }
+.references li { padding: 6px 0; }
+.references a { color: var(--signal); text-decoration: none; border-bottom: 1px dotted var(--signal); }
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════ */
+.site-footer {
+  border-top: 2px solid var(--signal);
+  padding: 56px 0 28px;
+  margin-top: 80px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+.footer-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 32px;
+}
+.footer-grid h6 {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+.footer-grid ul { list-style: none; }
+.footer-grid li { padding: 4px 0; }
+.footer-grid a { color: var(--text-3); text-decoration: none; transition: color 0.15s; }
+.footer-grid a:hover { color: var(--signal); }
+.footer-bottom {
+  max-width: 1280px;
+  margin: 36px auto 0;
+  padding: 24px 32px 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .protocol { grid-template-columns: 1fr; gap: 24px; }
+  .protocol-spec { border-left: none; border-top: 1px solid var(--signal); padding: 16px 0 0; }
+  .method-step { grid-template-columns: 1fr; gap: 16px; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  nav ul { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="status">
+  <div class="left">
+    <span class="signal">OPERATING</span>
+    <span class="meta">ENTITY <b>2112 CAPITAL SOLUTIONS LLC</b></span>
+    <span class="star">★</span>
+    <span class="meta">JURIS <b>NJ · USA</b></span>
+    <span class="meta">FY <b>2026</b> · Q2</span>
+  </div>
+  <div class="meta">REV. 1.2 · 2026.04.30 · APEX_MODERNIST</div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="brandmark"><span class="bar"></span>2112</a>
+    <nav>
+      <ul>
+        <li><a href="#services">SERVICES</a></li>
+        <li><a href="#methodology">METHODOLOGY</a></li>
+        <li><a href="#guides">GUIDES</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#contact" class="active">CONTACT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-classify">CLASS_A · SOVEREIGNTY OPERATIONS · BOUTIQUE CONSULTANCY</div>
+    <h1>Sovereignty consulting for individuals and firms <em>who actually own their tools.</em></h1>
+    <div class="hero-sub">
+      <b>BTC CUSTODY</b> · <b>NODE OPERATIONS</b> · <b>PRIVACY STACK</b> · <b>SELF-HOSTED INFRA</b><br>
+      Direct retainer engagements · No marketplace, no platform · One operator on file
+    </div>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn--primary">Schedule consult</a>
+      <a href="#methodology" class="btn btn--ghost">Read methodology</a>
+    </div>
+
+    <div class="readout">
+      <div class="readout-cell">
+        <div class="readout-label">Entity</div>
+        <div class="readout-value">2112 Capital Solutions LLC</div>
+      </div>
+      <div class="readout-cell">
+        <div class="readout-label">Jurisdiction</div>
+        <div class="readout-value">NJ · 541611</div>
+      </div>
+      <div class="readout-cell">
+        <div class="readout-label">Founded</div>
+        <div class="readout-value">2023.07.18</div>
+      </div>
+      <div class="readout-cell">
+        <div class="readout-label">Status</div>
+        <div class="readout-value signal"><span class="indicator">■</span>OPERATING</div>
+      </div>
+      <div class="readout-cell">
+        <div class="readout-label">Floor</div>
+        <div class="readout-value">$100 · session</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section class="module" id="services">
+  <div class="container">
+    <div class="module-classify"><span>MODULE 01 — SERVICE PROTOCOLS</span><span class="ref">PROT.001 / PROT.002 / PROT.003</span></div>
+    <h2 class="module-title">Three protocols. <em>Documented deliverables.</em></h2>
+    <p class="module-lede">Each engagement is scoped against an explicit deliverable list. No discovery-call funnels. Pricing visible at intake. Retainer relationships available for ongoing infrastructure.</p>
+
+    <div class="protocol">
+      <div class="protocol-id">
+        01.01
+        <span class="label">CUSTODY</span>
+      </div>
+      <div class="protocol-body">
+        <h4>Self-custody setup &amp; key ceremony</h4>
+        <p>End-to-end migration from exchange custody to self-held cold storage. Hardware procurement, seed generation under verified entropy, multisignature configuration where appropriate, recovery procedure with tested redundancy.</p>
+        <ul>
+          <li>Hardware wallet selection + procurement</li>
+          <li>Seed ceremony with redundancy</li>
+          <li>2-of-3 or 3-of-5 multisig configuration</li>
+          <li>Recovery rehearsal · signed · dated · documented</li>
+        </ul>
+      </div>
+      <div class="protocol-spec">
+        <b>$100+</b>
+        <span class="ln"><span>Format:</span> remote / on-site</span>
+        <span class="ln"><span>Duration:</span> 2-6 hrs</span>
+        <span class="ln"><span>Scope:</span> single-session</span>
+        <span class="ln"><span>SLA:</span> 1 wk lead</span>
+      </div>
+    </div>
+
+    <div class="protocol">
+      <div class="protocol-id">
+        01.02
+        <span class="label">INFRASTRUCTURE</span>
+      </div>
+      <div class="protocol-body">
+        <h4>Node + Lightning channel deployment</h4>
+        <p>Full-node provisioning, hardware procurement, security hardening, Lightning channel topology, ongoing maintenance. Optional retainer for monthly health checks, channel rebalancing, patch management.</p>
+        <ul>
+          <li>Hardware procurement (Start9 / Umbrel / custom)</li>
+          <li>Full-node config + Tor</li>
+          <li>Lightning channel design + opening</li>
+          <li>Monitoring · alerting · backup strategy</li>
+        </ul>
+      </div>
+      <div class="protocol-spec">
+        <b>$500+</b>
+        <span class="ln"><span>Format:</span> on-site preferred</span>
+        <span class="ln"><span>Duration:</span> 1-2 days</span>
+        <span class="ln"><span>Scope:</span> setup + retainer</span>
+        <span class="ln"><span>SLA:</span> 2 wk lead</span>
+      </div>
+    </div>
+
+    <div class="protocol">
+      <div class="protocol-id">
+        01.03
+        <span class="label">ADVISORY</span>
+      </div>
+      <div class="protocol-body">
+        <h4>Treasury · integration · team education</h4>
+        <p>Bitcoin treasury planning for individuals and operating businesses. Custom integration design (BTCPay, Lightning POS, payroll). Team education sessions for engineering and operations groups.</p>
+        <ul>
+          <li>Treasury policy + custody architecture</li>
+          <li>Integration scoping + execution oversight</li>
+          <li>Internal training (workshops, lunch-and-learns)</li>
+          <li>Ongoing advisory retainer</li>
+        </ul>
+      </div>
+      <div class="protocol-spec">
+        <b>$100/hr</b>
+        <span class="ln"><span>Format:</span> remote / on-site</span>
+        <span class="ln"><span>Duration:</span> hourly + retainer</span>
+        <span class="ln"><span>Scope:</span> ongoing preferred</span>
+        <span class="ln"><span>SLA:</span> on demand</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ METHODOLOGY ═══════════ -->
+<section class="module" id="methodology">
+  <div class="container">
+    <div class="module-classify"><span>MODULE 02 — METHODOLOGY</span><span class="ref">SEQ.001 → SEQ.005</span></div>
+    <h2 class="module-title">How an engagement <em>runs.</em></h2>
+    <p class="module-lede">Documented sequence. Each step has explicit inputs, outputs, and a clean termination point if the engagement isn't a fit on either side.</p>
+
+    <div class="method-step">
+      <div class="method-step-num"><b>SEQ.001</b>INTAKE</div>
+      <div>
+        <h5>Free 30-minute consult</h5>
+        <p>Direct conversation about where you are, what you have, and what success looks like. No pitch. We tell you what we'd do; you decide whether we should.</p>
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="method-step-num"><b>SEQ.002</b>SCOPING</div>
+      <div>
+        <h5>Written engagement memo</h5>
+        <p>Deliverables, timeline, price, and risks documented. You sign or don't. No expiring quotes, no pressure tactics.</p>
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="method-step-num"><b>SEQ.003</b>EXECUTION</div>
+      <div>
+        <h5>One operator on file</h5>
+        <p>Same operator from start to finish. We don't subcontract custody work. The person you talked to in intake is the person doing the work.</p>
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="method-step-num"><b>SEQ.004</b>HANDOVER</div>
+      <div>
+        <h5>Documented runbook</h5>
+        <p>Every engagement closes with a written runbook covering recovery, rotation, and ongoing maintenance procedures. The runbook is yours to keep.</p>
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="method-step-num"><b>SEQ.005</b>RETAINER</div>
+      <div>
+        <h5>Ongoing stewardship · optional</h5>
+        <p>For node infrastructure and treasury work, a monthly retainer covers patching, rotation, and quarterly health checks. Cancellable on 30 days notice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="module" id="about">
+  <div class="container">
+    <div class="module-classify"><span>MODULE 03 — ENTITY</span><span class="ref">PRIOR ART · REFERENCES</span></div>
+    <h2 class="module-title">About <em>2112.</em></h2>
+    <p class="module-lede">Boutique consulting firm. Founded 2023 to deliver hands-on sovereignty services to individuals and operating businesses. Bitcoin services lead today; AI, privacy, and self-hosted infrastructure layer in as client demand materializes.</p>
+
+    <div class="references">
+      <h6>— References &amp; prior work</h6>
+      <ol>
+        <li>Founder writing: <a href="#">The Bitcoin Breakdown</a> · independent Bitcoin education project · 2022–present</li>
+        <li>WBIGAF · long-form treatise on Bitcoin's ethical &amp; economic foundations <a href="#">[link]</a></li>
+        <li>JC Bitcoin Meetup · monthly community education · Jersey City NJ <a href="#">[link]</a></li>
+        <li>Operator's manual for Bitcoin custody · open-source release <a href="#">[link]</a></li>
+        <li>Audited engagements: 50+ self-custody migrations · 12+ node deployments · 3 corporate treasury implementations · 2024–2026</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section class="module" id="contact">
+  <div class="container">
+    <div class="module-classify"><span>MODULE 04 — CONTACT</span><span class="ref">DIRECT ENGAGEMENT</span></div>
+    <h2 class="module-title">Schedule a <em>consult.</em></h2>
+    <p class="module-lede">30-minute call. No pitch. We'll tell you what we'd do, what it'd cost, and whether we're the right firm for your situation. If we're not, we'll point you to who is.</p>
+
+    <div class="hero-cta">
+      <a href="mailto:hello@2112capitalsolutions.com" class="btn btn--primary">Email direct</a>
+      <a href="#" class="btn btn--ghost">Book on calendar</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <h6>Services</h6>
+      <ul>
+        <li><a href="#">Custody operations</a></li>
+        <li><a href="#">Node infrastructure</a></li>
+        <li><a href="#">Strategic advisory</a></li>
+        <li><a href="#">AI workflow</a></li>
+        <li><a href="#">Privacy stack</a></li>
+      </ul>
+    </div>
+    <div>
+      <h6>Resources</h6>
+      <ul>
+        <li><a href="#">Guides</a></li>
+        <li><a href="#">Methodology</a></li>
+        <li><a href="#">Pricing schedule</a></li>
+        <li><a href="#">Engagement memo template</a></li>
+      </ul>
+    </div>
+    <div>
+      <h6>Entity</h6>
+      <ul>
+        <li>2112 Capital Solutions LLC</li>
+        <li>NJ · NAICS 541611</li>
+        <li>Founded 2023.07.18</li>
+        <li>RA: Bizee</li>
+      </ul>
+    </div>
+    <div>
+      <h6>Contact</h6>
+      <ul>
+        <li><a href="mailto:hello@2112capitalsolutions.com">hello@2112capitalsolutions.com</a></li>
+        <li><a href="#">Schedule consult</a></li>
+        <li><a href="#">PGP public key</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2023–2026 <span style="color: var(--signal); margin: 0 6px;">★</span> 2112 Capital Solutions LLC</span>
+    <span>v1.4 · APEX_CONSTRUCTIVIST · BLACK/WHITE/RED</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>2112 Design Exploration</title>
+<style>
+  :root {
+    --bg: #fafafa;
+    --bg-2: #fff;
+    --line: #e5e5e5;
+    --text: #18181b;
+    --text-2: #555;
+    --text-3: #888;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: -apple-system, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 60px 32px 80px; }
+  header { margin-bottom: 56px; max-width: 760px; }
+  header .label { font-size: 12px; letter-spacing: 0.18em; color: var(--text-3); text-transform: uppercase; margin-bottom: 16px; }
+  header h1 { font-size: 44px; letter-spacing: -0.025em; margin-bottom: 16px; line-height: 1.1; }
+  header p { color: var(--text-2); font-size: 16.5px; line-height: 1.6; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .card {
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px;
+    overflow: hidden; transition: border-color .2s, transform .2s, box-shadow .2s;
+    display: flex; flex-direction: column;
+  }
+  .card:hover { border-color: var(--text); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.06); }
+  .preview {
+    height: 180px; display: flex; align-items: center; justify-content: center;
+    font-size: 56px; font-weight: 700; letter-spacing: -0.04em;
+    position: relative; overflow: hidden;
+  }
+  .palette { display: flex; height: 32px; }
+  .palette div { flex: 1; }
+  .body { padding: 22px 24px; flex: 1; display: flex; flex-direction: column; }
+  .num { font-family: monospace; font-size: 11px; color: var(--text-3); letter-spacing: 0.15em; margin-bottom: 8px; }
+  .name { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 8px; }
+  .desc { color: var(--text-2); font-size: 14px; line-height: 1.55; flex: 1; margin-bottom: 18px; }
+  .meta { display: flex; gap: 14px; font-size: 12px; color: var(--text-3); margin-bottom: 18px; flex-wrap: wrap; }
+  .meta span { padding: 3px 9px; background: var(--bg); border: 1px solid var(--line); border-radius: 100px; }
+  .open {
+    display: inline-block; padding: 9px 16px;
+    background: var(--text); color: var(--bg-2); border-radius: 6px;
+    text-decoration: none; font-weight: 500; font-size: 13.5px;
+    transition: background .15s;
+    text-align: center;
+  }
+  .open:hover { background: #444; }
+
+  /* Per-variant previews */
+  .v1 { background: radial-gradient(600px 300px at 80% -10%, rgba(94,140,255,0.18), transparent 60%), #0a0b0e; color: #fff; }
+  .v1 .accent { color: #5e8cff; }
+
+  .v2 { background: #f4ede1; color: #1d1a14; font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 400; }
+  .v2 .accent { color: #b6502b; }
+
+  .v3 { background: radial-gradient(circle at 50% 50%, rgba(214,40,40,0.18), transparent 60%), #050505; color: #fff; font-family: 'Anton', Impact, sans-serif; }
+  .v3 .accent { color: #d62828; }
+
+  .v4 {
+    background-image:
+      linear-gradient(rgba(196,182,150,0.6) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(196,182,150,0.6) 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-color: #ede5d4;
+    color: #2a221a; font-family: 'Major Mono Display', monospace; text-transform: lowercase;
+  }
+  .v4 .accent { color: #d4751c; }
+
+  .v5 { background: #07080c; color: #d6d9e3; font-family: 'IBM Plex Mono', monospace; }
+  .v5 .accent { color: #4ad3ff; }
+
+  .v6 { background: #f6f4ef; color: #1f1d18; font-family: 'Cormorant Garamond', Georgia, serif; }
+  .v6 .accent { color: #a07025; font-style: italic; }
+
+  .v7 { background: #fff; color: #0b1426; }
+  .v7 .accent { color: #1d4ed8; }
+
+  .v8 {
+    background: #f0ece2; color: #1a1a1a;
+    font-family: 'Archivo Black', Impact, sans-serif;
+    text-transform: uppercase; letter-spacing: -0.03em;
+    border-bottom: 3px solid #1a1a1a;
+  }
+  .v8 .accent { color: #d92619; }
+
+  footer { margin-top: 60px; color: var(--text-3); font-size: 13px; line-height: 1.5; }
+  code { background: var(--bg-2); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--line); font-size: 12.5px; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Fraunces:ital,wght@1,400&family=IBM+Plex+Mono:wght@500&family=Major+Mono+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="label">2112 Capital Solutions · Design exploration</div>
+    <h1>Ten directions to react to.</h1>
+    <p>Each variant is a self-contained homepage mockup. <strong>V10 is the latest revision</strong> — V9's blue-slate base swapped out for a less-cliché direction (Bricolage Grotesque + cyan), star reduced to one logo placement, hero copy reframed around sovereignty/tech instead of Bitcoin-economy. Open V10 first; V9 stays as a comparison.</p>
+  </header>
+
+  <div class="grid">
+
+    <a class="card" href="v10-sovereign-stack.html" style="grid-column: span 2; border: 2px solid #22d3ee;">
+      <div class="preview" style="background: #08090c; color: #ebe9e3; height: 220px; gap: 8px; flex-direction: column;">
+        <div style="display:inline-flex; align-items:baseline; gap:6px; font-family:'Bricolage Grotesque', sans-serif; font-weight:800; font-size:64px; letter-spacing:-0.02em;">2112<span style="color:#d62828; font-size:13px; align-self:flex-start; margin-top:6px;">★</span></div>
+        <div style="font-family:monospace; color:#22d3ee; font-size:12px; letter-spacing:0.04em;">— sovereignty consulting</div>
+      </div>
+      <div class="palette"><div style="background:#08090c"></div><div style="background:#0e1014"></div><div style="background:#22d3ee"></div><div style="background:#ebe9e3"></div><div style="background:#d62828"></div></div>
+      <div class="body">
+        <div class="num" style="color:#22d3ee;">V10 · LATEST</div>
+        <div class="name">Sovereign Stack</div>
+        <div class="desc">V5 base pushed up to dominant. V1 contributes structure only — its identity-level cliches dropped. Star reduced to one placement (the wordmark itself). Bricolage Grotesque + JetBrains Mono. Cyan/aqua replaces blue. Hero reframed: "Own your money. Own your tools." Sovereignty/tech umbrella, not Bitcoin-economy.</div>
+        <div class="meta"><span>Near-black</span><span>Bricolage Grotesque</span><span>Cyan/aqua</span><span>One star</span></div>
+        <span class="open">Open V10 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="v9-sovereign-tech.html">
+      <div class="preview" style="background: radial-gradient(circle at 70% 30%, rgba(94,140,255,0.18), transparent 60%), #070810; color: #fff; gap: 10px;">
+        <span style="font-family: 'Anton', Impact, sans-serif; font-size: 48px;">2112</span>
+        <span style="color: #d62828; font-size: 18px;">★</span>
+      </div>
+      <div class="palette"><div style="background:#070810"></div><div style="background:#0e0f1a"></div><div style="background:#5e8cff"></div><div style="background:#4ad3ff"></div><div style="background:#d62828"></div></div>
+      <div class="body">
+        <div class="num">V9 · superseded</div>
+        <div class="name">Sovereign Tech</div>
+        <div class="desc">First fusion attempt. Kept around for comparison — V1 base too dominant, blue too generic, star sprinkled too many places.</div>
+        <div class="meta"><span>Dark slate</span><span>Inter + Anton</span><span>Mesh hero</span></div>
+        <span class="open">Open V9 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="v1-linear-tech.html">
+      <div class="preview v1"><span>21<span class="accent">12</span></span></div>
+      <div class="palette"><div style="background:#0a0b0e"></div><div style="background:#111318"></div><div style="background:#5e8cff"></div><div style="background:#8aa9ff"></div><div style="background:#e6e8ec"></div></div>
+      <div class="body">
+        <div class="num">V1</div>
+        <div class="name">Linear Tech</div>
+        <div class="desc">Dark slate background with one electric blue accent. Tight grid, sans-serif (Inter), gradient hero text. Most conventional "modern SaaS" pick — premium, frictionless, easy to make look great.</div>
+        <div class="meta"><span>Dark</span><span>Inter</span><span>SaaS-coded</span></div>
+        <span class="open">Open V1 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="v2-anthropic-atelier.html">
+      <div class="preview v2"><em>2112</em></div>
+      <div class="palette"><div style="background:#f4ede1"></div><div style="background:#ebe2d2"></div><div style="background:#b6502b"></div><div style="background:#5a5347"></div><div style="background:#1d1a14"></div></div>
+      <div class="body">
+        <div class="num">V2</div>
+        <div class="name">Anthropic Atelier</div>
+        <div class="desc">Warm off-white, deep terracotta accent, italic serif (Fraunces) for headlines. Editorial, refined, restrained. Premium signal comes from craft — feels like a thoughtful firm.</div>
+        <div class="meta"><span>Light/warm</span><span>Fraunces serif</span><span>Editorial</span></div>
+        <span class="open">Open V2 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="v3-2112-manifesto.html">
+      <div class="preview v3"><span class="accent">★</span> 2112</div>
+      <div class="palette"><div style="background:#050505"></div><div style="background:#1a1a1a"></div><div style="background:#d62828"></div><div style="background:#ff3b3b"></div><div style="background:#ededed"></div></div>
+      <div class="body">
+        <div class="num">V3</div>
+        <div class="name">2112 Manifesto</div>
+        <div class="desc">Direct nod to the Rush album — black + crimson five-pointed star, condensed display type (Anton), marquee, ALL CAPS. Cinematic, dystopian, unapologetic. Strongest brand-mark identity.</div>
+        <div class="meta"><span>Dark</span><span>Album-direct</span><span>Cinematic</span></div>
+        <span class="open">Open V3 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="v4-retrofuture-prog.html">
+      <div class="preview v4">2112</div>
+      <div class="palette"><div style="background:#ede5d4"></div><div style="background:#d4751c"></div><div style="background:#a85215"></div><div style="background:#5a3a52"></div><div style="background:#2a221a"></div></div>
+      <div class="body">
+        <div class="num">V4</div>
+        <div class="name">Retrofuture Prog</div>
+        <div class="desc">70s sci-fi reboot — cream paper, amber + plum gradient orb, mono display type, blueprint grid background. Whimsical without being cute. Album-adjacent without copying it.</div>
+        <div class="meta"><span>Light/sci-fi</span><span>Mono display</span><span>Distinctive</span></div>
+        <span class="open">Open V4 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="v5-cyberpunk-restraint.html">
+      <div class="preview v5">&gt; 2112<span class="accent">_</span></div>
+      <div class="palette"><div style="background:#07080c"></div><div style="background:#0d0f15"></div><div style="background:#4ad3ff"></div><div style="background:#ff5ec7"></div><div style="background:#d6d9e3"></div></div>
+      <div class="body">
+        <div class="num">V5</div>
+        <div class="name">Cyberpunk Restraint</div>
+        <div class="desc">Near-black with cyan + magenta as restrained accents (not full neon). IBM Plex Mono, terminal-style header, ASCII stat box. Tech-forward without screaming "hacker."</div>
+        <div class="meta"><span>Dark</span><span>Mono</span><span>Terminal</span></div>
+        <span class="open">Open V5 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="v6-quiet-premium.html">
+      <div class="preview v6">2112<span class="accent">·</span></div>
+      <div class="palette"><div style="background:#f6f4ef"></div><div style="background:#e2dccf"></div><div style="background:#a07025"></div><div style="background:#7a531a"></div><div style="background:#1f1d18"></div></div>
+      <div class="body">
+        <div class="num">V6</div>
+        <div class="name">Quiet Premium</div>
+        <div class="desc">Soft cream, muted gold accent, large Cormorant Garamond display. Generous whitespace. Looks like a wealth-management firm that didn't want to look like one. Most "trustworthy."</div>
+        <div class="meta"><span>Light</span><span>Serif display</span><span>Premium</span></div>
+        <span class="open">Open V6 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="v7-engineering-white.html">
+      <div class="preview v7"><span style="background:#1d4ed8;color:#fff;padding:8px 14px;border-radius:6px;font-size:32px;">21</span></div>
+      <div class="palette"><div style="background:#fff;border-right:1px solid #eee"></div><div style="background:#f7f8fa"></div><div style="background:#1d4ed8"></div><div style="background:#0b1426"></div><div style="background:#4d5666"></div></div>
+      <div class="body">
+        <div class="num">V7</div>
+        <div class="name">Engineering White</div>
+        <div class="desc">Pure white + deep cobalt blue. Stripe/Plaid-coded. Stat boxes, checklist services, dark CTA card. Strongest "tech consulting firm" signal of the bunch.</div>
+        <div class="meta"><span>Light</span><span>Inter</span><span>Product-page</span></div>
+        <span class="open">Open V7 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="v8-concrete-brutalist.html">
+      <div class="preview v8">2112<span class="accent">.</span></div>
+      <div class="palette"><div style="background:#f0ece2"></div><div style="background:#e3dccb"></div><div style="background:#1a1a1a"></div><div style="background:#d92619"></div><div style="background:#fff"></div></div>
+      <div class="body">
+        <div class="num">V8</div>
+        <div class="name">Concrete Brutalist</div>
+        <div class="desc">Bone white + heavy black borders + red accent. Massive Archivo Black headlines, hard rules, marquee. Loud, opinionated, manifesto-energy. Most "different from TBB."</div>
+        <div class="meta"><span>Light/heavy</span><span>Archivo Black</span><span>Loud</span></div>
+        <span class="open">Open V8 →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <footer>
+    <p>Open <code>index.html</code> in any browser. Each variant uses the same content so visual differences are pure. Same hero ("Build your lifeboat."), same three services (Self-custody / Node &amp; Lightning / Strategy), same about/CTA/footer.</p>
+    <p style="margin-top:10px">Tell me which one (or which mix) you want to build for real, and I'll start the actual Astro implementation.</p>
+  </footer>
+
+</div>
+</body>
+</html>

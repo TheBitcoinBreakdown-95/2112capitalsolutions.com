@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2112 — Logo Arrangements (20)</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;500;600&family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obsidian: #070707;
+  --obsidian-soft: #0c0c0c;
+  --obsidian-card: #0e1014;
+  --emerald: #0a5a36;
+  --emerald-vibrant: #0c6a3f;
+  --text-primary: #d8d6d0;
+  --text-secondary: #807d75;
+  --text-muted: #4f4d47;
+  --border-line: rgba(255,255,255,0.06);
+  --font-display: 'Libre Bodoni', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background:
+    radial-gradient(rgba(255,255,255,0.012) 1px, transparent 1px) 0 0 / 3px 3px,
+    radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px) 1px 1px / 5px 5px,
+    var(--obsidian);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding: 60px 32px 100px;
+}
+.wrap { max-width: 1320px; margin: 0 auto; }
+header { margin-bottom: 56px; max-width: 760px; }
+header .label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 16px; }
+header h1 { font-family: var(--font-display); font-size: 44px; font-weight: 400; letter-spacing: -0.01em; margin-bottom: 16px; line-height: 1.1; }
+header p { color: var(--text-secondary); font-size: 16px; line-height: 1.6; max-width: 620px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; }
+.card {
+  background: var(--obsidian-soft);
+  border: 1px solid var(--border-line);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.card-label {
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-line);
+  background: var(--obsidian-card);
+}
+.card-label b { color: var(--emerald); font-weight: 500; margin-right: 8px; }
+.stage {
+  aspect-ratio: 1.5;
+  display: grid; place-items: center;
+  padding: 24px;
+  background: var(--obsidian);
+  position: relative;
+  overflow: hidden;
+}
+.card-note {
+  padding: 10px 14px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-line);
+}
+
+/* ═══════════════════════════════════════════════
+   LOCKUP STYLES — 20 variations
+   ═══════════════════════════════════════════════ */
+.lockup { color: var(--emerald); text-align: center; }
+.lockup .num { font-family: var(--font-display); font-weight: 400; font-size: 64px; line-height: 1; letter-spacing: 0.10em; }
+.lockup .sub { font-family: var(--font-body); font-weight: 200; font-size: 11px; letter-spacing: 0.27em; text-transform: uppercase; }
+.lockup .rule { height: 1px; background: currentColor; opacity: 0.85; }
+.lockup .star { color: var(--emerald); }
+
+/* 1 — current (locked baseline): rule between */
+.v1 .num { margin-bottom: 12px; }
+.v1 .rule { width: 75%; margin: 0 auto 12px; }
+
+/* 2 — no rule, just spacing */
+.v2 .num { margin-bottom: 14px; }
+
+/* 3 — star centered, replaces rule */
+.v3 .num { margin-bottom: 6px; }
+.v3 .star { font-size: 12px; display: block; margin-bottom: 6px; }
+
+/* 4 — star inline between (one row) */
+.v4 { display: flex; align-items: center; justify-content: center; gap: 18px; }
+.v4 .num { font-size: 56px; }
+.v4 .star { font-size: 14px; }
+.v4 .sub { padding-bottom: 4px; }
+
+/* 5 — bullet inline */
+.v5 { display: flex; align-items: center; justify-content: center; gap: 18px; }
+.v5 .num { font-size: 56px; }
+.v5 .dot { font-size: 18px; padding: 0 6px; }
+.v5 .sub { padding-bottom: 4px; }
+
+/* 6 — slash inline */
+.v6 { display: flex; align-items: baseline; justify-content: center; gap: 14px; }
+.v6 .num { font-size: 56px; }
+.v6 .slash { font-family: var(--font-display); font-size: 36px; font-weight: 400; opacity: 0.6; }
+.v6 .sub { padding-bottom: 4px; }
+
+/* 7 — em dash inline */
+.v7 { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.v7 .num { font-size: 56px; }
+.v7 .dash { font-size: 36px; opacity: 0.6; }
+.v7 .sub { padding-bottom: 4px; }
+
+/* 8 — vertical pipe inline */
+.v8 { display: flex; align-items: center; justify-content: center; gap: 18px; }
+.v8 .num { font-size: 56px; }
+.v8 .pipe { width: 1px; height: 36px; background: currentColor; opacity: 0.6; }
+.v8 .sub { padding-bottom: 4px; }
+
+/* 9 — inline no separator (space only) */
+.v9 { display: flex; align-items: baseline; justify-content: center; gap: 22px; }
+.v9 .num { font-size: 56px; }
+.v9 .sub { padding-bottom: 4px; }
+
+/* 10 — long extended rule */
+.v10 .num { margin-bottom: 14px; }
+.v10 .rule { width: 100%; margin: 0 auto 12px; }
+
+/* 11 — sandwich rules (above + below) */
+.v11 .rule.top { width: 75%; margin: 0 auto 14px; }
+.v11 .num { margin-bottom: 14px; }
+.v11 .rule.bot { width: 75%; margin: 0 auto; }
+
+/* 12 — compact stacked (very tight, no rule) */
+.v12 .num { font-size: 70px; line-height: 0.9; margin-bottom: 4px; }
+.v12 .sub { font-size: 10px; }
+
+/* 13 — perfume-label dot above number */
+.v13 .dot-mark { display: block; width: 4px; height: 4px; background: currentColor; border-radius: 50%; margin: 0 auto 10px; opacity: 0.7; }
+.v13 .num { margin-bottom: 12px; }
+.v13 .rule { width: 60%; margin: 0 auto 12px; }
+
+/* 14 — thin rectangle frame around 2112 */
+.v14 .num-frame { border: 1px solid currentColor; padding: 18px 32px; display: inline-block; margin-bottom: 14px; opacity: 0.95; }
+.v14 .num { display: block; }
+
+/* 15 — thin diamond frame (rotated square) */
+.v15 .diamond {
+  width: 180px; height: 180px;
+  border: 1px solid currentColor;
+  transform: rotate(45deg);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  opacity: 0.95;
+}
+.v15 .num { transform: rotate(-45deg); font-size: 44px; }
+.v15 .sub { margin-top: -10px; }
+
+/* 16 — tiered (Capital Solutions ABOVE, 2112 below) */
+.v16 .sub-top { display: block; margin-bottom: 10px; }
+.v16 .num { display: block; }
+
+/* 17 — Est. + year style */
+.v17 .est { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 8px; opacity: 0.6; }
+.v17 .num { margin-bottom: 14px; }
+.v17 .rule { width: 75%; margin: 0 auto 12px; }
+
+/* 18 — split mid (21·12) palindrome emphasis */
+.v18 .num { font-size: 56px; }
+.v18 .num .pal { padding: 0 6px; opacity: 0.5; font-size: 32px; }
+.v18 .rule { width: 75%; margin: 12px auto; }
+.v18 .sub { display: block; }
+
+/* 19 — asymmetric — 2112 left, Capital Solutions running underneath aligned right */
+.v19 { width: 100%; max-width: 280px; }
+.v19 .num { display: block; text-align: left; font-size: 64px; margin-bottom: 10px; }
+.v19 .rule { width: 100%; margin-bottom: 10px; }
+.v19 .sub { display: block; text-align: right; }
+
+/* 20 — digital clock 21:12 with caps below */
+.v20 .num { font-family: var(--font-mono); font-size: 56px; letter-spacing: 0.04em; }
+.v20 .colon { padding: 0 4px; opacity: 0.6; }
+.v20 .rule { width: 75%; margin: 12px auto; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="label">2112 Capital Solutions · Logo Arrangements</div>
+  <h1>Twenty ways to arrange the name.</h1>
+  <p>The current locked composition (rule between) is the baseline. These 19 variations explore alternative arrangements — different separators, frames, tiering, and inline vs stacked treatments. Same Libre Bodoni, same emerald, same hairline weight throughout — only composition varies. Tell me which feel credible and which feel forced.</p>
+</header>
+
+<div class="grid">
+
+<!-- 1 -->
+<div class="card">
+  <div class="card-label"><b>01</b> Hairline rule between · CURRENT</div>
+  <div class="stage">
+    <div class="lockup v1">
+      <div class="num">2112</div>
+      <div class="rule"></div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">The locked baseline. Rule adds dimension and credibility. Reads as engraved nameplate.</div>
+</div>
+
+<!-- 2 -->
+<div class="card">
+  <div class="card-label"><b>02</b> No rule · spacing only</div>
+  <div class="stage">
+    <div class="lockup v2">
+      <div class="num">2112</div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Pure typographic. Cleaner but loses the engraved-plate feel. More minimalist-modern.</div>
+</div>
+
+<!-- 3 -->
+<div class="card">
+  <div class="card-label"><b>03</b> Star center · replaces rule</div>
+  <div class="stage">
+    <div class="lockup v3">
+      <div class="num">2112</div>
+      <div class="star">★</div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Star as a small ceremonial separator. Echo of album reference, more decorative than a rule.</div>
+</div>
+
+<!-- 4 -->
+<div class="card">
+  <div class="card-label"><b>04</b> Inline · star between</div>
+  <div class="stage">
+    <div class="lockup v4">
+      <div class="num">2112</div>
+      <div class="star">★</div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">One-row lockup with star ornament. Reads more like a heritage seal motto.</div>
+</div>
+
+<!-- 5 -->
+<div class="card">
+  <div class="card-label"><b>05</b> Inline · bullet</div>
+  <div class="stage">
+    <div class="lockup v5">
+      <div class="num">2112</div>
+      <div class="dot">·</div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Most restrained inline option. Reads like a journal byline.</div>
+</div>
+
+<!-- 6 -->
+<div class="card">
+  <div class="card-label"><b>06</b> Inline · slash</div>
+  <div class="stage">
+    <div class="lockup v6">
+      <div class="num">2112</div>
+      <div class="slash">/</div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Slash separator reads slightly editorial / magazine-coded.</div>
+</div>
+
+<!-- 7 -->
+<div class="card">
+  <div class="card-label"><b>07</b> Inline · em dash</div>
+  <div class="stage">
+    <div class="lockup v7">
+      <div class="num">2112</div>
+      <div class="dash">—</div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Em dash — quieter than slash, reads as a colophon.</div>
+</div>
+
+<!-- 8 -->
+<div class="card">
+  <div class="card-label"><b>08</b> Inline · vertical pipe</div>
+  <div class="stage">
+    <div class="lockup v8">
+      <div class="num">2112</div>
+      <div class="pipe"></div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Vertical hairline divider. Architectural — like a column between two phrases.</div>
+</div>
+
+<!-- 9 -->
+<div class="card">
+  <div class="card-label"><b>09</b> Inline · no separator</div>
+  <div class="stage">
+    <div class="lockup v9">
+      <div class="num">2112</div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Just space. Most minimal. Reads as wordmark, not lockup.</div>
+</div>
+
+<!-- 10 -->
+<div class="card">
+  <div class="card-label"><b>10</b> Long extended rule</div>
+  <div class="stage">
+    <div class="lockup v10">
+      <div class="num">2112</div>
+      <div class="rule"></div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Rule extends well past the wordmark. More architectural / ledger-ruled feel.</div>
+</div>
+
+<!-- 11 -->
+<div class="card">
+  <div class="card-label"><b>11</b> Sandwich rules · above and below</div>
+  <div class="stage">
+    <div class="lockup v11">
+      <div class="rule top"></div>
+      <div class="num">2112</div>
+      <div class="rule bot"></div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Rules frame the wordmark. More formal — like an engraved cartouche.</div>
+</div>
+
+<!-- 12 -->
+<div class="card">
+  <div class="card-label"><b>12</b> Compact stacked · no rule</div>
+  <div class="stage">
+    <div class="lockup v12">
+      <div class="num">2112</div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Tight, monolithic. Numerals dominate. Reads as a sculptural mark.</div>
+</div>
+
+<!-- 13 -->
+<div class="card">
+  <div class="card-label"><b>13</b> Perfume label · dot above</div>
+  <div class="stage">
+    <div class="lockup v13">
+      <div class="dot-mark"></div>
+      <div class="num">2112</div>
+      <div class="rule"></div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Tiny dot above the wordmark — Le Labo / Aesop apothecary cue.</div>
+</div>
+
+<!-- 14 -->
+<div class="card">
+  <div class="card-label"><b>14</b> Thin rectangle frame</div>
+  <div class="stage">
+    <div class="lockup v14">
+      <div class="num-frame"><span class="num">2112</span></div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">2112 in a thin rectangle. Feels like a brass plaque or museum label.</div>
+</div>
+
+<!-- 15 -->
+<div class="card">
+  <div class="card-label"><b>15</b> Diamond frame · rotated</div>
+  <div class="stage">
+    <div class="lockup v15">
+      <div class="diamond"><span class="num">2112</span></div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Diamond outline. Heraldic / signet feel. Echoes the old 2112 heritage logos.</div>
+</div>
+
+<!-- 16 -->
+<div class="card">
+  <div class="card-label"><b>16</b> Tiered · sub above number</div>
+  <div class="stage">
+    <div class="lockup v16">
+      <div class="sub sub-top">Capital Solutions</div>
+      <div class="num">2112</div>
+    </div>
+  </div>
+  <div class="card-note">Inverted hierarchy — Capital Solutions on top, 2112 below. Less common, more deliberate.</div>
+</div>
+
+<!-- 17 -->
+<div class="card">
+  <div class="card-label"><b>17</b> Est. — date stamp</div>
+  <div class="stage">
+    <div class="lockup v17">
+      <div class="est">Est. MMXXIII</div>
+      <div class="num">2112</div>
+      <div class="rule"></div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Founding year (Roman numerals) above. Heritage / annual-report cue.</div>
+</div>
+
+<!-- 18 -->
+<div class="card">
+  <div class="card-label"><b>18</b> Palindrome split · 21·12</div>
+  <div class="stage">
+    <div class="lockup v18">
+      <div class="num">21<span class="pal">·</span>12</div>
+      <div class="rule"></div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Highlights that 2112 is a palindrome. Conceptually clever, possibly too clever.</div>
+</div>
+
+<!-- 19 -->
+<div class="card">
+  <div class="card-label"><b>19</b> Asymmetric · architectural</div>
+  <div class="stage">
+    <div class="lockup v19">
+      <div class="num">2112</div>
+      <div class="rule"></div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Number left-aligned, sub right-aligned. Editorial / blueprint feel.</div>
+</div>
+
+<!-- 20 -->
+<div class="card">
+  <div class="card-label"><b>20</b> Digital clock · 21:12</div>
+  <div class="stage">
+    <div class="lockup v20">
+      <div class="num">21<span class="colon">:</span>12</div>
+      <div class="rule"></div>
+      <div class="sub">Capital Solutions</div>
+    </div>
+  </div>
+  <div class="card-note">Mono digits with colon — reads as time-stamp / tactical readout. Apex Modernist-coded.</div>
+</div>
+
+</div>
+
+<footer style="margin-top: 80px; font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); letter-spacing: 0.04em;">
+  20 arrangements · all in Libre Bodoni / emerald · the variable is composition only
+</footer>
+
+</div>
+</body>
+</html>

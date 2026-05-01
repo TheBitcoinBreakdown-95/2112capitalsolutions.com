@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>V5 — Cyberpunk Restraint · 2112</title>
+<style>
+  :root {
+    --bg: #07080c;
+    --bg-2: #0d0f15;
+    --line: #1a1f2b;
+    --text: #d6d9e3;
+    --text-2: #7a8195;
+    --text-3: #4f5468;
+    --cyan: #4ad3ff;
+    --magenta: #ff5ec7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  body {
+    background:
+      linear-gradient(transparent 50%, rgba(255,255,255,0.012) 50%),
+      radial-gradient(900px 500px at 90% -10%, rgba(74,211,255,0.07), transparent 60%),
+      radial-gradient(700px 500px at -10% 110%, rgba(255,94,199,0.05), transparent 60%),
+      var(--bg);
+    background-size: 100% 4px, auto, auto, auto;
+    min-height: 100vh;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .logo { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 16px; letter-spacing: 0.05em; }
+  .logo span { color: var(--cyan); }
+  .logo::before { content: '> '; color: var(--text-3); }
+  nav ul { display: flex; gap: 28px; list-style: none; }
+  nav a { color: var(--text-2); text-decoration: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.04em; transition: color .15s; }
+  nav a:hover { color: var(--cyan); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; background: var(--cyan); color: var(--bg); font-weight: 500; font-size: 13px; text-decoration: none; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em; transition: all .15s; border: 1px solid var(--cyan); }
+  .btn:hover { background: transparent; color: var(--cyan); }
+  .btn-ghost { background: transparent; border: 1px solid var(--line); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--magenta); color: var(--magenta); }
+  .hero { padding: 120px 0 100px; position: relative; }
+  .hero-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 60px; align-items: end; }
+  .terminal-line { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--cyan); letter-spacing: 0.04em; margin-bottom: 32px; }
+  .terminal-line::before { content: '$ '; color: var(--text-3); }
+  h1 { font-size: 80px; line-height: 1; letter-spacing: -0.025em; font-weight: 600; margin-bottom: 28px; }
+  h1 em { font-style: normal; color: var(--cyan); position: relative; }
+  h1 em::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 12px;
+    background: var(--magenta); opacity: 0.25; z-index: -1;
+  }
+  .hero p { font-size: 18px; line-height: 1.55; color: var(--text-2); margin-bottom: 36px; max-width: 540px; }
+  .cta-row { display: flex; gap: 12px; }
+  .ascii-box {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; line-height: 1.4; color: var(--text-3);
+    border: 1px solid var(--line);
+    padding: 20px;
+    background: var(--bg-2);
+    white-space: pre;
+  }
+  .ascii-box .key { color: var(--cyan); }
+  .ascii-box .val { color: var(--magenta); }
+  .services { padding: 90px 0; border-top: 1px solid var(--line); }
+  .section-label { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--text-3); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 36px; }
+  .section-label span { color: var(--cyan); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .card { background: var(--bg); padding: 36px 30px; transition: background .2s; }
+  .card:hover { background: var(--bg-2); }
+  .card .num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--magenta); letter-spacing: 0.15em; margin-bottom: 24px; }
+  .card .num::before { content: '[ '; color: var(--text-3); }
+  .card .num::after { content: ' ]'; color: var(--text-3); }
+  .card h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 14px; }
+  .card p { color: var(--text-2); font-size: 14.5px; line-height: 1.6; margin-bottom: 24px; }
+  .card .price { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--cyan); padding-top: 14px; border-top: 1px solid var(--line); letter-spacing: 0.04em; }
+  .about-strip { padding: 100px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; }
+  .about-strip .label { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--text-3); letter-spacing: 0.15em; text-transform: uppercase; }
+  .about-strip .body { font-size: 24px; line-height: 1.45; color: var(--text); letter-spacing: -0.005em; }
+  .about-strip .body em { color: var(--cyan); font-style: normal; }
+  .closer { padding: 120px 0; border-top: 1px solid var(--line); text-align: center; }
+  .closer h2 { font-size: 56px; letter-spacing: -0.02em; font-weight: 600; margin-bottom: 16px; }
+  .closer h2 em { font-style: normal; color: var(--cyan); }
+  .closer p { color: var(--text-2); margin-bottom: 32px; font-size: 16px; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em; }
+  footer { padding: 28px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; color: var(--text-3); font-size: 12px; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em; }
+  @media (max-width: 900px) {
+    .hero-grid, .about-strip { grid-template-columns: 1fr; }
+    h1 { font-size: 48px; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .ascii-box { display: none; }
+    nav ul { display: none; }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <nav>
+    <div class="logo">2112<span>_</span></div>
+    <ul>
+      <li><a href="#">services</a></li>
+      <li><a href="#">guides</a></li>
+      <li><a href="#">portfolio</a></li>
+      <li><a href="#">about</a></li>
+    </ul>
+    <a class="btn" href="#">book_call()</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="terminal-line">init bitcoin_consulting --jurisdiction=NJ</div>
+        <h1>Build your <em>lifeboat.</em></h1>
+        <p>Hands-on Bitcoin onboarding, self-custody, and node setup. For individuals and businesses ready to actually own their money.</p>
+        <div class="cta-row">
+          <a class="btn" href="#">Book a consultation</a>
+          <a class="btn btn-ghost" href="#">Read the guides</a>
+        </div>
+      </div>
+      <div class="ascii-box">
+<span class="key">entity</span>     <span class="val">2112 Capital Solutions LLC</span>
+<span class="key">founded</span>    <span class="val">2023-07-18</span>
+<span class="key">jurisdiction</span> <span class="val">NJ, USA</span>
+<span class="key">focus</span>      <span class="val">bitcoin · custody · nodes</span>
+<span class="key">status</span>     <span class="val">accepting clients</span>
+─────────────────────────
+<span class="key">stack</span>      <span class="val">cold storage</span>
+           <span class="val">multisig</span>
+           <span class="val">lightning</span>
+           <span class="val">ark / L2</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="section-label"><span>//</span> services</div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Self-custody setup</h3>
+        <p>Get your bitcoin off exchanges and into a hardware wallet you control. One-on-one, in person or remote.</p>
+        <div class="price">$ from 100</div>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>Node &amp; Lightning</h3>
+        <p>Run your own Bitcoin node and Lightning channels. Setup, hardening, ongoing maintenance.</p>
+        <div class="price">$ from 500</div>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Strategy consulting</h3>
+        <p>One-on-one or business engagements. Treasury, integration, education for teams.</p>
+        <div class="price">$ 100 / hr</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-strip">
+    <div class="label">// about</div>
+    <div class="body">Founded 2023 in New Jersey. We onboard people to Bitcoin <em>— for the inevitable collapse of fiat,</em> and for everyone else who needs a way out.</div>
+  </section>
+
+  <section class="closer">
+    <h2>Take <em>custody.</em></h2>
+    <p>// free 30-minute consultation</p>
+    <a class="btn" href="#">Schedule a call</a>
+  </section>
+
+  <footer>
+    <div>// 2112 capital solutions llc · nj</div>
+    <div>hello@2112capitalsolutions.com</div>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>V9 — Sovereign Tech · 2112</title>
+<style>
+  :root {
+    --bg: #070810;
+    --bg-2: #0e0f1a;
+    --bg-3: #131523;
+    --line: #1a1d2a;
+    --line-2: #242838;
+    --text: #e6e8ec;
+    --text-2: #8a91a3;
+    --text-3: #5a6173;
+    --blue: #5e8cff;
+    --blue-2: #8aa9ff;
+    --cyan: #4ad3ff;
+    --crimson: #d62828;
+    --orange: #f7931a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  body {
+    background:
+      radial-gradient(1100px 600px at 85% -5%, rgba(94,140,255,0.07), transparent 60%),
+      radial-gradient(700px 500px at -10% 110%, rgba(74,211,255,0.04), transparent 60%),
+      var(--bg);
+    min-height: 100vh;
+  }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+
+  /* status bar */
+  .status-bar {
+    border-bottom: 1px solid var(--line);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; letter-spacing: 0.04em;
+    color: var(--text-3);
+    padding: 8px 32px;
+    display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  }
+  .status-bar .left { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .status-bar .dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 6px rgba(74,222,128,0.6); display: inline-block; margin-right: 8px; vertical-align: middle; }
+  .status-bar .star { color: var(--crimson); }
+  .status-bar .right { color: var(--text-3); }
+
+  /* nav */
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .logo { display: flex; align-items: baseline; gap: 10px; }
+  .logo-mark {
+    font-family: 'Anton', Impact, sans-serif;
+    font-size: 28px; letter-spacing: 0.02em;
+    color: var(--text);
+    line-height: 1;
+  }
+  .logo-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; letter-spacing: 0.12em;
+    color: var(--text-3);
+    text-transform: uppercase;
+  }
+  nav ul { display: flex; gap: 30px; list-style: none; }
+  nav a { color: var(--text-2); text-decoration: none; font-size: 14px; transition: color .15s; }
+  nav a:hover { color: var(--text); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 8px; background: var(--blue); color: #fff; font-weight: 500; font-size: 14px; text-decoration: none; transition: background .15s, transform .15s; border: 1px solid var(--blue); }
+  .btn:hover { background: var(--blue-2); border-color: var(--blue-2); }
+  .btn .star-mark { display: none; }
+  .btn:hover .star-mark { display: inline; color: var(--crimson); }
+  .btn-ghost { background: transparent; border: 1px solid var(--line-2); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--blue); color: var(--blue); background: transparent; }
+
+  /* hero */
+  .hero { padding: 110px 0 90px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 60px; align-items: center; }
+  .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--cyan); margin-bottom: 28px; }
+  .eyebrow::before { content: '// '; color: var(--text-3); }
+  h1 { font-size: 72px; line-height: 1.02; letter-spacing: -0.03em; font-weight: 600; margin-bottom: 24px; }
+  h1 em { font-style: normal; background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { font-size: 19px; line-height: 1.55; color: var(--text-2); margin-bottom: 36px; max-width: 540px; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* mesh visual */
+  .mesh-visual {
+    aspect-ratio: 1;
+    max-width: 420px;
+    margin-left: auto;
+    position: relative;
+  }
+  .mesh-visual svg { width: 100%; height: 100%; display: block; }
+
+  /* badge row */
+  .badge-row {
+    display: flex; flex-wrap: wrap; gap: 10px; padding: 28px 0;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    align-items: center;
+  }
+  .badge-row .label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-3); margin-right: 8px; }
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px; letter-spacing: 0.04em;
+    color: var(--text-2);
+    padding: 5px 12px;
+    border: 1px solid var(--line-2);
+    border-radius: 100px;
+    transition: border-color .15s, color .15s;
+  }
+  .badge:hover { border-color: var(--blue); color: var(--blue); }
+  .badge.featured { color: var(--blue); border-color: rgba(94,140,255,0.4); background: rgba(94,140,255,0.05); }
+
+  /* services */
+  .services { padding: 100px 0; }
+  .section-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 48px; gap: 40px; flex-wrap: wrap; }
+  .section-head .label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+  .section-head h2 { font-size: 40px; letter-spacing: -0.02em; font-weight: 600; max-width: 600px; line-height: 1.15; }
+  .section-head p { color: var(--text-2); font-size: 16px; max-width: 380px; line-height: 1.55; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px; padding: 32px 28px; transition: border-color .2s, transform .2s; position: relative; }
+  .card:hover { border-color: rgba(94,140,255,0.4); transform: translateY(-2px); }
+  .card-icon {
+    width: 36px; height: 36px;
+    background: rgba(94,140,255,0.08);
+    border: 1px solid rgba(94,140,255,0.2);
+    border-radius: 8px;
+    display: grid; place-items: center;
+    color: var(--blue);
+    margin-bottom: 24px;
+  }
+  .card-icon svg { width: 18px; height: 18px; }
+  .card .num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-3); letter-spacing: 0.15em; margin-bottom: 8px; }
+  .card h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 12px; }
+  .card p { color: var(--text-2); font-size: 14.5px; line-height: 1.6; margin-bottom: 24px; }
+  .card .price { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--cyan); border-top: 1px solid var(--line); padding-top: 16px; letter-spacing: 0.04em; }
+
+  /* guides preview */
+  .guides {
+    padding: 80px 0 100px;
+    background-image: radial-gradient(circle, var(--line-2) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-position: 0 0;
+    border-top: 1px solid var(--line);
+    margin: 0 -32px;
+    padding-left: 32px; padding-right: 32px;
+  }
+  .guides-inner { max-width: 1240px; margin: 0 auto; }
+  .guides .section-head { margin-bottom: 36px; }
+  .grid-guides { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .guide {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px;
+    transition: border-color .2s, transform .2s;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+  }
+  .guide:hover { border-color: var(--blue); transform: translateY(-2px); }
+  .guide-tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+    border: 1px solid;
+  }
+  .guide-tag.bitcoin { color: var(--orange); border-color: rgba(247,147,26,0.3); background: rgba(247,147,26,0.06); }
+  .guide-tag.ai { color: var(--cyan); border-color: rgba(74,211,255,0.3); background: rgba(74,211,255,0.06); }
+  .guide-tag.privacy { color: var(--blue); border-color: rgba(94,140,255,0.3); background: rgba(94,140,255,0.06); }
+  .guide h4 { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 10px; }
+  .guide p { color: var(--text-2); font-size: 13.5px; line-height: 1.5; margin-bottom: 16px; }
+  .guide .meta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-3); letter-spacing: 0.04em; }
+
+  /* about strip */
+  .about-strip { padding: 110px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; align-items: start; }
+  .about-strip .label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-3); letter-spacing: 0.18em; text-transform: uppercase; }
+  .about-strip .label .star { color: var(--crimson); margin-right: 6px; }
+  .about-strip .body { font-size: 24px; line-height: 1.45; color: var(--text); letter-spacing: -0.005em; }
+  .about-strip .body em { color: var(--blue); font-style: normal; }
+  .about-strip .meta { display: flex; gap: 32px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+  .about-strip .meta div { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--text-3); letter-spacing: 0.04em; }
+  .about-strip .meta b { color: var(--text); font-weight: 500; }
+
+  /* closer */
+  .closer { padding: 130px 0; border-top: 1px solid var(--line); text-align: center; position: relative; }
+  .closer .star {
+    color: var(--crimson);
+    font-size: 14px;
+    margin-bottom: 24px;
+    display: block;
+    letter-spacing: 1em;
+  }
+  .closer h2 { font-size: 56px; letter-spacing: -0.025em; font-weight: 600; margin-bottom: 16px; line-height: 1.05; max-width: 720px; margin-left: auto; margin-right: auto; }
+  .closer h2 em { font-style: normal; background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .closer p { color: var(--text-2); margin-bottom: 36px; font-size: 17px; }
+
+  footer { padding: 32px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; color: var(--text-3); font-size: 13px; flex-wrap: wrap; gap: 16px; }
+  footer .mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em; }
+  footer .star { color: var(--crimson); margin: 0 6px; }
+
+  @media (max-width: 900px) {
+    h1 { font-size: 44px; }
+    .hero { grid-template-columns: 1fr; gap: 40px; }
+    .mesh-visual { max-width: 300px; margin: 0 auto; }
+    .grid-3, .grid-guides { grid-template-columns: 1fr; }
+    .about-strip { grid-template-columns: 1fr; }
+    .section-head { flex-direction: column; align-items: start; }
+    .closer h2 { font-size: 40px; }
+    nav ul { display: none; }
+    .status-bar .right { display: none; }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="status-bar">
+  <div class="left">
+    <span><span class="dot"></span>Accepting clients</span>
+    <span class="star">·</span>
+    <span>Bitcoin · AI · Privacy · Self-hosting</span>
+  </div>
+  <div class="right">2112_capital_solutions <span class="star">★</span> est 2023 · NJ</div>
+</div>
+
+<div class="container">
+  <nav>
+    <div class="logo">
+      <div class="logo-mark">2112</div>
+      <div class="logo-sub">Capital Solutions</div>
+    </div>
+    <ul>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Guides</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <a class="btn" href="#">Book a call <span class="star-mark">★</span></a>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Bitcoin · AI · Privacy · Self-hosting</div>
+      <h1>Your gateway to the <em>Bitcoin economy.</em></h1>
+      <p>Self-custody, nodes, and integration consulting. We help individuals and businesses take real ownership of their money — and stay with you as you go.</p>
+      <div class="cta-row">
+        <a class="btn" href="#">Book a free call</a>
+        <a class="btn btn-ghost" href="#">Read the guides →</a>
+      </div>
+    </div>
+    <div class="mesh-visual">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="grad-core" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="#5e8cff" stop-opacity="0.6"/>
+            <stop offset="60%" stop-color="#5e8cff" stop-opacity="0.1"/>
+            <stop offset="100%" stop-color="#5e8cff" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="grad-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#5e8cff" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#4ad3ff" stop-opacity="0.6"/>
+          </linearGradient>
+        </defs>
+
+        <!-- soft glow behind -->
+        <circle cx="200" cy="200" r="160" fill="url(#grad-core)"/>
+
+        <!-- faceted polygon (echoing the old gold form) -->
+        <polygon points="200,80 280,140 290,220 250,290 160,300 110,240 100,160 150,100"
+          fill="rgba(94,140,255,0.05)" stroke="url(#grad-stroke)" stroke-width="1.5"/>
+        <polygon points="200,80 250,290 100,160" fill="none" stroke="rgba(94,140,255,0.3)" stroke-width="0.8"/>
+        <polygon points="280,140 160,300 100,160" fill="none" stroke="rgba(74,211,255,0.25)" stroke-width="0.8"/>
+        <polygon points="200,80 290,220 110,240" fill="none" stroke="rgba(94,140,255,0.2)" stroke-width="0.8"/>
+
+        <!-- network mesh overlay -->
+        <line x1="200" y1="80" x2="350" y2="60" stroke="rgba(94,140,255,0.3)" stroke-width="0.8"/>
+        <line x1="280" y1="140" x2="370" y2="180" stroke="rgba(94,140,255,0.25)" stroke-width="0.8"/>
+        <line x1="290" y1="220" x2="370" y2="280" stroke="rgba(74,211,255,0.25)" stroke-width="0.8"/>
+        <line x1="250" y1="290" x2="320" y2="350" stroke="rgba(94,140,255,0.2)" stroke-width="0.8"/>
+        <line x1="160" y1="300" x2="80" y2="350" stroke="rgba(94,140,255,0.2)" stroke-width="0.8"/>
+        <line x1="110" y1="240" x2="40" y2="260" stroke="rgba(74,211,255,0.2)" stroke-width="0.8"/>
+        <line x1="100" y1="160" x2="30" y2="120" stroke="rgba(94,140,255,0.25)" stroke-width="0.8"/>
+        <line x1="150" y1="100" x2="80" y2="50" stroke="rgba(94,140,255,0.3)" stroke-width="0.8"/>
+
+        <!-- nodes (vertices) -->
+        <circle cx="200" cy="80" r="3" fill="#5e8cff"/>
+        <circle cx="280" cy="140" r="3" fill="#5e8cff"/>
+        <circle cx="290" cy="220" r="3" fill="#4ad3ff"/>
+        <circle cx="250" cy="290" r="3" fill="#5e8cff"/>
+        <circle cx="160" cy="300" r="3" fill="#5e8cff"/>
+        <circle cx="110" cy="240" r="3" fill="#4ad3ff"/>
+        <circle cx="100" cy="160" r="3" fill="#5e8cff"/>
+        <circle cx="150" cy="100" r="3" fill="#5e8cff"/>
+
+        <!-- outer mesh nodes -->
+        <circle cx="350" cy="60" r="2" fill="rgba(94,140,255,0.5)"/>
+        <circle cx="370" cy="180" r="2" fill="rgba(94,140,255,0.5)"/>
+        <circle cx="370" cy="280" r="2" fill="rgba(74,211,255,0.5)"/>
+        <circle cx="320" cy="350" r="2" fill="rgba(94,140,255,0.4)"/>
+        <circle cx="80" cy="350" r="2" fill="rgba(94,140,255,0.4)"/>
+        <circle cx="40" cy="260" r="2" fill="rgba(74,211,255,0.4)"/>
+        <circle cx="30" cy="120" r="2" fill="rgba(94,140,255,0.5)"/>
+        <circle cx="80" cy="50" r="2" fill="rgba(94,140,255,0.5)"/>
+
+        <!-- small star top right (subtle accent) -->
+        <polygon points="345,55 348,62 355,62 349,67 351,74 345,70 339,74 341,67 335,62 342,62"
+          fill="#d62828" opacity="0.7"/>
+      </svg>
+    </div>
+  </section>
+
+  <div class="badge-row">
+    <span class="label">Service lines</span>
+    <span class="badge featured">Bitcoin</span>
+    <span class="badge">AI</span>
+    <span class="badge">Privacy</span>
+    <span class="badge">Self-hosting</span>
+    <span class="badge">Corporate training</span>
+  </div>
+
+  <section class="services">
+    <div class="section-head">
+      <div>
+        <div class="label">— Services</div>
+        <h2>Three ways we help you take real ownership.</h2>
+      </div>
+      <p>From a single self-custody session to running ongoing infrastructure for your business. Bitcoin first; AI, privacy, and self-hosting as your needs grow.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="num">01 / Custody</div>
+        <h3>Self-custody setup</h3>
+        <p>Get your bitcoin off exchanges and into a hardware wallet you control. One-on-one, in person or remote.</p>
+        <div class="price">From $100</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="num">02 / Infrastructure</div>
+        <h3>Node &amp; Lightning</h3>
+        <p>Run your own Bitcoin node and Lightning channels. Setup, hardening, ongoing maintenance.</p>
+        <div class="price">From $500</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <div class="num">03 / Advisory</div>
+        <h3>Strategy consulting</h3>
+        <p>One-on-one or business engagements. Treasury, integration, education for teams.</p>
+        <div class="price">$100 / hour</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="guides">
+  <div class="container">
+    <div class="guides-inner">
+      <div class="section-head">
+        <div>
+          <div class="label">— Latest guides</div>
+          <h2>Free, in-depth, written to actually be used.</h2>
+        </div>
+        <p>Hands-on guides on Bitcoin custody, AI for everyday work, and durable digital privacy. The same material we use with clients.</p>
+      </div>
+      <div class="grid-guides">
+        <a class="guide" href="#">
+          <span class="guide-tag bitcoin">Bitcoin</span>
+          <h4>Hardware wallet setup, end-to-end</h4>
+          <p>Picking a device, generating a seed safely, setting up a multisig, and a recovery you can actually trust.</p>
+          <div class="meta">14 min read · Apr 2026</div>
+        </a>
+        <a class="guide" href="#">
+          <span class="guide-tag ai">AI</span>
+          <h4>Local AI on your own machine</h4>
+          <p>Run LLMs locally with Ollama. Why it matters for privacy, what it can and can't do, and a working setup.</p>
+          <div class="meta">11 min read · Apr 2026</div>
+        </a>
+        <a class="guide" href="#">
+          <span class="guide-tag privacy">Privacy</span>
+          <h4>Encrypted comms for the everyday user</h4>
+          <p>Signal, SimpleX, Matrix — what to use, when, and how to set them up without a CS degree.</p>
+          <div class="meta">9 min read · Mar 2026</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <section class="about-strip">
+    <div class="label"><span class="star">★</span> About 2112</div>
+    <div>
+      <div class="body">
+        Founded 2023 in New Jersey. We help people and businesses <em>take real ownership of their money</em>, run their own infrastructure, and build durable digital sovereignty — Bitcoin first, with AI, privacy, and self-hosting as your needs grow.
+      </div>
+      <div class="meta">
+        <div>Founded <b>2023</b></div>
+        <div>Jurisdiction <b>New Jersey</b></div>
+        <div>NAICS <b>541611</b></div>
+        <div>Status <b>Accepting clients</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closer">
+    <span class="star">★ ★ ★</span>
+    <h2>Ready to take <em>custody?</em></h2>
+    <p>Book a free 30-minute call. No pitch — just a real conversation about where you are.</p>
+    <a class="btn" href="#">Schedule a call</a>
+  </section>
+
+  <footer>
+    <div class="mono">2112 Capital Solutions LLC <span class="star">★</span> NJ <span class="star">★</span> est 2023</div>
+    <div class="mono">hello@2112capitalsolutions.com</div>
+  </footer>
+</div>
+
+</body>
+</html>

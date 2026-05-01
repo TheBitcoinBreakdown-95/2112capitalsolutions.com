@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2112 — Complete Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@400;700&family=Cormorant+Infant:wght@400;500&family=Crimson+Pro:wght@400&family=Source+Serif+4:wght@400&family=Lora:wght@400&family=Spectral:wght@400&family=Cardo:ital@0;1&family=Cinzel:wght@400;700&family=Forum&family=Marcellus+SC&family=Sorts+Mill+Goudy&family=Roboto+Slab:wght@400&family=Bree+Serif&family=Bitter:wght@400&family=Domine:wght@400&family=Yeseva+One&family=Cantata+One&family=Frank+Ruhl+Libre:wght@400&family=Rozha+One&family=Tenor+Sans&family=Vidaloka&family=UnifrakturMaguntia&family=Special+Elite&family=Inter:wght@100;200;300;400;500;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   DESIGN TOKENS (locked 2026-04-29)
+   ═══════════════════════════════════════════════ */
+:root {
+  --obsidian: #070707;
+  --obsidian-soft: #0c0c0c;
+  --obsidian-card: #0e1014;
+  --obsidian-elevated: #14161d;
+  --obsidian-code: #0a0c10;
+  --emerald: #0a5a36;
+  --emerald-saturated: #084d2e;
+  --emerald-rendered: #08472b;
+  --emerald-vibrant: #0c6a3f;
+  --emerald-glow: rgba(10, 90, 54, 0.45);
+  --emerald-dim: rgba(10, 90, 54, 0.18);
+  --emerald-subtle: rgba(10, 90, 54, 0.07);
+  --emerald-overlay: rgba(10, 90, 54, 0.04);
+  --text-primary: #d8d6d0;
+  --text-secondary: #807d75;
+  --text-muted: #4f4d47;
+  --border-default: rgba(10, 90, 54, 0.10);
+  --border-hover: rgba(10, 90, 54, 0.25);
+  --border-focus: rgba(10, 90, 54, 0.55);
+  --border-line: rgba(255, 255, 255, 0.06);
+  --success: #4ADE80; --success-dim: rgba(74,222,128,0.1); --success-border: rgba(74,222,128,0.25);
+  --warning: #FACC15; --warning-dim: rgba(250,204,21,0.1); --warning-border: rgba(250,204,21,0.25);
+  --error: #F87171; --error-dim: rgba(248,113,113,0.1); --error-border: rgba(248,113,113,0.25);
+  --info: #60A5FA; --info-dim: rgba(96,165,250,0.1); --info-border: rgba(96,165,250,0.25);
+  --font-display: 'Libre Bodoni', 'Bodoni Moda', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --space-1:4px;--space-2:8px;--space-3:16px;--space-4:24px;--space-5:32px;
+  --space-6:48px;--space-7:64px;--space-8:96px;--space-9:128px;--space-10:192px;
+  --content-width: 720px;
+  --wide-width: 1180px;
+  --page-margin: 32px;
+  --ease-luxury: cubic-bezier(0.23,1,0.32,1);
+  --ease-out: cubic-bezier(0.16,1,0.3,1);
+  --ease-soft: cubic-bezier(0.4,0,0.2,1);
+}
+
+*,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scrollbar-width: thin; scrollbar-color: var(--emerald-vibrant) var(--obsidian); scroll-behavior: smooth; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--obsidian); }
+::-webkit-scrollbar-thumb { background: var(--emerald-vibrant); border-radius: 3px; }
+::selection { background: rgba(10, 90, 54, 0.30); color: var(--text-primary); }
+
+body {
+  background:
+    radial-gradient(rgba(255,255,255,0.012) 1px, transparent 1px) 0 0 / 3px 3px,
+    radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px) 1px 1px / 5px 5px,
+    var(--obsidian);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 16.5px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+*:focus-visible { outline: 2px solid var(--emerald); outline-offset: 3px; border-radius: 2px; }
+*:focus:not(:focus-visible) { outline: none; }
+
+/* LAYOUT */
+.container { max-width: var(--content-width); margin: 0 auto; padding: 0 var(--page-margin); }
+.container--wide { max-width: var(--wide-width); margin: 0 auto; padding: 0 var(--page-margin); }
+.section { padding: var(--space-9) 0; }
+.section-tight { padding: var(--space-7) 0; }
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-line);
+  font-weight: 400;
+}
+.section-desc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: var(--space-7);
+  max-width: 620px;
+}
+.subsection-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin: var(--space-7) 0 var(--space-4);
+  letter-spacing: -0.005em;
+}
+.subsection-note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+  letter-spacing: 0.04em;
+}
+.grid { display: grid; gap: var(--space-3); }
+.grid--2 { grid-template-columns: repeat(2,1fr); }
+.grid--3 { grid-template-columns: repeat(3,1fr); }
+@media (max-width: 768px) {
+  .grid--2, .grid--3 { grid-template-columns: 1fr; }
+}
+
+/* HAIRLINE RULE */
+.divider {
+  height: 1px;
+  max-width: var(--wide-width);
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, var(--border-default) 20%, var(--border-default) 80%, transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 1.6s var(--ease-luxury);
+}
+.divider.visible { transform: scaleX(1); }
+
+/* HEADER */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  padding: var(--space-3) 0;
+  background: rgba(7, 7, 7, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-line);
+}
+.header-inner {
+  max-width: var(--wide-width); margin: 0 auto; padding: 0 var(--page-margin);
+  display: flex; justify-content: space-between; align-items: center; gap: var(--space-5);
+}
+.logo-compact {
+  display: inline-flex; align-items: baseline; gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 600; font-size: 22px;
+  color: var(--emerald); text-decoration: none;
+  letter-spacing: 0.02em; line-height: 1;
+}
+.logo-compact .sub {
+  font-family: var(--font-body);
+  font-weight: 200; font-size: 10px;
+  letter-spacing: 0.20em; text-transform: uppercase;
+  color: var(--text-secondary); align-self: end; padding-bottom: 3px;
+}
+.nav-links { display: flex; gap: var(--space-5); list-style: none; align-items: center; }
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 13px; font-weight: 400; letter-spacing: 0.01em;
+  color: var(--text-secondary); text-decoration: none;
+  transition: color 0.3s var(--ease-soft);
+  position: relative; padding: 6px 0;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 50%;
+  height: 1px; width: 0;
+  background: var(--emerald);
+  transition: width 0.4s var(--ease-luxury), left 0.4s var(--ease-luxury);
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-links a:hover::after { width: 100%; left: 0; }
+.nav-links a.active { color: var(--emerald); }
+@media (max-width: 768px) { .nav-links { display: none; } }
+
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 1px;
+  background: var(--emerald); z-index: 101; width: 0%;
+  box-shadow: 0 0 6px rgba(10, 90, 54, 0.3);
+}
+
+/* ═══════════════════════════════════════════════
+   HERO — typography only, vast whitespace
+   editorial register, NOT card-grid SaaS
+   ═══════════════════════════════════════════════ */
+.hero {
+  padding: var(--space-10) 0 var(--space-9);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(900px 600px at 50% 40%, var(--emerald-overlay), transparent 70%);
+  animation: heroGlow 9s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes heroGlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.04); }
+}
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--emerald);
+  margin-bottom: var(--space-7);
+  position: relative;
+}
+.hero-eyebrow::before { content: '— '; color: var(--text-muted); }
+
+/* Logo lockup rendered in HTML — NO image background mismatch */
+.logo-hero {
+  display: inline-block;
+  text-align: center;
+  margin-bottom: var(--space-7);
+  position: relative;
+}
+.logo-hero .num {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(96px, 16vw, 180px);
+  line-height: 0.95;
+  letter-spacing: 0.12em;
+  color: var(--emerald);
+  margin-bottom: var(--space-3);
+}
+.logo-hero .rule {
+  height: 1px;
+  background: var(--emerald);
+  width: 70%;
+  margin: 0 auto var(--space-3);
+  opacity: 0.85;
+}
+.logo-hero .sub {
+  font-family: var(--font-body);
+  font-weight: 200;
+  font-size: clamp(13px, 1.4vw, 18px);
+  letter-spacing: 0.27em;
+  text-transform: uppercase;
+  color: var(--emerald);
+}
+.hero-statement {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(20px, 2.6vw, 28px);
+  line-height: 1.4;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ═══════════════════════════════════════════════
+   FONT EXPLORATION — 10 candidates
+   ═══════════════════════════════════════════════ */
+.font-explore {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border-line);
+  border: 1px solid var(--border-line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+@media (max-width: 768px) { .font-explore { grid-template-columns: 1fr; } }
+.font-card {
+  background: var(--obsidian);
+  padding: var(--space-5) var(--space-4);
+  text-align: center;
+  position: relative;
+  transition: background 0.3s var(--ease-soft);
+}
+.font-card:hover { background: var(--obsidian-soft); }
+.font-card .label {
+  position: absolute;
+  top: var(--space-3); left: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.font-card .label b { color: var(--text-secondary); font-weight: 500; }
+.font-card .glyph {
+  font-size: clamp(56px, 8vw, 84px);
+  line-height: 1;
+  letter-spacing: 0.10em;
+  color: var(--emerald);
+  font-weight: 400;
+  margin-bottom: var(--space-2);
+}
+.font-card .glyph-rule {
+  height: 1px;
+  width: 60%;
+  background: var(--emerald);
+  margin: 0 auto 10px;
+  opacity: 0.7;
+}
+.font-card .glyph-sub {
+  font-family: var(--font-body);
+  font-weight: 200;
+  font-size: 11px;
+  letter-spacing: 0.27em;
+  text-transform: uppercase;
+  color: var(--emerald);
+}
+.f-playfair { font-family: 'Playfair Display', serif; }
+.f-cormorantinfant { font-family: 'Cormorant Infant', serif; font-weight: 500; }
+.f-crimsonpro { font-family: 'Crimson Pro', serif; }
+.f-sourceserif { font-family: 'Source Serif 4', serif; }
+.f-lora { font-family: 'Lora', serif; }
+.f-spectral { font-family: 'Spectral', serif; }
+.f-cardo { font-family: 'Cardo', serif; }
+.f-cinzel { font-family: 'Cinzel', serif; }
+.f-forum { font-family: 'Forum', serif; }
+.f-marcellussc { font-family: 'Marcellus SC', serif; }
+.f-sortsmillgoudy { font-family: 'Sorts Mill Goudy', serif; }
+.f-robotoslab { font-family: 'Roboto Slab', serif; }
+.f-breeserif { font-family: 'Bree Serif', serif; }
+.f-bitter { font-family: 'Bitter', serif; }
+.f-domine { font-family: 'Domine', serif; }
+.f-yeseva { font-family: 'Yeseva One', serif; }
+.f-cantata { font-family: 'Cantata One', serif; }
+.f-frankruhl { font-family: 'Frank Ruhl Libre', serif; }
+.f-rozha { font-family: 'Rozha One', serif; }
+.f-tenorsans { font-family: 'Tenor Sans', sans-serif; }
+.f-vidaloka { font-family: 'Vidaloka', serif; }
+
+/* ═══════════════════════════════════════════════
+   SERVICE ROWS — editorial bands, NOT card grid
+   This is the structural divergence from TBB
+   ═══════════════════════════════════════════════ */
+.service-row {
+  padding: var(--space-7) 0;
+  border-bottom: 1px solid var(--border-line);
+}
+.service-row:last-child { border-bottom: none; }
+.service-row .row-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
+}
+.service-row .row-eyebrow b { color: var(--emerald); font-weight: 400; }
+.service-row .body {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-7);
+  align-items: start;
+}
+.service-row h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.6vw, 40px);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+.service-row .lede {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+}
+.service-row .meta {
+  border-left: 1px solid var(--border-default);
+  padding-left: var(--space-4);
+}
+.service-row .deliverables {
+  list-style: none;
+  margin-bottom: var(--space-4);
+}
+.service-row .deliverables li {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-secondary);
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-line);
+  display: flex; justify-content: space-between; gap: 12px;
+}
+.service-row .deliverables li:last-child { border-bottom: none; }
+.service-row .deliverables li::before { content: '·'; color: var(--text-muted); margin-right: 8px; }
+.service-row .price-block {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--emerald);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-default);
+}
+.service-row .price-block b {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 28px;
+  color: var(--emerald);
+  display: block;
+  margin-bottom: 4px;
+}
+@media (max-width: 768px) {
+  .service-row .body { grid-template-columns: 1fr; gap: var(--space-4); }
+  .service-row .meta { border-left: none; padding-left: 0; border-top: 1px solid var(--border-default); padding-top: var(--space-4); }
+}
+
+/* ═══════════════════════════════════════════════
+   EDITORIAL SECTION — what a real page section looks like
+   "one thought per scroll" pacing
+   ═══════════════════════════════════════════════ */
+.editorial {
+  padding: var(--space-9) 0;
+  text-align: center;
+}
+.editorial-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-5);
+}
+.editorial h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(36px, 6vw, 72px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  max-width: 880px;
+  margin: 0 auto var(--space-6);
+}
+.editorial h2 em { font-style: italic; color: var(--emerald); }
+.editorial p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.55;
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════════════
+   GUIDE LIST — numbered editorial, not tile grid
+   ═══════════════════════════════════════════════ */
+.guide-list { list-style: none; }
+.guide-list-item {
+  display: grid;
+  grid-template-columns: 60px 1fr 100px;
+  gap: var(--space-5);
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid var(--border-line);
+  align-items: baseline;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.3s var(--ease-soft), padding-left 0.3s var(--ease-soft);
+}
+.guide-list-item:hover {
+  background: var(--emerald-subtle);
+  padding-left: var(--space-3);
+  padding-right: var(--space-3);
+}
+.guide-list-item .num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.14em;
+  align-self: start;
+  padding-top: 6px;
+}
+.guide-list-item .content h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(20px, 2.4vw, 26px);
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  transition: color 0.3s var(--ease-soft);
+}
+.guide-list-item:hover .content h4 { color: var(--emerald); }
+.guide-list-item .content .summary {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: var(--space-2);
+}
+.guide-list-item .content .meta-line {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+.guide-list-item .meta-line .topic { color: var(--emerald); }
+.guide-list-item .arrow {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-muted);
+  text-align: right;
+  align-self: center;
+  transition: transform 0.3s var(--ease-soft), color 0.3s var(--ease-soft);
+}
+.guide-list-item:hover .arrow { color: var(--emerald); transform: translateX(4px); }
+@media (max-width: 768px) {
+  .guide-list-item { grid-template-columns: 50px 1fr; }
+  .guide-list-item .arrow { display: none; }
+}
+
+/* ═══════════════════════════════════════════════
+   TESTIMONIAL — full-width editorial moment
+   ═══════════════════════════════════════════════ */
+.testimonial {
+  text-align: center;
+  padding: var(--space-9) 0;
+  position: relative;
+}
+.testimonial::before, .testimonial::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--emerald);
+  margin: 0 auto;
+}
+.testimonial::before { margin-bottom: var(--space-6); }
+.testimonial::after { margin-top: var(--space-6); }
+.testimonial-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.4;
+  color: var(--text-primary);
+  max-width: 760px;
+  margin: 0 auto var(--space-5);
+}
+.testimonial-attribution {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.testimonial-name {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+}
+.testimonial-role {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* TYPE SCALE DEMO ROWS */
+.type-row {
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--border-line);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-5);
+  align-items: baseline;
+}
+.type-row:last-child { border-bottom: none; }
+.type-row .meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+.type-row .meta b { color: var(--text-secondary); font-weight: 400; }
+.t-display { font-family: var(--font-display); font-weight: 400; font-size: clamp(48px, 8vw, 96px); line-height: 0.95; letter-spacing: 0.04em; color: var(--text-primary); }
+.t-h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(36px, 5.5vw, 64px); line-height: 1.05; letter-spacing: 0.02em; color: var(--text-primary); }
+.t-h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(28px, 4vw, 44px); line-height: 1.15; letter-spacing: 0.01em; color: var(--text-primary); }
+.t-h3 { font-family: var(--font-body); font-weight: 500; font-size: clamp(20px, 2.6vw, 28px); line-height: 1.25; color: var(--text-primary); }
+.t-body { font-family: var(--font-body); font-weight: 300; font-size: 16.5px; line-height: 1.7; color: var(--text-primary); }
+.t-overline { font-family: var(--font-mono); font-weight: 400; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--emerald); }
+.t-tag { font-family: var(--font-mono); font-weight: 500; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-secondary); }
+
+/* COLOR SWATCHES */
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: var(--space-2); }
+.swatch { background: var(--obsidian-soft); border: 1px solid var(--border-line); border-radius: 6px; overflow: hidden; }
+.swatch-color { height: 64px; }
+.swatch-meta { padding: 12px 14px; }
+.swatch-name { font-size: 12.5px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+.swatch-hex { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); letter-spacing: 0.02em; }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-family: var(--font-body); font-size: 13px; font-weight: 500;
+  padding: 14px 22px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  text-decoration: none; cursor: pointer;
+  transition: background 0.3s var(--ease-soft), border-color 0.3s var(--ease-soft), color 0.3s var(--ease-soft), transform 0.3s var(--ease-soft);
+}
+.btn--primary { background: var(--emerald); color: var(--obsidian); border-color: var(--emerald); }
+.btn--primary:hover { background: var(--emerald-vibrant); border-color: var(--emerald-vibrant); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(10, 90, 54, 0.18); }
+.btn--ghost { background: transparent; color: var(--text-primary); border-color: var(--border-line); }
+.btn--ghost:hover { border-color: var(--emerald); color: var(--emerald); }
+.btn--subtle { background: transparent; color: var(--emerald); border-color: transparent; padding: 0 0 4px; border-bottom: 1px solid transparent; }
+.btn--subtle:hover { border-bottom-color: var(--emerald); }
+.btn--small { font-size: 11px; padding: 10px 16px; }
+
+/* FORMS */
+.form-row { margin-bottom: var(--space-4); }
+.form-label { display: block; font-family: var(--font-body); font-size: 11px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-2); }
+.form-input, .form-textarea, .form-select { width: 100%; background: var(--obsidian-card); border: 1px solid var(--border-line); padding: 14px 18px; font-family: var(--font-body); font-weight: 300; font-size: 16px; color: var(--text-primary); border-radius: 0; transition: border-color 0.3s var(--ease-soft), box-shadow 0.3s var(--ease-soft); }
+.form-input::placeholder, .form-textarea::placeholder { font-style: italic; color: var(--text-muted); }
+.form-input:focus, .form-textarea:focus, .form-select:focus { outline: none; border-color: var(--emerald); box-shadow: 0 0 0 3px var(--emerald-dim); }
+.form-textarea { min-height: 120px; resize: vertical; }
+.form-input.error { border-color: var(--error); }
+.form-input.success { border-color: var(--success); }
+.form-message { font-family: var(--font-mono); font-size: 11px; margin-top: var(--space-2); letter-spacing: 0.04em; }
+.form-message.error { color: var(--error); }
+.form-message.success { color: var(--success); }
+
+/* STATUS TOASTS */
+.toast { display: flex; align-items: flex-start; gap: var(--space-3); padding: var(--space-3) var(--space-4); border: 1px solid; border-left-width: 3px; border-radius: 4px; margin-bottom: var(--space-3); }
+.toast-icon { flex-shrink: 0; margin-top: 2px; }
+.toast-content h5 { font-size: 13.5px; font-weight: 500; margin-bottom: 4px; color: var(--text-primary); }
+.toast-content p { font-size: 13px; color: var(--text-secondary); margin: 0; line-height: 1.5; }
+.toast--success { background: var(--success-dim); border-color: var(--success-border); border-left-color: var(--success); }
+.toast--success .toast-icon { color: var(--success); }
+.toast--error { background: var(--error-dim); border-color: var(--error-border); border-left-color: var(--error); }
+.toast--error .toast-icon { color: var(--error); }
+.toast--warning { background: var(--warning-dim); border-color: var(--warning-border); border-left-color: var(--warning); }
+.toast--warning .toast-icon { color: var(--warning); }
+.toast--info { background: var(--info-dim); border-color: var(--info-border); border-left-color: var(--info); }
+.toast--info .toast-icon { color: var(--info); }
+
+/* CODE */
+code.inline { font-family: var(--font-mono); font-size: 0.85em; background: var(--obsidian-elevated); border: 1px solid var(--border-line); color: var(--emerald); padding: 2px 8px; border-radius: 3px; }
+.code-block { background: var(--obsidian-code); border: 1px solid var(--border-line); border-radius: 6px; padding: var(--space-4); position: relative; overflow-x: auto; }
+.code-block .lang-label { position: absolute; top: var(--space-3); right: var(--space-3); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+.code-block pre { font-family: var(--font-mono); font-size: 13.5px; line-height: 1.7; color: var(--text-primary); margin: 0; white-space: pre; }
+.code-block .kw { color: var(--emerald); }
+.code-block .com { color: var(--text-muted); font-style: italic; }
+
+/* TERMINAL */
+.terminal { background: var(--obsidian-soft); border: 1px solid var(--border-line); border-radius: 6px; overflow: hidden; }
+.terminal-header { display: flex; justify-content: space-between; align-items: center; padding: var(--space-2) var(--space-3); background: var(--obsidian-elevated); border-bottom: 1px solid var(--border-line); }
+.terminal-dots { display: flex; gap: 6px; }
+.terminal-dots span { width: 10px; height: 10px; border-radius: 50%; border: 1px solid; opacity: 0.4; }
+.terminal-dots span:nth-child(1) { border-color: var(--error); }
+.terminal-dots span:nth-child(2) { border-color: var(--warning); }
+.terminal-dots span:nth-child(3) { border-color: var(--success); }
+.terminal-title { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); }
+.terminal-body { padding: var(--space-3); font-family: var(--font-mono); font-size: 13px; line-height: 1.7; color: var(--text-secondary); }
+.terminal-body .prompt { color: var(--emerald); margin-right: 8px; }
+.terminal-body .output { color: var(--text-muted); }
+.terminal-body .cursor { display: inline-block; width: 8px; height: 14px; background: var(--emerald); vertical-align: middle; margin-left: 4px; animation: cursorBlink 1s step-end infinite; }
+@keyframes cursorBlink { 50% { opacity: 0; } }
+
+/* TABLES */
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+table th { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-secondary); text-align: left; padding: var(--space-3); border-bottom: 1px solid var(--border-hover); }
+table td { padding: var(--space-3); border-bottom: 1px solid var(--border-line); color: var(--text-secondary); }
+table tr:hover td { background: var(--emerald-subtle); }
+table td:first-child { color: var(--text-primary); font-weight: 400; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1px solid var(--border-line); border-radius: 100px;
+  color: var(--text-secondary); background: transparent;
+  margin-right: var(--space-2);
+  transition: border-color 0.3s var(--ease-soft), color 0.3s var(--ease-soft), background 0.3s var(--ease-soft);
+}
+.tag:hover { border-color: var(--border-hover); color: var(--emerald); background: var(--emerald-subtle); }
+.tag.active { border-color: var(--emerald); color: var(--emerald); background: var(--emerald-subtle); }
+
+/* PROSE LINKS */
+.prose a, a.inline { color: var(--emerald); text-decoration: none; border-bottom: 1px solid var(--border-hover); transition: border-color 0.3s var(--ease-soft); }
+.prose a:hover, a.inline:hover { border-bottom-color: var(--emerald); }
+
+/* COOKIE BANNER */
+.cookie-banner { background: var(--obsidian-soft); border: 1px solid var(--border-line); border-radius: 6px; padding: var(--space-4); display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
+.cookie-banner p { font-size: 14px; color: var(--text-secondary); margin: 0; flex: 1; min-width: 280px; }
+.cookie-banner-actions { display: flex; gap: var(--space-2); }
+
+/* FOOTER */
+.site-footer { border-top: 1px solid var(--border-line); padding: var(--space-7) 0 var(--space-5); margin-top: var(--space-9); font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); letter-spacing: 0.02em; }
+.footer-grid { max-width: var(--wide-width); margin: 0 auto; padding: 0 var(--page-margin); display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4); }
+
+/* SCROLL REVEALS */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ease-luxury), transform 1s var(--ease-luxury); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.stagger > *:nth-child(1) { transition-delay: 0s; }
+.stagger > *:nth-child(2) { transition-delay: 0.08s; }
+.stagger > *:nth-child(3) { transition-delay: 0.16s; }
+
+/* ═══════════════════════════════════════════════
+   VISUAL STYLE SPREAD — 35 styles across 7 emotions
+   ═══════════════════════════════════════════════ */
+.style-spread { padding: var(--space-9) 0; }
+.style-emotion { margin-bottom: var(--space-8); }
+.style-emotion-head { margin-bottom: var(--space-5); padding-bottom: var(--space-3); border-bottom: 1px solid var(--border-line); }
+.style-emotion-title { font-family: var(--font-display); font-size: 36px; font-weight: 400; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 8px; }
+.style-emotion-meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); }
+.style-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-3); }
+.style-card { background: var(--obsidian-soft); border: 1px solid var(--border-line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+.style-card-label { padding: 10px 14px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--text-secondary); border-bottom: 1px solid var(--border-line); background: var(--obsidian-card); }
+.style-card-label b { color: var(--emerald); font-weight: 500; margin-right: 6px; }
+.style-card-visual { aspect-ratio: 1.4; display: grid; place-items: center; position: relative; overflow: hidden; }
+.style-lockup { text-align: center; width: 100%; padding: 12px; }
+.style-lockup .num { font-size: clamp(32px, 4.5vw, 48px); line-height: 1; letter-spacing: 0.08em; font-weight: 400; margin-bottom: 8px; }
+.style-lockup .rule { height: 1px; background: currentColor; width: 60%; margin: 0 auto 8px; opacity: 0.7; }
+.style-lockup .sub { font-family: var(--font-body); font-weight: 200; font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase; }
+.style-card-meta { padding: 12px 14px; font-family: var(--font-body); font-size: 12px; line-height: 1.5; flex: 1; }
+.style-card-meta .examples { color: var(--text-secondary); margin-bottom: 6px; font-style: italic; }
+.style-card-meta .sigs { color: var(--text-muted); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.04em; line-height: 1.5; }
+
+/* extra font classes for spread */
+.f-uniform { font-family: 'UnifrakturMaguntia', cursive; letter-spacing: 0.04em; }
+.f-typewriter { font-family: 'Special Elite', cursive; letter-spacing: 0.06em; }
+.f-mono { font-family: 'JetBrains Mono', monospace; font-weight: 400; }
+.f-inter { font-family: 'Inter', sans-serif; font-weight: 200; }
+.f-cardo-italic { font-family: 'Cardo', serif; font-style: italic; }
+.f-playfair-bold { font-family: 'Playfair Display', serif; font-weight: 700; }
+.f-cinzel-bold { font-family: 'Cinzel', serif; font-weight: 700; }
+
+/* CAREGIVER */
+.s-care-1 .style-card-visual { background: #f4ede1; } .s-care-1 .style-lockup { color: #2a2620; }
+.s-care-2 .style-card-visual { background: #131826; } .s-care-2 .style-lockup { color: #d8d4c8; }
+.s-care-3 .style-card-visual { background: #2a2419; } .s-care-3 .style-lockup { color: #e8e0d0; }
+.s-care-4 .style-card-visual { background: #f0ebe0; } .s-care-4 .style-lockup { color: #5c2424; }
+.s-care-5 .style-card-visual { background: #2c333d; } .s-care-5 .style-lockup { color: #d4d4d2; }
+.s-care-5 .num::after { content: ''; display: inline-block; width: 8px; height: 8px; background: #ed8c1c; vertical-align: middle; margin-left: 8px; }
+
+/* RULER */
+.s-rule-1 .style-card-visual { background: #e8e3d8; } .s-rule-1 .style-lockup { color: #2a2620; }
+.s-rule-2 .style-card-visual { background: #0a0807; } .s-rule-2 .style-lockup { color: #c9a04c; }
+.s-rule-3 .style-card-visual { background: #1a1414; } .s-rule-3 .style-lockup { color: #e8dcc7; } .s-rule-3 .rule { background: #6e0c0c !important; opacity: 1 !important; height: 2px !important; }
+.s-rule-4 .style-card-visual { background: #f0eadd; } .s-rule-4 .style-lockup { color: #122446; } .s-rule-4 .rule { background: #6e0c1c !important; opacity: 1 !important; }
+.s-rule-5 .style-card-visual { background: #050505; } .s-rule-5 .style-lockup { color: #e6e6e6; } .s-rule-5 .rule { background: #ff3030 !important; opacity: 1 !important; }
+
+/* EMPOWERING */
+.s-emp-1 .style-card-visual { background: #2c3a30; } .s-emp-1 .style-lockup { color: #e8d8c4; }
+.s-emp-2 .style-card-visual { background: #5e8d3f; } .s-emp-2 .style-lockup { color: #fff; }
+.s-emp-3 .style-card-visual { background: linear-gradient(135deg, #f4c89e 0%, #d4a8c6 50%, #c89eb8 100%); } .s-emp-3 .style-lockup { color: #2a2620; }
+.s-emp-4 .style-card-visual { background: #f4f1e8; } .s-emp-4 .style-lockup { color: #1a1a1a; } .s-emp-4 .rule { background: #c91818 !important; opacity: 1 !important; height: 2px !important; }
+.s-emp-5 .style-card-visual { background: #050608; } .s-emp-5 .style-lockup { color: #00ff62; }
+
+/* REVERENT */
+.s-rev-1 .style-card-visual { background: #0a0806; } .s-rev-1 .style-lockup { color: #f0e6d0; }
+.s-rev-2 .style-card-visual { background: #e8dec4; } .s-rev-2 .style-lockup { color: #1a1814; }
+.s-rev-3 .style-card-visual { background: #4a4a48; } .s-rev-3 .style-lockup { color: #e8e6e0; }
+.s-rev-4 .style-card-visual { background: linear-gradient(180deg, #6c7e85 0%, #4a5a60 100%); } .s-rev-4 .style-lockup { color: #f0e6d4; }
+.s-rev-5 .style-card-visual { background: #050505; } .s-rev-5 .style-lockup { color: #e8e6dc; } .s-rev-5 .rule { background: #6e0e0e !important; opacity: 1 !important; }
+
+/* PRINCIPLED */
+.s-prin-1 .style-card-visual { background: #f0e8d8; } .s-prin-1 .style-lockup { color: #1a2a4e; }
+.s-prin-2 .style-card-visual { background: #f0e8d8; } .s-prin-2 .style-lockup { color: #c91818; } .s-prin-2 .num { font-weight: 700 !important; }
+.s-prin-3 .style-card-visual { background: #0e1424; } .s-prin-3 .style-lockup { color: #e8e0c8; } .s-prin-3 .rule { background: #f7931a !important; opacity: 1 !important; height: 2px !important; }
+.s-prin-4 .style-card-visual { background: #f4f0e4; } .s-prin-4 .style-lockup { color: #1a2a4e; }
+.s-prin-5 .style-card-visual { background: #fafaf6; } .s-prin-5 .style-lockup { color: #1a1a1a; }
+
+/* PREMIUM */
+.s-prem-1 .style-card-visual { background: #f4ebd8; } .s-prem-1 .style-lockup { color: #d75817; }
+.s-prem-2 .style-card-visual { background: #e2dac8; } .s-prem-2 .style-lockup { color: #2a2620; }
+.s-prem-3 .style-card-visual { background: #f5f5f5; } .s-prem-3 .style-lockup { color: #1a1a1a; }
+.s-prem-4 .style-card-visual { background: #2a1f14; } .s-prem-4 .style-lockup { color: #e8d8b4; }
+.s-prem-5 .style-card-visual { background: #f5edda; } .s-prem-5 .style-lockup { color: #2a2620; }
+
+/* KNOWLEDGEABLE */
+.s-know-1 .style-card-visual { background: #f0e8d6; } .s-know-1 .style-lockup { color: #1a1a2a; } .s-know-1 .rule { background: #6e1c1c !important; opacity: 1 !important; }
+.s-know-2 .style-card-visual { background: #fafaf8; } .s-know-2 .style-lockup { color: #1a1a1a; } .s-know-2 .rule { background: #c91818 !important; opacity: 1 !important; height: 2px !important; }
+.s-know-3 .style-card-visual { background-image: linear-gradient(rgba(24, 85, 168, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(24, 85, 168, 0.08) 1px, transparent 1px); background-size: 16px 16px; background-color: #fafaf6; } .s-know-3 .style-lockup { color: #1a1a1a; }
+.s-know-4 .style-card-visual { background: #d8d4b8; } .s-know-4 .style-lockup { color: #2a2818; }
+.s-know-5 .style-card-visual { background: #fafaf6; } .s-know-5 .style-lockup { color: #1a1a1a; } .s-know-5 .rule { background: #ed8c1c !important; opacity: 1 !important; height: 2px !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+  .divider { transform: scaleX(1); }
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo-compact">
+      2112<span class="sub">Capital Solutions</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#guides">Guides</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact" class="active">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero container--wide">
+  <div class="hero-eyebrow">Master Design System · v1.0</div>
+  <div class="logo-hero">
+    <div class="num">2112</div>
+    <div class="rule"></div>
+    <div class="sub">Capital Solutions</div>
+  </div>
+  <p class="hero-statement">A living style guide. Tokens locked, components rendered. Stewardship over showmanship.</p>
+</section>
+
+<div class="divider reveal"></div>
+
+<!-- ═══════ FONT EXPLORATION ═══════ -->
+<section class="section container--wide" id="fonts">
+  <div class="section-label">— 01 / Font Exploration</div>
+  <p class="section-desc">Ten Didone-family and classical serif candidates for the wordmark — all free, all on Google Fonts. Rendered with the locked composition: numerals at <code class="inline">0.12em</code> tracking, hairline rule, sub-line at <code class="inline">0.27em</code> tracking. Currently locked to <strong>Libre Bodoni</strong>; this section stays as a comparison reference if we ever want to revisit.</p>
+
+  <div class="font-explore">
+    <div class="font-card">
+      <div class="label"><b>01.</b> PLAYFAIR DISPLAY · liked</div>
+      <div class="glyph f-playfair">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>02.</b> CORMORANT INFANT</div>
+      <div class="glyph f-cormorantinfant">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>03.</b> CRIMSON PRO</div>
+      <div class="glyph f-crimsonpro">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>04.</b> SOURCE SERIF 4</div>
+      <div class="glyph f-sourceserif">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>05.</b> LORA</div>
+      <div class="glyph f-lora">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>06.</b> SPECTRAL</div>
+      <div class="glyph f-spectral">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>07.</b> CARDO</div>
+      <div class="glyph f-cardo">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>08.</b> CINZEL · roman caps</div>
+      <div class="glyph f-cinzel">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>09.</b> FORUM · roman</div>
+      <div class="glyph f-forum">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>10.</b> MARCELLUS SC</div>
+      <div class="glyph f-marcellussc">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>11.</b> SORTS MILL GOUDY</div>
+      <div class="glyph f-sortsmillgoudy">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>12.</b> ROBOTO SLAB · slab</div>
+      <div class="glyph f-robotoslab">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>13.</b> BREE SERIF · slab</div>
+      <div class="glyph f-breeserif">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>14.</b> BITTER · slab</div>
+      <div class="glyph f-bitter">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>15.</b> DOMINE · slab</div>
+      <div class="glyph f-domine">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>16.</b> YESEVA ONE · display</div>
+      <div class="glyph f-yeseva">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>17.</b> CANTATA ONE · display</div>
+      <div class="glyph f-cantata">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>18.</b> FRANK RUHL LIBRE</div>
+      <div class="glyph f-frankruhl">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>19.</b> ROZHA ONE · display</div>
+      <div class="glyph f-rozha">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>20.</b> TENOR SANS · hybrid</div>
+      <div class="glyph f-tenorsans">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+    <div class="font-card">
+      <div class="label"><b>21.</b> VIDALOKA · didone</div>
+      <div class="glyph f-vidaloka">2112</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-sub">Capital Solutions</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider reveal"></div>
+
+<!-- ═══════ EDITORIAL SECTION DEMO ═══════ -->
+<section class="editorial container--wide">
+  <div class="editorial-eyebrow">— 02 / Editorial Section</div>
+  <h2>Considered stewardship of your money,<br>your tools, and <em>your data.</em></h2>
+  <p>This is what a real page section feels like — large Bodoni statement, generous whitespace, no tile grid. One thought per scroll. Caregiver + Ruler in compositional language, not just color.</p>
+</section>
+
+<div class="divider reveal"></div>
+
+<!-- ═══════ COLOR PALETTE ═══════ -->
+<section class="section container--wide" id="colors">
+  <div class="section-label">— 03 / Color System</div>
+  <p class="section-desc">All color tokens, locked. Emerald is the only chromatic accent.</p>
+
+  <h3 class="subsection-title">Surfaces</h3>
+  <div class="swatch-grid">
+    <div class="swatch"><div class="swatch-color" style="background:#070707"></div><div class="swatch-meta"><div class="swatch-name">Obsidian</div><div class="swatch-hex">#070707</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#0c0c0c"></div><div class="swatch-meta"><div class="swatch-name">Obsidian-soft</div><div class="swatch-hex">#0c0c0c</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#0e1014"></div><div class="swatch-meta"><div class="swatch-name">Obsidian-card</div><div class="swatch-hex">#0e1014</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#14161d"></div><div class="swatch-meta"><div class="swatch-name">Obsidian-elevated</div><div class="swatch-hex">#14161d</div></div></div>
+  </div>
+
+  <h3 class="subsection-title">Emerald</h3>
+  <div class="swatch-grid">
+    <div class="swatch"><div class="swatch-color" style="background:#0a5a36"></div><div class="swatch-meta"><div class="swatch-name">Emerald (primary)</div><div class="swatch-hex">#0a5a36</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#084d2e"></div><div class="swatch-meta"><div class="swatch-name">Emerald-saturated</div><div class="swatch-hex">#084d2e</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#08472b"></div><div class="swatch-meta"><div class="swatch-name">Emerald-rendered</div><div class="swatch-hex">#08472b</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#0c6a3f"></div><div class="swatch-meta"><div class="swatch-name">Emerald-vibrant</div><div class="swatch-hex">#0c6a3f</div></div></div>
+  </div>
+
+  <h3 class="subsection-title">Text & Status</h3>
+  <div class="swatch-grid">
+    <div class="swatch"><div class="swatch-color" style="background:#d8d6d0"></div><div class="swatch-meta"><div class="swatch-name">Text-primary (cousin)</div><div class="swatch-hex">#d8d6d0</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#807d75"></div><div class="swatch-meta"><div class="swatch-name">Text-secondary</div><div class="swatch-hex">#807d75</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#4f4d47"></div><div class="swatch-meta"><div class="swatch-name">Text-muted</div><div class="swatch-hex">#4f4d47</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#4ADE80"></div><div class="swatch-meta"><div class="swatch-name">Success</div><div class="swatch-hex">#4ADE80</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FACC15"></div><div class="swatch-meta"><div class="swatch-name">Warning</div><div class="swatch-hex">#FACC15</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#F87171"></div><div class="swatch-meta"><div class="swatch-name">Error</div><div class="swatch-hex">#F87171</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#60A5FA"></div><div class="swatch-meta"><div class="swatch-name">Info</div><div class="swatch-hex">#60A5FA</div></div></div>
+  </div>
+</section>
+
+<div class="divider reveal"></div>
+
+<!-- ═══════ TYPOGRAPHY ═══════ -->
+<section class="section container--wide" id="typography">
+  <div class="section-label">— 04 / Typography</div>
+  <p class="section-desc">Three families. Libre Bodoni for display moments. Inter for UI and body. JetBrains Mono for system, prices, and data.</p>
+
+  <div class="type-row"><div class="meta"><b>Display</b><br>Libre Bodoni 400</div><div class="t-display">2112</div></div>
+  <div class="type-row"><div class="meta"><b>H1</b><br>Libre Bodoni 400</div><div class="t-h1">Considered stewardship.</div></div>
+  <div class="type-row"><div class="meta"><b>H2</b><br>Libre Bodoni 400</div><div class="t-h2">Three ways we help you take ownership.</div></div>
+  <div class="type-row"><div class="meta"><b>H3</b><br>Inter 500</div><div class="t-h3">Self-custody setup</div></div>
+  <div class="type-row"><div class="meta"><b>Body</b><br>Inter 300 / 16.5px</div><div class="t-body">We onboard people and businesses to Bitcoin — for the inevitable transition out of the legacy financial system, and for everyone else who needs a way out. Hands-on consulting, considered execution, ongoing stewardship.</div></div>
+  <div class="type-row"><div class="meta"><b>Overline</b><br>Mono 11px / 0.18em / UP</div><div class="t-overline">— Sovereignty consulting</div></div>
+  <div class="type-row"><div class="meta"><b>Tag</b><br>Mono 10px / 500 / 0.14em / UP</div><div class="t-tag">Bitcoin</div></div>
+</section>
+
+<div class="divider reveal"></div>
+
+<!-- ═══════ SERVICE ROWS — editorial bands, NOT card grid ═══════ -->
+<section class="section container--wide" id="services">
+  <div class="section-label">— 05 / Services (editorial rows)</div>
+  <p class="section-desc">This is the structural divergence from TBB. Services are <strong>editorial bands</strong> — full-width rows with a numeral, a generous title, prose lede, and a deliverables/price meta block. <strong>NOT a 3-card grid.</strong> One service per scroll-screen.</p>
+
+  <div class="service-row">
+    <div class="row-eyebrow"><b>01</b> — Custody</div>
+    <div class="body">
+      <div>
+        <h3>Self-custody setup</h3>
+        <p class="lede">Get your bitcoin off exchanges and into a hardware wallet you control. We handle device selection, seed generation, multisig setup, and a recovery plan you can actually trust. One-on-one, in person or remote.</p>
+      </div>
+      <div class="meta">
+        <ul class="deliverables">
+          <li>Hardware wallet selection</li>
+          <li>Seed backup &amp; recovery plan</li>
+          <li>Optional multisig configuration</li>
+          <li>One-on-one walkthrough</li>
+        </ul>
+        <div class="price-block">
+          <b>From $100</b>
+          Single-session engagement
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-row">
+    <div class="row-eyebrow"><b>02</b> — Infrastructure</div>
+    <div class="body">
+      <div>
+        <h3>Node &amp; Lightning</h3>
+        <p class="lede">Run your own Bitcoin node and Lightning channels. We handle hardware procurement, full-node configuration, hardening, and ongoing maintenance — so your sovereignty stack stays current without becoming your second job.</p>
+      </div>
+      <div class="meta">
+        <ul class="deliverables">
+          <li>Hardware procurement</li>
+          <li>Full-node + LN configuration</li>
+          <li>Security hardening</li>
+          <li>Optional monthly maintenance</li>
+        </ul>
+        <div class="price-block">
+          <b>From $500</b>
+          Setup + optional retainer
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-row">
+    <div class="row-eyebrow"><b>03</b> — Advisory</div>
+    <div class="body">
+      <div>
+        <h3>Strategy consulting</h3>
+        <p class="lede">One-on-one or business engagements. Treasury planning, integration strategy, education for teams. Hourly engagements; ongoing retainers for clients who need consistent counsel rather than a single project.</p>
+      </div>
+      <div class="meta">
+        <ul class="deliverables">
+          <li>Bitcoin treasury planning</li>
+          <li>Workshop &amp; team training</li>
+          <li>Custom integrations</li>
+          <li>Ongoing advisory retainer</li>
+        </ul>
+        <div class="price-block">
+          <b>$100 / hour</b>
+          Or retainer-based
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider reveal"></div>
+
+<!-- ═══════ TESTIMONIAL ═══════ -->
+<section class="testimonial container">
+  <div class="testimonial-text">"They didn't just set up our cold storage — they stayed with us through the first transactions, the first key rotation, the first board-level question. Considered stewardship is the right way to describe what we got."</div>
+  <div class="testimonial-attribution">
+    <div class="testimonial-name">A. Lambert</div>
+    <div class="testimonial-role">CFO · Family Office Engagement · 2025</div>
+  </div>
+</section>
+
+<div class="divider reveal"></div>
+
+<!-- ═══════ GUIDE LIST — numbered editorial, NOT tile grid ═══════ -->
+<section class="section container--wide" id="guides">
+  <div class="section-label">— 06 / Guides (editorial list)</div>
+  <p class="section-desc">Guides as a numbered editorial list — closer to a journal's index than a tile grid. Each row reads as one entry in a continuing record. Hover slides slightly right.</p>
+
+  <div class="guide-list">
+    <a href="#" class="guide-list-item">
+      <div class="num">001</div>
+      <div class="content">
+        <h4>Hardware wallet setup, end-to-end</h4>
+        <p class="summary">Picking a device, generating a seed safely, setting up a multisig, and a recovery you can actually trust.</p>
+        <div class="meta-line"><span class="topic">— Bitcoin</span> · 14 min · April 2026</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a href="#" class="guide-list-item">
+      <div class="num">002</div>
+      <div class="content">
+        <h4>Local AI on your own machine</h4>
+        <p class="summary">Run LLMs locally with Ollama. Why it matters for privacy, what it can and can't do, and a working setup.</p>
+        <div class="meta-line"><span class="topic">— AI</span> · 11 min · April 2026</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a href="#" class="guide-list-item">
+      <div class="num">003</div>
+      <div class="content">
+        <h4>Encrypted comms for the everyday user</h4>
+        <p class="summary">Signal, SimpleX, Matrix — what to use, when, and how to set them up without a CS degree.</p>
+        <div class="meta-line"><span class="topic">— Privacy</span> · 9 min · March 2026</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+    <a href="#" class="guide-list-item">
+      <div class="num">004</div>
+      <div class="content">
+        <h4>Self-host your email, the right way</h4>
+        <p class="summary">Mailcow on a VPS, deliverability, backup strategy, when self-hosting actually saves you something.</p>
+        <div class="meta-line"><span class="topic">— Self-hosting</span> · 22 min · March 2026</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+  </div>
+</section>
+
+<div class="divider reveal"></div>
+
+<!-- ═══════ BUTTONS ═══════ -->
+<section class="section container--wide" id="buttons">
+  <div class="section-label">— 07 / Buttons</div>
+  <p class="section-desc">Three variants. Sharp corners, restrained sizing, no uppercase by default.</p>
+
+  <div class="grid grid--3">
+    <div>
+      <div class="subsection-note">// Primary</div>
+      <a href="#" class="btn btn--primary">Book a free call</a>
+    </div>
+    <div>
+      <div class="subsection-note">// Ghost</div>
+      <a href="#" class="btn btn--ghost">Read the guides →</a>
+    </div>
+    <div>
+      <div class="subsection-note">// Subtle</div>
+      <a href="#" class="btn btn--subtle">View pricing</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider reveal"></div>
+
+<!-- ═══════ FORMS ═══════ -->
+<section class="section container" id="forms">
+  <div class="section-label">— 08 / Forms</div>
+  <div class="form-row">
+    <label class="form-label" for="demoEmail">Email address</label>
+    <input id="demoEmail" type="email" class="form-input" placeholder="jane@firm.com">
+  </div>
+  <div class="form-row">
+    <label class="form-label" for="demoMessage">Message</label>
+    <textarea id="demoMessage" class="form-textarea" placeholder="Tell us about where you are..."></textarea>
+  </div>
+  <div class="form-row">
+    <input type="text" class="form-input error" value="invalid-email">
+    <div class="form-message error">// Please enter a valid email address</div>
+  </div>
+  <a href="#" class="btn btn--primary">Submit inquiry</a>
+</section>
+
+<div class="divider reveal"></div>
+
+<!-- ═══════ STATUS, TAGS, CODE ═══════ -->
+<section class="section container--wide" id="patterns">
+  <div class="section-label">— 09 / Status, Tags, Code</div>
+
+  <h3 class="subsection-title">Status toasts</h3>
+  <div class="grid grid--2">
+    <div class="toast toast--success"><span class="toast-icon">✓</span><div class="toast-content"><h5>Inquiry sent</h5><p>We'll reply within one business day.</p></div></div>
+    <div class="toast toast--info"><span class="toast-icon">i</span><div class="toast-content"><h5>New guide published</h5><p>Local AI setup with Ollama.</p></div></div>
+    <div class="toast toast--warning"><span class="toast-icon">⚠</span><div class="toast-content"><h5>Maintenance window</h5><p>Calendar offline Sunday 2-3am UTC.</p></div></div>
+    <div class="toast toast--error"><span class="toast-icon">✕</span><div class="toast-content"><h5>Submission failed</h5><p>Check your email and try again.</p></div></div>
+  </div>
+
+  <h3 class="subsection-title">Tags</h3>
+  <div>
+    <span class="tag">Default</span>
+    <span class="tag active">Active</span>
+    <span class="tag">Bitcoin</span>
+    <span class="tag">AI</span>
+    <span class="tag">Privacy</span>
+  </div>
+
+  <h3 class="subsection-title">Code &amp; terminal</h3>
+  <p class="prose"><code class="inline">bitcoin-cli getblockchaininfo</code> returns the current chain status.</p>
+  <div style="margin-top: var(--space-3);">
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="terminal-dots"><span></span><span></span><span></span></div>
+        <div class="terminal-title">node-status</div>
+      </div>
+      <div class="terminal-body">
+        <div><span class="prompt">$</span>bitcoin-cli getblockchaininfo</div>
+        <div class="output">{ "chain": "main", "blocks": 891247, "verificationprogress": 0.99999 }</div>
+        <div><span class="prompt">$</span><span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider reveal"></div>
+
+<!-- ═══════ COOKIE ═══════ -->
+<section class="section-tight container--wide">
+  <div class="section-label">— 10 / Cookie banner</div>
+  <div class="cookie-banner">
+    <p>This site uses essential cookies only. No tracking, no analytics, no third parties.</p>
+    <div class="cookie-banner-actions">
+      <a href="#" class="btn btn--ghost btn--small">Decline</a>
+      <a href="#" class="btn btn--primary btn--small">Accept</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider reveal"></div>
+
+<!-- ═══════ VISUAL STYLE SPREAD — 35 styles across 7 emotions ═══════ -->
+<section class="style-spread container--wide" id="spread">
+  <div class="section-label">— 11 / Visual Style Spread (Reference)</div>
+  <p class="section-desc"><strong>Reference only — not the locked direction.</strong> 35 distinct visual styles across the 7 emotional building blocks. Each card renders the same "2112 / Capital Solutions" lockup using the style's signature palette and typography. Cross-style picking exercise: see <a class="inline" href="visual-styles-research.md">visual-styles-research.md</a>.</p>
+
+  <!-- CAREGIVER -->
+  <div class="style-emotion">
+    <div class="style-emotion-head">
+      <div class="style-emotion-title">Caregiver</div>
+      <div class="style-emotion-meta">— 5 styles · primary archetype</div>
+    </div>
+    <div class="style-grid">
+      <div class="style-card s-care-1"><div class="style-card-label"><b>1.1</b> Concierge Medical Warmth</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-sourceserif">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">One Medical · Parsley Health · Sollis</div><div class="sigs">Source Serif · Warm off-white + terracotta</div></div></div>
+      <div class="style-card s-care-2"><div class="style-card-label"><b>1.2</b> Private Bank Stewardship</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Pictet · Lombard Odier · BBH</div><div class="sigs">Cardo · Deep navy + ivory + oxblood</div></div></div>
+      <div class="style-card s-care-3"><div class="style-card-label"><b>1.3</b> Hands-On Trade Craft</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-breeserif">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Niwaki · Best Made · Labour and Wait</div><div class="sigs">Bree Serif · Walnut + linen + indigo</div></div></div>
+      <div class="style-card s-care-4"><div class="style-card-label"><b>1.4</b> Devotional / Religious Care</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo-italic">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Maggie's Centres · Order of Malta · Hospice UK</div><div class="sigs">Cardo Italic · Cream + dove gray + gold</div></div></div>
+      <div class="style-card s-care-5"><div class="style-card-label"><b>1.5</b> Field Engineer / Boots-on-Ground</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-tenorsans">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Caterpillar dealer · Honeywell field · Filson commercial</div><div class="sigs">Tenor Sans · Slate + hi-viz orange</div></div></div>
+    </div>
+  </div>
+
+  <!-- RULER -->
+  <div class="style-emotion">
+    <div class="style-emotion-head">
+      <div class="style-emotion-title">Ruler</div>
+      <div class="style-emotion-meta">— 5 styles · secondary archetype</div>
+    </div>
+    <div class="style-grid">
+      <div class="style-card s-rule-1"><div class="style-card-label"><b>2.1</b> Quiet Luxury Maison</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-spectral">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">The Row · Loro Piana · Khaite</div><div class="sigs">Spectral · Oat + ink, no shouting</div></div></div>
+      <div class="style-card s-rule-2"><div class="style-card-label"><b>2.2</b> Belle Époque / Grand Hotel</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-playfair-bold">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">The Ritz · Krug · Veuve Clicquot</div><div class="sigs">Playfair Bold · Black + ivory + gold</div></div></div>
+      <div class="style-card s-rule-3"><div class="style-card-label"><b>2.3</b> Italian Industrial Patrician</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cinzel-bold">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Bvlgari · Olivetti · Pirelli · Ferrari heritage</div><div class="sigs">Cinzel Bold · Charcoal + bone + oxblood</div></div></div>
+      <div class="style-card s-rule-4"><div class="style-card-label"><b>2.4</b> American Establishment / Ivy Power</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Brooks Brothers · J.P. Morgan · Yale UP</div><div class="sigs">Cardo · Cream + navy + crimson</div></div></div>
+      <div class="style-card s-rule-5"><div class="style-card-label"><b>2.5</b> Operator / Apex Modernist</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-mono">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Palantir · Anduril · Founders Fund</div><div class="sigs">JetBrains Mono · Pure black + signal red</div></div></div>
+    </div>
+  </div>
+
+  <!-- EMPOWERING -->
+  <div class="style-emotion">
+    <div class="style-emotion-head">
+      <div class="style-emotion-title">Empowering</div>
+      <div class="style-emotion-meta">— 5 styles · primary temperature</div>
+    </div>
+    <div class="style-grid">
+      <div class="style-card s-emp-1"><div class="style-card-label"><b>3.1</b> Outdoor Capability</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-tenorsans">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Patagonia · REI · Black Diamond · NOLS</div><div class="sigs">Tenor Sans · Forest + rust + cream</div></div></div>
+      <div class="style-card s-emp-2"><div class="style-card-label"><b>3.2</b> Coursework / Edtech Coach</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-breeserif">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Khan Academy · Duolingo · MasterClass</div><div class="sigs">Bree Serif · Owl green + white</div></div></div>
+      <div class="style-card s-emp-3"><div class="style-card-label"><b>3.3</b> Wellness Self-Mastery</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-tenorsans">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Headspace · Calm · Hims &amp; Hers · Goop</div><div class="sigs">Tenor Sans · Sunset gradient peach→lavender</div></div></div>
+      <div class="style-card s-emp-4"><div class="style-card-label"><b>3.4</b> Bauhaus Civic Empowerment</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-tenorsans">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Aicher Munich '72 · BBC heritage · Mailchimp</div><div class="sigs">Tenor Sans · Off-white + saturated red</div></div></div>
+      <div class="style-card s-emp-5"><div class="style-card-label"><b>3.5</b> Cyberpunk / Hacker-Tools</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-mono">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Arch Linux · EFF · Mullvad · Umbrel</div><div class="sigs">JetBrains Mono · Black + phosphor green</div></div></div>
+    </div>
+  </div>
+
+  <!-- REVERENT -->
+  <div class="style-emotion">
+    <div class="style-emotion-head">
+      <div class="style-emotion-title">Reverent</div>
+      <div class="style-emotion-meta">— 5 styles · secondary temperature</div>
+    </div>
+    <div class="style-grid">
+      <div class="style-card s-rev-1"><div class="style-card-label"><b>4.1</b> Sacred Architecture / Romanesque</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Deutsche Grammophon · ECM · Penguin Classics</div><div class="sigs">Cardo · Deep black + ivory + deep red</div></div></div>
+      <div class="style-card s-rev-2"><div class="style-card-label"><b>4.2</b> Wabi-Sabi / Tea-Room Quiet</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-sortsmillgoudy">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Aesop (JP moments) · Postalco · Snow Peak</div><div class="sigs">Sorts Mill Goudy · Raw paper + sumi ink</div></div></div>
+      <div class="style-card s-rev-3"><div class="style-card-label"><b>4.3</b> Memorial / Civic Solemnity</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cinzel">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Vietnam Memorial · USHMM · NMAAHC</div><div class="sigs">Cinzel · Granite + paper white + bronze</div></div></div>
+      <div class="style-card s-rev-4"><div class="style-card-label"><b>4.4</b> Naturalist Sublime</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-crimsonpro">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Sierra Club · Macallan · Highland Park</div><div class="sigs">Crimson Pro · Misty granite + warm cream</div></div></div>
+      <div class="style-card s-rev-5"><div class="style-card-label"><b>4.5</b> Black Metal / Esoteric Gravity</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-uniform">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Strange Attractor · Rick Owens · Visvim</div><div class="sigs">UnifrakturMaguntia · Black + bone + blood red</div></div></div>
+    </div>
+  </div>
+
+  <!-- PRINCIPLED -->
+  <div class="style-emotion">
+    <div class="style-emotion-head">
+      <div class="style-emotion-title">Principled</div>
+      <div class="style-emotion-meta">— 5 styles · keyword 1</div>
+    </div>
+    <div class="style-grid">
+      <div class="style-card s-prin-1"><div class="style-card-label"><b>5.1</b> Constitutional / Civic Document</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">The Atlantic masthead · Lapham's · Foreign Affairs</div><div class="sigs">Cardo · Cream paper + navy + oxblood</div></div></div>
+      <div class="style-card s-prin-2"><div class="style-card-label"><b>5.2</b> Manifesto Modernism</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-tenorsans">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Adbusters · Verso Books · Fitzcarraldo</div><div class="sigs">Tenor Sans 700 · Off-white + saturated red</div></div></div>
+      <div class="style-card s-prin-3"><div class="style-card-label"><b>5.3</b> Bitcoin / Sound-Money Severity</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Saifedean Standard · Casa · Foundation Devices</div><div class="sigs">Cardo · Deep navy + paper + Bitcoin orange</div></div></div>
+      <div class="style-card s-prin-4"><div class="style-card-label"><b>5.4</b> Quaker / Plainspoken Ethic</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-sortsmillgoudy">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Shaker tradition · Vanguard heritage · Heath Ceramics</div><div class="sigs">Sorts Mill Goudy · Off-white + plain navy</div></div></div>
+      <div class="style-card s-prin-5"><div class="style-card-label"><b>5.5</b> Standards Body / Engineering Code</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-mono">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">IETF RFC · Bell Labs · Linear docs · Long Now</div><div class="sigs">JetBrains Mono · Paper white + slate</div></div></div>
+    </div>
+  </div>
+
+  <!-- PREMIUM -->
+  <div class="style-emotion">
+    <div class="style-emotion-head">
+      <div class="style-emotion-title">Premium</div>
+      <div class="style-emotion-meta">— 5 styles · keyword 2</div>
+    </div>
+    <div class="style-grid">
+      <div class="style-card s-prem-1"><div class="style-card-label"><b>6.1</b> Hermès / French Maison</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-playfair">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Hermès · Goyard · Berluti · Chanel heritage</div><div class="sigs">Playfair · Cream + Hermès orange</div></div></div>
+      <div class="style-card s-prem-2"><div class="style-card-label"><b>6.2</b> Quiet Luxury / Stealth Wealth</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cormorantinfant">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">The Row · Loro Piana · Auralee · Lemaire</div><div class="sigs">Cormorant Infant · Chalk + ink, no logo</div></div></div>
+      <div class="style-card s-prem-3"><div class="style-card-label"><b>6.3</b> Tech-Object Premium (Apple)</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-inter">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Apple · Leica · Teenage Engineering · Linear</div><div class="sigs">Inter · Pure white + spec-sheet hairlines</div></div></div>
+      <div class="style-card s-prem-4"><div class="style-card-label"><b>6.4</b> Vintage Patrician / Old Money</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-crimsonpro">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Drake's London · Holland &amp; Holland · Purdey</div><div class="sigs">Crimson Pro · Tobacco brown + cream</div></div></div>
+      <div class="style-card s-prem-5"><div class="style-card-label"><b>6.5</b> Niche Fragrance / Editorial Opacity</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-typewriter">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Aesop · Le Labo · Byredo · Diptyque</div><div class="sigs">Special Elite · Amber + apothecary</div></div></div>
+    </div>
+  </div>
+
+  <!-- KNOWLEDGEABLE -->
+  <div class="style-emotion">
+    <div class="style-emotion-head">
+      <div class="style-emotion-title">Knowledgeable</div>
+      <div class="style-emotion-meta">— 5 styles · keyword 3</div>
+    </div>
+    <div class="style-grid">
+      <div class="style-card s-know-1"><div class="style-card-label"><b>7.1</b> Academic Press / Scholarly</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Princeton UP · MIT Press · NYRB Classics</div><div class="sigs">Cardo · Cream paper + navy + maroon</div></div></div>
+      <div class="style-card s-know-2"><div class="style-card-label"><b>7.2</b> Swiss / International Style</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-tenorsans">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Vignelli NYC subway · IBM (Rand) · Documenta</div><div class="sigs">Tenor Sans · White + black + signal red</div></div></div>
+      <div class="style-card s-know-3"><div class="style-card-label"><b>7.3</b> Lab Notebook / Working Scientist</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-mono">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Anthropic research · DeepMind papers · Stripe Press</div><div class="sigs">JetBrains Mono · Graph paper + ink blue</div></div></div>
+      <div class="style-card s-know-4"><div class="style-card-label"><b>7.4</b> Field Guide / Naturalist Encyclopedia</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-cardo">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Peterson Field Guides · Audubon · DK Eyewitness</div><div class="sigs">Cardo · Olive cream + deep brown + rust</div></div></div>
+      <div class="style-card s-know-5"><div class="style-card-label"><b>7.5</b> Operator's Manual / Tech Doc</div><div class="style-card-visual"><div class="style-lockup"><div class="num f-mono">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div><div class="style-card-meta"><div class="examples">Stripe API docs · Linear docs · Haynes manuals</div><div class="sigs">JetBrains Mono · Paper white + amber accent</div></div></div>
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>2112 capital solutions llc · NJ</div>
+    <div>hello@2112capitalsolutions.com</div>
+    <div>v1.0 — locked 2026-04-29</div>
+  </div>
+</footer>
+
+<script>
+const sp = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  sp.style.width = pct + '%';
+}, { passive: true });
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal, .divider').forEach(el => revealObserver.observe(el));
+</script>
+
+</body>
+</html>

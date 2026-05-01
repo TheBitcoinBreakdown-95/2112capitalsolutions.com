@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2112 — Logo Arrangements · Apex Modernist (20)</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #000;
+  --bg-elev: #0a0a0a;
+  --bg-card: #111;
+  --line: rgba(255,255,255,0.08);
+  --line-strong: rgba(255,255,255,0.20);
+  --text: #f4f4f0;
+  --text-2: #908d85;
+  --text-3: #5a5752;
+  --signal: #e63030;
+  --signal-dim: rgba(230,48,48,0.18);
+  --font-body: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  padding: 60px 32px 100px;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg, transparent 0, transparent 3px, rgba(255,255,255,0.018) 3px, rgba(255,255,255,0.018) 4px);
+}
+.wrap { max-width: 1320px; margin: 0 auto; position: relative; z-index: 1; }
+header { margin-bottom: 56px; max-width: 760px; padding-bottom: 24px; border-bottom: 1px solid var(--signal); }
+header .label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.20em; color: var(--signal); text-transform: uppercase; margin-bottom: 16px; font-weight: 600; }
+header h1 { font-family: var(--font-body); font-weight: 700; font-size: 48px; letter-spacing: -0.03em; margin-bottom: 16px; line-height: 1.0; }
+header h1 em { font-style: normal; color: var(--signal); }
+header p { font-family: var(--font-mono); font-size: 13px; color: var(--text-2); line-height: 1.7; max-width: 620px; letter-spacing: 0.02em; text-transform: uppercase; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; }
+.card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  display: flex; flex-direction: column;
+}
+.card-label {
+  padding: 12px 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-card);
+  text-transform: uppercase;
+}
+.card-label b { color: var(--signal); font-weight: 700; margin-right: 8px; }
+.stage {
+  aspect-ratio: 1.5;
+  display: grid; place-items: center;
+  padding: 24px;
+  background: var(--bg);
+  position: relative; overflow: hidden;
+}
+.card-note {
+  padding: 12px 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+  border-top: 1px solid var(--line);
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════
+   LOCKUP STYLES — 20 Apex variations
+   ═══════════════════════════════════════════════ */
+.lockup { color: var(--text); text-align: center; }
+.lockup .num { font-family: var(--font-mono); font-weight: 700; font-size: 56px; line-height: 1; letter-spacing: 0.02em; }
+.lockup .sub { font-family: var(--font-mono); font-weight: 500; font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase; color: var(--text-2); }
+.lockup .rule { height: 1px; background: var(--signal); }
+.signal { color: var(--signal); }
+
+/* 01 — current direction translated to Apex: red rule between */
+.v1 .num { margin-bottom: 12px; }
+.v1 .rule { width: 75%; margin: 0 auto 12px; }
+
+/* 02 — Space Grotesk Heavy 2112 + red rule + mono caps */
+.v2 .num { font-family: var(--font-body); font-weight: 700; font-size: 64px; letter-spacing: -0.03em; margin-bottom: 12px; }
+.v2 .rule { width: 75%; margin: 0 auto 12px; }
+
+/* 03 — bracketed mono [2112] */
+.v3 .num { font-size: 52px; }
+.v3 .num::before { content: '['; color: var(--signal); margin-right: 4px; }
+.v3 .num::after { content: ']'; color: var(--signal); margin-left: 4px; }
+.v3 .num { margin-bottom: 14px; }
+
+/* 04 — comment style // 2112 */
+.v4 .num { font-size: 48px; text-align: left; }
+.v4 .num::before { content: '// '; color: var(--signal); }
+.v4 .sub { text-align: left; }
+.v4 { width: 280px; }
+
+/* 05 — digital clock 21:12 */
+.v5 .num { font-size: 64px; }
+.v5 .colon { color: var(--signal); padding: 0 4px; }
+.v5 .rule { width: 60%; margin: 12px auto; }
+
+/* 06 — filename style 2112_cap_sol */
+.v6 .num { font-size: 36px; font-weight: 700; }
+.v6 .num .sep { color: var(--signal); }
+.v6 .num .word { color: var(--text-2); font-size: 28px; }
+.v6 .sub { margin-top: 10px; }
+
+/* 07 — red square marker instead of rule */
+.v7 .num { margin-bottom: 12px; }
+.v7 .marker { display: inline-block; width: 8px; height: 8px; background: var(--signal); margin-bottom: 12px; }
+.v7 .sub { display: block; margin-top: 6px; }
+
+/* 08 — status bar with operating indicator */
+.v8 .status-bar { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 14px; font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.20em; color: var(--signal); text-transform: uppercase; }
+.v8 .status-bar::before { content: '■'; color: var(--signal); font-size: 8px; }
+.v8 .num { font-size: 56px; margin-bottom: 12px; }
+.v8 .rule { width: 60%; margin: 0 auto 12px; }
+
+/* 09 — classification banner above */
+.v9 .classify { background: var(--signal); color: #fff; font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.20em; padding: 4px 12px; display: inline-block; margin-bottom: 16px; text-transform: uppercase; }
+.v9 .num { font-size: 56px; margin-bottom: 10px; }
+
+/* 10 — heavy contrast: bold 2112 + thin caps */
+.v10 .num { font-family: var(--font-body); font-weight: 700; font-size: 84px; letter-spacing: -0.04em; line-height: 0.85; margin-bottom: 14px; }
+.v10 .sub { font-weight: 400; opacity: 0.8; }
+
+/* 11 — hyphenated tactical 2112-CAP-SOL */
+.v11 .num { font-size: 36px; font-weight: 700; }
+.v11 .num .sep { color: var(--signal); padding: 0 2px; }
+.v11 .num .word { color: var(--text-2); font-size: 28px; }
+.v11 .sub { margin-top: 10px; opacity: 0.6; }
+
+/* 12 — red asterisk above */
+.v12 .star { color: var(--signal); font-size: 16px; display: block; margin-bottom: 14px; }
+.v12 .num { font-size: 56px; margin-bottom: 10px; }
+.v12 .rule { width: 60%; margin: 0 auto 12px; }
+
+/* 13 — wrapped in tactical brackets //[2112]// */
+.v13 .num { font-size: 52px; }
+.v13 .num::before { content: '//['; color: var(--signal); margin-right: 4px; font-size: 36px; }
+.v13 .num::after { content: ']//'; color: var(--signal); margin-left: 4px; font-size: 36px; }
+.v13 .num { margin-bottom: 14px; }
+
+/* 14 — vertical red bar left of stack */
+.v14 { display: grid; grid-template-columns: 4px 1fr; gap: 18px; align-items: center; }
+.v14 .bar { width: 4px; height: 80px; background: var(--signal); }
+.v14 .stack { text-align: left; }
+.v14 .stack .num { font-size: 56px; line-height: 1; }
+.v14 .stack .sub { text-align: left; margin-top: 8px; }
+
+/* 15 — serial number style SN: 2112 */
+.v15 .sn { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.20em; color: var(--text-3); text-transform: uppercase; margin-bottom: 8px; }
+.v15 .sn b { color: var(--signal); }
+.v15 .num { font-size: 56px; margin-bottom: 14px; }
+.v15 .rule { width: 60%; margin: 0 auto 12px; }
+
+/* 16 — Space Grotesk Heavy + tracked mono caps, no rule */
+.v16 .num { font-family: var(--font-body); font-weight: 700; font-size: 76px; letter-spacing: -0.04em; margin-bottom: 18px; line-height: 0.9; }
+.v16 .sub { letter-spacing: 0.32em; }
+
+/* 17 — index prefix Ø1.001 / 2112 */
+.v17 .index { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; color: var(--signal); text-transform: uppercase; margin-bottom: 10px; }
+.v17 .num { font-size: 56px; margin-bottom: 12px; }
+.v17 .rule { width: 60%; margin: 0 auto 12px; }
+
+/* 18 — rectangle frame with signal red border */
+.v18 .frame { border: 1px solid var(--signal); padding: 18px 32px; display: inline-block; margin-bottom: 14px; }
+.v18 .frame .num { font-size: 48px; }
+
+/* 19 — redaction bar through "CAP" — classified feel */
+.v19 .num { font-size: 56px; margin-bottom: 14px; }
+.v19 .rule { width: 60%; margin: 0 auto 12px; }
+.v19 .sub .redact { background: var(--signal); color: var(--signal); user-select: none; padding: 0 4px; }
+
+/* 20 — extreme weight contrast + signal red underline extending */
+.v20 .num { font-family: var(--font-body); font-weight: 700; font-size: 72px; letter-spacing: -0.04em; line-height: 0.9; margin-bottom: 8px; position: relative; display: inline-block; }
+.v20 .num::after { content: ''; display: block; width: 130%; height: 2px; background: var(--signal); position: absolute; bottom: -8px; left: -15%; }
+.v20 .sub { margin-top: 16px; font-weight: 400; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="label">— LOGO ARRANGEMENTS · APEX MODERNIST · v.A1</div>
+  <h1>Twenty arrangements. <em>Apex register.</em></h1>
+  <p>Same composition concept (2112 + CAPITAL SOLUTIONS) — re-rendered in Space Grotesk Bold + JetBrains Mono on black, with signal red as the only chromatic accent. Hairline rule (V01) is the locked baseline; variations explore tactical, classified, and operational treatments.</p>
+</header>
+
+<div class="grid">
+
+<!-- 01 -->
+<div class="card">
+  <div class="card-label"><b>01</b> Mono · red hairline rule · BASELINE</div>
+  <div class="stage"><div class="lockup v1"><div class="num">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Locked direction translated to Apex. Red rule replaces emerald.</div>
+</div>
+
+<!-- 02 -->
+<div class="card">
+  <div class="card-label"><b>02</b> Heavy sans · red rule · mono caps</div>
+  <div class="stage"><div class="lockup v2"><div class="num">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Space Grotesk Bold for 2112 instead of mono. Editorial-meets-tactical.</div>
+</div>
+
+<!-- 03 -->
+<div class="card">
+  <div class="card-label"><b>03</b> Bracketed [2112]</div>
+  <div class="stage"><div class="lockup v3"><div class="num">2112</div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Tactical brackets. Reads as system identifier.</div>
+</div>
+
+<!-- 04 -->
+<div class="card">
+  <div class="card-label"><b>04</b> Comment-style // 2112</div>
+  <div class="stage"><div class="lockup v4"><div class="num">2112</div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Code-comment cue. Developer-tool register.</div>
+</div>
+
+<!-- 05 -->
+<div class="card">
+  <div class="card-label"><b>05</b> Digital readout · 21:12</div>
+  <div class="stage"><div class="lockup v5"><div class="num">21<span class="colon">:</span>12</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Time/timestamp cue. Year as moment.</div>
+</div>
+
+<!-- 06 -->
+<div class="card">
+  <div class="card-label"><b>06</b> Filename · 2112_cap_sol</div>
+  <div class="stage"><div class="lockup v6"><div class="num">2112<span class="sep">_</span><span class="word">cap_sol</span></div><div class="sub">LLC · NJ</div></div></div>
+  <div class="card-note">Snake_case filename. Heavy ops/devops register.</div>
+</div>
+
+<!-- 07 -->
+<div class="card">
+  <div class="card-label"><b>07</b> Red square marker · no rule</div>
+  <div class="stage"><div class="lockup v7"><div class="num">2112</div><div class="marker"></div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Red square block instead of rule. Classification cue.</div>
+</div>
+
+<!-- 08 -->
+<div class="card">
+  <div class="card-label"><b>08</b> Status bar · operating indicator</div>
+  <div class="stage"><div class="lockup v8"><div class="status-bar">OPERATING</div><div class="num">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Tactical readout above the wordmark.</div>
+</div>
+
+<!-- 09 -->
+<div class="card">
+  <div class="card-label"><b>09</b> Classification banner</div>
+  <div class="stage"><div class="lockup v9"><div class="classify">CLASS_A</div><div class="num">2112</div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Solid red banner above number — military classified register.</div>
+</div>
+
+<!-- 10 -->
+<div class="card">
+  <div class="card-label"><b>10</b> Heavy contrast · big sans</div>
+  <div class="stage"><div class="lockup v10"><div class="num">2112</div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Massive Space Grotesk Bold + thin tracked caps. Brutalist.</div>
+</div>
+
+<!-- 11 -->
+<div class="card">
+  <div class="card-label"><b>11</b> Hyphenated · 2112-cap-sol</div>
+  <div class="stage"><div class="lockup v11"><div class="num">2112<span class="sep">-</span><span class="word">cap-sol</span></div><div class="sub">LLC</div></div></div>
+  <div class="card-note">Kebab-case identifier. URL/slug-coded.</div>
+</div>
+
+<!-- 12 -->
+<div class="card">
+  <div class="card-label"><b>12</b> Red asterisk above</div>
+  <div class="stage"><div class="lockup v12"><div class="star">*</div><div class="num">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Reference-mark cue. Footnoted firm.</div>
+</div>
+
+<!-- 13 -->
+<div class="card">
+  <div class="card-label"><b>13</b> Wrapped tactical //[2112]//</div>
+  <div class="stage"><div class="lockup v13"><div class="num">2112</div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Comment + brackets. Maximum tactical syntax.</div>
+</div>
+
+<!-- 14 -->
+<div class="card">
+  <div class="card-label"><b>14</b> Vertical red bar · left-aligned stack</div>
+  <div class="stage"><div class="lockup v14"><div class="bar"></div><div class="stack"><div class="num">2112</div><div class="sub">Capital Solutions</div></div></div></div>
+  <div class="card-note">Industrial signage / fire-door cue. Side-anchored.</div>
+</div>
+
+<!-- 15 -->
+<div class="card">
+  <div class="card-label"><b>15</b> Serial number · SN: 2112</div>
+  <div class="stage"><div class="lockup v15"><div class="sn"><b>SN</b> · 2112-LLC-NJ</div><div class="num">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Serial-number prefix. Asset-tracking register.</div>
+</div>
+
+<!-- 16 -->
+<div class="card">
+  <div class="card-label"><b>16</b> Big sans + extreme caps tracking · no rule</div>
+  <div class="stage"><div class="lockup v16"><div class="num">2112</div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Maximum contrast. Heaviest 2112 + most-tracked caps. No rule.</div>
+</div>
+
+<!-- 17 -->
+<div class="card">
+  <div class="card-label"><b>17</b> Index prefix · Ø1.001 / 2112</div>
+  <div class="stage"><div class="lockup v17"><div class="index">Ø1.001 / 2112</div><div class="num">2112</div><div class="rule"></div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Catalog-numbered. Manuscript / archive register.</div>
+</div>
+
+<!-- 18 -->
+<div class="card">
+  <div class="card-label"><b>18</b> Rectangle · red frame around 2112</div>
+  <div class="stage"><div class="lockup v18"><div class="frame"><div class="num">2112</div></div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Red border framing the wordmark. Industrial label.</div>
+</div>
+
+<!-- 19 -->
+<div class="card">
+  <div class="card-label"><b>19</b> Redacted block · classified text</div>
+  <div class="stage"><div class="lockup v19"><div class="num">2112</div><div class="rule"></div><div class="sub"><span class="redact">CLASSIFIED</span> · Capital Solutions</div></div></div>
+  <div class="card-note">Redaction bar. Cypherpunk / classified-document cue.</div>
+</div>
+
+<!-- 20 -->
+<div class="card">
+  <div class="card-label"><b>20</b> Underline extending beyond mark</div>
+  <div class="stage"><div class="lockup v20"><div class="num">2112</div><div class="sub">Capital Solutions</div></div></div>
+  <div class="card-note">Red underline extends past the wordmark — architectural / blueprint cue.</div>
+</div>
+
+</div>
+
+<footer style="margin-top: 80px; padding-top: 24px; border-top: 1px solid var(--line); font-family: var(--font-mono); font-size: 11px; color: var(--text-3); letter-spacing: 0.04em; text-transform: uppercase;">
+  20 arrangements · Apex Modernist · Space Grotesk + JetBrains Mono · Black/White/Red · v.A1
+</footer>
+
+</div>
+</body>
+</html>

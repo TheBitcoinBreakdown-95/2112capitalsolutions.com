@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>2112 — Logo specification & font A/B</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500&family=Libre+Bodoni:ital,wght@0,400;0,500;0,600&family=Playfair+Display:wght@400;500&family=Cormorant+Garamond:wght@400;500&family=GFS+Didot&family=Old+Standard+TT:wght@400;700&family=Italiana&family=Marcellus&family=Abril+Fatface&family=Inter:wght@100;200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* extracted from the AI gen */
+    --emerald-rendered: #08472b;
+    --emerald-saturated: #084d2e;
+    --emerald-tuned: #0a5a36;
+    --emerald-vibrant: #0c6a3f;
+    --bg-obsidian: #070707;
+    --bg-card: #0c0c0c;
+    --line: #1a1a1a;
+    --text: #d8d6d0;
+    --text-2: #807d75;
+    --text-3: #4f4d47;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg-obsidian); color: var(--text); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 60px 32px 80px; }
+  header { margin-bottom: 56px; max-width: 720px; }
+  header .label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: var(--text-3); text-transform: uppercase; margin-bottom: 16px; }
+  header h1 { font-family: 'Bodoni Moda', serif; font-size: 44px; font-weight: 400; letter-spacing: -0.01em; margin-bottom: 16px; line-height: 1.05; }
+  header p { color: var(--text-2); font-size: 15.5px; line-height: 1.55; }
+
+  .section { margin-bottom: 80px; }
+  .section h2 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: var(--text-3); text-transform: uppercase; margin-bottom: 24px; }
+
+  /* PALETTE TOKENS */
+  .palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+  .swatch { background: var(--bg-card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .swatch-color { height: 80px; width: 100%; }
+  .swatch-meta { padding: 14px 16px; }
+  .swatch-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .swatch-hex { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--text-2); letter-spacing: 0.02em; }
+
+  /* AI REFERENCE */
+  .reference { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+  .reference-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .reference-card .title { padding: 16px 20px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: var(--text-3); text-transform: uppercase; border-bottom: 1px solid var(--line); }
+  .reference-card .body { padding: 0; aspect-ratio: 1; display: grid; place-items: center; background: var(--bg-obsidian); position: relative; overflow: hidden; }
+  .reference-card .body img { width: 100%; height: 100%; object-fit: contain; }
+  .reference-card .body::after {
+    /* recreate the stone-grain texture overlay for parity */
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+      radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 3px 3px, 5px 5px;
+    background-position: 0 0, 1px 1px;
+    opacity: 1;
+  }
+
+  /* FONT A/B */
+  .font-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .font-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; transition: border-color .2s; }
+  .font-card:hover { border-color: var(--emerald-tuned); }
+  .font-card .head { padding: 14px 20px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .font-card .head .name { font-size: 14px; font-weight: 500; color: var(--text); }
+  .font-card .head .meta { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--text-3); letter-spacing: 0.06em; text-transform: uppercase; }
+  .font-card .stage {
+    aspect-ratio: 1.2;
+    background: var(--bg-obsidian);
+    display: grid; place-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .font-card .stage::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+      radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 3px 3px, 5px 5px;
+  }
+  .lockup { position: relative; z-index: 1; text-align: center; color: var(--emerald-saturated); }
+  .lockup .num {
+    font-size: 110px;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+    color: inherit;
+  }
+  .lockup .rule {
+    width: 75%;
+    height: 1px;
+    background: currentColor;
+    margin: 0 auto 14px;
+    opacity: 0.85;
+  }
+  .lockup .sub {
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    color: inherit;
+    text-transform: uppercase;
+  }
+
+  /* font assignments per card — applying ChatGPT recipe: 0.12em tracking on numerals, 0.27em on caps, caps at ~14% of numeral height */
+  .font-libre-bodoni .num { font-family: 'Libre Bodoni', serif; font-weight: 400; letter-spacing: 0.12em; }
+  .font-gfs-didot .num { font-family: 'GFS Didot', serif; font-weight: 400; letter-spacing: 0.12em; }
+  .font-old-standard .num { font-family: 'Old Standard TT', serif; font-weight: 400; letter-spacing: 0.12em; }
+  .font-bodoni .num { font-family: 'Bodoni Moda', serif; font-weight: 400; font-variation-settings: 'opsz' 96; letter-spacing: 0.12em; }
+  .font-italiana .num { font-family: 'Italiana', serif; font-weight: 400; letter-spacing: 0.12em; }
+  .font-playfair .num { font-family: 'Playfair Display', serif; font-weight: 400; letter-spacing: 0.12em; }
+  .font-abril .num { font-family: 'Abril Fatface', serif; font-weight: 400; font-size: 88px; letter-spacing: 0.08em; }
+  .font-marcellus .num { font-family: 'Marcellus', serif; font-weight: 400; letter-spacing: 0.12em; }
+  .font-cormorant .num { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: 0.12em; }
+  /* sub-line — applying ChatGPT recipe: 0.27em tracking, ~14% of numeral height */
+  .lockup .sub { letter-spacing: 0.27em; font-size: 15px; }
+
+  /* COLOR A/B */
+  .color-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .color-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    aspect-ratio: 1;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    overflow: hidden;
+  }
+  .color-card .stage {
+    background: var(--bg-obsidian);
+    display: grid; place-items: center;
+    font-family: 'Bodoni Moda', serif;
+    font-size: 56px;
+    font-weight: 400;
+    font-variation-settings: 'opsz' 96;
+    letter-spacing: 0.04em;
+    position: relative;
+  }
+  .color-card .stage::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+      radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 3px 3px, 5px 5px;
+  }
+  .color-card .stage span { position: relative; z-index: 1; }
+  .color-card .label { padding: 12px 14px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.04em; color: var(--text-2); border-top: 1px solid var(--line); }
+  .color-card .label b { color: var(--text); font-weight: 500; }
+
+  .notes {
+    margin-top: 20px;
+    padding: 18px 22px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 14px; line-height: 1.55; color: var(--text-2);
+  }
+  .notes b { color: var(--text); font-weight: 500; }
+  code { font-family: 'JetBrains Mono', monospace; background: var(--bg-obsidian); padding: 2px 6px; border-radius: 3px; font-size: 12.5px; color: var(--text); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="label">2112 Capital Solutions · Brand spec — locked direction</div>
+  <h1>Locking the typographic plaque.</h1>
+  <p>The AI image is the reference target. This page A/Bs real fonts and tuned color values against it so we can commit to exact tokens and reproduce the logo cleanly.</p>
+</header>
+
+<!-- AI REFERENCE -->
+<section class="section">
+  <h2>— Reference: AI-generated logo (the target)</h2>
+  <div class="reference">
+    <div class="reference-card">
+      <div class="title">AI-generated · gpt-image-1 · the locked direction</div>
+      <div class="body">
+        <img src="../Inspiration-images/f2904f8e-7355-4f29-9bf3-38a11189fa7a.png" alt="AI typographic logo">
+      </div>
+    </div>
+    <div class="reference-card">
+      <div class="title">Best free-font reproduction (Libre Bodoni)</div>
+      <div class="body">
+        <div class="lockup font-libre-bodoni" style="color: var(--emerald-saturated);">
+          <div class="num">2112</div>
+          <div class="rule"></div>
+          <div class="sub">Capital Solutions</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <b>Updated read on the font (correcting myself):</b> the AI image's "2112" isn't pure Didot — it has the long elegant curves more characteristic of <b>Canela</b> (Commercial Type) or <b>Tiempos Headline</b> (Klim). Both are paid. The closest free approximation is <code>Libre Bodoni</code> — softer than GFS Didot, closer to Canela's editorial luxury register. The reproduction now uses Libre Bodoni at <code>0.12em</code> tracking with the secondary line at <code>0.27em</code> tracking and ~14% of the numeral height (per ChatGPT's recipe). Compare directly above.<br><br>
+    <b>Paid escalation path</b> (in order of recommendation):<br>
+    • <code>Canela Light</code> — Commercial Type, ~$200–300/weight. Top match for the AI's mood.<br>
+    • <code>Tiempos Headline Light</code> — Klim, ~$200/weight. Editorial luxury, slightly more institutional.<br>
+    • <code>Lyon Display Light</code> — Commercial Type, ~$300+. Private-bank annual report energy.<br>
+    • <code>Noe Display Light</code> — Schick Toikka, ~$80. Sharper, more high-fashion.<br>
+    • <code>Didot LT Std</code> — Adobe Fonts. Included in Adobe CC subscription if you have it.
+  </div>
+</section>
+
+<!-- PALETTE TOKENS -->
+<section class="section">
+  <h2>— Color tokens (extracted from the AI image)</h2>
+  <div class="palette-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#084d2e"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Emerald · saturated core</div>
+        <div class="swatch-hex">#084d2e · rgb(8,77,46)</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#08472b"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Emerald · rendered (AI)</div>
+        <div class="swatch-hex">#08472b · rgb(8,71,43)</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#0a5a36"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Emerald · tuned (recommend)</div>
+        <div class="swatch-hex">#0a5a36 · rgb(10,90,54)</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#0c6a3f"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Emerald · vibrant alt</div>
+        <div class="swatch-hex">#0c6a3f · rgb(12,106,63)</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#070707; border-bottom:1px solid #1a1a1a;"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Obsidian · primary surface</div>
+        <div class="swatch-hex">#070707 · rgb(7,7,7)</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#0c0c0c; border-bottom:1px solid #1a1a1a;"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Obsidian · card surface</div>
+        <div class="swatch-hex">#0c0c0c · rgb(12,12,12)</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#1a1a1a"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Line · structural</div>
+        <div class="swatch-hex">#1a1a1a · rgb(26,26,26)</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#d8d6d0; border:1px solid #1a1a1a;"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Type · cool greige (TBD)</div>
+        <div class="swatch-hex">#d8d6d0 — pending S1/S2/S3</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR A/B -->
+<section class="section">
+  <h2>— Color A/B: which emerald is the brand emerald?</h2>
+  <div class="color-grid">
+    <div class="color-card">
+      <div class="stage"><span style="color:#08472b">2112</span></div>
+      <div class="label"><b>#08472b</b> · rendered (AI)</div>
+    </div>
+    <div class="color-card">
+      <div class="stage"><span style="color:#084d2e">2112</span></div>
+      <div class="label"><b>#084d2e</b> · saturated core</div>
+    </div>
+    <div class="color-card">
+      <div class="stage"><span style="color:#0a5a36">2112</span></div>
+      <div class="label"><b>#0a5a36</b> · tuned (recommend)</div>
+    </div>
+    <div class="color-card">
+      <div class="stage"><span style="color:#0c6a3f">2112</span></div>
+      <div class="label"><b>#0c6a3f</b> · vibrant alt</div>
+    </div>
+  </div>
+  <div class="notes">
+    <b>The trade-off:</b> #08472b matches the AI gen exactly but reads almost-black at small sizes (favicon, body links). #0a5a36 is my recommendation — visually identical at large sizes, more legible at small ones. #0c6a3f is too bright; it loses the polished-stone register.
+  </div>
+</section>
+
+<!-- FONT A/B -->
+<section class="section">
+  <h2>— Font A/B: which display serif is the brand serif?</h2>
+  <div class="font-grid">
+
+    <div class="font-card" style="border-color: var(--emerald-tuned);">
+      <div class="head">
+        <span class="name">Libre Bodoni ★ best free match</span>
+        <span class="meta">free · Canela-adjacent</span>
+      </div>
+      <div class="stage">
+        <div class="lockup font-libre-bodoni">
+          <div class="num">2112</div>
+          <div class="rule"></div>
+          <div class="sub">Capital Solutions</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="font-card">
+      <div class="head">
+        <span class="name">GFS Didot</span>
+        <span class="meta">free · sharper Didot</span>
+      </div>
+      <div class="stage">
+        <div class="lockup font-gfs-didot">
+          <div class="num">2112</div>
+          <div class="rule"></div>
+          <div class="sub">Capital Solutions</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="font-card">
+      <div class="head">
+        <span class="name">Old Standard TT</span>
+        <span class="meta">free · Didone family</span>
+      </div>
+      <div class="stage">
+        <div class="lockup font-old-standard">
+          <div class="num">2112</div>
+          <div class="rule"></div>
+          <div class="sub">Capital Solutions</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="font-card">
+      <div class="head">
+        <span class="name">Italiana</span>
+        <span class="meta">free · Didone display</span>
+      </div>
+      <div class="stage">
+        <div class="lockup font-italiana">
+          <div class="num">2112</div>
+          <div class="rule"></div>
+          <div class="sub">Capital Solutions</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="font-card">
+      <div class="head">
+        <span class="name">Bodoni Moda</span>
+        <span class="meta">opsz 96 · free · Google Fonts</span>
+      </div>
+      <div class="stage">
+        <div class="lockup font-bodoni">
+          <div class="num">2112</div>
+          <div class="rule"></div>
+          <div class="sub">Capital Solutions</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="font-card">
+      <div class="head">
+        <span class="name">Abril Fatface</span>
+        <span class="meta">free · Didone heavy display</span>
+      </div>
+      <div class="stage">
+        <div class="lockup font-abril">
+          <div class="num">2112</div>
+          <div class="rule"></div>
+          <div class="sub">Capital Solutions</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="font-card">
+      <div class="head">
+        <span class="name">Playfair Display</span>
+        <span class="meta">free · transitional-Didone</span>
+      </div>
+      <div class="stage">
+        <div class="lockup font-playfair">
+          <div class="num">2112</div>
+          <div class="rule"></div>
+          <div class="sub">Capital Solutions</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="font-card">
+      <div class="head">
+        <span class="name">Marcellus</span>
+        <span class="meta">free · classical Roman</span>
+      </div>
+      <div class="stage">
+        <div class="lockup font-marcellus">
+          <div class="num">2112</div>
+          <div class="rule"></div>
+          <div class="sub">Capital Solutions</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="font-card">
+      <div class="head">
+        <span class="name">Cormorant Garamond</span>
+        <span class="meta">free · classical, less Didone</span>
+      </div>
+      <div class="stage">
+        <div class="lockup font-cormorant">
+          <div class="num">2112</div>
+          <div class="rule"></div>
+          <div class="sub">Capital Solutions</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="notes">
+    <b>Recipe applied (per ChatGPT's analysis):</b> all numerals at <code>0.12em</code> tracking, secondary line at <code>0.27em</code> tracking, secondary line sized at ~14% of numeral height. Same composition across all eight cards so the only variable is the font.<br><br>
+
+    <b>Updated rankings (correcting two earlier misses):</b><br><br>
+
+    <b>★ Libre Bodoni</b> — best free match to the AI image's mood. Has the long elegant curves and high contrast that Canela has, without Bodoni Moda's tighter apertures or GFS Didot's sharper rationalist serifs. <b>This is the free pick.</b><br>
+    <b>GFS Didot</b> — actual Didot port. Sharper, more rationalist than the AI gen — defensible if you want a more institutional read.<br>
+    <b>Old Standard TT</b> — Didone-family, slightly heavier proportions.<br>
+    <b>Italiana</b> — refined display Didone, all-caps only.<br>
+    <b>Bodoni Moda</b> — Bodoni cut, tighter apertures than the AI gen.<br>
+    <b>Abril Fatface, Playfair, Marcellus, Cormorant</b> — comparison endpoints to show why family matters. Skip.<br><br>
+
+    <b>Paid escalation</b> (worth considering — the AI's character is genuinely Canela-esque):<br>
+    • <code>Canela Light</code> — Commercial Type, ~$200–300/weight. Closest match.<br>
+    • <code>Tiempos Headline Light</code> — Klim, ~$200/weight. Editorial luxury.<br>
+    • <code>Lyon Display Light</code> — Commercial Type, ~$300+. Private-bank annual report.<br>
+    • <code>Noe Display Light</code> — Schick Toikka, ~$80/weight. Sharper, more fashion-coded.<br>
+    • <code>Didot LT Std</code> — Free with Adobe CC subscription, otherwise ~$50-100.<br><br>
+
+    <b>The honest call:</b> Libre Bodoni gets us 80% of the way for $0. Canela Light gets us to 100% for ~$200. Both are valid. If 2112 is a Year-1 firm with a small client roll, ship with Libre Bodoni and budget Canela Light when client revenue clears the cost. If the brand is going to live for decades and the budget can absorb $200 today, just buy Canela Light now and skip the inevitable upgrade.
+  </div>
+</section>
+
+<!-- WHAT'S LEFT -->
+<section class="section">
+  <h2>— Decisions still open</h2>
+  <div class="notes">
+    <p style="margin-bottom: 14px;"><b>1. Lock primary emerald.</b> Pick from the four color cards above. My recommendation: <code>#0a5a36</code> (tuned).</p>
+    <p style="margin-bottom: 14px;"><b>2. Lock display serif.</b> Pick from the six font cards above. My recommendation: <code>Bodoni Moda</code> (opsz 96).</p>
+    <p style="margin-bottom: 14px;"><b>3. S1 / S2 / S3.</b> Sibling, cousin, or stranger to TBB? This determines the third tone (warm cream sibling, cool greige cousin, or other stranger).</p>
+    <p><b>4. Once 1–3 are locked,</b> I'll produce the canonical SVG logo file, lock all tokens into a CSS file (<code>tokens.css</code>), and start the brand media kit HTML — palette, type scale, button states, form components, card variants — equivalent to TBB's <code>design-complete.html</code>.</p>
+  </div>
+</section>
+
+</div>
+</body>
+</html>

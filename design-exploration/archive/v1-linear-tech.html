@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>V1 — Linear Tech · 2112</title>
+<style>
+  :root {
+    --bg: #0a0b0e;
+    --bg-2: #111318;
+    --line: #1c1f26;
+    --text: #e6e8ec;
+    --text-2: #9aa0ae;
+    --text-3: #6b7080;
+    --accent: #5e8cff;
+    --accent-2: #8aa9ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  body { background: radial-gradient(1200px 600px at 80% -10%, rgba(94,140,255,0.08), transparent 60%), var(--bg); min-height: 100vh; }
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .logo { font-weight: 700; font-size: 17px; letter-spacing: -0.01em; }
+  .logo span { color: var(--accent); }
+  nav ul { display: flex; gap: 28px; list-style: none; }
+  nav a { color: var(--text-2); text-decoration: none; font-size: 14px; transition: color .15s; }
+  nav a:hover { color: var(--text); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 8px; background: var(--accent); color: #fff; font-weight: 500; font-size: 14px; text-decoration: none; transition: background .15s, transform .15s; }
+  .btn:hover { background: var(--accent-2); }
+  .btn-ghost { background: transparent; border: 1px solid var(--line); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--accent); }
+  .hero { padding: 120px 0 100px; text-align: left; max-width: 760px; }
+  .eyebrow { display: inline-block; font-size: 12px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 24px; padding: 6px 12px; border: 1px solid rgba(94,140,255,0.25); border-radius: 100px; background: rgba(94,140,255,0.06); }
+  h1 { font-size: 72px; line-height: 1.02; letter-spacing: -0.03em; font-weight: 600; margin-bottom: 24px; }
+  h1 em { font-style: normal; background: linear-gradient(135deg, var(--accent) 0%, #c9b8ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { font-size: 19px; line-height: 1.55; color: var(--text-2); margin-bottom: 36px; max-width: 600px; }
+  .cta-row { display: flex; gap: 12px; }
+  .services { padding: 80px 0; border-top: 1px solid var(--line); }
+  .section-label { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-3); margin-bottom: 32px; }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--text-3); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px; padding: 32px 28px; transition: border-color .2s, transform .2s; }
+  .card:hover { border-color: rgba(94,140,255,0.4); transform: translateY(-2px); }
+  .card .num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-3); margin-bottom: 20px; }
+  .card h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 12px; }
+  .card p { color: var(--text-2); font-size: 15px; line-height: 1.55; margin-bottom: 24px; }
+  .card .price { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent); border-top: 1px solid var(--line); padding-top: 16px; }
+  .about-strip { padding: 100px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: start; }
+  .about-strip .label { font-size: 13px; color: var(--text-3); letter-spacing: 0.08em; text-transform: uppercase; }
+  .about-strip .body { font-size: 24px; line-height: 1.45; color: var(--text); letter-spacing: -0.01em; }
+  .about-strip .body span { color: var(--text-3); }
+  .closer { padding: 120px 0 60px; border-top: 1px solid var(--line); text-align: center; }
+  .closer h2 { font-size: 48px; letter-spacing: -0.02em; font-weight: 600; margin-bottom: 16px; }
+  .closer p { color: var(--text-2); margin-bottom: 32px; font-size: 17px; }
+  footer { padding: 32px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; color: var(--text-3); font-size: 13px; }
+  @media (max-width: 800px) {
+    h1 { font-size: 48px; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .about-strip { grid-template-columns: 1fr; gap: 16px; }
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <nav>
+    <div class="logo">2112<span>.</span></div>
+    <ul>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Guides</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <a class="btn" href="#">Book a call</a>
+  </nav>
+
+  <section class="hero">
+    <span class="eyebrow">Bitcoin integration consulting</span>
+    <h1>Build your <em>lifeboat.</em></h1>
+    <p>Hands-on Bitcoin onboarding, self-custody, and node setup. For individuals and businesses ready to actually own their money.</p>
+    <div class="cta-row">
+      <a class="btn" href="#">Book a free consultation</a>
+      <a class="btn btn-ghost" href="#">Read the guides →</a>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="section-label">Services</div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Self-custody setup</h3>
+        <p>Get your bitcoin off exchanges and into a hardware wallet you control. One-on-one, in person or remote.</p>
+        <div class="price">From $100</div>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>Node &amp; Lightning</h3>
+        <p>Run your own Bitcoin node and Lightning channels. Setup, hardening, ongoing maintenance.</p>
+        <div class="price">From $500</div>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Strategy consulting</h3>
+        <p>One-on-one or business engagements. Treasury, integration, education for teams.</p>
+        <div class="price">$100/hr</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-strip">
+    <div class="label">About 2112</div>
+    <div class="body">
+      Founded 2023 in New Jersey. We onboard people to Bitcoin <span>— for the inevitable collapse of fiat, and for everyone else who needs a way out.</span>
+    </div>
+  </section>
+
+  <section class="closer">
+    <h2>Ready to take custody?</h2>
+    <p>Book a free 30-minute consultation. No pitch. Just a real conversation about where you are.</p>
+    <a class="btn" href="#">Schedule a call</a>
+  </section>
+
+  <footer>
+    <div>2112 Capital Solutions LLC · NJ</div>
+    <div>hello@2112capitalsolutions.com</div>
+  </footer>
+</div>
+</body>
+</html>

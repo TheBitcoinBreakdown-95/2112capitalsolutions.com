@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2112 — V14 logo at every scale</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #000;
+  --bg-elev: #0a0a0a;
+  --bg-card: #111;
+  --line: rgba(255,255,255,0.08);
+  --text: #f4f4f0;
+  --text-2: #908d85;
+  --text-3: #5a5752;
+  --signal: #e63030;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  padding: 60px 32px 100px;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0, transparent 3px, rgba(255,255,255,0.018) 3px, rgba(255,255,255,0.018) 4px);
+}
+.wrap { max-width: 1200px; margin: 0 auto; position: relative; }
+
+header { margin-bottom: 56px; max-width: 760px; padding-bottom: 24px; border-bottom: 1px solid var(--signal); }
+header .label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.20em; color: var(--signal); text-transform: uppercase; margin-bottom: 16px; font-weight: 600; }
+header h1 { font-family: var(--font-body); font-weight: 700; font-size: 44px; letter-spacing: -0.03em; margin-bottom: 16px; line-height: 1.0; }
+header p { font-family: var(--font-mono); font-size: 12px; color: var(--text-2); line-height: 1.7; max-width: 620px; letter-spacing: 0.02em; text-transform: uppercase; }
+
+/* SCALE TEST CARDS */
+.test {
+  margin-bottom: 16px;
+  border: 1px solid var(--line);
+  background: var(--bg-elev);
+  display: grid;
+  grid-template-columns: 220px 1fr 200px;
+  align-items: center;
+}
+.test-label {
+  padding: 20px 24px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  color: var(--signal);
+  text-transform: uppercase;
+  border-right: 1px solid var(--line);
+}
+.test-label .meta {
+  display: block;
+  margin-top: 6px;
+  color: var(--text-3);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+.test-stage {
+  padding: 32px;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  position: relative;
+}
+.test-note {
+  padding: 20px 24px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-3);
+  border-left: 1px solid var(--line);
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+.test-note b { color: var(--text-2); font-weight: 700; display: block; margin-bottom: 4px; font-size: 9.5px; letter-spacing: 0.18em; }
+
+/* ═══════════════════════════════════════════════
+   V14 LOCKUP — base styles, scaled per instance
+   bar height matches numeral cap height
+   ═══════════════════════════════════════════════ */
+.lockup-v14 {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  gap: var(--gap, 12px);
+  align-items: center;
+}
+.lockup-v14 .bar {
+  width: var(--bar-w, 4px);
+  height: var(--bar-h, 80px);
+  background: var(--signal);
+}
+.lockup-v14 .stack { display: flex; flex-direction: column; align-items: flex-start; }
+.lockup-v14 .num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--num-size, 64px);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+.lockup-v14 .sub {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--sub-size, 11px);
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-top: var(--sub-gap, 8px);
+}
+
+/* ═══════════════════════════════════════════════
+   PER-SCALE SIZING
+   ═══════════════════════════════════════════════ */
+.s-hero      { --bar-w: 6px; --bar-h: 110px; --num-size: 96px; --sub-size: 14px; --gap: 18px; --sub-gap: 12px; }
+.s-section   { --bar-w: 5px; --bar-h: 76px;  --num-size: 64px; --sub-size: 11px; --gap: 14px; --sub-gap: 10px; }
+.s-medium    { --bar-w: 4px; --bar-h: 50px;  --num-size: 42px; --sub-size: 9px;  --gap: 10px; --sub-gap: 7px; }
+.s-navbar    { --bar-w: 3px; --bar-h: 22px;  --num-size: 18px; --sub-size: 0;    --gap: 7px;  --sub-gap: 0; }
+.s-navbar .sub { display: none; }
+.s-footer    { --bar-w: 2px; --bar-h: 16px;  --num-size: 14px; --sub-size: 0;    --gap: 6px;  --sub-gap: 0; }
+.s-footer .sub { display: none; }
+.s-card      { --bar-w: 3px; --bar-h: 30px;  --num-size: 24px; --sub-size: 6.5px; --gap: 8px; --sub-gap: 4px; }
+.s-icon-128  { --bar-w: 6px; --bar-h: 48px;  --num-size: 40px; --sub-size: 0;    --gap: 8px;  --sub-gap: 0; }
+.s-icon-128 .sub { display: none; }
+.s-icon-64   { --bar-w: 4px; --bar-h: 26px;  --num-size: 22px; --sub-size: 0;    --gap: 5px;  --sub-gap: 0; }
+.s-icon-64 .sub { display: none; }
+.s-icon-32   { --bar-w: 2px; --bar-h: 14px;  --num-size: 12px; --sub-size: 0;    --gap: 3px;  --sub-gap: 0; }
+.s-icon-32 .sub { display: none; }
+.s-icon-16   { --bar-w: 1px; --bar-h: 9px;   --num-size: 7px;  --sub-size: 0;    --gap: 2px;  --sub-gap: 0; }
+.s-icon-16 .sub { display: none; }
+
+/* APP/FAVICON CONTAINERS — show actual pixel size */
+.icon-frame {
+  border: 1px dashed var(--text-3);
+  display: grid; place-items: center;
+  background: var(--bg);
+}
+.f-128 { width: 128px; height: 128px; }
+.f-64  { width: 64px;  height: 64px; }
+.f-32  { width: 32px;  height: 32px; }
+.f-16  { width: 16px;  height: 16px; }
+.icon-row { display: flex; gap: 24px; align-items: end; }
+.icon-row .label-below { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.10em; color: var(--text-3); text-transform: uppercase; text-align: center; margin-top: 8px; }
+.icon-col { display: flex; flex-direction: column; align-items: center; }
+
+/* iconic-only fallback — just the bar+2112 with extreme tightness for tiny */
+.iconic { display: inline-grid; grid-template-columns: auto auto; gap: 1px; align-items: center; }
+.iconic .bar { background: var(--signal); }
+.iconic .num { font-family: var(--font-mono); font-weight: 700; color: var(--text); line-height: 0.95; letter-spacing: 0; }
+
+footer-end { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); letter-spacing: 0.04em; text-transform: uppercase; padding-top: 24px; border-top: 1px solid var(--line); margin-top: 80px; display: block; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="label">— V14 LOGO · MULTI-SCALE PROOF</div>
+  <h1>How V14 holds at every size.</h1>
+  <p>Hero down to favicon. The vertical bar scales with the wordmark; we test where it stays legible and where it becomes a render-glitch risk. All renders are at actual pixel sizes — no zoom, no abstraction.</p>
+</header>
+
+<!-- HERO SIZE -->
+<div class="test">
+  <div class="test-label">HERO SIZE<span class="meta">96px num · 6px bar</span></div>
+  <div class="test-stage">
+    <div class="lockup-v14 s-hero">
+      <div class="bar"></div>
+      <div class="stack">
+        <div class="num">2112</div>
+        <div class="sub">Capital Solutions</div>
+      </div>
+    </div>
+  </div>
+  <div class="test-note"><b>USED FOR</b>Hero sections · marketing landing pages · large-format print · brand-statement moments</div>
+</div>
+
+<!-- SECTION HEADER -->
+<div class="test">
+  <div class="test-label">SECTION SIZE<span class="meta">64px num · 5px bar</span></div>
+  <div class="test-stage">
+    <div class="lockup-v14 s-section">
+      <div class="bar"></div>
+      <div class="stack">
+        <div class="num">2112</div>
+        <div class="sub">Capital Solutions</div>
+      </div>
+    </div>
+  </div>
+  <div class="test-note"><b>USED FOR</b>Page section heads · email header · letterhead · moderate-format print</div>
+</div>
+
+<!-- MEDIUM -->
+<div class="test">
+  <div class="test-label">MEDIUM<span class="meta">42px num · 4px bar</span></div>
+  <div class="test-stage">
+    <div class="lockup-v14 s-medium">
+      <div class="bar"></div>
+      <div class="stack">
+        <div class="num">2112</div>
+        <div class="sub">Capital Solutions</div>
+      </div>
+    </div>
+  </div>
+  <div class="test-note"><b>USED FOR</b>Card heroes · embed previews · social header crops</div>
+</div>
+
+<!-- BUSINESS CARD CORNER -->
+<div class="test">
+  <div class="test-label">BUSINESS CARD<span class="meta">24px num · 3px bar</span></div>
+  <div class="test-stage">
+    <div class="lockup-v14 s-card">
+      <div class="bar"></div>
+      <div class="stack">
+        <div class="num">2112</div>
+        <div class="sub">Capital Solutions</div>
+      </div>
+    </div>
+  </div>
+  <div class="test-note"><b>USED FOR</b>Business card corner · email signature · letterhead foot · stamp/watermark</div>
+</div>
+
+<!-- NAVBAR -->
+<div class="test">
+  <div class="test-label">NAVBAR (compact)<span class="meta">18px num · 3px bar · sub omitted</span></div>
+  <div class="test-stage">
+    <div class="lockup-v14 s-navbar">
+      <div class="bar"></div>
+      <div class="stack">
+        <div class="num">2112</div>
+        <div class="sub">Capital Solutions</div>
+      </div>
+    </div>
+  </div>
+  <div class="test-note"><b>USED FOR</b>Site navigation · sticky header · top of every page · "Capital Solutions" sub omitted</div>
+</div>
+
+<!-- FOOTER -->
+<div class="test">
+  <div class="test-label">FOOTER<span class="meta">14px num · 2px bar · sub omitted</span></div>
+  <div class="test-stage">
+    <div class="lockup-v14 s-footer">
+      <div class="bar"></div>
+      <div class="stack">
+        <div class="num">2112</div>
+        <div class="sub">Capital Solutions</div>
+      </div>
+    </div>
+  </div>
+  <div class="test-note"><b>USED FOR</b>Footer signature · meta line · breadcrumb · system text reference</div>
+</div>
+
+<!-- APP ICONS / FAVICONS — actual pixel containers -->
+<div class="test">
+  <div class="test-label">APP / FAVICON<span class="meta">128 / 64 / 32 / 16 px · actual size</span></div>
+  <div class="test-stage" style="padding: 40px 32px;">
+    <div class="icon-row">
+      <div class="icon-col">
+        <div class="icon-frame f-128">
+          <div class="lockup-v14 s-icon-128">
+            <div class="bar"></div>
+            <div class="stack"><div class="num">2112</div></div>
+          </div>
+        </div>
+        <div class="label-below">128 × 128</div>
+      </div>
+      <div class="icon-col">
+        <div class="icon-frame f-64">
+          <div class="lockup-v14 s-icon-64">
+            <div class="bar"></div>
+            <div class="stack"><div class="num">2112</div></div>
+          </div>
+        </div>
+        <div class="label-below">64 × 64</div>
+      </div>
+      <div class="icon-col">
+        <div class="icon-frame f-32">
+          <div class="lockup-v14 s-icon-32">
+            <div class="bar"></div>
+            <div class="stack"><div class="num">2112</div></div>
+          </div>
+        </div>
+        <div class="label-below">32 × 32</div>
+      </div>
+      <div class="icon-col">
+        <div class="icon-frame f-16">
+          <div class="lockup-v14 s-icon-16">
+            <div class="bar"></div>
+            <div class="stack"><div class="num">2112</div></div>
+          </div>
+        </div>
+        <div class="label-below">16 × 16</div>
+      </div>
+    </div>
+  </div>
+  <div class="test-note"><b>READING</b>128 · clean. 64 · clean. 32 · bar still visible but tight. 16 · bar reduces to 1px and risks render-glitch on some screens. <br><br><b>VERDICT</b>V14 holds down to ~32px. At 16px favicon size, consider an iconic alternate.</div>
+</div>
+
+<!-- ICONIC ALTERNATE FOR 16PX (proposal) -->
+<div class="test">
+  <div class="test-label">ICONIC ALT (16px)<span class="meta">proposal · just 21 with red bar</span></div>
+  <div class="test-stage" style="padding: 40px 32px;">
+    <div class="icon-row">
+      <div class="icon-col">
+        <div class="icon-frame f-32">
+          <div class="iconic" style="--bar-w: 3px; gap: 2px;">
+            <div class="bar" style="width: 3px; height: 14px;"></div>
+            <div class="num" style="font-size: 18px;">21</div>
+          </div>
+        </div>
+        <div class="label-below">32 × 32 (alt)</div>
+      </div>
+      <div class="icon-col">
+        <div class="icon-frame f-16">
+          <div class="iconic" style="gap: 1px;">
+            <div class="bar" style="width: 2px; height: 9px;"></div>
+            <div class="num" style="font-size: 9px;">21</div>
+          </div>
+        </div>
+        <div class="label-below">16 × 16 (alt)</div>
+      </div>
+    </div>
+  </div>
+  <div class="test-note"><b>OPTIONAL</b>If V14 at 16px proves illegible, drop to "21" only at favicon size. Same vertical bar, fewer characters, more recognizable at extreme small. Only adopted if needed.</div>
+</div>
+
+<footer-end>v1.3 · APEX_CONSTRUCTIVIST · MULTI-SCALE PROOF · 2026-04-30</footer-end>
+
+</div>
+</body>
+</html>

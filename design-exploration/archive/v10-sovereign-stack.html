@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>V10 — Sovereign Stack · 2112</title>
+<style>
+  :root {
+    --bg: #08090c;
+    --bg-2: #0e1014;
+    --bg-3: #14161d;
+    --line: #1c1f28;
+    --line-2: #292d3a;
+    --text: #ebe9e3;
+    --text-2: #9a948a;
+    --text-3: #5d574e;
+    --cyan: #22d3ee;
+    --cyan-2: #67e8f9;
+    --crimson: #d62828;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss02";
+  }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+
+  /* status bar - minimal */
+  .status-bar {
+    border-bottom: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.02em;
+    color: var(--text-3);
+    padding: 10px 32px;
+    display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  }
+  .status-bar .right { color: var(--text-3); }
+  .status-bar .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); display: inline-block; margin-right: 8px; vertical-align: 1px; }
+
+  /* nav */
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; border-bottom: 1px solid var(--line); }
+  .logo {
+    display: inline-flex; align-items: baseline; gap: 6px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 26px; letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .logo-star {
+    color: var(--crimson);
+    font-size: 11px;
+    line-height: 1;
+    align-self: flex-start;
+    margin-top: 2px;
+    transition: transform .2s, color .2s;
+  }
+  .logo:hover .logo-star { transform: rotate(20deg) scale(1.15); color: var(--cyan); }
+  nav ul { display: flex; gap: 32px; list-style: none; }
+  nav a { color: var(--text-2); text-decoration: none; font-size: 14.5px; font-weight: 400; transition: color .15s; }
+  nav a:hover { color: var(--text); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 8px;
+    background: var(--cyan); color: #07191c;
+    font-weight: 600; font-size: 14px; text-decoration: none;
+    transition: background .15s, transform .15s;
+    border: 1px solid var(--cyan);
+    font-family: 'Bricolage Grotesque', sans-serif;
+  }
+  .btn:hover { background: var(--cyan-2); border-color: var(--cyan-2); }
+  .btn-ghost { background: transparent; border: 1px solid var(--line-2); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+
+  /* hero - typography only, generous whitespace */
+  .hero { padding: 130px 0 110px; max-width: 920px; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.02em; color: var(--cyan); margin-bottom: 36px; }
+  .eyebrow::before { content: '— '; color: var(--text-3); }
+  h1 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 96px; line-height: 0.95; letter-spacing: -0.04em;
+    font-weight: 600; margin-bottom: 36px;
+  }
+  h1 .second { color: var(--text-2); font-weight: 600; }
+  .hero p { font-size: 21px; line-height: 1.5; color: var(--text-2); margin-bottom: 44px; max-width: 600px; font-weight: 400; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+  /* service-line strip */
+  .strip {
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    display: flex; gap: 32px; align-items: center; flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--text-2); letter-spacing: 0.02em;
+  }
+  .strip .lbl { color: var(--text-3); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .strip span.tag { color: var(--text); }
+  .strip span.tag.muted { color: var(--text-3); }
+  .strip span.sep { color: var(--text-3); }
+
+  /* services */
+  .services { padding: 110px 0; }
+  .section-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 56px; gap: 60px; flex-wrap: wrap; }
+  .section-head .lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-3); margin-bottom: 16px; }
+  .section-head h2 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 48px; letter-spacing: -0.03em; font-weight: 600; line-height: 1.05; max-width: 600px; }
+  .section-head p { color: var(--text-2); font-size: 16px; max-width: 380px; line-height: 1.55; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px; padding: 36px 32px; transition: border-color .2s, transform .2s; }
+  .card:hover { border-color: var(--line-2); transform: translateY(-2px); }
+  .card-icon {
+    width: 36px; height: 36px;
+    color: var(--cyan);
+    margin-bottom: 28px;
+  }
+  .card-icon svg { width: 100%; height: 100%; }
+  .card .num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); letter-spacing: 0.12em; margin-bottom: 8px; text-transform: uppercase; }
+  .card h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 12px; line-height: 1.2; }
+  .card p { color: var(--text-2); font-size: 14.5px; line-height: 1.6; margin-bottom: 28px; }
+  .card .price { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--cyan); border-top: 1px solid var(--line); padding-top: 18px; letter-spacing: 0.02em; }
+
+  /* guides */
+  .guides {
+    padding: 90px 0 110px;
+    background-image: radial-gradient(circle, var(--line-2) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-position: 0 0;
+    border-top: 1px solid var(--line);
+  }
+  .grid-guides { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .guide {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color .2s, transform .2s;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+  }
+  .guide:hover { border-color: var(--cyan); transform: translateY(-2px); }
+  .guide-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+    border: 1px solid var(--line-2);
+    color: var(--text-2);
+  }
+  .guide h4 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.25; margin-bottom: 12px; }
+  .guide p { color: var(--text-2); font-size: 14px; line-height: 1.55; margin-bottom: 20px; }
+  .guide .meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); letter-spacing: 0.02em; }
+
+  /* about strip with mesh */
+  .about-strip { padding: 130px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-strip .lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px; }
+  .about-strip .body { font-family: 'Bricolage Grotesque', sans-serif; font-size: 32px; line-height: 1.25; color: var(--text); letter-spacing: -0.02em; font-weight: 500; }
+  .about-strip .body em { color: var(--cyan); font-style: normal; }
+  .about-strip .meta { display: flex; gap: 36px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-3); letter-spacing: 0.02em; }
+  .about-strip .meta b { color: var(--text); font-weight: 500; }
+  .mesh-side { display: grid; place-items: center; }
+  .mesh-side svg { width: 100%; max-width: 360px; height: auto; }
+
+  /* closer */
+  .closer { padding: 140px 0; border-top: 1px solid var(--line); text-align: center; }
+  .closer h2 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 64px; letter-spacing: -0.03em; font-weight: 600; margin-bottom: 20px; line-height: 1.05; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .closer p { color: var(--text-2); margin-bottom: 40px; font-size: 18px; }
+
+  footer { padding: 32px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; color: var(--text-3); font-size: 13px; flex-wrap: wrap; gap: 16px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em; }
+
+  @media (max-width: 900px) {
+    h1 { font-size: 56px; }
+    .grid-3, .grid-guides { grid-template-columns: 1fr; }
+    .about-strip { grid-template-columns: 1fr; gap: 48px; }
+    .section-head { flex-direction: column; align-items: start; }
+    .section-head h2 { font-size: 36px; }
+    .closer h2 { font-size: 44px; }
+    nav ul { display: none; }
+    .status-bar .right { display: none; }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="status-bar">
+  <div><span class="dot"></span>Accepting clients · NJ + remote</div>
+  <div class="right">2112_capital_solutions · est 2023</div>
+</div>
+
+<div class="container">
+  <nav>
+    <a class="logo" href="#">2112<span class="logo-star">★</span></a>
+    <ul>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Guides</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <a class="btn" href="#">Book a call</a>
+  </nav>
+
+  <section class="hero">
+    <div class="eyebrow">Sovereignty consulting</div>
+    <h1>
+      Own your money.<br>
+      <span class="second">Own your tools.</span>
+    </h1>
+    <p>Hands-on consulting for digital sovereignty. Bitcoin, AI, privacy, self-hosting — built to belong to you.</p>
+    <div class="cta-row">
+      <a class="btn" href="#">Book a free call</a>
+      <a class="btn btn-ghost" href="#">Read the guides →</a>
+    </div>
+  </section>
+
+  <div class="strip">
+    <span class="lbl">What we do</span>
+    <span class="tag">Bitcoin</span>
+    <span class="sep">·</span>
+    <span class="tag">AI</span>
+    <span class="sep">·</span>
+    <span class="tag">Privacy</span>
+    <span class="sep">·</span>
+    <span class="tag">Self-hosting</span>
+  </div>
+
+  <section class="services">
+    <div class="section-head">
+      <div>
+        <div class="lbl">— Services</div>
+        <h2>Three ways we help you take real ownership.</h2>
+      </div>
+      <p>Bitcoin services are what we lead with today. AI, privacy, and self-hosting engagements layer on as your needs grow.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div class="num">01 — Custody</div>
+        <h3>Self-custody setup</h3>
+        <p>Get your bitcoin off exchanges and into a hardware wallet you control. One-on-one, in person or remote.</p>
+        <div class="price">From $100</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="num">02 — Infrastructure</div>
+        <h3>Node &amp; Lightning</h3>
+        <p>Run your own Bitcoin node and Lightning channels. Setup, hardening, ongoing maintenance.</p>
+        <div class="price">From $500</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="num">03 — Advisory</div>
+        <h3>Strategy consulting</h3>
+        <p>One-on-one or business engagements. Treasury, integration, education for teams.</p>
+        <div class="price">$100 / hour</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="guides">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="lbl">— Latest guides</div>
+        <h2>Free, in-depth, written to actually be used.</h2>
+      </div>
+      <p>Hands-on guides on Bitcoin custody, AI for everyday work, and durable digital privacy. Same material we use with clients.</p>
+    </div>
+    <div class="grid-guides">
+      <a class="guide" href="#">
+        <span class="guide-tag">Bitcoin</span>
+        <h4>Hardware wallet setup, end-to-end</h4>
+        <p>Picking a device, generating a seed safely, setting up a multisig, and a recovery you can actually trust.</p>
+        <div class="meta">14 min read · Apr 2026</div>
+      </a>
+      <a class="guide" href="#">
+        <span class="guide-tag">AI</span>
+        <h4>Local AI on your own machine</h4>
+        <p>Run LLMs locally with Ollama. Why it matters for privacy, what it can and can't do, and a working setup.</p>
+        <div class="meta">11 min read · Apr 2026</div>
+      </a>
+      <a class="guide" href="#">
+        <span class="guide-tag">Privacy</span>
+        <h4>Encrypted comms for the everyday user</h4>
+        <p>Signal, SimpleX, Matrix — what to use, when, and how to set them up without a CS degree.</p>
+        <div class="meta">9 min read · Mar 2026</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <section class="about-strip">
+    <div>
+      <div class="lbl">— About 2112</div>
+      <div class="body">
+        Founded 2023 in New Jersey. We help people and businesses <em>take real ownership</em> of their money, their tools, and their data. Bitcoin first. AI, privacy, and self-hosting as your needs grow.
+      </div>
+      <div class="meta">
+        <div>Founded <b>2023</b></div>
+        <div>NJ · NAICS <b>541611</b></div>
+        <div>Status <b>Accepting clients</b></div>
+      </div>
+    </div>
+    <div class="mesh-side">
+      <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="meshglow" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.25"/>
+            <stop offset="70%" stop-color="#22d3ee" stop-opacity="0.04"/>
+            <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="180" cy="180" r="150" fill="url(#meshglow)"/>
+        <polygon points="180,70 260,130 270,210 230,280 130,290 80,220 75,140 130,90"
+          fill="none" stroke="rgba(34,211,238,0.55)" stroke-width="1"/>
+        <polygon points="180,70 270,210 80,220" fill="none" stroke="rgba(34,211,238,0.25)" stroke-width="0.7"/>
+        <polygon points="260,130 130,290 75,140" fill="none" stroke="rgba(34,211,238,0.18)" stroke-width="0.7"/>
+        <line x1="180" y1="70" x2="320" y2="50" stroke="rgba(34,211,238,0.25)" stroke-width="0.7"/>
+        <line x1="270" y1="210" x2="340" y2="260" stroke="rgba(34,211,238,0.2)" stroke-width="0.7"/>
+        <line x1="130" y1="290" x2="60" y2="330" stroke="rgba(34,211,238,0.18)" stroke-width="0.7"/>
+        <line x1="75" y1="140" x2="20" y2="100" stroke="rgba(34,211,238,0.2)" stroke-width="0.7"/>
+        <circle cx="180" cy="70" r="3" fill="#22d3ee"/>
+        <circle cx="260" cy="130" r="3" fill="#22d3ee"/>
+        <circle cx="270" cy="210" r="2.5" fill="#22d3ee"/>
+        <circle cx="230" cy="280" r="2.5" fill="#22d3ee"/>
+        <circle cx="130" cy="290" r="3" fill="#22d3ee"/>
+        <circle cx="80" cy="220" r="2.5" fill="#22d3ee"/>
+        <circle cx="75" cy="140" r="3" fill="#22d3ee"/>
+        <circle cx="130" cy="90" r="2.5" fill="#22d3ee"/>
+        <circle cx="320" cy="50" r="2" fill="rgba(34,211,238,0.5)"/>
+        <circle cx="340" cy="260" r="2" fill="rgba(34,211,238,0.4)"/>
+        <circle cx="60" cy="330" r="2" fill="rgba(34,211,238,0.4)"/>
+        <circle cx="20" cy="100" r="2" fill="rgba(34,211,238,0.5)"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="closer">
+    <h2>Ready to take ownership?</h2>
+    <p>Book a free 30-minute call. No pitch — just a real conversation about where you are.</p>
+    <a class="btn" href="#">Schedule a call</a>
+  </section>
+
+  <footer>
+    <div>2112 capital solutions llc · NJ</div>
+    <div>hello@2112capitalsolutions.com</div>
+  </footer>
+</div>
+
+</body>
+</html>

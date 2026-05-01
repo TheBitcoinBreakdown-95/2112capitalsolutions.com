@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>V4 — Retrofuture Prog · 2112</title>
+<style>
+  :root {
+    --bg: #ede5d4;
+    --bg-2: #e0d5bd;
+    --line: #c4b696;
+    --text: #2a221a;
+    --text-2: #6a5e48;
+    --text-3: #94866b;
+    --accent: #d4751c;
+    --accent-2: #a85215;
+    --plum: #5a3a52;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: 'Space Grotesk', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  body {
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-color: var(--bg);
+    background-position: -1px -1px;
+    min-height: 100vh;
+  }
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 40px; background: var(--bg); border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; border-bottom: 2px solid var(--text); }
+  .logo {
+    font-family: 'Major Mono Display', 'JetBrains Mono', monospace;
+    font-size: 22px; letter-spacing: 0.05em;
+    background: var(--text);
+    color: var(--bg);
+    padding: 6px 14px;
+  }
+  nav ul { display: flex; gap: 28px; list-style: none; }
+  nav a { color: var(--text); text-decoration: none; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; transition: color .15s; }
+  nav a:hover { color: var(--accent-2); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--accent); color: #fff; font-weight: 600; font-size: 13px; text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: background .15s; border: 2px solid var(--accent); border-radius: 100px; }
+  .btn:hover { background: var(--accent-2); border-color: var(--accent-2); }
+  .btn-line { background: transparent; color: var(--text); border: 2px solid var(--text); border-radius: 100px; }
+  .btn-line:hover { background: var(--text); color: var(--bg); }
+  .hero { padding: 80px 40px 90px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center; border-bottom: 1px solid var(--line); }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.18em; color: var(--accent-2); text-transform: uppercase; margin-bottom: 24px; }
+  h1 {
+    font-family: 'Major Mono Display', 'JetBrains Mono', monospace;
+    font-size: 76px; line-height: 0.95; letter-spacing: -0.01em; font-weight: 400; margin-bottom: 28px;
+    text-transform: lowercase;
+  }
+  h1 em { font-style: normal; color: var(--accent); }
+  .hero p { font-size: 18px; line-height: 1.55; color: var(--text-2); margin-bottom: 36px; max-width: 560px; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-orb {
+    width: 280px; height: 280px; border-radius: 50%; margin-left: auto;
+    background: radial-gradient(circle at 35% 30%, #ffd28a 0%, var(--accent) 35%, var(--accent-2) 70%, var(--plum) 100%);
+    box-shadow: 0 20px 60px rgba(212,117,28,0.35), inset -20px -20px 60px rgba(90,58,82,0.4);
+    position: relative;
+  }
+  .hero-orb::before, .hero-orb::after {
+    content: ''; position: absolute; left: -40px; right: -40px;
+    height: 8px; background: var(--accent); border-radius: 4px;
+    box-shadow: 0 0 20px var(--accent);
+  }
+  .hero-orb::before { top: 40%; transform: rotate(-15deg); opacity: 0.7; }
+  .hero-orb::after { bottom: 35%; transform: rotate(8deg); opacity: 0.5; }
+  .services { padding: 80px 40px; border-bottom: 1px solid var(--line); }
+  .section-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-3); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 36px; display: flex; align-items: center; gap: 12px; }
+  .section-label::before, .section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .card {
+    background: var(--bg-2);
+    border: 2px solid var(--text);
+    border-radius: 18px;
+    padding: 32px 28px;
+    position: relative;
+    transition: transform .2s;
+  }
+  .card:hover { transform: translateY(-3px); }
+  .card .num {
+    font-family: 'Major Mono Display', monospace;
+    font-size: 32px; color: var(--accent-2); margin-bottom: 20px;
+  }
+  .card h3 { font-family: 'Major Mono Display', monospace; font-size: 22px; font-weight: 400; margin-bottom: 14px; text-transform: lowercase; }
+  .card p { color: var(--text-2); font-size: 15px; line-height: 1.55; margin-bottom: 24px; }
+  .card .price { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-2); letter-spacing: 0.1em; padding-top: 14px; border-top: 1px dashed var(--line); }
+  .about-strip { padding: 80px 40px; border-bottom: 1px solid var(--line); }
+  .about-strip .label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-3); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 28px; }
+  .about-strip .body { font-family: 'Major Mono Display', monospace; font-size: 36px; line-height: 1.2; max-width: 900px; text-transform: lowercase; }
+  .about-strip .body em { font-style: normal; color: var(--accent); }
+  .closer { padding: 100px 40px; border-bottom: 1px solid var(--line); text-align: center; }
+  .closer h2 { font-family: 'Major Mono Display', monospace; font-size: 56px; font-weight: 400; margin-bottom: 16px; text-transform: lowercase; }
+  .closer h2 em { font-style: normal; color: var(--accent); }
+  .closer p { color: var(--text-2); margin-bottom: 32px; font-size: 16px; }
+  footer { padding: 32px 40px; display: flex; justify-content: space-between; color: var(--text-3); font-size: 12px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; }
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    h1 { font-size: 48px; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .about-strip .body { font-size: 24px; }
+    .hero-orb { width: 200px; height: 200px; margin: 0 auto; }
+    nav ul { display: none; }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <nav>
+    <div class="logo">2112</div>
+    <ul>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Guides</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <a class="btn" href="#">Book a call</a>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">// Bitcoin integration consulting</div>
+      <h1>build your <em>lifeboat.</em></h1>
+      <p>Hands-on Bitcoin onboarding, self-custody, and node setup. For individuals and businesses ready to actually own their money.</p>
+      <div class="cta-row">
+        <a class="btn" href="#">Book a consultation</a>
+        <a class="btn btn-line" href="#">Read the guides</a>
+      </div>
+    </div>
+    <div class="hero-orb"></div>
+  </section>
+
+  <section class="services">
+    <div class="section-label">// services</div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>self-custody</h3>
+        <p>Get your bitcoin off exchanges and into a hardware wallet you control. One-on-one, in person or remote.</p>
+        <div class="price">FROM $100</div>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>node &amp; lightning</h3>
+        <p>Run your own Bitcoin node and Lightning channels. Setup, hardening, ongoing maintenance.</p>
+        <div class="price">FROM $500</div>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>strategy</h3>
+        <p>One-on-one or business engagements. Treasury, integration, education for teams.</p>
+        <div class="price">$100 / HR</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-strip">
+    <div class="label">// mission</div>
+    <div class="body">we onboard people to bitcoin — <em>for the inevitable collapse of fiat,</em> and for everyone else who needs a way out.</div>
+  </section>
+
+  <section class="closer">
+    <h2>take <em>custody</em>.</h2>
+    <p>Free 30-minute consultation. No pitch.</p>
+    <a class="btn" href="#">Schedule a call</a>
+  </section>
+
+  <footer>
+    <div>2112 Capital Solutions LLC · NJ</div>
+    <div>hello@2112capitalsolutions.com</div>
+  </footer>
+</div>
+</body>
+</html>
