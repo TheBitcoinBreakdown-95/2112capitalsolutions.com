@@ -352,20 +352,26 @@ body.menu-open { overflow: hidden; }
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-/* hero entrance — V14 logo only (tagline removed per user)
-   slowed ~1.5× per user — total runtime ~1.9s before below-hero content appears */
+/* hero entrance — V14 logo cascades, then headline + tagline + service list,
+   then below-hero modules. ~1.5× slowed pace per user. Total ~2.4s. */
 body.is-home .hero-mark .lockup-v14 .lbar { animation: bar-drop 0.65s var(--ease-out) both; }
 body.is-home .hero-mark .lockup-v14 .num  { animation: fade-up 0.45s var(--ease-out) 0.50s both; }
 body.is-home .hero-mark .lockup-v14 .sub  { animation: fade-up 0.45s var(--ease-out) 0.85s both; }
+body.is-home .hero h1                     { animation: fade-up 0.50s var(--ease-out) 1.20s both; }
+body.is-home .hero .hero-tagline          { animation: fade-up 0.50s var(--ease-out) 1.40s both; }
+body.is-home .hero .hero-sub              { animation: fade-up 0.50s var(--ease-out) 1.60s both; }
 
-/* below-hero content stays invisible until hero animation finishes (~1.3s),
+/* below-hero content stays invisible until hero text finishes,
    then fades in as a single block */
-body.is-home main > section.module { animation: fade-up 0.7s var(--ease-out) 1.4s both; }
+body.is-home main > section.module { animation: fade-up 0.7s var(--ease-out) 1.95s both; }
 
 @media (prefers-reduced-motion: reduce) {
   body.is-home .hero-mark .lockup-v14 .lbar,
   body.is-home .hero-mark .lockup-v14 .num,
   body.is-home .hero-mark .lockup-v14 .sub,
+  body.is-home .hero h1,
+  body.is-home .hero .hero-tagline,
+  body.is-home .hero .hero-sub,
   body.is-home main > section.module { animation: none; }
 }
 
@@ -411,6 +417,23 @@ body.is-home main > section.module { animation: fade-up 0.7s var(--ease-out) 1.4
 }
 .hero-sub b { color: var(--text); font-weight: 700; }
 .hero-cta { display: flex; gap: 0; align-items: stretch; flex-wrap: wrap; }
+
+/* Hero tagline — the mid-size subtitle below the h1 */
+.hero-tagline {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(18px, 2.1vw, 22px);
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  color: var(--text-2);
+  max-width: 720px;
+  margin: 24px 0 32px;
+}
+@media (max-width: 640px) {
+  .hero-tagline { font-size: 16px; margin: 18px 0 22px; }
+  .hero h1 { font-size: clamp(32px, 8.5vw, 48px); }
+  .hero-sub { font-size: 11px; padding-left: 14px; margin-bottom: 0; }
+}
 
 /* ───────── READOUT ───────── */
 .readout {
