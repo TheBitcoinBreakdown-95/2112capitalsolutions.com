@@ -471,11 +471,40 @@ Standard browser cursor. Pointer on interactive elements. **No crosshair** (TBB 
 
 ## 11. Voice / Copy Register
 
+### Structural rules
 - Direct, technical, declarative
 - Sentence case for body; UPPERCASE for mono system labels
 - Indexed sections (`MODULE 01`, `PROT.001`, `SEQ.001`)
 - Footnoted citations in references block
 - "Operator" voice for system content; "considered" voice for engagement-oriented copy (services, methodology, contact)
+
+### Positioning frame (the *what to say*, not just the *how*)
+
+**Empowerment, not opposition.** Detailed in [positioning-notes.md](positioning-notes.md). The full doc is the source of truth; the principles below are the binding short version for any copy decision.
+
+**Default frame:**
+- 2112 is **constructive / institutional**. Sister brand TBB carries the cypherpunk-defensive voice. The two voices coexist; they do not blur.
+- Privacy + self-hosted infrastructure + private AI are **prudent**, not radical. The pitch is *preparation*, not *prophecy*.
+- General-public audience — individuals, families, operating businesses, founders. Not just Bitcoin / privacy maximalists.
+- Acknowledge uncertainty about the digital transformation. We don't know how it shakes out; we know what to do regardless.
+
+**Three operative verbs (the brand anchors):**
+1. **Thrive** in the great digital transformation
+2. **Safeguard** your wealth, your tools, and your time
+3. **Don't get left behind**
+
+**Use:**
+- Empowerment verbs — *thrive, safeguard, build, protect, run, prepare*
+- Concrete consequences — *"safeguard wealth," "don't get left behind"*
+- Acknowledged uncertainty — *"the great digital transformation that's coming," "no one knows exactly how this shakes out"*
+
+**Avoid:**
+- Defensive / oppositional verbs — *fight, defend, resist, fight back* (TBB territory)
+- Anarchist or dystopian framing — *"the system is collapsing," "fight authoritarianism"*
+- Survivalist / prepper register — *"when the lights go out," "be ready when the music stops"*
+- Wellness-coach softness — *"unlock," "embrace," "your sovereignty journey"*
+
+The visual register (Apex Constructivist — black + signal red, mono labels, classified-document layout) holds the edge so the copy doesn't have to. Soft-drift is the failure mode; the verbs above guard against it.
 
 ---
 

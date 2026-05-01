@@ -61,10 +61,10 @@ The visual register (Apex Constructivist — black + signal red, mono labels, cl
 
 ## How this shows up on the site (current snapshot)
 
-- **Hero classify:** `FREEDOM TECHNOLOGY FOR THE OPERATOR CLASS`
 - **Hero h1:** *"Sovereignty consulting to thrive in the great digital transformation."*
 - **Hero tagline:** *"Run your own infrastructure. Safeguard your wealth. Don't get left behind."*
-- **Hero services list:** `BTC CUSTODY · NODE OPERATIONS · SELF-HOSTED INFRA · PRIVACY STACK · OPEN SOURCE AI`
+- **Hero services list:** `SELF-HOSTED INFRA · NODE OPERATIONS · BTC CUSTODY · ACCESS TO THE BITCOIN ECONOMY · PRIVACY STACK · OPEN SOURCE AI · AGENTIC OPERATING SYSTEMS · FREEDOM TECH EDUCATION`
+- **About-page Approach section:** *"Preparation. Not paranoia."* + the three operative verbs as a bullet list
 
 ---
 
