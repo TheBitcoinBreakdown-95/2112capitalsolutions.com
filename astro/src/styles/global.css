@@ -193,6 +193,45 @@ img { max-width: 100%; height: auto; display: block; }
 .site-nav a[aria-current="page"] { color: var(--signal); }
 .site-nav a[aria-current="page"]::before { content: '> '; color: var(--signal); }
 
+/* ───────── V14 LOGO LOCKUP ───────── */
+.lockup-v14 {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  gap: var(--gap, 12px);
+  align-items: center;
+}
+.lockup-v14 .lbar {
+  width: var(--bar-w, 4px);
+  height: var(--bar-h, 80px);
+  background: var(--signal);
+}
+.lockup-v14 .stack { display: flex; flex-direction: column; align-items: flex-start; }
+.lockup-v14 .num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--num-size, 64px);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+.lockup-v14 .sub {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--sub-size, 11px);
+  letter-spacing: var(--sub-track, 0.20em);
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-top: var(--sub-gap, 8px);
+}
+/* per-scale tokens — sub-track values pre-computed for flush-right alignment */
+.lockup-v14.s-hero    { --bar-w: 6px; --bar-h: 110px; --num-size: 96px; --sub-size: 14px; --sub-track: 0.42em; --gap: 18px; --sub-gap: 12px; }
+.lockup-v14.s-section { --bar-w: 5px; --bar-h: 76px;  --num-size: 64px; --sub-size: 11px; --sub-track: 0.26em; --gap: 14px; --sub-gap: 10px; }
+.lockup-v14.s-medium  { --bar-w: 4px; --bar-h: 50px;  --num-size: 42px; --sub-size: 8px;  --sub-track: 0.17em; --gap: 10px; --sub-gap: 7px; }
+.hero-mark { margin-bottom: 56px; }
+@media (max-width: 640px) {
+  .lockup-v14.s-hero { --num-size: 64px; --bar-h: 76px; --sub-size: 11px; --sub-track: 0.26em; --gap: 14px; --sub-gap: 10px; }
+}
+
 /* ───────── HERO + CLASSIFY ───────── */
 .classify {
   font-family: var(--font-mono);
