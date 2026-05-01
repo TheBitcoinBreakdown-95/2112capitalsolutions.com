@@ -318,12 +318,16 @@ body.menu-open { overflow: hidden; }
   margin-top: var(--sub-gap, 8px);
 }
 /* per-scale tokens — sub-track values pre-computed for flush-right alignment */
-.lockup-v14.s-hero    { --bar-w: 6px; --bar-h: 110px; --num-size: 96px; --sub-size: 14px; --sub-track: 0.42em; --gap: 18px; --sub-gap: 12px; }
-.lockup-v14.s-section { --bar-w: 5px; --bar-h: 76px;  --num-size: 64px; --sub-size: 11px; --sub-track: 0.26em; --gap: 14px; --sub-gap: 10px; }
-.lockup-v14.s-medium  { --bar-w: 4px; --bar-h: 50px;  --num-size: 42px; --sub-size: 8px;  --sub-track: 0.17em; --gap: 10px; --sub-gap: 7px; }
-.hero-mark { margin-bottom: 56px; }
+.lockup-v14.s-hero    { --bar-w: 7px; --bar-h: 146px; --num-size: 128px; --sub-size: 19px; --sub-track: 0.40em; --gap: 22px; --sub-gap: 14px; }
+.lockup-v14.s-section { --bar-w: 5px; --bar-h: 76px;  --num-size: 64px;  --sub-size: 11px; --sub-track: 0.26em; --gap: 14px; --sub-gap: 10px; }
+.lockup-v14.s-medium  { --bar-w: 4px; --bar-h: 50px;  --num-size: 42px;  --sub-size: 8px;  --sub-track: 0.17em; --gap: 10px; --sub-gap: 7px; }
+.hero-mark { margin-bottom: 64px; }
+@media (max-width: 900px) {
+  .lockup-v14.s-hero { --bar-w: 6px; --bar-h: 110px; --num-size: 96px; --sub-size: 14px; --sub-track: 0.42em; --gap: 18px; --sub-gap: 12px; }
+  .hero-mark { margin-bottom: 48px; }
+}
 @media (max-width: 640px) {
-  .lockup-v14.s-hero { --num-size: 56px; --bar-h: 64px; --sub-size: 9px; --sub-track: 0.18em; --gap: 12px; --sub-gap: 8px; }
+  .lockup-v14.s-hero { --bar-w: 4px; --bar-h: 76px; --num-size: 64px; --sub-size: 10px; --sub-track: 0.20em; --gap: 14px; --sub-gap: 10px; }
   .hero-mark { margin-bottom: 36px; }
 }
 
@@ -338,14 +342,15 @@ body.menu-open { overflow: hidden; }
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-/* hero entrance — V14 logo only (tagline removed per user) */
-body.is-home .hero-mark .lockup-v14 .lbar { animation: bar-drop 0.4s var(--ease-out) both; }
-body.is-home .hero-mark .lockup-v14 .num  { animation: fade-up 0.3s var(--ease-out) 0.30s both; }
-body.is-home .hero-mark .lockup-v14 .sub  { animation: fade-up 0.3s var(--ease-out) 0.50s both; }
+/* hero entrance — V14 logo only (tagline removed per user)
+   slowed ~1.5× per user — total runtime ~1.9s before below-hero content appears */
+body.is-home .hero-mark .lockup-v14 .lbar { animation: bar-drop 0.65s var(--ease-out) both; }
+body.is-home .hero-mark .lockup-v14 .num  { animation: fade-up 0.45s var(--ease-out) 0.50s both; }
+body.is-home .hero-mark .lockup-v14 .sub  { animation: fade-up 0.45s var(--ease-out) 0.85s both; }
 
-/* below-hero content stays invisible until hero animation finishes (~800ms),
+/* below-hero content stays invisible until hero animation finishes (~1.3s),
    then fades in as a single block */
-body.is-home main > section.module { animation: fade-up 0.5s var(--ease-out) 0.85s both; }
+body.is-home main > section.module { animation: fade-up 0.7s var(--ease-out) 1.4s both; }
 
 @media (prefers-reduced-motion: reduce) {
   body.is-home .hero-mark .lockup-v14 .lbar,
