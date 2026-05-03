@@ -4,41 +4,43 @@
 
 ## Last Sessions
 
-### [2112-website] 2026-05-01
+### [2112-website] 2026-05-02
 
-**Site built end-to-end and live at 2112capitalsolutions.com. Heavy iteration on hero, mobile experience, copy, and positioning frame. 9 commits (746302a → 549ea18), all deployed green.**
+**Guide migration pipeline started. First real guide (SSH into your Bitcoin node) consolidated from 7-file course into single guide, live at /guides/. Favicon shipped (V14 path-based). Scroll-offset and H4 styling fixes. TESS search confirmed clean.**
 
-- Built full Astro site: BaseLayout + Header (with V14 brandmark + mobile hamburger drawer) + Footer; 5 main pages (index/services/methodology/about/contact); guides content collection + dynamic article template + 2 sample articles. 8 routes total, ~2.6s build, ~30s deploy via existing GitHub Actions to Hostinger.
-- Hero iterated multiple times — final state: V14 lockup (128px num / 7px bar / sub flush right at 0.40em), h1 "Sovereignty consulting to thrive in the great digital transformation.", tagline "Run your own infrastructure. Safeguard your wealth. Don't get left behind.", 8-item service list (self-hosted infra · node ops · BTC custody · access to BTC economy · privacy stack · open source AI · agentic OS · freedom tech ed). Staggered entrance animation ~2.4s, honors `prefers-reduced-motion`.
-- Mobile: hamburger drawer at ≤720px (animated to red X when open, body scroll locks). Aggressive vertical-rhythm trim (header 16→10px, hero 64→32px top, module 80→40px). Homepage brandmark fades in past 320px scroll so no double-logo with the V14 hero.
-- Copy purge: every "consult" / "consultation" / "boutique consulting firm" / "founded 2023" / Schedule-a-call CTA removed. Email switched to `thebitcoinbreakdown@gmail.com` site-wide. PGP option deferred to TODO.md.
-- About page rewrite: original WP mission language restored ("interface with the bitcoin economy," "thrive in the great digital transformation," "streamline sovereignty"); user's verbatim positioning sentence added ("hands-on Bitcoin integration and freedom tech consulting... comprehensive sovereignty education"); new APPROACH section ("Preparation. Not paranoia." + three operative verbs as bullets).
-- Positioning articulated by user 2026-05-01: **2112 = empowerment / constructive / institutional**; sister brand TBB = cypherpunk / defensive. Three operative verbs: **thrive · safeguard · don't get left behind**. Captured in `brand/positioning-notes.md` and `master-design-guide.md § 11`. Saved to project memory as `project_2112_positioning.md`.
-- New brand-folder docs: `positioning-notes.md`, `logo-precedent-research.md` (V14 precedents + XXI/Twenty One trademark risk flag), `master-design-guide-archive-2026-04-30.md`, `design-complete-archive-2026-05-01.html`, project-root `TODO.md`.
+- Consolidated `TBB/Content/node-ssh/` (7 files, ~1,088 lines) into single guide `ssh-into-your-bitcoin-node.md` with proper 2112 frontmatter (title, description, pubDate, category: Bitcoin, level: Beginner, readingTime: 45 min). Light structural adaptation: H1s→H2s, "course"→"guide", course outline→anchor-linked ToC, inter-lesson refs→section refs. Voice/content unchanged — already fits 2112 empowerment frame.
+- Removed sample guides (hardware-wallet-setup.md, local-ai-on-your-machine.md) from content collection. Deleted archive/ dir to avoid glob pickup.
+- Favicon: replaced text-based SVG (font-dependent, broken) with path-based geometric "21" + red bar. Renders consistently across all systems.
+- CSS: added `scroll-margin-top: 80px` to H2/H3/H4 in `.article-prose` to clear sticky header on anchor jumps. Added H4 styling (17px, semi-bold) for sub-subsections.
+- Marked TESS search complete in TODO.md and WORKLOG.md (user confirmed no conflicts found).
+- Build verified clean: 7 pages, 3.17s. Guide renders correctly in browser — anchor links, code blocks, tables, checklist all working.
+- Planned full guide migration: 8 guides found across TBB/FreedomLab/OpenClaw. Phase 2 (single-file guides: PhoenixD, Nunchuk, Bitrefill) ready to execute. Phase 3 (multi-part: OpenClaw 12-module course, How to Learn) needs courses collection decision.
+- PGP keypair plan written (GPG4Win, 4096-bit, annual rotation). Domain email evaluated — Proton Mail recommended for brand alignment. OG image prompt provided.
 
 ## Status
 
-- **Live at 2112capitalsolutions.com** — all 8 routes deployed, mobile + desktop tested in browser
-- Brand identity v2.0 (Apex Constructivist) locked: visual + voice + positioning all documented
-- Astro architecture: 5 static pages + content collection for guides; GitHub Actions → Hostinger FTP
-- Mobile UX working: hamburger drawer, scroll-fade brandmark, tight vertical rhythm
-- Copy is placeholder-but-shippable — user iterating in passes, anchored by positioning-notes.md voice rules
-- TODO.md tracks deferred production items: PGP, TESS search, OG image, favicon, photography, testimonials, domain email
-- No outstanding blockers; future work is content + copy passes, not architecture
+- **Live at 2112capitalsolutions.com** — all routes deployed, mobile + desktop tested
+- Brand identity v2.0 (Apex Constructivist) locked
+- First real guide live: "SSH into your Bitcoin node" (45 min, ~1,050 lines) at `/guides/ssh-into-your-bitcoin-node/`
+- Favicon: V14 path-based geometric "21" + red bar (font-independent)
+- Guide migration pipeline planned: 3 single-file guides ready (Phase 2), 3 multi-part courses need architecture decision (Phase 3)
+- Copy still placeholder-but-shippable on static pages — user iterating in passes
+- Deferred production items in TODO.md: PGP, OG image, domain email, photography, testimonials
 
 ## Next / To-Do
 
-- [ ] User-driven copy pass: replace remaining placeholder copy with founder voice (services / methodology / about / contact / guides)
+- [ ] Migrate Phase 2 guides: PhoenixD Lightning (873 lines), Nunchuk walkthrough (241 lines), Bitrefill/Buy with Bitcoin (129 lines)
+- [ ] Decide Phase 3 approach: OpenClaw 12-module course + How to Learn — courses collection vs. consolidated mega-guides
+- [ ] User-driven copy pass: replace remaining placeholder copy with founder voice (services / methodology / about / contact)
 - [ ] Generate PGP keypair (4096-bit) for `thebitcoinbreakdown@gmail.com`; publish fingerprint on contact page
-- [ ] USPTO TESS search for `2112 Capital` / `2112 Capital Solutions` in Class 35 + 36 (10 min hygiene check)
-- [ ] Open Graph default image (1200×630 V14 social card) — currently references missing `/og-default.png`
-- [ ] Favicon: V14 iconic alternate (bar + 21) at 16/32/64/128
-- [ ] Real testimonials when available — collect 3–5 named, then add to about / homepage
-- [ ] Set up `hello@2112capitalsolutions.com` MX (forward to gmail or separate inbox) — replace TBB gmail when ready
+- [ ] Open Graph default image (1200x630 V14 social card) — currently references missing `/og-default.png`
+- [ ] Set up `hello@2112capitalsolutions.com` MX via Proton Mail — replace TBB gmail when ready
+- [ ] Real testimonials when available — collect 3-5 named, then add to about / homepage
 - [ ] Photography direction (architectural interiors / hands-working — never military hardware) once treatment is ready
-- [ ] Test V14 at 16px favicon size in actual browser; switch to iconic alternate if illegible
 - [ ] Optionally clean up orphaned WP files via FTP wipe script (low priority — they don't serve)
-- [ ] Revisit paid Söhne / GT America license once revenue clears
+- [ ] Revisit paid Sohne / GT America license once revenue clears
+- [x] USPTO TESS search for `2112 Capital` / `2112 Capital Solutions` — no conflicts found (done 2026-05-02)
+- [x] Favicon: V14 iconic alternate (bar + 21) — path-based SVG, verified in browser (done 2026-05-02)
 
 ## Decisions
 
@@ -91,6 +93,17 @@
 ## Session History
 
 <!-- append-only, auto-managed by save protocol -->
+
+### 2026-05-01 [2112-website] — Site built end-to-end and deployed
+
+- Built full Astro site: 5 main pages + guides content collection + dynamic article template. 8 routes, ~2.6s build, ~30s deploy via GitHub Actions to Hostinger.
+- Hero: V14 lockup, h1/tagline/8-item service list, staggered entrance animation ~2.4s, honors `prefers-reduced-motion`.
+- Mobile: hamburger drawer at <=720px, scroll-fade brandmark, aggressive vertical-rhythm trim.
+- Copy purge: removed all "consult"/"consultation"/"boutique consulting firm"/"founded 2023"/Schedule-a-call CTAs. Email switched to TBB gmail site-wide.
+- About page rewrite with original WP mission language + user's verbatim positioning sentence + APPROACH section.
+- Positioning locked: **empowerment, not opposition**. Three operative verbs: thrive / safeguard / don't get left behind.
+- New brand-folder docs: positioning-notes.md, logo-precedent-research.md, design-complete archive, TODO.md.
+- 9 commits (746302a to 549ea18), all deployed green.
 
 ### 2026-04-30 — Brand identity v1.4 + WordPress wipe automation
 

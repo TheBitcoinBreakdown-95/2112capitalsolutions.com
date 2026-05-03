@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#0a0a0a"/><text x="32" y="44" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="24" fill="#f7931a" text-anchor="middle">2112</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#000" rx="6"/>
+  <rect x="4" y="10" width="5" height="44" fill="#e63030" rx="1"/>
+  <g fill="none" stroke="#f4f4f0" stroke-width="4.5" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M17 17 H32 V30 H17 V45 H32"/>
+    <path d="M42 17 V45 M38 45 H50"/>
+  </g>
+</svg>

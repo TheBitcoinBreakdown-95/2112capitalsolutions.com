@@ -17,7 +17,7 @@ Items to handle when revenue / capacity allows. Not blocking site launch.
 
 ## Trademark / legal
 
-- [ ] **TESS search** at [tmsearch.uspto.gov](https://tmsearch.uspto.gov) for `2112 Capital`, `2112 Capital Solutions` in Class 35 + Class 36 — confirm no registered conflicts before any external launch announcement (one-time hygiene check, ~10 min)
+- [x] **TESS search** — completed 2026-05-02, no conflicts found for `2112 Capital` / `2112 Capital Solutions` in Class 35 + 36
 - [ ] File DBA for "The Bitcoin Breakdown" (TBB media operation, separate from 2112 LLC)
 - [ ] Operating agreement draft
 

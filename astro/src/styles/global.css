@@ -720,6 +720,7 @@ section.module { padding: 64px 0; border-top: 1px solid var(--line); }
   color: var(--text);
   padding-bottom: 12px;
   border-bottom: 1px solid var(--line);
+  scroll-margin-top: 80px;
 }
 .article-prose h3 {
   font-family: var(--font-body);
@@ -728,6 +729,16 @@ section.module { padding: 64px 0; border-top: 1px solid var(--line); }
   letter-spacing: -0.015em;
   margin: 40px 0 12px;
   color: var(--text);
+  scroll-margin-top: 80px;
+}
+.article-prose h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  margin: 32px 0 8px;
+  color: var(--text);
+  scroll-margin-top: 80px;
 }
 .article-prose p {
   font-family: var(--font-body);
