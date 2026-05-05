@@ -4,33 +4,30 @@
 
 ## Last Sessions
 
-### [2112-website] 2026-05-02
+### [2112-website] 2026-05-03
 
-**Guide migration pipeline started. First real guide (SSH into your Bitcoin node) consolidated from 7-file course into single guide, live at /guides/. Favicon shipped (V14 path-based). Scroll-offset and H4 styling fixes. TESS search confirmed clean.**
+**Phase 2 guide migration shipped: 3 single-file guides published from TBB/FreedomLab/OpenClaw. /guides/ now has 4 articles. Light-touch adaptation -- voice and code preserved, platform-specific refs generalized.**
 
-- Consolidated `TBB/Content/node-ssh/` (7 files, ~1,088 lines) into single guide `ssh-into-your-bitcoin-node.md` with proper 2112 frontmatter (title, description, pubDate, category: Bitcoin, level: Beginner, readingTime: 45 min). Light structural adaptation: H1s→H2s, "course"→"guide", course outline→anchor-linked ToC, inter-lesson refs→section refs. Voice/content unchanged — already fits 2112 empowerment frame.
-- Removed sample guides (hardware-wallet-setup.md, local-ai-on-your-machine.md) from content collection. Deleted archive/ dir to avoid glob pickup.
-- Favicon: replaced text-based SVG (font-dependent, broken) with path-based geometric "21" + red bar. Renders consistently across all systems.
-- CSS: added `scroll-margin-top: 80px` to H2/H3/H4 in `.article-prose` to clear sticky header on anchor jumps. Added H4 styling (17px, semi-bold) for sub-subsections.
-- Marked TESS search complete in TODO.md and WORKLOG.md (user confirmed no conflicts found).
-- Build verified clean: 7 pages, 3.17s. Guide renders correctly in browser — anchor links, code blocks, tables, checklist all working.
-- Planned full guide migration: 8 guides found across TBB/FreedomLab/OpenClaw. Phase 2 (single-file guides: PhoenixD, Nunchuk, Bitrefill) ready to execute. Phase 3 (multi-part: OpenClaw 12-module course, How to Learn) needs courses collection decision.
-- PGP keypair plan written (GPG4Win, 4096-bit, annual rotation). Domain email evaluated — Proton Mail recommended for brand alignment. OG image prompt provided.
+- Migrated `bitrefill/buy-with-bitcoin.md` → `/guides/buy-with-bitcoin-using-bitrefill/` (Bitcoin, Intermediate, 5 min). Removed FreedomLab Source/Scraped metadata, dropped "OpenClaw compatible" from prerequisites.
+- Migrated `nunchuk-claude-walkthrough.md` → `/guides/ai-agent-bitcoin-wallet-with-nunchuk/` (Bitcoin, Intermediate, 15 min). Removed 2 video demo framings; "What to tell Claude" patterns kept (Claude Code is the agent).
+- Migrated `GUIDE-phoenixd-lightning-openclaw.md` → `/guides/self-custodial-lightning-with-phoenixd/` (Bitcoin, Intermediate, 45 min). Generalized 12 OpenClaw refs (paths, service name `openclaw-dashboard` → `your-dashboard`, architecture diagram). All Express.js proxy code + vanilla JS frontend kept verbatim — framework-agnostic.
+- Build verified: 10 pages, 4.40s (up from 7, 3.17s). Schema validation passed for all 3 (category enum, level enum).
+- Pending: visual browser pass on anchor IDs, especially PhoenixD's 12-item ToC.
 
 ## Status
 
 - **Live at 2112capitalsolutions.com** — all routes deployed, mobile + desktop tested
 - Brand identity v2.0 (Apex Constructivist) locked
-- First real guide live: "SSH into your Bitcoin node" (45 min, ~1,050 lines) at `/guides/ssh-into-your-bitcoin-node/`
-- Favicon: V14 path-based geometric "21" + red bar (font-independent)
-- Guide migration pipeline planned: 3 single-file guides ready (Phase 2), 3 multi-part courses need architecture decision (Phase 3)
+- 4 guides live at /guides/: SSH (Beginner, 45 min), Bitrefill (Intermediate, 5 min), Nunchuk (Intermediate, 15 min), phoenixd (Intermediate, 45 min). Build: 10 pages, 4.40s.
+- Favicon V14 (path-based geometric "21" + red bar) confirmed across systems.
+- Phase 3 multi-part content (OpenClaw 12-module course, How to Learn and Do Anything) needs courses-collection vs mega-guide decision.
 - Copy still placeholder-but-shippable on static pages — user iterating in passes
 - Deferred production items in TODO.md: PGP, OG image, domain email, photography, testimonials
 
 ## Next / To-Do
 
-- [ ] Migrate Phase 2 guides: PhoenixD Lightning (873 lines), Nunchuk walkthrough (241 lines), Bitrefill/Buy with Bitcoin (129 lines)
 - [ ] Decide Phase 3 approach: OpenClaw 12-module course + How to Learn — courses collection vs. consolidated mega-guides
+- [ ] Visual browser pass on Phase 2 guides — verify anchor IDs work (especially PhoenixD's 12-item ToC)
 - [ ] User-driven copy pass: replace remaining placeholder copy with founder voice (services / methodology / about / contact)
 - [ ] Generate PGP keypair (4096-bit) for `thebitcoinbreakdown@gmail.com`; publish fingerprint on contact page
 - [ ] Open Graph default image (1200x630 V14 social card) — currently references missing `/og-default.png`
@@ -39,8 +36,6 @@
 - [ ] Photography direction (architectural interiors / hands-working — never military hardware) once treatment is ready
 - [ ] Optionally clean up orphaned WP files via FTP wipe script (low priority — they don't serve)
 - [ ] Revisit paid Sohne / GT America license once revenue clears
-- [x] USPTO TESS search for `2112 Capital` / `2112 Capital Solutions` — no conflicts found (done 2026-05-02)
-- [x] Favicon: V14 iconic alternate (bar + 21) — path-based SVG, verified in browser (done 2026-05-02)
 
 ## Decisions
 
@@ -93,6 +88,25 @@
 ## Session History
 
 <!-- append-only, auto-managed by save protocol -->
+
+### 2026-05-03 [2112-website] — Phase 2 guide migration
+
+- Migrated 3 single-file guides into the 2112 content collection: Buy with bitcoin using Bitrefill (130 lines source), Give your AI agent a Bitcoin wallet with Nunchuk (242 lines source), Self-custodial Lightning with phoenixd (874 lines source).
+- Light-touch adaptation: added 2112 frontmatter (title/description/pubDate/category/level/readingTime/draft), removed Source/Scraped metadata from Bitrefill, removed 2 video demo framings from Nunchuk, generalized 12 OpenClaw refs in PhoenixD (paths, service names, subtitle, architecture diagram).
+- All Express.js proxy code + vanilla JS frontend code in PhoenixD guide kept verbatim — framework-agnostic, no logic changes needed.
+- Build verified: 10 pages, 4.40s (up from 7 pages, 3.17s yesterday). All 4 guides at /guides/: ssh-into-your-bitcoin-node, buy-with-bitcoin-using-bitrefill, ai-agent-bitcoin-wallet-with-nunchuk, self-custodial-lightning-with-phoenixd.
+- Pattern confirmed: Astro content collection schema validation (category/level enums) is the gate — passing schema = guide works structurally. Visual browser verification of anchor IDs still pending.
+
+### 2026-05-02 [2112-website] — First real guide shipped + favicon V14
+
+- Consolidated `TBB/Content/node-ssh/` (7 files, ~1,088 lines) into single guide `ssh-into-your-bitcoin-node.md` with 2112 frontmatter. Light structural adaptation: H1s→H2s, "course"→"guide", course outline→anchor-linked ToC, inter-lesson refs→section refs. Voice/content unchanged — already fits 2112 empowerment frame.
+- Removed sample guides (hardware-wallet-setup.md, local-ai-on-your-machine.md). Deleted archive/ dir to avoid glob pickup.
+- Favicon: replaced text-based SVG (font-dependent, broken) with path-based geometric "21" + red bar. Renders consistently across all systems.
+- CSS: added `scroll-margin-top: 80px` to H2/H3/H4 in `.article-prose` to clear sticky header on anchor jumps. Added H4 styling (17px, semi-bold) for sub-subsections.
+- USPTO TESS search complete: no conflicts found for `2112 Capital` / `2112 Capital Solutions`.
+- Build verified: 7 pages, 3.17s. Guide renders correctly in browser — anchor links, code blocks, tables, checklist all working.
+- Planned full guide migration: 8 guides found across TBB/FreedomLab/OpenClaw. Phase 2 ready, Phase 3 (multi-part) needs courses collection decision.
+- PGP keypair plan written (GPG4Win, 4096-bit, annual rotation). Proton Mail recommended for `hello@2112capitalsolutions.com`.
 
 ### 2026-05-01 [2112-website] — Site built end-to-end and deployed
 
