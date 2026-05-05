@@ -6,19 +6,19 @@
 
 ### [2112-website] 2026-05-03
 
-**Phase 2 guide migration shipped: 3 single-file guides published from TBB/FreedomLab/OpenClaw. /guides/ now has 4 articles. Light-touch adaptation -- voice and code preserved, platform-specific refs generalized.**
+**Phase 2 guide migration: 2 net guides shipped. /guides/ now has 3 articles. Light-touch adaptation -- voice and code preserved, platform-specific refs generalized.**
 
-- Migrated `bitrefill/buy-with-bitcoin.md` → `/guides/buy-with-bitcoin-using-bitrefill/` (Bitcoin, Intermediate, 5 min). Removed FreedomLab Source/Scraped metadata, dropped "OpenClaw compatible" from prerequisites.
 - Migrated `nunchuk-claude-walkthrough.md` → `/guides/ai-agent-bitcoin-wallet-with-nunchuk/` (Bitcoin, Intermediate, 15 min). Removed 2 video demo framings; "What to tell Claude" patterns kept (Claude Code is the agent).
 - Migrated `GUIDE-phoenixd-lightning-openclaw.md` → `/guides/self-custodial-lightning-with-phoenixd/` (Bitcoin, Intermediate, 45 min). Generalized 12 OpenClaw refs (paths, service name `openclaw-dashboard` → `your-dashboard`, architecture diagram). All Express.js proxy code + vanilla JS frontend kept verbatim — framework-agnostic.
-- Build verified: 10 pages, 4.40s (up from 7, 3.17s). Schema validation passed for all 3 (category enum, level enum).
+- Bitrefill guide initially shipped then pulled (2026-05-04): source file at `TBB/FreedomLab/Content/bitrefill/buy-with-bitcoin.md` was scraped content from freedomlab.nyc, not user-authored — removed after review.
+- Build verified after removal: 9 pages. Schema validation passed for both remaining guides.
 - Pending: visual browser pass on anchor IDs, especially PhoenixD's 12-item ToC.
 
 ## Status
 
 - **Live at 2112capitalsolutions.com** — all routes deployed, mobile + desktop tested
 - Brand identity v2.0 (Apex Constructivist) locked
-- 4 guides live at /guides/: SSH (Beginner, 45 min), Bitrefill (Intermediate, 5 min), Nunchuk (Intermediate, 15 min), phoenixd (Intermediate, 45 min). Build: 10 pages, 4.40s.
+- 3 guides live at /guides/: SSH (Beginner, 45 min), Nunchuk (Intermediate, 15 min), phoenixd (Intermediate, 45 min). Build: 9 pages.
 - Favicon V14 (path-based geometric "21" + red bar) confirmed across systems.
 - Phase 3 multi-part content (OpenClaw 12-module course, How to Learn and Do Anything) needs courses-collection vs mega-guide decision.
 - Copy still placeholder-but-shippable on static pages — user iterating in passes
