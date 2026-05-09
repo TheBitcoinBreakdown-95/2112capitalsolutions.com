@@ -26,3 +26,9 @@ Thumbs.db
 Old-site-backup/
 *.wpress
 *.sql
+
+# Private business material (pricing, audience strategy, deliverables) -- public repo, keep local only
+sovereign-starter-kit/
+
+# Internal session log (can contain strategy detail across edits) -- keep local
+WORKLOG.md
