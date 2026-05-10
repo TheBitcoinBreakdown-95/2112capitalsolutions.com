@@ -20,7 +20,7 @@ export const courses: Course[] = [
       "Build the system that sits under whatever AI tool you use. Identity, context, skills, memory, connections, verification, automations -- the seven layers that make an agent yours, not the platform's. No-code-required.",
     level: 'Intermediate',
     estimatedTime: '~3 hr',
-    chapterCount: 10,
+    chapterCount: 11,
     draft: false,
   },
 ];

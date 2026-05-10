@@ -1,29 +1,59 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { courses } from '../../data/courses';
 
 const allGuides = await getCollection('guides', ({ data }) => !data.draft);
 const sorted = allGuides.sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
+const publishedCourses = courses.filter((c) => !c.draft);
+
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }).toUpperCase();
 ---
 <BaseLayout
-  title="Guides — 2112 Capital Solutions"
-  description="Documented procedures from real client engagements. Bitcoin custody, AI workflow, privacy, and self-hosted infrastructure. Source-linked, no fluff."
+  title="Guides &amp; Courses — 2112 Capital Solutions"
+  description="Documented procedures and full courses from real client engagements. Bitcoin custody, AI workflow, privacy, self-hosted infrastructure. Source-linked, no fluff."
 >
   <!-- HERO -->
   <section class="hero">
     <div class="container">
-      <div class="classify">MODULE 04 — GUIDES · DOCUMENTED PROCEDURES</div>
+      <div class="classify">MODULE 04 — GUIDES &amp; COURSES · DOCUMENTED PROCEDURES</div>
       <h1>Field guides. <em>Procedures we ship.</em></h1>
       <div class="hero-sub">
-        Documented procedures from real client engagements · Bitcoin · AI · Privacy · Self-hosting · Source-linked, traceable, free
+        Documented procedures and full courses · Bitcoin · AI · Privacy · Self-hosting · Source-linked, traceable, free
       </div>
     </div>
   </section>
+
+  {publishedCourses.length > 0 && (
+    <section class="module">
+      <div class="container">
+        <div class="module-classify">
+          <span>COURSES</span>
+          <span class="ref">{publishedCourses.length} {publishedCourses.length === 1 ? 'COURSE' : 'COURSES'}</span>
+        </div>
+
+        <div class="card-grid">
+          {publishedCourses.map((course) => (
+            <a href={`/courses/${course.slug}/`} class="card">
+              <div class="card-eyebrow">
+                COURSE · {course.estimatedTime.toUpperCase()}
+              </div>
+              <div class="card-title">{course.title}</div>
+              <p class="card-excerpt">{course.tagline}</p>
+              <div class="card-meta">
+                <span>{course.chapterCount} CHAPTERS</span>
+                <span>{course.level.toUpperCase()}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- GUIDES GRID -->
   <section class="module">
