@@ -15,4 +15,13 @@ const guides = defineCollection({
   }),
 });
 
-export const collections = { guides };
+const courses = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/courses' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { guides, courses };

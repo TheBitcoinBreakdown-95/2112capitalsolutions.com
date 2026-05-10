@@ -1,0 +1,71 @@
+---
+import { getCollection, render } from 'astro:content';
+import CourseChapterLayout from '../../../layouts/CourseChapterLayout.astro';
+import { courses } from '../../../data/courses';
+
+export async function getStaticPaths() {
+  const allChapters = await getCollection('courses', ({ data }) => !data.draft);
+  const courseBySlug = new Map(
+    courses.filter((c) => !c.draft).map((c) => [c.slug, c])
+  );
+
+  const enriched = allChapters
+    .map((entry) => {
+      const [courseSlug, fileBase] = entry.id.split('/');
+      const match = (fileBase ?? '').match(/^(\d+)-(.+)$/);
+      return {
+        entry,
+        courseSlug,
+        course: courseBySlug.get(courseSlug),
+        order: match ? parseInt(match[1], 10) : 999,
+        chapterSlug: match ? match[2] : fileBase,
+      };
+    })
+    .filter((c) => c.course);
+
+  const byCourse = new Map<string, typeof enriched>();
+  for (const c of enriched) {
+    if (!byCourse.has(c.courseSlug)) byCourse.set(c.courseSlug, []);
+    byCourse.get(c.courseSlug)!.push(c);
+  }
+  for (const list of byCourse.values()) {
+    list.sort((a, b) => a.order - b.order);
+  }
+
+  return enriched.map((c) => {
+    const list = byCourse.get(c.courseSlug)!;
+    const idx = list.indexOf(c);
+    const prev = idx > 0 ? list[idx - 1] : undefined;
+    const next = idx < list.length - 1 ? list[idx + 1] : undefined;
+    return {
+      params: { course: c.courseSlug, chapter: c.chapterSlug },
+      props: {
+        entry: c.entry,
+        course: c.course,
+        order: c.order,
+        prev: prev
+          ? { slug: prev.chapterSlug, title: prev.entry.data.title }
+          : undefined,
+        next: next
+          ? { slug: next.chapterSlug, title: next.entry.data.title }
+          : undefined,
+      },
+    };
+  });
+}
+
+const { entry, course, order, prev, next } = Astro.props;
+const { Content } = await render(entry);
+---
+<CourseChapterLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  courseTitle={course.title}
+  courseSlug={course.slug}
+  courseLevel={course.level}
+  chapterOrder={order}
+  prev={prev}
+  next={next}
+>
+  <Content />
+</CourseChapterLayout>

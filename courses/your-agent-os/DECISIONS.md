@@ -20,7 +20,7 @@ A log of strategic decisions made during the build. Read this before changing an
 - **Alternatives considered:**
   - Verification-First (move Layer 6 to position 3). Rejected. Course teaches concepts. Students decide implementation depth.
   - Coaching cross-cutting. Rejected. That's a Claude-Code-specific personal-preference pattern, not student-facing content.
-  - Add Hooks as 8th layer. Rejected. Tool-specific to Claude Code. Other harnesses have different mechanisms. Mentioned in Chapter 08 only.
+  - Add Hooks as 8th layer. Rejected. Tool-specific to Claude Code. Other harnesses have different mechanisms. Mentioned in Chapter 09 only.
 - **Rationale:** A teaching course exposes concepts at the right level of generality and lets students build to their own needs. Nufar's order builds layer by layer in the way knowledge workers actually adopt them. The KD enrichments are reservoir material for "go deeper" footnotes, not required content.
 - **Consequences:** The course stays general and ages well. Students wanting structure are pointed at Nufar's free AIDB program and our own Claude Code Guided Course at the end. Course doesn't become an implementation manual.
 
@@ -48,7 +48,7 @@ A log of strategic decisions made during the build. Read this before changing an
 - **Context:** Per KD `failure-patterns.md` > Context Pollution. Long sessions with multiple unrelated drafts produce drift.
 - **Alternatives considered:** Build all in one session for momentum. Accepted in this case (THESIS, OUTLINE, DECISIONS, README, and Lesson 01 written in the same session) because the conceptual content was fully settled before any drafting started. Subsequent layer chapters will be drafted in separate sessions to honor this rule.
 - **Rationale:** Each artifact gets cleaner attention if it's the only thing being worked on. One-session burst is acceptable when the conceptual content is fully pre-decided.
-- **Consequences:** Layer chapters 02-09 will each get their own session for drafting.
+- **Consequences:** Layer chapters 03-10 will each get their own session for drafting.
 
 ## 2026-05-04 — Adopt WBIGAF voice DNA profile as upstream voice reference
 

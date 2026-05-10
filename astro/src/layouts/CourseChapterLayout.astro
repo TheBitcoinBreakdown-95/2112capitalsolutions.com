@@ -1,0 +1,64 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  courseTitle: string;
+  courseSlug: string;
+  courseLevel: string;
+  chapterOrder: number;
+  prev?: { slug: string; title: string };
+  next?: { slug: string; title: string };
+}
+
+const {
+  title,
+  description,
+  courseTitle,
+  courseSlug,
+  courseLevel,
+  chapterOrder,
+  prev,
+  next,
+} = Astro.props;
+
+const orderLabel = String(chapterOrder).padStart(2, '0');
+---
+<BaseLayout title={`${title} — ${courseTitle} — 2112 Capital Solutions`} description={description}>
+  <section class="hero">
+    <div class="container container--reading" style="padding: 0 var(--page-margin);">
+      <div class="classify">
+        <a href={`/courses/${courseSlug}`} style="color: inherit; text-decoration: none;">
+          {courseTitle.toUpperCase()}
+        </a>
+        {' · '}CH {orderLabel}{' · '}{courseLevel.toUpperCase()}
+      </div>
+      <h1>{title}</h1>
+      <div class="hero-sub" style="text-transform: none; letter-spacing: 0;">{description}</div>
+    </div>
+  </section>
+
+  <article class="module">
+    <div class="container container--reading" style="padding: 0 var(--page-margin);">
+      <div class="article-prose">
+        <slot />
+      </div>
+    </div>
+  </article>
+
+  <section class="module">
+    <div class="container container--reading" style="padding: 0 var(--page-margin); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+      {prev ? (
+        <a href={`/courses/${courseSlug}/${prev.slug}`} class="btn btn--ghost">← {prev.title}</a>
+      ) : (
+        <a href={`/courses/${courseSlug}`} class="btn btn--ghost">← Course overview</a>
+      )}
+      {next ? (
+        <a href={`/courses/${courseSlug}/${next.slug}`} class="btn btn--ghost">{next.title} →</a>
+      ) : (
+        <a href={`/courses/${courseSlug}`} class="btn btn--ghost">All chapters →</a>
+      )}
+    </div>
+  </section>
+</BaseLayout>

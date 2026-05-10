@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { courses } from '../../../data/courses';
+
+export async function getStaticPaths() {
+  return courses
+    .filter((c) => !c.draft)
+    .map((course) => ({
+      params: { course: course.slug },
+      props: { course },
+    }));
+}
+
+const { course } = Astro.props;
+
+const allChapters = await getCollection(
+  'courses',
+  ({ data, id }) => !data.draft && id.startsWith(`${course.slug}/`)
+);
+
+const chapters = allChapters
+  .map((entry) => {
+    const fileBase = entry.id.split('/')[1] ?? entry.id;
+    const match = fileBase.match(/^(\d+)-(.+)$/);
+    return {
+      ...entry,
+      order: match ? parseInt(match[1], 10) : 999,
+      chapterSlug: match ? match[2] : fileBase,
+    };
+  })
+  .sort((a, b) => a.order - b.order);
+---
+<BaseLayout
+  title={`${course.title} — 2112 Capital Solutions`}
+  description={course.description}
+>
+  <section class="hero">
+    <div class="container">
+      <div class="classify">
+        COURSE · {course.level.toUpperCase()} · {course.estimatedTime.toUpperCase()} · {chapters.length} CHAPTERS
+      </div>
+      <h1>{course.title}</h1>
+      <div class="hero-sub" style="text-transform: none; letter-spacing: 0;">
+        {course.tagline}
+      </div>
+    </div>
+  </section>
+
+  <section class="module">
+    <div class="container">
+      <p class="module-lede">{course.description}</p>
+    </div>
+  </section>
+
+  <section class="module">
+    <div class="container">
+      <div class="module-classify">
+        <span>CHAPTERS</span>
+        <span class="ref">{chapters.length} {chapters.length === 1 ? 'CHAPTER' : 'CHAPTERS'}</span>
+      </div>
+
+      {chapters.length === 0 ? (
+        <p class="module-lede">No chapters published yet.</p>
+      ) : (
+        <div class="card-grid">
+          {chapters.map((ch) => (
+            <a href={`/courses/${course.slug}/${ch.chapterSlug}`} class="card">
+              <div class="card-eyebrow">CH {String(ch.order).padStart(2, '0')}</div>
+              <div class="card-title">{ch.data.title}</div>
+              <p class="card-excerpt">{ch.data.description}</p>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

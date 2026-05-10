@@ -8,7 +8,7 @@ For two years, "using AI well" meant prompting. Cleverer prompts, better context
 
 Every serious agentic tool is converging on the same capabilities: identity files the agent reads first, context files it reaches for on demand, reusable workflows you can fire by name, persistent memory across sessions, connections to your real systems, verification, and unattended execution. Cursor, Claude Code, Codex, OpenClaw, the next harness no one has named yet... all of them are building the same set of layers under the hood.
 
-The portable, text-based system underneath has a name. It's called an **agent operating system**. This course teaches you how to build yours.
+The portable, text-based system underneath has a name. Actually, several. AIOS in research papers. Workspace agents at OpenAI. Command center in Codex. Agentic coding environment for developer tools. The names differ. The thing being named is the same. We're calling it an **agent operating system**. This course teaches you how to build yours.
 
 ## Three claims worth disagreeing with
 
