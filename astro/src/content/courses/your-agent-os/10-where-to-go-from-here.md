@@ -101,11 +101,9 @@ Step back from the layers for a moment.
 
 The thing you're building isn't an agent. It isn't a chatbot. It isn't even a productivity system in the usual sense. It's a piece of personal infrastructure.
 
-Bitcoin proved one shape of personal infrastructure works. Hold your own keys. Own your own coins. The bank becomes optional.
+Hold your own files. Own your own context. The platform becomes optional.
 
-The Agent OS is the same shape applied to thinking. Hold your own files. Own your own context. The platform becomes optional.
-
-You're not building this because the tools are bad. You're building it because the layer underneath the tools is what makes the work yours. Different layer, same principle.
+You're not building this because the tools are bad. You're building it because the layer underneath the tools is what makes the work yours. The system you accumulate is what survives every tool change, every model release, every platform pivot. Infrastructure compounds. Rentals don't.
 
 ---
 

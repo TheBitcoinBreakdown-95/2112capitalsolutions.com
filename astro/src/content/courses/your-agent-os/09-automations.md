@@ -69,6 +69,18 @@ The 3am test calibrates your appetite for direct-output automations. Most things
 
 ---
 
+## Kill criteria
+
+Before you turn an automation on, decide what would make you turn it off.
+
+Two drafts in a row I had to fully rewrite. Three runs that produced nothing. One run that cost more than five dollars. A log entry that includes a name I don't recognize. Pick three or four. Write them down. Wire them as auto-pause conditions if your runtime supports it. Calendar reminder if it doesn't.
+
+The 3am test asks "what's the worst that happens." Kill criteria asks "at what threshold do I pull the plug." Different shape. Both matter.
+
+An automation without a kill condition is just a process you stopped looking at. Decide where the off-ramp is before you need it.
+
+---
+
 ## What people get wrong
 
 Three failure modes show up most often.

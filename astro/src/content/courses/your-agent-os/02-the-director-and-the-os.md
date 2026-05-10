@@ -7,7 +7,7 @@ draft: false
 
 Every serious agentic tool is racing toward the same set of capabilities. Within a year the differences will be aesthetic, not architectural. So the tool you pick won't matter as much as you think... what you build under it will.
 
-And what you build under it is yours. Bitcoin took money off the platform. The Agent OS does it for thought.
+And what you build under it is yours.
 
 Right now your AI work lives on someone else's server, in someone else's interface, on someone else's terms. Files you don't own. Conversations that disappear when the platform changes its mind.
 
@@ -17,7 +17,7 @@ The Agent OS flips that. Your context, your workflows, your memory, your reach. 
 
 An agent on top of that foundation isn't a smarter chatbot. It's a system that knows everything about your work and can act on every part of it. The compounding isn't theoretical. Your output stops looking like one person's work.
 
-Same pattern Bitcoin proved for money. Sovereignty isn't just protection. It's capability.
+Sovereignty isn't just protection. It's capability.
 
 This chapter is about the mental model that makes the rest of the course click into place.
 

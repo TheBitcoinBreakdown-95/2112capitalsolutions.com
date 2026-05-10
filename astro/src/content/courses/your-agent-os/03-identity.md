@@ -29,11 +29,11 @@ A new colleague asks who you are on day one and never asks again on day two. Tha
 
 ---
 
-## The sovereignty parallel
+## The foundation property
 
-If you came to this from the Bitcoin side, the parallel is direct. Your seed phrase is what you secure first when you set up self-custody. Everything else builds on top of it. The identity file plays the same structural role one layer up. It's what the rest of the OS references.
+The identity file is what the rest of the OS references. Every other layer assumes it's there and reads from it. Get it wrong and the agent still works. It just works less well, and you don't always know why.
 
-Get it wrong and the agent still works. It just works less well, and you don't always know why.
+That's the cost of skipping foundation work. The system runs. The output is slightly off. The source is invisible.
 
 ---
 
@@ -47,6 +47,25 @@ This isn't a template. Templates produce files that read as someone else's voice
 4. **What you don't want.** The list of things to never do. No flattery. No hedging. No emojis. No restating the question. The pet peeves.
 
 The fourth one carries more weight than people expect. A sentence saying "never do X" prevents X for every conversation forever, instead of you correcting the same drift twenty times a week.
+
+---
+
+## Hard rules: what must always be true
+
+The four kinds above describe how you want to work. There's a fifth thing the agent needs in writing... what must never break.
+
+Hard rules are the lines you don't cross. Not goals. Not preferences. Yes-or-no tests the agent has to pass before any output ships. A few examples that translate to almost any knowledge worker:
+
+- Client emails are drafted only. Never sent without my approval.
+- Numbers in any draft are sourced from a real document. Never paraphrased or pattern-matched.
+- Calendar invites quote the meeting brief verbatim.
+- Anything destined for an external system gets logged to my audit file before it goes out.
+
+These look restrictive. They're protective. Without them, the agent is optimizing in a space that includes the wrong answer. With them, the wrong answer is removed before the agent reaches for it.
+
+Every hard rule turns into a verification check for free. "Numbers sourced" is a check. "Emails drafted only" is a check. The list you write becomes the guard rails the system runs against.
+
+Two or three on day one is plenty. You don't need the full list before you start. You add a rule the next time you catch the agent doing something that should never have been possible.
 
 ---
 

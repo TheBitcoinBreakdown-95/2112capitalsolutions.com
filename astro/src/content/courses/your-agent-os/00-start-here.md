@@ -1,11 +1,11 @@
 ---
 title: "Start Here"
-description: "Course intro. Why an Agent OS, who it's for, and what you'll build by the end. Bitcoin took money off the platform; this does it for thought."
+description: "Course intro. Why an Agent OS, who it's for, and what you'll build by the end. Get your thinking off rented infrastructure and onto your own."
 draft: false
 ---
 
 
-Bitcoin took money off the platform. The Agent OS does it for thought.
+Your work belongs on infrastructure you control. The Agent OS is how you build it for the AI layer.
 
 This course is about how to build yours.
 
@@ -36,8 +36,6 @@ You don't need to code. You don't need to be technical. You need to be willing t
 Sovereignty isn't just protection. It's capability.
 
 Owning your system isn't about defense against the next ChatGPT outage. It's about producing work that stops looking like one person's work. A compounding context machine that turns scattered knowledge into executable work. The integration is the unlock. An agent that knows everything about you, can reach into every tool you use, and runs the workflows you've named. That agent doesn't exist when your AI lives in a browser tab.
-
-Same pattern Bitcoin proved for money. Different layer. Bigger leverage.
 
 And it's not a chatbot. It's an interface that runs. Manual systems lose to entropy. Every project tracker you've abandoned proves it. The Agent OS runs in the background, organizes the work, surfaces what changed. The category isn't "smarter AI assistant." It's "system that maintains itself."
 

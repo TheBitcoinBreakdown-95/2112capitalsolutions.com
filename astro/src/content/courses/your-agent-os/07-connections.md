@@ -79,7 +79,7 @@ Imagine you give your agent write access to your team's Slack. A colleague messa
 
 The agent is doing what it was told. The privacy violation is still real.
 
-Same principle as wallet permissions. You wouldn't give an unknown app signing access to your wallet on day one. Same instinct here. Least privilege is not paranoia. It's the default that prevents damage you couldn't have predicted.
+You wouldn't give a new contractor the master keys to your house on day one. Same instinct here. Least privilege is not paranoia. It's the default that prevents damage you couldn't have predicted.
 
 ---
 

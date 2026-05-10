@@ -1,6 +1,6 @@
 # Your Agent OS
 
-> The complete course in one document. Bitcoin took money off the platform. The Agent OS does it for thought.
+> The complete course in one document. Get your thinking off rented infrastructure and onto your own.
 
 ---
 
@@ -26,7 +26,7 @@ That's the shift. From asking AI to using AI. From sessions to systems. From a t
 
 ### Sovereignty as capability
 
-For most of modern history, managing your own money, your communications, or your knowledge meant going through a trusted third party. The last fifteen years have been an unwinding of that arrangement. Bitcoin made it possible to hold and move money digitally without a trusted third party. The Agent OS is that pattern applied to knowledge work and decision-making.
+For most of modern history, managing your own money, your communications, or your knowledge meant going through a trusted third party. The last fifteen years have been an unwinding of that arrangement. The Agent OS is that pattern applied to knowledge work and decision-making.
 
 ChatGPT in a browser is a trusted third party for thought. An Agent OS on your own machine, reading files you control, running on a tool you can swap out tomorrow, is the alternative.
 
@@ -184,9 +184,9 @@ Generic AI gives generic output. Specific AI gives specific output. The gap betw
 
 A new colleague asks who you are on day one and never asks again on day two. That's identity in the human world. Stored once, referenced forever. An agent without an identity file is a colleague who introduces himself every morning.
 
-### The sovereignty parallel
+### The foundation property
 
-Your seed phrase is what you secure first when you set up self-custody. Everything else builds on top of it. The identity file plays the same structural role one layer up. It's what the rest of the OS references.
+The identity file is what the rest of the OS references. Every other layer assumes it's there and reads from it. Get it wrong and the agent still works. It just works less well, and you don't always know why.
 
 ### What goes in
 
@@ -198,6 +198,16 @@ Useful identity files cover four kinds of information.
 4. **What you don't want.** No flattery. No hedging. No emojis. No restating the question. The pet peeves.
 
 The fourth one carries more weight than people expect. A sentence saying "never do X" prevents X for every conversation forever, instead of you correcting the same drift twenty times a week.
+
+### Hard rules: what must always be true
+
+The four kinds above describe how you want to work. There's a fifth thing the agent needs in writing... what must never break.
+
+Hard rules are the lines you don't cross. Not goals. Not preferences. Yes-or-no tests the agent has to pass before any output ships. Examples: "Client emails are drafted only, never sent without my approval." "Numbers in any draft are sourced from a real document, never paraphrased." "Anything destined for an external system gets logged to my audit file."
+
+These look restrictive. They're protective. Without them, the agent is optimizing in a space that includes the wrong answer. With them, the wrong answer is removed before the agent reaches for it. And every hard rule turns into a verification check for free.
+
+Two or three on day one is plenty. Add a rule the next time you catch the agent doing something that should never have been possible.
 
 ### The brain-dump methodology
 
@@ -356,7 +366,7 @@ Most memory systems on the market store your knowledge in a database the vendor 
 
 The portable version is plain markdown in a folder you own. An Obsidian vault is the obvious shape. Plain text. One file per topic. `[[wikilinks]]` between them. A folder structure that maps to your work.
 
-The vault is your memory. The agent reads it like you would. Wikilinks are the retrieval graph. No database, no migration, no lock-in. Same pattern Bitcoin proved one layer down. You hold the artifact.
+The vault is your memory. The agent reads it like you would. Wikilinks are the retrieval graph. No database, no migration, no lock-in. You hold the artifact.
 
 ### Bounded files, not buckets
 
@@ -472,7 +482,7 @@ You give your agent write access to your team's Slack. A colleague messages the 
 
 The agent is doing what it was told. The privacy violation is still real.
 
-Same principle as wallet permissions. You wouldn't give an unknown app signing access to your wallet on day one. Same instinct here. Least privilege is not paranoia. It's the default that prevents damage you couldn't have predicted.
+You wouldn't give a new contractor the master keys to your house on day one. Same instinct here. Least privilege is not paranoia. It's the default that prevents damage you couldn't have predicted.
 
 ---
 
@@ -598,6 +608,14 @@ If the answer is "I get a slightly off morning briefing," fine, ship it. The cos
 
 The 3am test calibrates your appetite for direct-output automations. Most things you'd be tempted to automate fail it. That's fine. Drafts-for-review still saves you the work of starting from blank.
 
+### Kill criteria
+
+Before you turn an automation on, decide what would make you turn it off.
+
+Two drafts in a row I had to fully rewrite. Three runs that produced nothing. One run that cost more than five dollars. A log entry that includes a name I don't recognize. Pick three or four. Write them down. Wire them as auto-pause conditions if your runtime supports it. Calendar reminder if it doesn't.
+
+The 3am test asks "what's the worst that happens." Kill criteria asks "at what threshold do I pull the plug." Different shape. Both matter. An automation without a kill condition is just a process you stopped looking at.
+
 ### What people get wrong
 
 **Automating before the manual version is trusted.** You haven't done the task by hand enough times to know the failure modes.
@@ -644,11 +662,9 @@ Within a month you have a working Agent OS. Not impressive yet. But operational.
 
 The thing you're building isn't an agent. It isn't a chatbot. It isn't even a productivity system in the usual sense. It's a piece of personal infrastructure.
 
-Bitcoin proved one shape of personal infrastructure works. Hold your own keys. Own your own coins. The bank becomes optional.
+Hold your own files. Own your own context. The platform becomes optional.
 
-The Agent OS is the same shape applied to thinking. Hold your own files. Own your own context. The platform becomes optional.
-
-You're not building this because the tools are bad. You're building it because the layer underneath the tools is what makes the work yours. Different layer, same principle.
+You're not building this because the tools are bad. You're building it because the layer underneath the tools is what makes the work yours. The system you accumulate is what survives every tool change, every model release, every platform pivot. Infrastructure compounds. Rentals don't.
 
 ### The OS that builds on itself
 

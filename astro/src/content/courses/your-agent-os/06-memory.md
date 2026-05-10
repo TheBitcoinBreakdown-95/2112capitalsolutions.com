@@ -31,7 +31,7 @@ Most memory systems on the market store your knowledge in a database the vendor 
 
 The portable version is plain markdown in a folder you own. An Obsidian vault is the obvious shape, but the principle is older than Obsidian. Plain text. One file per topic. `[[wikilinks]]` between them. A folder structure that maps to your work.
 
-The vault is your memory. The agent reads it like you would. Wikilinks are the retrieval graph. No database, no migration, no lock-in. If the tool changes, the files don't move. Same pattern as the identity file. Same pattern as the context layer. Same pattern Bitcoin proved one layer down. You hold the artifact.
+The vault is your memory. The agent reads it like you would. Wikilinks are the retrieval graph. No database, no migration, no lock-in. If the tool changes, the files don't move. Same pattern as the identity file. Same pattern as the context layer. You hold the artifact.
 
 This is the part that survives every news cycle in the agent space. Models will get smarter. Harnesses will trade places. The vault is what makes none of that disrupt your accumulated knowledge.
 
@@ -123,7 +123,7 @@ The memory layer is the first place where an Agent OS starts to feel like it's r
 
 That's the moment the OS becomes a thing you operate, not a thing you live in.
 
-The fix is the same instinct that makes a Bitcoin self-custodian verify their own backups. You can outsource the *work* of writing the file. You can't outsource the *understanding* of what's in it. If the agent maintains a memory file, you read it once a week. If the agent retires a skill, you know why. If a wikilink connects two notes, you can still walk that connection in your head.
+The fix is the same instinct that makes you double-check your own backup before you need it. You can outsource the *work* of writing the file. You can't outsource the *understanding* of what's in it. If the agent maintains a memory file, you read it once a week. If the agent retires a skill, you know why. If a wikilink connects two notes, you can still walk that connection in your head.
 
 The minute you can't, the system is operating beyond your comprehension. That's the failure mode. Not the agent doing too little. The agent doing things you can't explain.
 
