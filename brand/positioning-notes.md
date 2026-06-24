@@ -52,7 +52,7 @@ Three operative verbs that anchor the brand:
 
 | Brand | Voice | Audience |
 |---|---|---|
-| **The Bitcoin Breakdown (TBB)** | Cypherpunk · personal · defensive — *"fight back against authoritarianism," "Manhattan project for human freedom"* | Bitcoin / privacy enthusiasts; the already-converted |
+| **The Bitcoin Breakdown (TBB)** | [[cypherpunk-philosophy\|Cypherpunks]] ([Cypherpunks](../../../../../wiki/topics/bitcoin/wiki/topics/cypherpunk-philosophy.md)) · personal · defensive — *"fight back against authoritarianism," "Manhattan project for human freedom"* | Bitcoin / privacy enthusiasts; the already-converted |
 | **2112 Capital Solutions** | Institutional · constructive · empowerment — *"thrive in the great digital transformation," "safeguard wealth," "don't get left behind"* | General public · families · operating businesses · founders |
 
 The visual register (Apex Constructivist — black + signal red, mono labels, classified-document layout) sits *between* the two brands. It reads as "operationally serious" without locking the copy into either oppositional or generic.

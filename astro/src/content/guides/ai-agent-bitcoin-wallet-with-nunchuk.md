@@ -1,6 +1,6 @@
 ---
 title: "Give your AI agent a Bitcoin wallet with Nunchuk"
-description: "Set up a 2-of-3 multisig wallet where your AI agent holds bounded signing authority -- it can spend within limits you set, but can't raise its own cap without your cosigning."
+description: "Set up a 2-of-3 [[bitcoin-psbt-multisig|multisig]] ([multisig](../../../../../../../../wiki/topics/bitcoin/wiki/concepts/bitcoin-psbt-multisig.md)) wallet where your AI agent holds bounded signing authority -- it can spend within limits you set, but can't raise its own cap without your cosigning."
 pubDate: 2026-05-02
 category: "Bitcoin"
 level: "Intermediate"

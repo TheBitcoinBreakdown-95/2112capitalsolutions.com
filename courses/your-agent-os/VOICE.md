@@ -2,7 +2,7 @@
 
 How Giancarlo Carnevale (2112 Capital Solutions, The Bitcoin Breakdown) writes. Reference this for any drafting pass on course material. The goal isn't perfect mimicry. It's landing in a register that reads as the author's, not as generic-professional ghost-writer.
 
-Background: founder of 2112 Capital Solutions and The Bitcoin Breakdown. Eight years in financial services, deep Bitcoiner since 2021, built TBB and several technical AI projects. Empowerment frame, not cypherpunk. Audience for this course: professionals navigating digital transformation.
+Background: founder of 2112 Capital Solutions and The Bitcoin Breakdown. Eight years in financial services, deep Bitcoiner since 2021, built TBB and several technical AI projects. Empowerment frame, not [[cypherpunk-philosophy|cypherpunks]] ([cypherpunks](../../../../../../wiki/topics/bitcoin/wiki/topics/cypherpunk-philosophy.md)). Audience for this course: professionals navigating digital transformation.
 
 **Upstream reference:** [`WBIGAF/0-project/voice-dna/voice-dna-profile.md`](../../../WBIGAF/0-project/voice-dna/voice-dna-profile.md) is the deep voice-DNA profile (~27K tokens, derived from 28 published Bitcoin blog posts). This file is the AI-topic-adapted derivative. Same author voice. Different topical surface. When this file and the WBIGAF profile conflict, the WBIGAF profile wins on form (rhythm, punctuation, structure). This file wins on topical lenses (sovereignty + AI vs. Bitcoin maximalism).
 
@@ -49,7 +49,7 @@ Notice: short sentences, stacked one-word rhythm, sentence starters with "So" an
 These words and phrases sit inside the author's natural register:
 
 - **sovereignty**, **without trusted third parties**, **without permission**
-- **freedom tech**, **self-custody**, **node**, **keys**, **own files**
+- **freedom tech**, **[[bitcoin-self-custody|self-custody]] ([self-custody](../../../../../../wiki/topics/bitcoin/wiki/topics/bitcoin-self-custody.md))**, **node**, **keys**, **own files**
 - **unlock**, **the unlock**, **unlocks** (used as a verb)
 - **compound**, **compounding payoff**, **compounds from here**
 - **revolutionary**, **unstoppable**, **incorruptible**, **profound**, **obsessed** (high-conviction vocabulary, used sparingly)

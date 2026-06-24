@@ -115,7 +115,7 @@ The styles within each emotion are not ranked. They're drawn from different eras
 **Distinction:** Empowerment through democratic legibility. Where Wellness style is somatic and Edtech is gamified, Bauhaus is civic — design as a public good that helps you read the world.
 
 ### Style 5 — Cyberpunk / Hacker-Tools
-**Description:** The empowerment language of the open-source and cypherpunk world — terminals, dotfiles, the GitHub octocat, EFF posters. The user as someone who can take the system into their own hands, with the tools to prove it.
+**Description:** The empowerment language of the open-source and [[cypherpunk-philosophy|cypherpunks]] ([cypherpunks](../../../../../wiki/topics/bitcoin/wiki/topics/cypherpunk-philosophy.md)) world — terminals, dotfiles, the GitHub octocat, EFF posters. The user as someone who can take the system into their own hands, with the tools to prove it.
 **Examples:** Arch Linux community brand, EFF, Tor Project, Hak5, Mullvad, Start9 / Umbrel, the original cypherpunk publications.
 **Signatures:** Black backgrounds with phosphor green, amber, or hot pink. Monospace primary type (IBM Plex Mono, JetBrains, Berkeley). ASCII art, ANSI box drawings, terminal screenshots, sticker-bombed laptops as photography. Layouts feel like documentation pages.
 **Distinction:** Empowerment through technical sovereignty. Where Bauhaus Civic empowers the citizen, this style empowers the operator who refuses to depend on platforms.
@@ -139,7 +139,7 @@ The styles within each emotion are not ranked. They're drawn from different eras
 ### Style 3 — Memorial / Civic Solemnity
 **Description:** The visual language of war memorials, civic monuments, and museum identity — reverence for collective memory. The Maya Lin / Pentagram-on-a-museum-job aesthetic.
 **Examples:** Vietnam Veterans Memorial, 9/11 Memorial, USHMM (Holocaust Museum), Imperial War Museum, the Smithsonian's NMAAHC.
-**Signatures:** Granite gray, oxidized bronze, deep navy, paper white. Inscriptional capitals (Trajan, custom-cut serif caps) for ceremonial moments paired with a clean grotesk for body. Photography is architectural, oblique-angled stone, names and inscriptions in shallow relief. Layouts are commemorative — vertical lists, dates, citations.
+**Signatures:** Granite gray, oxidized bronze, deep navy, paper white. Inscriptional capitals (Trajan, custom-cut serif caps) for ceremonial moments paired with a clean grotesk for body. Photography is architectural, oblique-angled stone, names and [[bitcoin-inscriptions-ordinals|inscriptions]] ([inscriptions](../../../../../wiki/topics/bitcoin/wiki/topics/bitcoin-inscriptions-ordinals.md)) in shallow relief. Layouts are commemorative — vertical lists, dates, citations.
 **Distinction:** Reverence directed at history and the dead rather than the divine or the natural. Carries civic rather than spiritual weight.
 
 ### Style 4 — Naturalist Sublime
@@ -173,7 +173,7 @@ The styles within each emotion are not ranked. They're drawn from different eras
 ### Style 3 — Bitcoin / Sound-Money Severity
 **Description:** The native visual language of orange-pill Bitcoin culture and Austrian-economics-adjacent finance — principles as monetary integrity. Distinct from generic "fintech" — closer to a standards body than a startup.
 **Examples:** Saifedean Ammous's "The Bitcoin Standard" book design, Unchained Capital, Casa, Swan Bitcoin (older brand), Bitcoin Magazine print, River, Foundation Devices.
-**Signatures:** Bitcoin orange held in restraint with deep navy, charcoal, paper white. Engraved-style typography (often Caslon or a custom serif) paired with monospace. Imagery uses gold-standard era engravings, nodes-and-edges diagrams, halving charts, paper currency motifs. Layouts mimic specie certificates and central-bank publications.
+**Signatures:** Bitcoin orange held in restraint with deep navy, charcoal, paper white. Engraved-style typography (often Caslon or a custom serif) paired with monospace. Imagery uses gold-standard era engravings, nodes-and-edges diagrams, [[bitcoin-adoption-cycles-market-dynamics|halving]] ([halving](../../../../../wiki/topics/bitcoin/wiki/topics/bitcoin-adoption-cycles-market-dynamics.md)) charts, paper currency motifs. Layouts mimic specie certificates and central-bank publications.
 **Distinction:** The principles are explicitly monetary and historical. Where Manifesto Modernism is left-coded and present-tense, this is pre-1971 and worldview-coded.
 
 ### Style 4 — Quaker / Plainspoken Ethic

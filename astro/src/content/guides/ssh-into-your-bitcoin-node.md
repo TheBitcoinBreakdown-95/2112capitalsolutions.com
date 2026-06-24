@@ -313,7 +313,7 @@ If someone obtained your SSH key and passphrase, here's what they could do:
 - Shut down the node
 
 **What they can NOT do:**
-- **Steal bitcoin from a hardware wallet** connected through this node. The node validates transactions but never holds the hardware wallet's private keys.
+- **Steal bitcoin from a [[bitcoin-self-custody|hardware wallet]] ([hardware wallet](../../../../../../../../wiki/topics/bitcoin/wiki/topics/bitcoin-self-custody.md))** connected through this node. The node validates transactions but never holds the hardware wallet's private keys.
 - **Compromise the Bitcoin network.** Your node is one of tens of thousands. It has no special authority.
 - **Access funds in external wallets** that connect via Electrum Server. Those wallets hold their own keys.
 
@@ -495,7 +495,7 @@ The interesting fields:
 
 #### The Genesis Block
 
-Block 0 -- mined by Satoshi Nakamoto on January 3, 2009. Ask Claude to pull it up. It contains the famous coinbase message: "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks."
+Block 0 -- mined by [[bitcoin-history-narratives|Satoshi Nakamoto]] ([Satoshi Nakamoto](../../../../../../../../wiki/topics/bitcoin/wiki/topics/bitcoin-history-narratives.md)) on January 3, 2009. Ask Claude to pull it up. It contains the famous coinbase message: "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks."
 
 Every block since then links back to this one through an unbroken chain of hashes. Your node verified all of them.
 

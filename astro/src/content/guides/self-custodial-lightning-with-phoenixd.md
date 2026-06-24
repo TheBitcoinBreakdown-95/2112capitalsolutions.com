@@ -1,5 +1,5 @@
 ---
-title: "Self-custodial Lightning with phoenixd"
+title: "Self-custodial [[bitcoin-lightning-network|Lightning]] ([Lightning](../../../../../../../../wiki/topics/bitcoin/wiki/topics/bitcoin-lightning-network.md)) with phoenixd"
 description: "Install phoenixd on a Linux server, add Lightning payment capabilities to a web dashboard, set up a public Lightning address, and start receiving payments -- all self-custodial, no KYC."
 pubDate: 2026-05-02
 category: "Bitcoin"

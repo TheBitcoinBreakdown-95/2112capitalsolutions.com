@@ -260,7 +260,7 @@ A premium private stewardship firm offering hands-on consulting in Bitcoin custo
 - A crypto trading platform or price tracker
 - A meme-heavy Bitcoin-bro brand
 - A doomer "fiat is collapsing" alarm site
-- A cypherpunk technical-jargon-fest (TBB occupies that space, not 2112)
+- A [[cypherpunk-philosophy|cypherpunks]] ([cypherpunks](../../../../../wiki/topics/bitcoin/wiki/topics/cypherpunk-philosophy.md)) technical-jargon-fest (TBB occupies that space, not 2112)
 - Anything that looks like it's selling you a course
 - A generic SaaS / startup tech consultancy (Linear/Vercel cliché)
 - Visually similar to TBB (sister brand, not twin)
