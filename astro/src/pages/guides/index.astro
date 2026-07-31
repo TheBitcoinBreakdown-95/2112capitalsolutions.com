@@ -10,6 +10,19 @@ const sorted = allGuides.sort(
 
 const publishedCourses = courses.filter((c) => !c.draft);
 
+// A series is a hub guide plus every guide whose id extends the hub's id.
+const SERIES_HUB = 'coldcard-seed-flaw';
+const seriesHub = sorted.find((g) => g.id === SERIES_HUB);
+const seriesParts = sorted.filter((g) => g.id.startsWith(`${SERIES_HUB}-`));
+const seriesIds = new Set([SERIES_HUB, ...seriesParts.map((g) => g.id)]);
+const standalone = sorted.filter((g) => !seriesIds.has(g.id));
+
+const shortTitle = (t: string) => {
+  const i = t.indexOf(': ');
+  const tail = i === -1 ? t : t.slice(i + 2);
+  return tail.charAt(0).toUpperCase() + tail.slice(1);
+};
+
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }).toUpperCase();
 ---
@@ -67,7 +80,34 @@ const fmt = (d: Date) =>
         <p class="module-lede">No guides published yet. Check back shortly.</p>
       ) : (
         <div class="card-grid">
-          {sorted.map((guide) => (
+          {seriesHub && (
+            <a href={`/guides/${seriesHub.id}`} class="card card--featured">
+              <div class="card-eyebrow">
+                {seriesHub.data.category.toUpperCase()} · LIVE ADVISORY
+                {seriesHub.data.readingTime ? ` · ${seriesHub.data.readingTime.toUpperCase()}` : ''}
+              </div>
+              <div class="card-title">{seriesHub.data.title}</div>
+              <p class="card-excerpt">{seriesHub.data.description}</p>
+              <div class="card-meta">
+                <span>{fmt(seriesHub.data.pubDate)}</span>
+                <span>{seriesHub.data.level.toUpperCase()}</span>
+              </div>
+              {seriesParts.length > 0 && (
+                <div class="series-list">
+                  <div class="series-list-label">Supporting detail</div>
+                  {seriesParts.map((part, i) => (
+                    <span class="series-item">
+                      <span class="series-item-num">{String(i + 1).padStart(2, '0')}</span>
+                      <span class="series-item-title">{shortTitle(part.data.title)}</span>
+                      {part.data.readingTime && <span class="series-item-meta">{part.data.readingTime}</span>}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </a>
+          )}
+
+          {standalone.map((guide) => (
             <a href={`/guides/${guide.id}`} class="card">
               <div class="card-eyebrow">
                 {guide.data.category.toUpperCase()}

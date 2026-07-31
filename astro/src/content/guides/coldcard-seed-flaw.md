@@ -17,36 +17,85 @@ Coldcard firmware from March 2021 onward built new seed words from a broken sour
 
 ## What to do
 
-**1. Check whether this is even your problem.**
-**A.** You rolled dice for your seed, or you typed in words made somewhere else. You are fine. Stop reading.
-**B.** Anything else, including "I don't remember." Assume you are affected. Nothing on the device can settle it for you.
+<div class="steps-list">
 
-**2. Set up a temporary home for the coins.** It has to be a wallet whose recovery words you hold yourself, so not Cash App, Coinbase or Strike. A second hardware wallet you already trust is the best option. Otherwise Sparrow on a computer or Blue Wallet on a phone. Create a new wallet, write its recovery words on paper, and keep that paper until the last step. [Setting one up](/guides/coldcard-seed-flaw-resources/#parking-your-coins-somewhere-temporary)
+1. **Check whether this is even your problem.**
 
-**3. Send your bitcoin to it.** You do this from the software you already use with your Coldcard, usually Sparrow, Nunchuk or Electrum. Send a small amount first and do not send the rest until you see it arrive in the new wallet. [How to send from a Coldcard](/guides/coldcard-seed-flaw-resources/#moving-your-coins-safely)
+   **A.** You rolled dice for your seed, or you typed in words made somewhere else. You are fine. Stop reading.
 
-**4. Update the firmware, if your device has an update.** Open the top menu. If it reads `Advanced/Tools`, you have a Mk4, Mk5 or Q: update to v5.6.0, or v1.5.0Q on a Q, before you make the new seed. It does not repair the seed you have. It fixes the generator for the one you are about to make. If your menu reads just `Advanced`, you have an older device, no update exists for it, and you skip this step. [How to update safely](/guides/coldcard-seed-flaw-resources/#upgrading-your-firmware)
+   **B.** Anything else, including "I don't remember." Assume you are affected. Nothing on the device can settle it for you.
 
-**5. Once your full balance shows in the other wallet, wipe the Coldcard.** Nothing of value is left on it by this point, so there is nothing to lose: `Advanced/Tools` > `Danger Zone` > `Seed Functions` > `Destroy Seed`. Some devices show a shorter path. Take whichever yours shows.
+2. **Set up a temporary home for the coins.**
 
-**6. Make the new seed with dice.** On the now-blank device: `New Seed Words` > `Advanced` > `24 Word Dice Roll`. If your screen says `New Wallet` instead, yours is at `Import Existing` > `Dice Rolls`, which sounds wrong and is correct. Roll a real six-sided die at least 99 times and enter every roll. Do not use plain `24 Words`. [Why dice, and what the device checks](/guides/coldcard-seed-flaw-resources/#the-two-dice-paths)
+   It has to be a wallet whose recovery words you hold yourself, so not Cash App, Coinbase or Strike. A second hardware wallet you already trust is the best option. Otherwise Sparrow on a computer or Blue Wallet on a phone.
 
-**7. Write the new 24 words on paper.** Not a photo, not a note on your phone. The device will quiz you on them before it lets you continue.
+   Create a new wallet, write its recovery words on paper, and keep that paper until the last step.
 
-**8. Add the new wallet to your software.** Your app still points at the seed you just destroyed. Until you set the Coldcard up in it again, you have nowhere safe to send the coins back to. Get a receive address and check it matches the device screen.
+   <a class="step-more" href="/guides/coldcard-seed-flaw-resources/#parking-your-coins-somewhere-temporary">Setting one up →</a>
 
-**9. Send the coins back**, small amount first again. Then delete the temporary wallet and destroy its paper words.
+3. **Send your bitcoin to it.**
+
+   You do this from the software you already use with your Coldcard, usually Sparrow, Nunchuk or Electrum. Send a small amount first, and do not send the rest until you see it arrive in the new wallet.
+
+   <a class="step-more" href="/guides/coldcard-seed-flaw-resources/#moving-your-coins-safely">How to send from a Coldcard →</a>
+
+4. **Update the firmware, if your device has an update.**
+
+   Look at the hole where the cable plugs in. If it is a small oval that goes in either way up, you have a Mk4, Mk5 or Q: update to v5.6.0, or v1.5.0Q on a Q, before you make the new seed. If it is a smaller trapezoid that only fits one way up, you have a Mk2 or Mk3, no update exists for it, and you skip this step.
+
+   Updating does not repair the seed you already have. It fixes the generator for the one you are about to make.
+
+   <a class="step-more" href="/guides/coldcard-seed-flaw-resources/#upgrading-your-firmware">How to update safely →</a>
+
+5. **Once your full balance shows in the other wallet, wipe the Coldcard.**
+
+   Nothing of value is left on it by this point, so there is nothing to lose.
+
+   <span class="menu-path"><code>Advanced/Tools</code><span class="sep">›</span><code>Danger Zone</code><span class="sep">›</span><code>Seed Functions</code><span class="sep">›</span><code>Destroy Seed</code></span>
+
+   Some devices show a shorter path. Take whichever yours shows.
+
+6. **Make the new seed with dice.**
+
+   On the now-blank device:
+
+   <span class="menu-path"><code>New Seed Words</code><span class="sep">›</span><code>Advanced</code><span class="sep">›</span><code>24 Word Dice Roll</code></span>
+
+   If your screen says `New Wallet` instead, yours is at `Import Existing` then `Dice Rolls`, which sounds wrong and is correct.
+
+   Roll a real six-sided die at least 99 times and enter every roll. Do not use plain `24 Words`.
+
+   <a class="step-more" href="/guides/coldcard-seed-flaw-resources/#the-two-dice-paths">Why dice, and what the device checks →</a>
+
+7. **Write the new 24 words on paper.**
+
+   Not a photo, not a note on your phone. The device will quiz you on them before it lets you continue.
+
+8. **Add the new wallet to your software.**
+
+   Your app still points at the seed you just destroyed. Until you set the Coldcard up in it again, you have nowhere safe to send the coins back to. Get a receive address and check it matches the device screen.
+
+9. **Send the coins back**, small amount first again.
+
+   Then delete the temporary wallet and destroy its paper words.
+
+</div>
 
 Take your time on steps 2, 6 and 7. Almost everyone who loses bitcoin over this loses it by rushing those three, not to the flaw.
 
-Never type your seed words into anything except the Coldcard itself.
+<div class="callout"><strong>Never type your seed words into anything except the Coldcard itself.</strong></div>
 
 ## How long would it take to guess your seed
 
-| Your Coldcard | Time to guess it | Cost to whoever does |
-|---|---|---|
-| **Mk2 or Mk3** | 0.06 seconds to 16 days | nothing to $129 |
-| **Mk4, Mk5 or Q** | 55 minutes to 115 million years | 31 cents to $343 billion |
+<div class="table-wrap">
+<table>
+<thead><tr><th>Your Coldcard</th><th>Time to guess it</th><th>Cost to whoever does</th></tr></thead>
+<tbody>
+<tr><td>Mk2 or Mk3</td><td>0.06 seconds to 16 days</td><td>nothing to $129</td></tr>
+<tr><td>Mk4, Mk5 or Q</td><td>55 minutes to 115 million years</td><td>31 cents to $343 billion</td></tr>
+</tbody>
+</table>
+</div>
 
 **Mk2 or Mk3: treat your seed as already compromised.** There is no reading of your range that is safe. The patient end is 16 days on one gaming computer and the fast end is instant, so there is nothing here to weigh up. Move your coins.
 
