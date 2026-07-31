@@ -13,13 +13,19 @@ const publishedCourses = courses.filter((c) => !c.draft);
 // A series is a hub guide plus every guide whose id extends the hub's id.
 const SERIES_HUB = 'coldcard-seed-flaw';
 const seriesHub = sorted.find((g) => g.id === SERIES_HUB);
-const seriesParts = sorted.filter((g) => g.id.startsWith(`${SERIES_HUB}-`));
+const seriesParts = sorted
+  .filter((g) => g.id.startsWith(`${SERIES_HUB}-`))
+  .sort((a, b) => a.id.localeCompare(b.id));
 const seriesIds = new Set([SERIES_HUB, ...seriesParts.map((g) => g.id)]);
 const standalone = sorted.filter((g) => !seriesIds.has(g.id));
 
+// Keep whichever half of the title actually distinguishes the page.
 const shortTitle = (t: string) => {
+  const SUFFIX = ': what to do about the seed flaw';
+  if (t.toLowerCase().endsWith(SUFFIX)) return t.slice(0, -SUFFIX.length);
   const i = t.indexOf(': ');
-  const tail = i === -1 ? t : t.slice(i + 2);
+  if (i === -1) return t;
+  const tail = t.slice(i + 2);
   return tail.charAt(0).toUpperCase() + tail.slice(1);
 };
 
