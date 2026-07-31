@@ -15,7 +15,7 @@ Reference for the Coldcard seed flaw. If you have not found your firmware yet, [
 
 ## Verify your backup
 
-Do this before anything else, on any model. The most likely way to lose money this week is not the flaw, it is acting on a backup that turns out to be wrong.
+**Which backup, and when.** The one that matters is your NEW seed's words, checked before you send any coins back to it. Your old backup is not load-bearing on the main path: the old device signs the transaction that moves your coins, and a successful signature is itself proof the old seed works. Verify the old paper only if you intend to wipe the device and reuse it, and then immediately before the wipe rather than earlier. That order matters, because on a Mk3 verifying puts your seed on the screen, and on a Mk4 or Q it means retyping all 24 words, neither of which is free during an active phishing campaign.
 
 **Mk4, Mk5, Q, the strong test.** This loads your written words into memory only; your real seed stays in the secure chip and nothing is erased.
 
@@ -33,7 +33,7 @@ Do this before anything else, on any model. The most likely way to lose money th
 
 ## Upgrading your firmware
 
-**Read this first: upgrading does not fix the flaw.** It cannot repair a seed that already exists, and there is no patched release. The only reason to upgrade during this event is to gain access to the `Temporary Seed` feature, which lets Mk4 and Mk5 owners on firmware below 5.0.7 verify a backup and generate a replacement seed without wiping the device. If you have a second device, or you are willing to wipe after your coins are moved, you do not need to upgrade at all.
+**Read this first: upgrading does not repair the seed you already have.** A seed is data, not software, so no release can strengthen a key that already exists. What v5.6.0, or v1.5.0Q on a Q, does fix is the generator itself, which is why Mk4, Mk5 and Q owners should update before creating a replacement seed. There is no such release for a Mk2 or Mk3; that line ended at 4.1.9 in June 2023 and nothing is coming.
 
 **Mk3 owners cannot upgrade to anything useful.** Firmware 4.1.9 from June 2023 was the final Mk3 release, and it has no temporary seed feature at any version.
 
@@ -257,7 +257,7 @@ Two mistakes, stacked, both readable in Coldcard's public source.
 
 **The truncated reseed.** On Mk4, Mk5 and Q, the device does mix in randomness from its secure chips at startup, then keeps only four bytes of it and stirs a single 32-bit word of state.
 
-**Why an update cannot fix it.** A seed is data, not software. Updating cannot strengthen a key that already exists. There is also no patched release, and the Mk3 line ended at 4.1.9 in June 2023.
+**Why an update cannot fix it.** A seed is data, not software. Updating cannot strengthen a key that already exists. Coinkite shipped v5.6.0 and v1.5.0Q on 31 July 2026, which repairs the generator for seeds made from then on, and does nothing for seeds made before. No equivalent exists for the Mk2 or Mk3; that line ended at 4.1.9 in June 2023.
 
 **What is not affected, and this is worth stating plainly:** Bitcoin's cryptography is untouched. A properly generated 256-bit key remains beyond reach. The problem is that these particular keys never occupied that full space to begin with. This is the same failure class as Milk Sad (2023) and other entropy-integration failures, not a break of Bitcoin itself.
 

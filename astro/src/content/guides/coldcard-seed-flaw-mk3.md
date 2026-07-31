@@ -1,6 +1,6 @@
 ---
 title: "Coldcard Mk2 and Mk3: what to do about the seed flaw"
-description: "Step by step for Mk2 and Mk3 owners on firmware 4.x, the most urgent group. Verify your backup first, then move your coins, with the menu paths that actually exist on your device."
+description: "Step by step for Mk2 and Mk3 owners on firmware 4.x, the most urgent group. Move your coins somewhere safe, then rebuild the device with dice, using the menu paths that actually exist on your device."
 pubDate: 2026-07-31
 updatedDate: 2026-07-31
 category: "Bitcoin"
@@ -11,7 +11,7 @@ draft: false
 
 For **Mk2 and Mk3 on firmware 4.0.0 through 4.1.9**. If you have not confirmed your model and firmware, [start here](/guides/coldcard-seed-flaw/). On firmware 3.2.2 or earlier you are not affected.
 
-**Your position in one paragraph.** If your seed was created on this device using `New Wallet`, treat it as compromised. A developer has publicly reproduced private keys from this flaw. There is no fix and none is coming: firmware 4.1.9 from June 2023 was the last Mk3 release, and no update can repair a seed that already exists. Your coins need to move to a new seed.
+**Your position in one paragraph.** If your seed was created on this device using `New Wallet`, treat it as compromised. Coinkite puts the randomness in these seeds at about 40 bits against a 128-bit target, and the outside technical analysis puts the practical search lower still. Both ends of that range are within reach of one person with a gaming computer. There is no fix and none is coming: firmware 4.1.9 from June 2023 was the last Mk3 release, and no update can repair a seed that already exists. Your coins need to move to a new seed.
 
 **Two things are different for you**, and most advice circulating this week gets both wrong.
 

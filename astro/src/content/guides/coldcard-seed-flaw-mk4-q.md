@@ -11,7 +11,7 @@ draft: false
 
 For **Mk4 and Mk5 on firmware 5.x**, and **Q on firmware 1.xQ**. If you have not confirmed your model and firmware, [start here](/guides/coldcard-seed-flaw/).
 
-**Your position in one paragraph.** The flawed code is present in your firmware; we confirmed it in Coldcard's public source. Nobody has demonstrated an attack against these models, and no key from one has been publicly recovered. Coinkite says these models are unaffected, but that assessment was written before they received the outside technical report and has not been updated. So: act deliberately, not in a panic, and do not create new seeds using the device's own randomness while this is unresolved.
+**Your position in one paragraph.** The flawed code is present in your firmware; we confirmed it in Coldcard's public source. Nobody has demonstrated an attack against these models, and no key from one has been publicly recovered. Coinkite has since confirmed they are affected, putting the randomness "as low as ~72 bits" against a 128-bit target, and on 31 July 2026 shipped v5.6.0 and v1.5.0Q with instructions to regenerate seeds only on that version. That update repairs the generator for the next seed you make; it cannot repair the one you already hold. So: act deliberately, not in a panic, and do not create a new seed using the device's own randomness.
 
 **The good news specific to your device.** You can verify your backup and generate a replacement seed **without wiping anything and without a second device**. The Mk3 cannot do this. Your steps are below.
 
@@ -118,7 +118,7 @@ Only once your coins are safely moved and confirmed.
 
 **Temporary seeds are a deliberate exception to the device's design.** Coinkite's own documentation says they "completely defeat the design of Coldcard's security model, based on secure elements" and that they do not recommend handling unencrypted seed material regularly. That is fair, and it is why this is a one-off migration procedure rather than a habit. The alternative for a single-device owner is wiping on the strength of an untested backup, which is worse.
 
-**Do not update firmware expecting a fix.** There is no patched release, and updating cannot repair an existing seed. Any letter, email or message telling you to upgrade because of this advisory should be treated as a scam; that exact pretext was already being used against Coldcard owners before this happened. See [scams](/guides/coldcard-seed-flaw-resources/#scams).
+**Update, but not expecting a fix for the seed you have.** v5.6.0, or v1.5.0Q on a Q, repairs the generator for the next seed you make, which is why you update before you rebuild. It cannot repair a seed that already exists. The direction matters more than the instruction: you came here and typed the vendor address yourself. Any letter, email or message that arrives telling you to upgrade should be treated as a scam, because that exact pretext was already being used against Coldcard owners before this happened. See [scams](/guides/coldcard-seed-flaw-resources/#scams).
 
 **Multisig users:** the rule is a counting rule. You are safe only while fewer of your keys came from affected generation than the number of signatures required. See [multisig](/guides/coldcard-seed-flaw-resources/#multisig).
 
