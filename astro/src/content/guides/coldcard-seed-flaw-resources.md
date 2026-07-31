@@ -82,6 +82,29 @@ The dedicated path is the one worth using now, for a specific reason: it is the 
 
 ---
 
+## Can I tell whether my seed came from dice?
+
+Short answer: **only if you still have your dice rolls.** Otherwise you cannot, and you should assume you did not use them.
+
+**The device does not record it.** When a seed is committed, the firmware writes the secret into the secure element and nothing else. There is no origin field, no creation date, no marker of any kind. We checked this in the source on both firmware lines. A dice-generated seed and a device-generated seed are both just 24 words, and nothing distinguishes them, by design. That is a reasonable design choice for privacy, and it is unhelpful this week.
+
+**The words themselves cannot tell you either.** Both paths end in a SHA256 hash, and hash output is indistinguishable from randomness. There is no pattern to look for, and any tool claiming to detect this from your words is lying to you or worse.
+
+**If you kept your rolls, you can prove it.** This is a genuine proof, not a guess:
+
+1. On an offline computer, run your recorded roll sequence through Coinkite's `rolls.py`
+2. Compare the words it produces against your seed
+3. **A match proves your seed came from those rolls and nothing else.** Your seed never touched the device's random generator.
+4. No match means the rolls you kept are not the ones that made this seed
+
+Only do this on a machine that is genuinely offline. See [verifying dice offline](#verifying-dice-offline) for the safer throwaway-rolls version of this procedure.
+
+**One narrow exception.** If you created a temporary seed and saved it to the **Seed Vault**, that vault entry does record where it came from, shown as `Dice`, `TRNG Words`, `Imported`, or a passphrase note. That applies only to vault entries on Mk4, Mk5 and Q, never to your main seed, and not at all on Mk3.
+
+**So the practical rule:** if you cannot produce the rolls and confirm them, treat your seed as device-generated and therefore affected. Trying to remember what you did three years ago is not evidence. An unnecessary migration costs time and fees; the other mistake costs everything.
+
+---
+
 ## Verifying dice offline
 
 The dice path is trustworthy precisely because you can check it. The device performs arithmetic you can reproduce.
@@ -195,6 +218,8 @@ Two mistakes, stacked, both readable in Coldcard's public source.
 **Am I affected if I imported my seed, or made it before firmware 4.x?** No. The problem is confined to seeds the device generated with its own random generator.
 
 **What if I cannot remember which firmware I was running?** Treat yourself as affected. An unnecessary migration costs time and fees; the other mistake costs everything.
+
+**How do I know if I used dice?** Only by producing your original rolls and reproducing the seed from them. The device keeps no record. See [can I tell whether my seed came from dice?](#can-i-tell-whether-my-seed-came-from-dice)
 
 **Should I update my firmware?** Not as a remedy. It fixes nothing here and cannot repair an existing seed. Updating is safe for your seed and there is a narrow case where it helps (a Mk4 or Mk5 below 5.0.7 gaining the Temporary Seed feature), but during this event any message telling you to upgrade should be treated as a scam.
 

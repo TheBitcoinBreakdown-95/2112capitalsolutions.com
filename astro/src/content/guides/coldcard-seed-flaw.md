@@ -79,7 +79,7 @@ Check these regardless of which version you found.
 
 | Situation | What it means |
 |---|---|
-| Your seed came from the **dice-roll menu** | Not affected. That path is a plain SHA256 hash of your rolls and never touches the device's random generator. Confirmed in the source of both firmware lines. |
+| Your seed came from the **dice-roll menu** | Not affected. That path is a plain SHA256 hash of your rolls and never touches the device's random generator. Confirmed in the source of both firmware lines. But see [can I tell whether my seed came from dice?](/guides/coldcard-seed-flaw-resources/#can-i-tell-whether-my-seed-came-from-dice) before relying on this: the device keeps no record, so unless you still have your rolls you cannot confirm it. |
 | Your seed was created **elsewhere** and typed or imported in | Not affected by this flaw. |
 | You added dice using the **"Press 4 to add some dice rolls into the mix"** prompt | This is a different thing from the dice menu, and it does not remove the device's randomness from the result. See [the two dice paths](/guides/coldcard-seed-flaw-resources/#the-two-dice-paths). |
 | An affected seed plus a **strong passphrase you chose yourself** | Risk reduced, not removed. Your protection is now only as strong as that passphrase. See [the passphrase bridge](/guides/coldcard-seed-flaw-resources/#the-passphrase-bridge). |
