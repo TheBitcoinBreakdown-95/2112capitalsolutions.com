@@ -153,9 +153,11 @@ The fastest way out of a weak seed is to move the coins somewhere else while you
 
 **Otherwise, a software wallet you create yourself.** Sparrow on a computer or Blue Wallet on a phone both let you generate a new wallet and write down its recovery words. Nunchuk also works, though it asks for an email address to register.
 
-**What does not work: an app that never showed you recovery words.** Cash App, Coinbase, Strike and similar services hold the keys for you. Sending there means trusting a company and, if you plan to send the coins back out, passing their withdrawal process. If that is genuinely your only option it still beats leaving coins on a seed you know is weak, but treat it as a last resort rather than the plan.
+**An exchange account you already trust also works, with real tradeoffs.** River, Swan, Kraken, Cash App and Strike will all hold bitcoin for you, and for many people this is the fastest and least error-prone route, because the account already exists and there is no new seed to write down or lose. What you are accepting for those few hours is counterparty risk, that the company holds the keys rather than you, plus the chance of a withdrawal hold or a delay when you send the coins back out, and the privacy cost of your coins passing through a KYC account that ties them to your identity. Those are real, and none of them is worse than leaving bitcoin on a seed you know is weak. If you have the time and the confidence, a wallet you hold the keys to is better practice. If you do not, this is a legitimate choice rather than a failure.
 
-Whatever you pick, write its recovery words on paper before you send anything to it, and keep that paper until the coins have arrived back on your rebuilt Coldcard. For a few hours this wallet holds everything you own. It is temporary in purpose, not in how carefully you treat it.
+**Know which kind you picked.** If your wallet showed you recovery words, write them on paper before you send anything and keep that paper until the coins are back on your rebuilt Coldcard. If it never showed you any, that is because the company holds the keys, which is expected for an exchange and means there is nothing for you to write down. What matters is not confusing the two: do not assume an app has a backup you can find later, and do not send to something you cannot get the coins back out of.
+
+For a few hours this destination holds everything you own. It is temporary in purpose, not in how carefully you treat it.
 
 ---
 

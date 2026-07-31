@@ -27,9 +27,9 @@ Coldcard firmware from March 2021 onward built new seed words from a broken sour
 
 2. **Set up a temporary home for the coins.**
 
-   It has to be a wallet whose recovery words you hold yourself, so not Cash App, Coinbase or Strike. A second hardware wallet you already trust is the best option. Otherwise Sparrow on a computer or Blue Wallet on a phone.
+   Best is a second hardware wallet you already trust. Next best is a wallet you hold the keys to, like Sparrow on a computer or Blue Wallet on a phone: create a new wallet, write its recovery words on paper, and keep that paper until the last step.
 
-   Create a new wallet, write its recovery words on paper, and keep that paper until the last step.
+   An exchange you already use, River or similar, works too and is often the quickest route. You are trusting a company with the coins for a few hours and a withdrawal can be held up, so prefer a wallet you control if you have the time and the confidence. Either way, get the coins off the weak seed.
 
    <a class="step-more" href="/guides/coldcard-seed-flaw-resources/#parking-your-coins-somewhere-temporary">Setting one up →</a>
 
