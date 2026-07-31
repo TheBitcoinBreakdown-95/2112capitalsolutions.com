@@ -145,6 +145,40 @@ Kevin Loaec of Wizardsardine has publicly cautioned that a passphrase may not be
 
 ---
 
+## Parking your coins somewhere temporary
+
+The fastest way out of a weak seed is to move the coins somewhere else while you rebuild the device. That somewhere does not have to be permanent and it does not have to be perfect. It has to be a wallet whose recovery words you hold.
+
+**Best: a second hardware wallet you already own and trust.** Nothing about your setup changes and there is no hot key involved at any point.
+
+**Otherwise, a software wallet you create yourself.** Sparrow on a computer or Blue Wallet on a phone both let you generate a new wallet and write down its recovery words. Nunchuk also works, though it asks for an email address to register.
+
+**What does not work: an app that never showed you recovery words.** Cash App, Coinbase, Strike and similar services hold the keys for you. Sending there means trusting a company and, if you plan to send the coins back out, passing their withdrawal process. If that is genuinely your only option it still beats leaving coins on a seed you know is weak, but treat it as a last resort rather than the plan.
+
+Whatever you pick, write its recovery words on paper before you send anything to it, and keep that paper until the coins have arrived back on your rebuilt Coldcard. For a few hours this wallet holds everything you own. It is temporary in purpose, not in how carefully you treat it.
+
+---
+
+## Moving your coins safely
+
+**Which software do I even open?** Your Coldcard has no internet connection, so it never moves coins by itself. It signs transactions that some wallet software builds for it. That software is whatever you paired the device with when you set it up, most often Sparrow on a computer, or Nunchuk or Electrum. The shape of the job is always the same: build the transaction in the software, pass it to the Coldcard (on the microSD card, or by USB, or by QR code on a Q), approve it on the device screen, pass it back, and let the software broadcast it. If you genuinely cannot remember what you used, Sparrow is the most widely documented starting point and can talk to every Coldcard model.
+
+Three rules once you are in there, whatever model you own.
+
+1. **Verify the receive address on the destination device's own screen**, not just in the wallet software on your computer. This is the check that survives a compromised computer, and it costs nothing.
+2. **Sweep once, at a fee that confirms in the next block or two.** Do not economise on the transaction that saves your coins.
+3. **Only an outbound signature proves you can spend.** A payment arriving proves the wallet can receive, nothing more. Where control is genuinely in doubt, a passphrase wallet, a multisig, or a brand-new signer you have never spent from, send a small amount back out before you trust it with everything.
+
+**Why the fee matters.** Your old seed may already be in somebody else's hands. Someone holding your key can spend the same coins with a higher fee and replace your transaction while it sits unconfirmed. A long, cheap window is a race you can lose. If an input limit forces you to split into several transactions, do not leave the later ones unconfirmed and do not walk away from a half-swept wallet.
+
+**Before any destructive action** (`Destroy Seed`, `Lock Down Seed`, `Brick Me PIN`, `Nuke Device`), confirm all three: the last transaction has at least one confirmation, the old wallet reads exactly zero including change and every address type you used, and the new wallet shows the full expected balance. A normal send leaves change behind at an old-seed address, so a full sweep is what you want, not a send.
+
+**You do not have to wipe at all.** An emptied device holding an abandoned seed harms nobody. Keeping it as a spare is fine once the coins are gone.
+
+**Then turn off the things that still pay you.** Exchange withdrawal addresses, recurring buys, any saved extended public key in a watch-only or accounting tool, addresses you gave to clients or an employer, Lightning channel close addresses. Rename the old wallet in your software so it reads as retired, and make the new one the default, so it never offers you an old receive address again. Coins arriving at an old address after you migrate are exactly as exposed as the ones you just moved.
+
+---
+
 ## Coin control
 
 Optional. Skip it if you are in a hurry; getting coins to safety matters more than the privacy optimisation.
@@ -197,6 +231,20 @@ This advisory tells people to enter a passphrase and move funds. That is exactly
 - **Ignore anyone offering to check your seed for you.** That is the entire scam.
 - **Expect scope inflation.** Older stories about unrelated wallet flaws are already circulating alongside this one.
 
+### If your coins are already gone
+
+Bitcoin transactions cannot be reversed, and nobody can undo one for you. Anyone who offers to is running the second theft. There is no recovery service, no fee you can pay, and no support line with a rollback button. Treat every unsolicited offer of help from here on as an attack, particularly the ones that arrive within hours and sound sympathetic.
+
+What is still worth doing:
+
+- **Move anything left.** Other coins on the same seed, other addresses, other accounts derived from it. A seed that produced one stolen address produced all of them.
+- **Write down what you know** while it is fresh: the addresses, the times, the transaction IDs. You can read them off any block explorer.
+- **Report it.** In the United States that is [IC3](https://www.ic3.gov/), the FBI's complaint centre. Elsewhere, your national cybercrime reporting body. This rarely returns coins and it does feed the pattern that identifies the attacker.
+- **Tell Coinkite what happened**, through their own support channel that you navigate to yourself. Their forensic picture is built from reports like yours.
+- **Do not reuse the seed for anything**, and do not restore it "just to check" on a device you intend to keep using.
+
+If the loss is large enough to matter legally or for tax, talk to a professional before you move anything else.
+
 ---
 
 ## What actually went wrong
@@ -227,7 +275,7 @@ Two mistakes, stacked, both readable in Coldcard's public source.
 
 **Is Bitcoin itself broken?** No. See [what actually went wrong](#what-actually-went-wrong).
 
-**Why does this page disagree with other sources?** Several trusted sources are wrong in specific ways this week, including the vendor's own documentation. The [hub page](/guides/coldcard-seed-flaw/#why-this-page-disagrees-with-other-sources) names each one, and every correction traces to published firmware source or Coinkite's own changelogs.
+**Why does this page disagree with other sources?** Several trusted sources are wrong in specific ways this week, including the vendor's own documentation, and you will run into them. Coinkite's dice verification page still says the device "does not limit the number of rolls, but will warn you if you apply too few," which was true before firmware 5.1.0 and is false now on a Mk4, Mk5 or Q, where that path blocks. Coinkite's import documentation says that mixing dice into a generated seed is safe "since the entropy of the Coldcard is being used as a starting point," which rests on exactly the assumption that just failed. Widely recommended third-party guides tell you to create a seed normally and then press 4 to add dice, which was good advice a month ago and is the wrong path for this problem. And video walkthroughs published this week narrate Mk4 menu names while discussing the Mk3, which has no `Advanced/Tools` item. Every correction here traces to published firmware source or Coinkite's own changelogs, so you can check it rather than take our word.
 
 ---
 

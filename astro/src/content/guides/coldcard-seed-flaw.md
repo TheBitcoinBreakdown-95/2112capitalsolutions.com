@@ -1,126 +1,63 @@
 ---
-title: "Coldcard seed flaw: find your firmware, then your instructions"
-description: "A flaw in how Coldcard devices generated randomness means some seeds are weaker than they should be. Check your model and firmware here, then follow the page written for exactly your version."
+title: "Coldcard seed flaw: what to do about it"
+description: "A flaw in how Coldcard devices generated randomness means some seeds are guessable. One procedure, the same on every model, to move your bitcoin onto a seed the device did not invent by itself."
 pubDate: 2026-07-31
 updatedDate: 2026-07-31
 category: "Bitcoin"
 level: "Beginner"
-readingTime: "6 min read"
+readingTime: "4 min read"
 draft: false
 ---
 
-A flaw in how Coldcard hardware wallets generated randomness means some seeds created on those devices are weaker than they should be. This page helps you find out whether yours is one of them, and sends you to instructions written for your exact firmware.
+Deep breath. Open the wallet app you normally use with your Coldcard and look at your balance. If it is still there, you have time to do this properly. If it is not, [start here instead](/guides/coldcard-seed-flaw-resources/#if-your-coins-are-already-gone).
 
-**Last checked: 31 July 2026, 03:00 UTC.** This is a live situation and this page will change. What we know, and what we do not, is set out below.
+Coldcard firmware from March 2021 onward built new seed words from a broken source of randomness. The job is to move your bitcoin onto a seed the device did not invent by itself. That is the whole thing, and it is the same on a Mk2, Mk3, Mk4, Mk5 or Q.
 
-Two facts decide everything that follows.
+**Last checked: 31 July 2026.** This is a live situation and this page will change.
 
-**The firmware running today does not matter. What matters is the firmware that was running when you first created your seed, and updating cannot repair a seed that was already made.**
+## What to do
 
-**Rushing is the other way people lose coins during a week like this.** Every path below starts by verifying your backup, before anything is changed. If you cannot do that carefully right now, the passphrase step buys you time to do it carefully tomorrow.
+**1. Check whether this is even your problem.**
+**A.** You rolled dice for your seed, or you typed in words made somewhere else. You are fine. Stop reading.
+**B.** Anything else, including "I don't remember." Assume you are affected. Nothing on the device can settle it for you.
 
----
+**2. Set up a temporary home for the coins.** It has to be a wallet whose recovery words you hold yourself, so not Cash App, Coinbase or Strike. A second hardware wallet you already trust is the best option. Otherwise Sparrow on a computer or Blue Wallet on a phone. Create a new wallet, write its recovery words on paper, and keep that paper until the last step. [Setting one up](/guides/coldcard-seed-flaw-resources/#parking-your-coins-somewhere-temporary)
 
-## Step 1: find your model and firmware
+**3. Send your bitcoin to it.** You do this from the software you already use with your Coldcard, usually Sparrow, Nunchuk or Electrum. Send a small amount first and do not send the rest until you see it arrive in the new wallet. [How to send from a Coldcard](/guides/coldcard-seed-flaw-resources/#moving-your-coins-safely)
 
-On the Coldcard: **`Advanced/Tools`** then **`Upgrade Firmware`** then **`Show Version`**. On a Mk3 the first item is labeled just **`Advanced`**.
+**4. Update the firmware, if your device has an update.** Open the top menu. If it reads `Advanced/Tools`, you have a Mk4, Mk5 or Q: update to v5.6.0, or v1.5.0Q on a Q, before you make the new seed. It does not repair the seed you have. It fixes the generator for the one you are about to make. If your menu reads just `Advanced`, you have an older device, no update exists for it, and you skip this step. [How to update safely](/guides/coldcard-seed-flaw-resources/#upgrading-your-firmware)
 
-The screen shows your firmware version on the second line and your model further down beside **Hardware**. One screen answers both questions.
+**5. Once your full balance shows in the other wallet, wipe the Coldcard.** Nothing of value is left on it by this point, so there is nothing to lose: `Advanced/Tools` > `Danger Zone` > `Seed Functions` > `Destroy Seed`. Some devices show a shorter path. Take whichever yours shows.
 
-Nothing there is sensitive, and nothing you press changes anything. If `Upgrade Firmware` is missing, a temporary seed is currently loaded; restart and log in normally.
+**6. Make the new seed with dice.** On the now-blank device: `New Seed Words` > `Advanced` > `24 Word Dice Roll`. If your screen says `New Wallet` instead, yours is at `Import Existing` > `Dice Rolls`, which sounds wrong and is correct. Roll a real six-sided die at least 99 times and enter every roll. Do not use plain `24 Words`. [Why dice, and what the device checks](/guides/coldcard-seed-flaw-resources/#the-two-dice-paths)
 
-**If you cannot check**, because the device is unavailable, or you have since updated and cannot recall what it ran when you set it up, use the [affected instructions](/guides/coldcard-seed-flaw-mk3/) for your model. An unnecessary migration costs time and fees. The other mistake costs everything.
+**7. Write the new 24 words on paper.** Not a photo, not a note on your phone. The device will quiz you on them before it lets you continue.
 
----
+**8. Add the new wallet to your software.** Your app still points at the seed you just destroyed. Until you set the Coldcard up in it again, you have nowhere safe to send the coins back to. Get a receive address and check it matches the device screen.
 
-## Step 2: find your version below
+**9. Send the coins back**, small amount first again. Then delete the temporary wallet and destroy its paper words.
 
-### Mk1, Mk2, Mk3 on firmware 3.2.2 or earlier
+Take your time on steps 2, 6 and 7. Almost everyone who loses bitcoin over this loses it by rushing those three, not to the flaw.
 
-`3.2.2` `3.2.1` `3.2.0` `3.1.9` `3.1.8` `3.1.7` `3.1.6` `3.1.5` `3.1.4` `3.1.3` `3.1.2` `3.1.1` `3.1.0` `3.0.6` `3.0.5` `3.0.4` `3.0.3` `3.0.2` `3.0.1` `3.0.0` and all 2.x and 1.x
+Never type your seed words into anything except the Coldcard itself.
 
-**Not affected by this flaw.** That firmware used the chip's hardware random generator directly. The defect arrived with the version 4.0.0 rewrite in March 2021.
+## How long would it take to guess your seed
 
-Nothing to do. If you want to confirm rather than take our word for it, see [verifying your own backup](/guides/coldcard-seed-flaw-resources/#verify-your-backup).
+| Your Coldcard | Time to guess it | Cost to whoever does |
+|---|---|---|
+| **Mk2 or Mk3** | 0.06 seconds to 16 days | nothing to $129 |
+| **Mk4, Mk5 or Q** | 55 minutes to 115 million years | 31 cents to $343 billion |
 
-### Mk2 and Mk3 on firmware 4.x
+**Mk2 or Mk3: treat your seed as already compromised.** There is no reading of your range that is safe. The patient end is 16 days on one gaming computer and the fast end is instant, so there is nothing here to weigh up. Move your coins.
 
-`4.1.9` `4.1.8` `4.1.7` `4.1.6` `4.1.5` `4.1.4` `4.1.3` `4.1.2` `4.1.1` `4.1.0` `4.0.2` `4.0.1` `4.0.0`
+**Mk4, Mk5 or Q: this is the one where the range is real.** At one end your seed falls in under an hour for pocket change. At the other it is beyond anyone alive. Nobody outside Coinkite can yet say where a given device sits, so plan against the fast end: being wrong in that direction costs everything you hold, and being wrong in the other costs you an evening. [Where these numbers come from](/guides/coldcard-seed-flaw-resources/#what-actually-went-wrong)
 
-**Affected, and this is the most urgent group.** A developer has publicly reproduced private keys from this flaw. The Mk3 line ended at 4.1.9 in June 2023, so no fix is coming, and none could repair an existing seed anyway.
+## Nobody is going to contact you about this
 
-**→ [Mk2 and Mk3 instructions](/guides/coldcard-seed-flaw-mk3/)**
+There is an active phishing campaign running on this news. Coinkite will not email, text, call or message you about your seed, and neither will we. Anyone who does is stealing from you. [More on the scams](/guides/coldcard-seed-flaw-resources/#scams)
 
-Note: Coinkite's advisory describes the range as "4.0.1 through 5.0.3." There is no 5.x firmware for the Mk3; that line tops out at 4.1.9, and 5.x belongs to the Mk4. Treat any 4.x as affected.
+## More detail
 
-### Mk4 and Mk5 on firmware 5.x
-
-`5.5.1` `5.5.0` `5.4.5` `5.4.4` `5.4.3` `5.4.2` `5.4.1` `5.4.0` `5.3.3` `5.3.2` `5.3.1` `5.3.0` `5.2.2` `5.2.1` `5.2.0` `5.1.4` `5.1.3` `5.1.2` `5.1.1` `5.1.0` `5.0.7` `5.0.6` `5.0.5` `5.0.4` `5.0.3` `5.0.2` `5.0.1` `5.0.0`
-
-**The same flawed code is present in this firmware line.** We confirmed it in Coldcard's public source ourselves. How exploitable it is has not been established by anyone, and no key from one of these devices has been publicly recovered. This is not the same emergency as the group above, but it is not a clean bill of health either.
-
-Coinkite states these models are not affected. That assessment was written before they received the outside technical report and has not been updated since. See [what we know and do not know](#what-we-know-and-what-we-do-not).
-
-**→ [Mk4, Mk5 and Q instructions](/guides/coldcard-seed-flaw-mk4-q/)**
-
-### Q on firmware 1.xQ
-
-`1.4.1Q` `1.4.0Q` `1.3.5Q` `1.3.4Q` `1.3.3Q` `1.3.2Q` `1.3.1Q` `1.3.0Q` `1.2.3Q` `1.2.2Q` `1.2.1Q` `1.2.0Q` `1.1.0Q` `1.0.2Q` `1.0.1Q` `1.0.0Q` and the 0.0.xQ pre-releases
-
-Same position as the Mk4 and Mk5 above.
-
-**→ [Mk4, Mk5 and Q instructions](/guides/coldcard-seed-flaw-mk4-q/)**
-
----
-
-## Situations that override the table
-
-Check these regardless of which version you found.
-
-| Situation | What it means |
-|---|---|
-| Your seed came from the **dice-roll menu** | Not affected. That path is a plain SHA256 hash of your rolls and never touches the device's random generator. Confirmed in the source of both firmware lines. But see [can I tell whether my seed came from dice?](/guides/coldcard-seed-flaw-resources/#can-i-tell-whether-my-seed-came-from-dice) before relying on this: the device keeps no record, so unless you still have your rolls you cannot confirm it. |
-| Your seed was created **elsewhere** and typed or imported in | Not affected by this flaw. |
-| You added dice using the **"Press 4 to add some dice rolls into the mix"** prompt | This is a different thing from the dice menu, and it does not remove the device's randomness from the result. See [the two dice paths](/guides/coldcard-seed-flaw-resources/#the-two-dice-paths). |
-| An affected seed plus a **strong passphrase you chose yourself** | Risk reduced, not removed. Your protection is now only as strong as that passphrase. See [the passphrase bridge](/guides/coldcard-seed-flaw-resources/#the-passphrase-bridge). |
-| An affected seed plus a **BIP-85 or device-generated passphrase** | No protection at all. It is calculated from the same seed. Treat as urgent. |
-| **Multisig** with fewer affected keys than your signing threshold | Holding. Rotate keys until none came from affected generation. |
-| **Multisig** where affected keys meet or exceed the threshold, common in an all-Coldcard 2-of-3 | Affected. Rotating one key is not enough. |
-| **Seed XOR** split made with the "random" split option | Affected. The masks came from the flawed generator. The deterministic split is fine. |
-| Your **encrypted backup file** | Not affected. The 12-word backup password comes from the hardware generator, not the flawed one. We traced this through the source on both firmware lines. |
-
----
-
-## What we know and what we do not
-
-**Confirmed, because we read the published code ourselves.** Coldcard's firmware disables MicroPython's hardware random generator, and the crypto library then checks whether that setting is *defined* rather than whether it is *enabled*. It is defined, just switched off, so the code falls through to a predictable software generator seeded from the device ID and clock. On the Mk4 line a later fix mixes in randomness from the secure chips, but keeps only four bytes of it. The same code path generates wallet seeds on current firmware.
-
-**Confirmed: no update fixes this.** A seed is data, not software. And there is no patched release.
-
-**Not established: how exploitable the newer models are.** The outside research team estimates one figure; an independent cryptographer models it differently and concludes the newer devices are far harder to attack. Nobody has publicly recovered a key from a Mk4, Mk5 or Q.
-
-**Not established: what caused the large theft that preceded the advisory.** A substantial sweep of Bitcoin from single-signature wallets happened hours before the advisory. Timing and victim profile fit, but the link has not been proven, and the team that published the technical analysis explicitly declines to claim it. Our advice does not rest on that question; it rests on the code.
-
-**Disclosure so you can weigh the sources.** The technical report came from Block, which makes a competing hardware wallet. Coinkite makes this one. Both have an interest, which is why we point at the public firmware source rather than asking you to trust a company. The code is readable by anyone.
-
----
-
-## Why this page disagrees with other sources
-
-Several trusted sources are wrong in specific ways this week. We name them because you will encounter them.
-
-- **Coinkite's advisory** gives the Mk3 range as "4.0.1 through 5.0.3." No 5.x Mk3 firmware exists.
-- **Coinkite's dice verification page** still says "The Coldcard does not limit the number of rolls, but will warn you if you apply too few rolls." True before firmware 5.1.1, false now on Mk4, Mk5 and Q, where it blocks.
-- **Coinkite's import documentation** says of mixing dice into a generated seed that "since the entropy of the Coldcard is being used as a starting point, it is safe to add as few or as many rolls as desired." That rests on the device's randomness being sound, which is the assumption that just failed.
-- **Widely recommended third-party guides** tell you to create a seed the normal way and then press 4 to add dice. Excellent advice a month ago; the wrong path for this problem.
-- **Video walkthroughs published this week** narrate the Mk4 menu path while discussing the Mk3. The Mk3 has no `Advanced/Tools` item; it is `Advanced`. The rename happened on the Mk4 line at firmware 5.0.2.
-
-Every correction above traces to published firmware source or Coinkite's own changelogs, so you can check it rather than take our word.
-
----
-
-## Updates
-
-This page changes when Coinkite publishes the fuller technical review they promised, when anyone demonstrates or refutes an attack against the newer models, or when the tables above need correcting. The date at the top is the last time we checked.
-
-Watch the source directly at [blog.coinkite.com](https://blog.coinkite.com) and the [advisory itself](https://blog.coinkite.com/coldcard-mk3-seed-generation-warning/).
+- [Verifying your backup, dice, passphrases, multisig, scams and the full technical account](/guides/coldcard-seed-flaw-resources/)
+- [Mk2 and Mk3 specifics](/guides/coldcard-seed-flaw-mk3/)
+- [Mk4, Mk5 and Q specifics](/guides/coldcard-seed-flaw-mk4-q/)
